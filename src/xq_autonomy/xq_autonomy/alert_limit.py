@@ -17,6 +17,11 @@ class AlertLimitResult:
     alert_limit: float
     trajectory_sample_count: int
     obstacle_point_count: int
+    trajectory_samples: np.ndarray
+    nearest_obstacles: np.ndarray
+    obstacle_directions: np.ndarray
+    geometric_clearances: np.ndarray
+    alert_limits: np.ndarray
 
 
 def sample_bspline(
@@ -116,22 +121,26 @@ def compute_alert_limit(
     clearances = np.sqrt(distance_squared[np.arange(len(samples)), nearest_indices])
     critical_index = int(np.argmin(clearances))
     clearance = float(clearances[critical_index])
-    if clearance <= 1.0e-9:
-        direction = np.zeros(3, dtype=float)
-    else:
-        direction = (obstacles[nearest_indices[critical_index]] - samples[critical_index]) / clearance
+    nearest_obstacles = obstacles[nearest_indices]
+    directions = np.zeros_like(samples)
+    nonzero = clearances > 1.0e-9
+    directions[nonzero] = (
+        nearest_obstacles[nonzero] - samples[nonzero]
+    ) / clearances[nonzero, None]
+    direction = directions[critical_index]
     latency_reserve = float(
         speed_mps * latency_p99_s
         + 0.5 * maximum_acceleration_mps2 * latency_p99_s * latency_p99_s
     )
-    alert_limit = float(
-        clearance
-        - body_radius_m
-        - base_reserve_m
-        - tracking_reserve_m
-        - dynamic_reserve_m
-        - latency_reserve
+    fixed_reserve = (
+        body_radius_m
+        + base_reserve_m
+        + tracking_reserve_m
+        + dynamic_reserve_m
+        + latency_reserve
     )
+    alert_limits = clearances - fixed_reserve
+    alert_limit = float(alert_limits[critical_index])
     return AlertLimitResult(
         critical_sample=samples[critical_index].copy(),
         nearest_obstacle=obstacles[nearest_indices[critical_index]].copy(),
@@ -141,4 +150,9 @@ def compute_alert_limit(
         alert_limit=alert_limit,
         trajectory_sample_count=len(samples),
         obstacle_point_count=len(obstacles),
+        trajectory_samples=samples.copy(),
+        nearest_obstacles=nearest_obstacles.copy(),
+        obstacle_directions=directions.copy(),
+        geometric_clearances=clearances.copy(),
+        alert_limits=alert_limits.copy(),
     )

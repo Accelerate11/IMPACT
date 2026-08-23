@@ -29,7 +29,7 @@ function Test-IgnoredGeneratedPath {
         $normalized -match '\.py[co]$'
 }
 
-foreach ($directoryName in @('src', 'scripts', 'docs', 'config')) {
+foreach ($directoryName in @('src', 'scripts', 'docs', 'config', 'evidence')) {
     $sourceDirectory = Join-Path $sourceRoot $directoryName
     $destinationDirectory = Join-Path $destinationRoot $directoryName
     New-Item -ItemType Directory -Path $destinationDirectory -Force | Out-Null

@@ -8,6 +8,7 @@ import time
 
 import numpy as np
 import rclpy
+from geometry_msgs.msg import Point
 from nav_msgs.msg import Odometry
 from rclpy.executors import ExternalShutdownException
 from rclpy.node import Node
@@ -15,7 +16,7 @@ from rclpy.qos import HistoryPolicy, QoSProfile, ReliabilityPolicy
 from sensor_msgs.msg import PointCloud2, PointField
 from std_msgs.msg import String
 from traj_utils.msg import Bspline
-from xq_sim_interfaces.msg import AlertLimit
+from xq_sim_interfaces.msg import AlertLimit, AlertLimitProfile
 
 from .alert_limit import compute_alert_limit, sample_bspline
 
@@ -71,6 +72,9 @@ class P8AlertLimitNode(Node):
             reliability=ReliabilityPolicy.BEST_EFFORT,
         )
         self.publisher = self.create_publisher(AlertLimit, "/integrity/alert_limit", 20)
+        self.profile_publisher = self.create_publisher(
+            AlertLimitProfile, "/integrity/alert_limit_profile", 20
+        )
         self.debug_publisher = self.create_publisher(String, "/integrity/alert_limit_debug", 10)
         self.create_subscription(Bspline, "/planning/bspline", self._trajectory_cb, qos)
         self.create_subscription(PointCloud2, "/xq/p5/cloud_map", self._cloud_cb, qos)
@@ -167,6 +171,27 @@ class P8AlertLimitNode(Node):
         output.static_obstacles_only = True
         output.obstacle_source = "/xq/p5/cloud_map"
         self.publisher.publish(output)
+
+        profile = AlertLimitProfile()
+        profile.header = message.header
+        profile.trajectory_id = self._trajectory_id
+        profile.trajectory_sample_count = result.trajectory_sample_count
+        profile.obstacle_point_count = result.obstacle_point_count
+        profile.trajectory_sample_points = [
+            Point(x=float(point[0]), y=float(point[1]), z=float(point[2]))
+            for point in result.trajectory_samples
+        ]
+        profile.sample_nearest_obstacle_points = [
+            Point(x=float(point[0]), y=float(point[1]), z=float(point[2]))
+            for point in result.nearest_obstacles
+        ]
+        profile.sample_obstacle_directions_map = result.obstacle_directions.reshape(-1).tolist()
+        profile.sample_geometric_clearances = result.geometric_clearances.tolist()
+        profile.sample_alert_limits = result.alert_limits.tolist()
+        profile.valid = result.geometric_clearance > 1.0e-9
+        profile.static_obstacles_only = True
+        profile.obstacle_source = "/xq/p5/cloud_map"
+        self.profile_publisher.publish(profile)
         debug = String()
         debug.data = json.dumps(
             {

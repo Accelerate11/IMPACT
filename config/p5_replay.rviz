@@ -230,6 +230,8 @@ Visualization Manager:
       Namespaces:
         xq_p6_directional_integrity: true
         xq_p8_alert_limit: true
+        xq_p9_environment: true
+        xq_p9_integrity_margin: true
       Queue Size: 200
       Value: true
     - Class: rviz_default_plugins/TF

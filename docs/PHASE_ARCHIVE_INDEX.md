@@ -1,4 +1,4 @@
-# P0–P8 阶段记录与验收归档索引
+# P0–P9 阶段记录与验收归档索引
 
 本索引是 GitHub 轻量归档入口。所有阶段均在 `PROGRESS.md` 保留正式结果记录，并有独立
 验收报告。`evidence/` 保存正式 PASS 轮次的小型原始 JSON、配置哈希、节点图、bag
@@ -15,6 +15,7 @@ metadata 与隔离审计。
 | P6 | PASS | `PROGRESS.md` | `docs/P6_DIRECTIONAL_INTEGRITY_REPORT.md` | `evidence/P6/` |
 | P7 | PASS | `PROGRESS.md` | `docs/P7_PROTECTION_LEVEL_CALIBRATION_REPORT.md` | `evidence/P7/` |
 | P8 | PASS | `PROGRESS.md` | `docs/P8_ALERT_LIMIT_REPORT.md` | `evidence/P8/` |
+| P9 | PASS | `PROGRESS.md` | `docs/P9_INTEGRITY_MARGIN_REPORT.md` | `evidence/P9/` |
 
 ## 大型原始证据策略
 

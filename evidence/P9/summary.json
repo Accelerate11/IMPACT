@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "gate": "P9_INTEGRITY_MARGIN",
+  "status": "PASS",
+  "integrity_margin": {
+    "schema_version": 1,
+    "gate": "P9_INTEGRITY_MARGIN_HARD_CONSTRAINT",
+    "status": "PASS",
+    "generated_at_utc": "2026-08-23T13:51:24.134747+00:00",
+    "checks": {
+      "wide_room_profile_received": true,
+      "narrow_passage_profile_received": true,
+      "identical_localization_covariance": true,
+      "wide_room_accept": true,
+      "narrow_passage_reject": true,
+      "wide_room_transport_passed": true,
+      "narrow_passage_transport_blocked": true,
+      "margin_equation_exact": true,
+      "hard_decision_exact": true,
+      "geometric_ordering_intuitive": true,
+      "hard_constraint_not_weighted_cost": true
+    },
+    "metrics": {
+      "wide_messages": 27,
+      "narrow_messages": 16,
+      "wide_minimum_margin_m": 0.74089334101832,
+      "narrow_maximum_margin_m": -0.1578601270604397,
+      "wide_minimum_alert_limit_m": 0.9458331019803627,
+      "narrow_maximum_alert_limit_m": 0.047079633901603524,
+      "wide_protection_level_m": 0.20493976096204267,
+      "narrow_protection_level_m": 0.20493976096204322,
+      "maximum_covariance_difference": 0.0,
+      "maximum_margin_equation_error_m": 0.0,
+      "certified_trajectory_ids": [
+        9001
+      ]
+    },
+    "data_contract": {
+      "same_covariance": true,
+      "ground_truth_subscribed": false,
+      "calibration_source": "P7 train-only frozen k95",
+      "decision_rule": "minimum_margin >= margin_reserve",
+      "weighted_cost": false
+    }
+  },
+  "p7_calibration_sha256": "771bdffcf3d4422d4641424dab326a08aa5be2b0dffd7f9d2f2f9ff82ea9f038",
+  "rosbag_present": true,
+  "gazebo_recording_present": true,
+  "open_top_world": true,
+  "walls_preserved": true,
+  "ground_truth_isolated": true,
+  "external_assets_unchanged": true,
+  "hard_constraint": true,
+  "weighted_cost": false,
+  "generated_at_utc": "2026-08-23T13:51:24.826664+00:00"
+}

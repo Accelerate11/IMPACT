@@ -41,6 +41,11 @@ def test_nearest_obstacle_direction_and_alert_limit_equation():
     assert np.allclose(result.obstacle_direction, (0.0, 1.0, 0.0))
     assert abs(result.latency_reserve - 0.055) < 1.0e-12
     assert abs(result.alert_limit - 0.195) < 1.0e-12
+    assert result.trajectory_samples.shape == (2, 3)
+    assert result.nearest_obstacles.shape == (2, 3)
+    assert result.obstacle_directions.shape == (2, 3)
+    assert np.allclose(result.geometric_clearances, (np.hypot(1.0, 0.8), 0.8))
+    assert np.allclose(result.alert_limits, (np.hypot(1.0, 0.8) - 0.605, 0.195))
 
 
 def test_alert_limit_can_be_negative_in_too_tight_environment():

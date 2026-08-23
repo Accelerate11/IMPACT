@@ -80,7 +80,18 @@ $files = @(
   @("P8", "experiments/results/impact_p8/p8_gazebo_final_20260823T104800Z/p8-node-graph.txt", "node-graph.txt"),
   @("P8", "experiments/results/impact_p8/p8_gazebo_final_20260823T104800Z/gazebo-replay-view.txt", "gazebo-replay-view.txt"),
   @("P8", "experiments/results/impact_p8/p8_gazebo_final_20260823T104800Z/isolation-audit.txt", "isolation-audit.txt"),
-  @("P8", "experiments/results/impact_p8/p8_gazebo_final_20260823T104800Z/rosbag/metadata.yaml", "rosbag-metadata.yaml")
+  @("P8", "experiments/results/impact_p8/p8_gazebo_final_20260823T104800Z/rosbag/metadata.yaml", "rosbag-metadata.yaml"),
+  @("P9", "experiments/results/impact_p9/p9_20260823T135112Z_1110615/summary.json", "summary.json"),
+  @("P9", "experiments/results/impact_p9/p9_20260823T135112Z_1110615/p9-gate-result.json", "p9-gate-result.json"),
+  @("P9", "experiments/results/impact_p9/p9_20260823T135112Z_1110615/margin-node-graph.txt", "margin-node-graph.txt"),
+  @("P9", "experiments/results/impact_p9/p9_20260823T135112Z_1110615/gate-node-graph.txt", "gate-node-graph.txt"),
+  @("P9", "experiments/results/impact_p9/p9_20260823T135112Z_1110615/run.env", "run.env"),
+  @("P9", "experiments/results/impact_p9/p9_20260823T135112Z_1110615/p7-calibration.sha256", "p7-calibration.sha256"),
+  @("P9", "experiments/results/impact_p9/p9_20260823T135112Z_1110615/p9-world.sha256", "p9-world.sha256"),
+  @("P9", "experiments/results/impact_p9/p9_20260823T135112Z_1110615/sdf-validation.txt", "sdf-validation.txt"),
+  @("P9", "experiments/results/impact_p9/p9_20260823T135112Z_1110615/isolation-audit.txt", "isolation-audit.txt"),
+  @("P9", "experiments/results/impact_p9/p9_20260823T135112Z_1110615/gazebo-replay-view.txt", "gazebo-replay-view.txt"),
+  @("P9", "experiments/results/impact_p9/p9_20260823T135112Z_1110615/rosbag/metadata.yaml", "rosbag-metadata.yaml")
 )
 
 foreach ($entry in $files) {
@@ -107,6 +118,10 @@ $largeArtifacts = @{
     "experiments/results/impact_p8/p8_gazebo_final_20260823T104800Z/rosbag",
     "experiments/results/impact_p8/p8_gazebo_final_20260823T104800Z/gz_record"
   )
+  P9 = @(
+    "experiments/results/impact_p9/p9_20260823T135112Z_1110615/rosbag",
+    "experiments/results/impact_p9/p9_20260823T135112Z_1110615/gz_record"
+  )
 }
 
 foreach ($phase in $largeArtifacts.Keys) {
@@ -129,4 +144,4 @@ foreach ($phase in $largeArtifacts.Keys) {
   [System.IO.File]::WriteAllText($manifestPath, (($manifest -join "`n") + "`n"), $utf8WithoutBom)
 }
 
-Write-Host "Archived P0-P8 lightweight evidence to $archiveRoot"
+Write-Host "Archived P0-P9 lightweight evidence to $archiveRoot"

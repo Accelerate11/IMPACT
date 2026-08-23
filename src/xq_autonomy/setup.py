@@ -43,6 +43,11 @@ setup(
             "xq_p7_calibration_collector = xq_autonomy.p7_calibration_collector_node:main",
             "xq_p8_alert_limit = xq_autonomy.p8_alert_limit_node:main",
             "xq_p8_alert_limit_evaluator = xq_autonomy.p8_alert_limit_evaluator_node:main",
+            "xq_p9_integrity_margin = xq_autonomy.p9_integrity_margin_node:main",
+            "xq_p9_trajectory_gate = xq_autonomy.p9_trajectory_gate_node:main",
+            "xq_p9_gate_scenario = xq_autonomy.p9_gate_scenario_node:main",
+            "xq_p9_gate_evaluator = xq_autonomy.p9_gate_evaluator_node:main",
+            "xq_p9_replay_visualizer = xq_autonomy.p9_replay_visualizer_node:main",
         ],
     },
 )

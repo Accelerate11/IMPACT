@@ -1,0 +1,21 @@
+/xq_p9_integrity_margin
+  Subscribers:
+    /integrity/alert_limit_profile: xq_sim_interfaces/msg/AlertLimitProfile
+    /integrity/directional: xq_sim_interfaces/msg/DirectionalIntegrity
+  Publishers:
+    /integrity/margin: xq_sim_interfaces/msg/IntegrityMargin
+    /integrity/margin_debug: std_msgs/msg/String
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+  Service Servers:
+    /xq_p9_integrity_margin/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /xq_p9_integrity_margin/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /xq_p9_integrity_margin/get_parameters: rcl_interfaces/srv/GetParameters
+    /xq_p9_integrity_margin/list_parameters: rcl_interfaces/srv/ListParameters
+    /xq_p9_integrity_margin/set_parameters: rcl_interfaces/srv/SetParameters
+    /xq_p9_integrity_margin/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:

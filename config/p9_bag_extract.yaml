@@ -1,0 +1,17 @@
+output_bags:
+  - uri: /tmp/xq_p9_integrity_margin_extract
+    storage_id: sqlite3
+    all: false
+    topics:
+      - /planning/candidate_bspline
+      - /planning/bspline
+      - /planning/trajectory_certified
+      - /xq/p5/cloud_map
+      - /integrity/directional
+      - /integrity/alert_limit
+      - /integrity/alert_limit_profile
+      - /integrity/margin
+      - /integrity/margin_debug
+      - /planning/certification_debug
+    compression_mode: none
+    compression_format: ""

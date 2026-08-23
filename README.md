@@ -16,9 +16,13 @@ IMPACT 是一套面向 **GNSS 拒止、未知环境与动态场景** 的单机�
 
 ## 当前状态
 
-> **2026-08-23：SIL 仿真 P0–P8 已通过，P9–P14 待执行。**
+> **2026-08-23：SIL 仿真 P0–P9 已通过，P10 已进入开发，P11–P14 待执行。**
 
 当前仓库不是仅包含方案文档的空工程，已经建立从 Gazebo / ArduPilot SITL 到 FAST-LIO2、Frontier、EGO-Planner 和导航完整性估计的可重复仿真链路。
+
+P9 已对完整轨迹剖面执行 `M_min=min(AL-PL)` 硬认证，并在相同定位协方差下验证宽房间
+ACCEPT、窄通道 REJECT；被拒绝的候选轨迹不会转发到飞行下游。P10 正在实现负 Margin
+后的最小激励主动感知恢复。`IN_PROGRESS` 只表示已进入开发，不等于 Gate 通过。
 
 | Phase | 内容                                           | 状态     |
 | ----- | -------------------------------------------- | ------ |
@@ -31,8 +35,8 @@ IMPACT 是一套面向 **GNSS 拒止、未知环境与动态场景** 的单机�
 | P6    | Directional Integrity Predictor              | ✅ PASS |
 | P7    | Protection Level Calibration                 | ✅ PASS |
 | P8    | Environment-dependent Alert Limit            | ✅ PASS |
-| P9    | Integrity Margin + Hard Trajectory Rejection | ⏳ NEXT |
-| P10   | Minimum-Excitation Active Perception         | ⏳ TODO |
+| P9    | Integrity Margin + Hard Trajectory Rejection | ✅ PASS |
+| P10   | Minimum-Excitation Active Perception         | 🚧 IN PROGRESS |
 | P11   | Integrity-Constrained Exploration            | ⏳ TODO |
 | P12   | Dynamic Obstacle / Dynamic Map               | ⏳ TODO |
 | P13   | Latency-Aware Safety                         | ⏳ TODO |
@@ -168,9 +172,8 @@ IMPACT 的目标不是始终追求最低定位误差，而是：
                             └──────────► New Observation
 ```
 
-当前 P8 已完成 `PL` 与 `AL` 的独立计算。
-
-**`M = AL - PL` 的在线硬轨迹认证从 P9 开始。**
+P8 已完成 `PL` 与 `AL` 的独立计算，P9 已完成 `M = AL - PL` 的整轨迹在线硬认证。
+当前开发重点是 P10：在名义轨迹被拒绝后，用最小额外代价恢复完整性。
 
 ---
 
@@ -568,10 +571,27 @@ P8 的静态障碍 Alert Limit 自动 Gate 已通过。
 ```text
 PL      ✅
 AL      ✅
-M=AL-PL ⏳ P9
+M=AL-PL ✅ P9
 ```
 
-所以 **当前还没有启用 Integrity Margin 对真实规划结果进行硬拒绝。**
+P9 保持原 `AlertLimit` 消息兼容，同时发布完整 AL 剖面；认证器逐点计算方向 PL 和 Margin，
+仅在 `M_min >= 0.10 m` 时向下游发布候选 B-spline。
+
+---
+
+## P9 — Integrity Margin
+
+正式 Gate 在相同 `P_int=diag(1.6e-5,1.6e-5,1.6e-5) m²` 下得到：
+
+| 场景 | AL | PL | `M_min` | 判决 |
+|---|---:|---:|---:|---|
+| Wide room | 0.945833 m | 0.204940 m | +0.740893 m | ACCEPT，轨迹下发 |
+| Narrow passage | 0.047080 m | 0.204940 m | -0.157860 m | REJECT，传输阻断 |
+
+11 项自动 Gate、65 项算法回归测试和 13 包隔离构建全部通过；Ground Truth 未进入算法
+节点图，Gazebo 世界无房顶但保留全部墙体。报告与轻量证据见
+[`docs/P9_INTEGRITY_MARGIN_REPORT.md`](docs/P9_INTEGRITY_MARGIN_REPORT.md) 和
+[`evidence/P9/`](evidence/P9/)。
 
 ---
 
@@ -615,10 +635,10 @@ P7  Protection Level Calibration
 P8  Alert Limit
  │
  ▼
-P9  Integrity Margin          ← CURRENT NEXT STEP
+P9  Integrity Margin
  │
  ▼
-P10 Minimum Excitation
+P10 Minimum Excitation        ← CURRENT
  │
  ▼
 P11 Integrity Exploration
@@ -650,11 +670,11 @@ Hardware Deployment
 
 ---
 
-# 8. 接下来要做什么
+# 8. 当前开发：P10
 
-## P9 — Integrity Margin
+## P9 — Integrity Margin（已完成）
 
-实现：
+已实现：
 
 [
 M_j(t)=AL_j(t)-PL_j(t)
@@ -686,7 +706,7 @@ vs
 Narrow Passage
 ```
 
-必须证明：
+已证明：
 
 > 相同定位质量下，宽阔环境中的轨迹可以通过，而狭窄环境中的危险轨迹能够被完整性约束拒绝。
 
@@ -848,7 +868,8 @@ IMPACT/
 │   ├── P5_BASELINE_VALIDATION_REPORT.md
 │   ├── P6_DIRECTIONAL_INTEGRITY_REPORT.md
 │   ├── P7_PROTECTION_LEVEL_CALIBRATION_REPORT.md
-│   └── P8_ALERT_LIMIT_REPORT.md
+│   ├── P8_ALERT_LIMIT_REPORT.md
+│   └── P9_INTEGRITY_MARGIN_REPORT.md
 │
 ├── evidence/
 │   └── P*/
@@ -862,7 +883,9 @@ IMPACT/
 │   ├── run_p5_baseline.sh
 │   ├── run_p6_directional_integrity.sh
 │   ├── run_p7_calibration.sh
-│   └── run_p8_alert_limit.sh
+│   ├── run_p8_alert_limit.sh
+│   ├── run_p9_integrity_margin.sh
+│   └── view_p9_combined.sh
 │
 └── src/
     ├── xq_autonomy/
@@ -920,6 +943,12 @@ IMPACT/
 
 # P8 — Alert Limit
 ./scripts/run_p8_alert_limit.sh
+
+# P9 — Integrity Margin hard gate
+./scripts/run_p9_integrity_margin.sh
+
+# P9 — Gazebo + RViz replay
+./scripts/view_p9_combined.sh
 ```
 
 部分阶段同时提供 RViz / Gazebo replay 工具。

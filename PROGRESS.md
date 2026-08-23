@@ -15,7 +15,9 @@
 | P6 Directional Integrity Predictor | PASS | `docs/P6_DIRECTIONAL_INTEGRITY_REPORT.md`；真实 FAST-LIO 点面信息矩阵、方向 PL |
 | P7 Protection Level Calibration | PASS | `docs/P7_PROTECTION_LEVEL_CALIBRATION_REPORT.md`；训练/测试隔离、95% coverage Gate |
 | P8 Alert Limit | PASS | `docs/P8_ALERT_LIMIT_REPORT.md`；逐轨迹净空与静态障碍 AL Gate |
-| P9-P14 | NOT_STARTED | P9 按用户要求暂停；后续严格按原 IMPACT 企划和前置 Gate 推进 |
+| P9 Integrity Margin | PASS | `docs/P9_INTEGRITY_MARGIN_REPORT.md`；同协方差宽/窄场景硬认证 Gate |
+| P10 Minimum-Excitation Active Perception | IN_PROGRESS | P9 前置 Gate 已通过；开始实现负 Margin 后的最小激励恢复候选与 `long_corridor` 三组对比 Gate |
+| P11-P14 | NOT_STARTED | P10 验收通过后严格按原 IMPACT 企划和前置 Gate 推进 |
 
 ## 已解决问题
 
@@ -153,3 +155,22 @@
   436 条 AL、7,588 个碰撞样本、零碰撞并自动降落；`gz_record/state.tlog` 已封盘。
 - WSLg GUI 与正式 Gate 解耦：回放使用独立 `GZ_PARTITION`，顶视窗口只透明房顶，
   四墙、地板、内部隔断和录制的无人机运动均保留。
+
+## P9 正式结果
+
+- 证据：`experiments/results/impact_p9/p9_20260823T135112Z_1110615`；11 项 Integrity
+  Margin 自动 Gate 全部 PASS，Gazebo state 与 ROS 话题同步封盘。
+- P8 输出扩展为整条剩余轨迹的 AL/障碍方向剖面；P9 对每个样本计算
+  `PL(a)=k95*sqrt(a^T P_int a)` 与 `M=AL-PL`，再取 `M_min`，没有用最小 AL 单点近似。
+- P7 train-only 冻结校准 SHA-256 为
+  `771bdffcf3d4422d4641424dab326a08aa5be2b0dffd7f9d2f2f9ff82ea9f038`；任意障碍方向
+  使用四个已校准方向中最大 `k95=51.234940` 作为保守统一系数。
+- 相同 `P_int=diag(1.6e-5,1.6e-5,1.6e-5) m²` 下，两场景 PL 均为
+  `0.204940 m`；wide room `M_min=0.740893 m`，ACCEPT；narrow passage
+  `M_min=-0.157860 m`，REJECT；储备阈值 `0.10 m`。
+- 两条候选 B-spline 只向下游转发 wide room 的 ID 9001；narrow passage ID 9002
+  在传输层被阻断。判决是布尔硬门，不存在 `cost += lambda * integrity`。
+- rosbag 4.406 s、352 条消息；候选轨迹 2、认证输出 1、Margin 42；65 项算法回归测试
+  全部通过，Ground Truth 未进入节点图，外部地图模型字节级不变。
+- Gazebo+RViz 双窗口已实测：Gazebo 世界没有房顶、保留宽/窄空间墙体；RViz 同时显示
+  绿色 ACCEPT、红色 REJECT、AL/PL/Margin 与 PL 包络。

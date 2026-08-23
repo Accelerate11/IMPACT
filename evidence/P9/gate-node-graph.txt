@@ -1,0 +1,22 @@
+/xq_p9_trajectory_gate
+  Subscribers:
+    /integrity/margin: xq_sim_interfaces/msg/IntegrityMargin
+    /planning/candidate_bspline: traj_utils/msg/Bspline
+  Publishers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /planning/bspline: traj_utils/msg/Bspline
+    /planning/certification_debug: std_msgs/msg/String
+    /planning/trajectory_certified: std_msgs/msg/Bool
+    /rosout: rcl_interfaces/msg/Log
+  Service Servers:
+    /xq_p9_trajectory_gate/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /xq_p9_trajectory_gate/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /xq_p9_trajectory_gate/get_parameters: rcl_interfaces/srv/GetParameters
+    /xq_p9_trajectory_gate/list_parameters: rcl_interfaces/srv/ListParameters
+    /xq_p9_trajectory_gate/set_parameters: rcl_interfaces/srv/SetParameters
+    /xq_p9_trajectory_gate/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:

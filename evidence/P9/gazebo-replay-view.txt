@@ -1,0 +1,3 @@
+open_top=true
+walls_preserved=true
+camera_response=data: true

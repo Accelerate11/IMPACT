@@ -448,3 +448,50 @@ bash scripts/view_p8_rviz.sh
 蓝球为临界轨迹采样点，橙球为最近静态障碍，箭头指向障碍。绿色文本表示 AL 非负，
 红色 `NO ERROR BUDGET` 表示 `AL < 0`；它不是告警状态机。P8 不反馈 EGO，P9 才将
 校准 PL 与 AL 合成为不可被收益抵消的 Integrity Margin 硬约束。
+
+## 16. P9 Integrity Margin 硬认证
+
+构建并运行正式 Gate：
+
+```bash
+cd /home/accelerate/xuanqiong_x1_sim_ws
+bash scripts/build_isolated.sh
+bash scripts/run_p9_integrity_margin.sh
+```
+
+运行器在同一个开顶 Gazebo 认证世界中构造净宽 3.0 m 的 wide room 与净宽 1.2 m 的
+narrow passage；两条轨迹共用完全相同的 `P_int`。结果保存到
+`experiments/results/impact_p9/p9_<UTC>_<PID>/`。重点文件为：
+
+- `p9-gate-result.json`：宽 ACCEPT、窄 REJECT、同协方差和硬门检查；
+- `summary.json`：rosbag、Gazebo record、真值隔离与外部资产审计总结果；
+- `margin-node-graph.txt` / `gate-node-graph.txt`：算法输入输出边界；
+- `p7-calibration.sha256`：train-only 冻结校准先决条件；
+- `rosbag/` / `gz_record/`：ROS 与 Gazebo 原始回放证据。
+
+不重跑 Gate，立即同时打开正式结果的 Gazebo 与 RViz：
+
+```bash
+cd /home/accelerate/xuanqiong_x1_sim_ws
+bash scripts/view_p9_combined.sh
+```
+
+也可显式指定结果，或分别打开：
+
+```bash
+bash scripts/view_p9_combined.sh \
+  experiments/results/impact_p9/p9_20260823T135112Z_1110615
+bash scripts/view_p9_gazebo_replay.sh \
+  experiments/results/impact_p9/p9_20260823T135112Z_1110615
+bash scripts/view_p9_rviz.sh
+```
+
+一条命令重新验收并在 PASS 后打开两个窗口：
+
+```bash
+bash scripts/run_p9_live_gazebo.sh
+```
+
+Gazebo 无房顶但保留宽/窄空间墙体；RViz 绿色表示 wide-room ACCEPT，红色表示
+narrow-passage REJECT，并显示 AL、方向 PL、最小 Margin 与储备。该阶段拒绝时不向
+`/planning/bspline` 发布候选轨迹；P10 才实现拒绝后的主动感知/恢复。

@@ -41,3 +41,25 @@ bash scripts/view_p8_gazebo_replay.sh \
 # 已验收结果的 RViz 算法回放
 bash scripts/view_p8_rviz.sh
 ```
+
+P9 当前入口：
+
+```bash
+# 正式硬约束 Gate + rosbag + Gazebo state 录制
+bash scripts/run_p9_integrity_margin.sh
+
+# 完整 Gate；PASS 后自动打开 Gazebo + RViz
+bash scripts/run_p9_live_gazebo.sh
+
+# 不重跑 Gate，立即双窗口复现正式 PASS 结果
+bash scripts/view_p9_combined.sh
+
+# 分别打开
+bash scripts/view_p9_gazebo_replay.sh \
+  experiments/results/impact_p9/p9_20260823T135112Z_1110615
+bash scripts/view_p9_rviz.sh
+```
+
+P9 Gazebo 是无房顶的确定性认证实验室，保留宽房间与窄通道全部墙体；绿色轨迹代表
+ACCEPT，红色轨迹代表 REJECT。RViz 同时显示两条候选轨迹、方向 PL 包络和
+`AL / PL / M_min / reserve` 文本。该阶段验证认证器与传输硬门，不伪装成完整飞行任务。
