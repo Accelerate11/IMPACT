@@ -11,6 +11,7 @@
 | R7 故障弹性 | F1–F8 `FaultEvent`、逐故障验收检查与 Sentinel 状态时间线 | CPU 项仅为项目内负载代理；NPU 恢复仅为定时恢复代理；实飞仍需分级验证 |
 | R8 多机支持 | agent/submap/frontier 接口定义 | 尚无多智能体运行节点；多机 SITL/HIL/实飞均为 `UNVERIFIED` |
 | R9 <=30 W | 标记 `UNVERIFIED` | 必须用 Atlas 输入端功率仪实测 |
+| P10 最小激励主动感知 | `docs/P10_MINIMUM_EXCITATION_ACCEPTANCE_REPORT.md`、`evidence/P10/` | 仅固定静态长走廊 Gazebo SIL；不代表连续动作全局最优或实机保证 |
 
 所有自动报告必须包含输入 TXT 的 SHA-256、场景哈希、随机种子、配置
 快照和运行层级，防止把设计目标或仿真结果误写成实测结果。

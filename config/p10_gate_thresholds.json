@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "frozen_before_formal_gate": true,
+  "world": "xq_p10_long_corridor.sdf",
+  "random_seed": 20260822,
+  "margin_reserve_m": 0.10,
+  "visibility_radius_m": 2.8,
+  "information_scale_m_inv2": 2500.0,
+  "minimum_prediction_variance_m2": 0.00001,
+  "lateral_offset_m": 0.40,
+  "vertical_offset_m": 0.25,
+  "slow_scale": 0.50,
+  "hover_time_s": 1.0,
+  "minimum_matched_samples": 100,
+  "minimum_integrity_samples": 20,
+  "maximum_yaw_only_margin_gain_m": 0.05,
+  "minimum_recovery_margin_gain_m": 0.10,
+  "maximum_extra_path_m": 1.00,
+  "maximum_mission_time_overhead_s": 1.00,
+  "maximum_ate_degradation_m": 0.05,
+  "maximum_weak_error_degradation_m": 0.05,
+  "required_recovery_candidate": "right_lateral"
+}

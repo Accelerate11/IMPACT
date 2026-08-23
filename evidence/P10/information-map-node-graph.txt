@@ -1,0 +1,21 @@
+/xq_p10_information_map
+  Subscribers:
+    /clock: rosgraph_msgs/msg/Clock
+    /cloud_registered: sensor_msgs/msg/PointCloud2
+  Publishers:
+    /integrity/information_map: xq_sim_interfaces/msg/InformationMap
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+    /xq/p5/cloud_map: sensor_msgs/msg/PointCloud2
+  Service Servers:
+    /xq_p10_information_map/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /xq_p10_information_map/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /xq_p10_information_map/get_parameters: rcl_interfaces/srv/GetParameters
+    /xq_p10_information_map/list_parameters: rcl_interfaces/srv/ListParameters
+    /xq_p10_information_map/set_parameters: rcl_interfaces/srv/SetParameters
+    /xq_p10_information_map/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:

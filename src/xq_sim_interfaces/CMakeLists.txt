@@ -18,6 +18,8 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/AlertLimit.msg"
   "msg/AlertLimitProfile.msg"
   "msg/IntegrityMargin.msg"
+  "msg/InformationMap.msg"
+  "msg/ActivePerceptionDecision.msg"
   "msg/ReplanEvent.msg"
   "msg/SubmapMeta.msg"
   DEPENDENCIES builtin_interfaces geometry_msgs std_msgs

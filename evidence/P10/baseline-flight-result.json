@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "gate": "P10_LONG_CORRIDOR_FLIGHT_ARM",
+  "variant": "baseline",
+  "status": "PASS",
+  "metrics": {
+    "matched_samples": 440,
+    "ate_rms_m": 0.12117580461839307,
+    "position_error_max_m": 0.24134768586614863,
+    "weak_direction_error_rms_m": 0.11640825864637774,
+    "weak_direction_error_max_m": 0.23727825438912867,
+    "actual_minimum_integrity_margin_m": -0.3206299559867214,
+    "actual_minimum_alert_limit_m": 0.21627691802570537,
+    "actual_maximum_protection_level_m": 0.7871966522750713,
+    "integrity_margin_samples": 88,
+    "ground_truth_path_length_m": 7.506819206011394,
+    "maximum_lateral_excursion_m": 0.0031052113145182947,
+    "mission_time_s": 43.00000000000001
+  },
+  "decision": {
+    "candidate_names": [
+      "baseline",
+      "left_lateral",
+      "right_lateral",
+      "up_offset",
+      "down_offset",
+      "slow_trajectory",
+      "short_hover",
+      "backtrack",
+      "yaw_only"
+    ],
+    "predicted_minimum_margins": [
+      -0.1908585812671693,
+      -0.8010965285732915,
+      0.27160218224019617,
+      0.00902963517561442,
+      -0.023064815841709385,
+      -0.1774657241243121,
+      -0.18993493594697225,
+      -0.18280012781639682,
+      -0.1908585812671693
+    ],
+    "costs": [
+      0.0,
+      0.05940379843851484,
+      0.05940379843851484,
+      0.023269486330275035,
+      0.023269486330275035,
+      28.0,
+      1.25,
+      1.8763706140350909,
+      0.0006208144640950115
+    ],
+    "feasible": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "selected_name": "right_lateral",
+    "baseline_insufficient": true,
+    "recovery_found": true,
+    "reason": "RECOVERY_SELECTED"
+  },
+  "flight_status": {
+    "variant": "baseline",
+    "phase": "COMPLETE",
+    "elapsed_s": 43.00000000000001,
+    "path_length_m": 7.665847262629729,
+    "baseline_published": true,
+    "decision_valid": true,
+    "selected_name": "right_lateral",
+    "selected_applied": false,
+    "finished": true,
+    "ground_truth_subscribed": false
+  },
+  "checks": {
+    "matched_samples": true,
+    "integrity_samples": true,
+    "controller_complete": true,
+    "decision_valid_hard": true,
+    "finite_core_metrics": true,
+    "ground_truth_evaluator_only": true
+  },
+  "calibration_sha256": "771bdffcf3d4422d4641424dab326a08aa5be2b0dffd7f9d2f2f9ff82ea9f038",
+  "ground_truth_consumer": "xq_p10_flight_evaluator_only",
+  "algorithm_ground_truth_subscribed": false,
+  "generated_at_utc": "2026-08-23T15:46:23.740802+00:00"
+}

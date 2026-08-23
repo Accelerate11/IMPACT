@@ -16,8 +16,8 @@
 | P7 Protection Level Calibration | PASS | `docs/P7_PROTECTION_LEVEL_CALIBRATION_REPORT.md`；训练/测试隔离、95% coverage Gate |
 | P8 Alert Limit | PASS | `docs/P8_ALERT_LIMIT_REPORT.md`；逐轨迹净空与静态障碍 AL Gate |
 | P9 Integrity Margin | PASS | `docs/P9_INTEGRITY_MARGIN_REPORT.md`；同协方差宽/窄场景硬认证 Gate |
-| P10 Minimum-Excitation Active Perception | IN_PROGRESS | P9 前置 Gate 已通过；开始实现负 Margin 后的最小激励恢复候选与 `long_corridor` 三组对比 Gate |
-| P11-P14 | NOT_STARTED | P10 验收通过后严格按原 IMPACT 企划和前置 Gate 推进 |
+| P10 Minimum-Excitation Active Perception | PASS | `docs/P10_MINIMUM_EXCITATION_ACCEPTANCE_REPORT.md`；三组 Gazebo+FAST-LIO 飞行、可视化与隔离 Gate |
+| P11-P14 | NOT_STARTED | P10 已验收；等待明确命令后按原 IMPACT 企划和前置 Gate 推进 P11 |
 
 ## 已解决问题
 
@@ -174,3 +174,30 @@
   全部通过，Ground Truth 未进入节点图，外部地图模型字节级不变。
 - Gazebo+RViz 双窗口已实测：Gazebo 世界没有房顶、保留宽/窄空间墙体；RViz 同时显示
   绿色 ACCEPT、红色 REJECT、AL/PL/Margin 与 PL 包络。
+
+## P10 正式结果
+
+- 算法/传输契约证据：
+  `experiments/results/impact_p10/contract_20260823T154236Z_14881`；baseline 预测 Margin
+  `0.058574 m`，只有 left-lateral 满足冻结硬约束并被发布，11 项检查全部 PASS。
+- 正式三臂飞行证据：
+  `experiments/results/impact_p10/gate_20260823T154534Z_16472`；baseline、yaw-only、
+  minimum-excitation 分别独立运行 Gazebo、LiDAR/IMU、FAST-LIO、P6/P10 与 evaluator。
+- 共同决策快照预测最低 Margin 为 `0.045083 / 0.045083 / 0.419631 m`；实际最低
+  Margin 为 `-0.320630 / -0.448158 / +0.104633 m`。baseline 与 yaw-only 均不足，
+  minimum-excitation 选择并执行 `right_lateral`，16 项汇总检查全部 PASS。
+- ATE RMS 为 `0.121176 / 0.085154 / 0.117578 m`，弱方向误差 RMS 为
+  `0.116408 / 0.074186 / 0.113459 m`；minimum-excitation 相对 baseline 多走
+  `0.065915 m`，三组任务时间均为 `43.0 s`。
+- 在线 Information Map 只消费 FAST-LIO `/cloud_registered`，由时间衰减 voxel surfel
+  生成信息矩阵；协方差预测冻结下界为 `1e-5 m²`，避免重复观测导致虚假零不确定性。
+  Ground Truth 只由 evaluator/logger 消费，飞行控制器明确报告未订阅真值。
+- 可视化证据：
+  `experiments/results/impact_p10/visual_20260823T154916Z_18660`；飞行与录制均 PASS，
+  Gazebo `state.tlog` 507,904 bytes，RViz bag 17,824,985 bytes，开放屋顶并保留墙体。
+- 77/77 算法回归测试、13 包隔离构建、ROS 契约、三臂正式 Gate、Gazebo/RViz 录制和
+  外部资产字节级审计全部 PASS；源码/安装树 SHA-256 分别为
+  `7c4e26e0feaaabf4d09bff91652bbd7d25a543db0a80dfae4db6f46cdbd50767` 与
+  `16ce2f5f24fe237c22ba5c39c423ed8e6f36a4a1f62a032811e12cf009078133`。
+- 边界：证明固定静态长走廊 Gazebo SIL 的有限候选主动恢复，不代表动态障碍、连续
+  动作全局最优、Atlas 满载性能或实机安全保证。

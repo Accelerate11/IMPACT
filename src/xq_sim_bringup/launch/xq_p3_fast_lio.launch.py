@@ -50,6 +50,7 @@ def generate_launch_description() -> LaunchDescription:
             DeclareLaunchArgument("result_file"),
             DeclareLaunchArgument("minimum_duration_s", default_value="65.0"),
             DeclareLaunchArgument("integrity_geometry_enable", default_value="false"),
+            DeclareLaunchArgument("scan_publish_enable", default_value="false"),
             DeclareLaunchArgument("trajectory_variant", default_value="baseline"),
             SetEnvironmentVariable("GZ_SIM_RESOURCE_PATH", resource_path),
             SetEnvironmentVariable("SDF_PATH", str(assets / "models")),
@@ -101,6 +102,9 @@ def generate_launch_description() -> LaunchDescription:
                     {
                         "use_sim_time": True,
                         "integrity_geometry.enable": LaunchConfiguration("integrity_geometry_enable"),
+                        "publish.scan_publish_en": ParameterValue(
+                            LaunchConfiguration("scan_publish_enable"), value_type=bool
+                        ),
                     },
                 ],
                 output="screen",

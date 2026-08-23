@@ -1,0 +1,26 @@
+/xq_p10_flight_controller
+  Subscribers:
+    /clock: rosgraph_msgs/msg/Clock
+    /integrity/active_perception_decision: xq_sim_interfaces/msg/ActivePerceptionDecision
+    /integrity/directional: xq_sim_interfaces/msg/DirectionalIntegrity
+    /integrity/information_map: xq_sim_interfaces/msg/InformationMap
+    /localization/odom: nav_msgs/msg/Odometry
+    /planning/active_perception_bspline: traj_utils/msg/Bspline
+  Publishers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /planning/p10/baseline_bspline: traj_utils/msg/Bspline
+    /rosout: rcl_interfaces/msg/Log
+    /xq/p10/flight_status: std_msgs/msg/String
+    /xq/p3/cmd_vel: geometry_msgs/msg/Twist
+  Service Servers:
+    /xq_p10_flight_controller/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /xq_p10_flight_controller/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /xq_p10_flight_controller/get_parameters: rcl_interfaces/srv/GetParameters
+    /xq_p10_flight_controller/list_parameters: rcl_interfaces/srv/ListParameters
+    /xq_p10_flight_controller/set_parameters: rcl_interfaces/srv/SetParameters
+    /xq_p10_flight_controller/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "gate": "P10_ROS_CONTRACT",
+  "status": "PASS",
+  "scope": "algorithm_and_transport_contract_only_not_formal_long_corridor_flight_gate",
+  "candidate_names": [
+    "baseline",
+    "left_lateral",
+    "right_lateral",
+    "up_offset",
+    "down_offset",
+    "slow_trajectory",
+    "short_hover",
+    "backtrack",
+    "yaw_only"
+  ],
+  "predicted_minimum_margins": [
+    0.05857428948516308,
+    0.7147043395421202,
+    0.05696440263657876,
+    0.05793862117100723,
+    0.05793862117100723,
+    0.0919076228184964,
+    0.06809809900897257,
+    0.04831787922875286,
+    0.05857428948516308
+  ],
+  "costs": [
+    0.0,
+    0.1293718098143507,
+    0.1293718098143507,
+    0.050944239044385164,
+    0.050944239044385164,
+    6.0,
+    1.25,
+    1.9615384615384617,
+    0.013332377058511756
+  ],
+  "information_traces": [
+    0.0,
+    257414.17439876645,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "feasible": [
+    false,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "selected_name": "left_lateral",
+  "selected_trajectory_id": 1000101,
+  "reason": "RECOVERY_SELECTED",
+  "checks": {
+    "valid_hard_decision": true,
+    "profiles_aligned": true,
+    "baseline_present": true,
+    "baseline_insufficient": true,
+    "recovery_found": true,
+    "selected_left_lateral": true,
+    "selected_index_valid": true,
+    "selected_is_feasible": true,
+    "selected_has_minimum_feasible_cost": true,
+    "selected_trajectory_published": true,
+    "ground_truth_not_required": true
+  },
+  "generated_at_utc": "2026-08-23T15:42:45.952582+00:00"
+}

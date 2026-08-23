@@ -1,6 +1,6 @@
 # Phase evidence archive
 
-This directory contains the lightweight, Git-safe evidence for the formally accepted P0-P9 runs.
+This directory contains the lightweight, Git-safe evidence for the formally accepted P0-P10 runs.
 Use `docs/PHASE_ARCHIVE_INDEX.md` as the human-readable entry point.
 
 Each phase directory contains the relevant result summaries, metrics, graph audits, rosbag metadata,

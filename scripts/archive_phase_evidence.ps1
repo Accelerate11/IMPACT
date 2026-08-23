@@ -91,7 +91,30 @@ $files = @(
   @("P9", "experiments/results/impact_p9/p9_20260823T135112Z_1110615/sdf-validation.txt", "sdf-validation.txt"),
   @("P9", "experiments/results/impact_p9/p9_20260823T135112Z_1110615/isolation-audit.txt", "isolation-audit.txt"),
   @("P9", "experiments/results/impact_p9/p9_20260823T135112Z_1110615/gazebo-replay-view.txt", "gazebo-replay-view.txt"),
-  @("P9", "experiments/results/impact_p9/p9_20260823T135112Z_1110615/rosbag/metadata.yaml", "rosbag-metadata.yaml")
+  @("P9", "experiments/results/impact_p9/p9_20260823T135112Z_1110615/rosbag/metadata.yaml", "rosbag-metadata.yaml"),
+  @("P10", "experiments/results/impact_p10/contract_20260823T154236Z_14881/contract-result.json", "contract-result.json"),
+  @("P10", "experiments/results/impact_p10/contract_20260823T154236Z_14881/selector-node-graph.txt", "contract-selector-node-graph.txt"),
+  @("P10", "experiments/results/impact_p10/contract_20260823T154236Z_14881/isolation-audit.txt", "contract-isolation-audit.txt"),
+  @("P10", "experiments/results/impact_p10/contract_20260823T154236Z_14881/rosbag/metadata.yaml", "contract-rosbag-metadata.yaml"),
+  @("P10", "experiments/results/impact_p10/gate_20260823T154534Z_16472/summary.json", "flight-gate-summary.json"),
+  @("P10", "experiments/results/impact_p10/gate_20260823T154534Z_16472/configuration.sha256", "configuration.sha256"),
+  @("P10", "experiments/results/impact_p10/gate_20260823T154534Z_16472/configuration/p10_gate_thresholds.json", "p10-gate-thresholds.json"),
+  @("P10", "experiments/results/impact_p10/gate_20260823T154534Z_16472/configuration/build-manifest.json", "build-manifest.json"),
+  @("P10", "experiments/results/impact_p10/gate_20260823T154534Z_16472/baseline/flight-result.json", "baseline-flight-result.json"),
+  @("P10", "experiments/results/impact_p10/gate_20260823T154534Z_16472/yaw_only/flight-result.json", "yaw-only-flight-result.json"),
+  @("P10", "experiments/results/impact_p10/gate_20260823T154534Z_16472/minimum_excitation/flight-result.json", "minimum-excitation-flight-result.json"),
+  @("P10", "experiments/results/impact_p10/gate_20260823T154534Z_16472/minimum_excitation/xq_p10_active_perception-graph.txt", "active-perception-node-graph.txt"),
+  @("P10", "experiments/results/impact_p10/gate_20260823T154534Z_16472/minimum_excitation/xq_p10_flight_controller-graph.txt", "flight-controller-node-graph.txt"),
+  @("P10", "experiments/results/impact_p10/gate_20260823T154534Z_16472/minimum_excitation/xq_p10_information_map-graph.txt", "information-map-node-graph.txt"),
+  @("P10", "experiments/results/impact_p10/gate_20260823T154534Z_16472/minimum_excitation/run.env", "minimum-excitation-run.env"),
+  @("P10", "experiments/results/impact_p10/gate_20260823T154534Z_16472/isolation-audit.txt", "flight-gate-isolation-audit.txt"),
+  @("P10", "experiments/results/impact_p10/gate_20260823T154534Z_16472/baseline/rosbag/metadata.yaml", "baseline-rosbag-metadata.yaml"),
+  @("P10", "experiments/results/impact_p10/gate_20260823T154534Z_16472/yaw_only/rosbag/metadata.yaml", "yaw-only-rosbag-metadata.yaml"),
+  @("P10", "experiments/results/impact_p10/gate_20260823T154534Z_16472/minimum_excitation/rosbag/metadata.yaml", "minimum-excitation-rosbag-metadata.yaml"),
+  @("P10", "experiments/results/impact_p10/visual_20260823T154916Z_18660/visualization.json", "visualization.json"),
+  @("P10", "experiments/results/impact_p10/visual_20260823T154916Z_18660/flight-result.json", "visual-flight-result.json"),
+  @("P10", "experiments/results/impact_p10/visual_20260823T154916Z_18660/isolation-audit.txt", "visual-isolation-audit.txt"),
+  @("P10", "experiments/results/impact_p10/visual_20260823T154916Z_18660/rosbag/metadata.yaml", "visual-rosbag-metadata.yaml")
 )
 
 foreach ($entry in $files) {
@@ -122,6 +145,14 @@ $largeArtifacts = @{
     "experiments/results/impact_p9/p9_20260823T135112Z_1110615/rosbag",
     "experiments/results/impact_p9/p9_20260823T135112Z_1110615/gz_record"
   )
+  P10 = @(
+    "experiments/results/impact_p10/contract_20260823T154236Z_14881/rosbag",
+    "experiments/results/impact_p10/gate_20260823T154534Z_16472/baseline/rosbag",
+    "experiments/results/impact_p10/gate_20260823T154534Z_16472/yaw_only/rosbag",
+    "experiments/results/impact_p10/gate_20260823T154534Z_16472/minimum_excitation/rosbag",
+    "experiments/results/impact_p10/visual_20260823T154916Z_18660/rosbag",
+    "experiments/results/impact_p10/visual_20260823T154916Z_18660/gz_record"
+  )
 }
 
 foreach ($phase in $largeArtifacts.Keys) {
@@ -144,4 +175,4 @@ foreach ($phase in $largeArtifacts.Keys) {
   [System.IO.File]::WriteAllText($manifestPath, (($manifest -join "`n") + "`n"), $utf8WithoutBom)
 }
 
-Write-Host "Archived P0-P9 lightweight evidence to $archiveRoot"
+Write-Host "Archived P0-P10 lightweight evidence to $archiveRoot"

@@ -48,6 +48,13 @@ setup(
             "xq_p9_gate_scenario = xq_autonomy.p9_gate_scenario_node:main",
             "xq_p9_gate_evaluator = xq_autonomy.p9_gate_evaluator_node:main",
             "xq_p9_replay_visualizer = xq_autonomy.p9_replay_visualizer_node:main",
+            "xq_p10_active_perception = xq_autonomy.p10_active_perception_node:main",
+            "xq_p10_flight_controller = xq_autonomy.p10_flight_controller_node:main",
+            "xq_p10_flight_evaluator = xq_autonomy.p10_flight_evaluator_node:main",
+            "xq_p10_information_map = xq_autonomy.p10_information_map_node:main",
+            "xq_p10_replay_visualizer = xq_autonomy.p10_replay_visualizer_node:main",
+            "xq_p10_gate_scenario = xq_autonomy.p10_gate_scenario_node:main",
+            "xq_p10_gate_evaluator = xq_autonomy.p10_gate_evaluator_node:main",
         ],
     },
 )

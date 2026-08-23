@@ -16,13 +16,13 @@ IMPACT 是一套面向 **GNSS 拒止、未知环境与动态场景** 的单机�
 
 ## 当前状态
 
-> **2026-08-23：SIL 仿真 P0–P9 已通过，P10 已进入开发，P11–P14 待执行。**
+> **2026-08-23：SIL 仿真 P0–P10 已通过，P11–P14 待执行。**
 
 当前仓库不是仅包含方案文档的空工程，已经建立从 Gazebo / ArduPilot SITL 到 FAST-LIO2、Frontier、EGO-Planner 和导航完整性估计的可重复仿真链路。
 
-P9 已对完整轨迹剖面执行 `M_min=min(AL-PL)` 硬认证，并在相同定位协方差下验证宽房间
-ACCEPT、窄通道 REJECT；被拒绝的候选轨迹不会转发到飞行下游。P10 正在实现负 Margin
-后的最小激励主动感知恢复。`IN_PROGRESS` 只表示已进入开发，不等于 Gate 通过。
+P9 已完成 `M_min=min(AL-PL)` 整轨迹硬认证；P10 已在实际 FAST-LIO 注册点云构建的
+Information Map 上完成最小激励主动感知恢复。正式长走廊对比中 baseline 与 yaw-only
+实际 Margin 为负，`right_lateral` 以 `0.065915 m` 额外路径恢复到 `+0.104633 m`。
 
 | Phase | 内容                                           | 状态     |
 | ----- | -------------------------------------------- | ------ |
@@ -36,7 +36,7 @@ ACCEPT、窄通道 REJECT；被拒绝的候选轨迹不会转发到飞行下游�
 | P7    | Protection Level Calibration                 | ✅ PASS |
 | P8    | Environment-dependent Alert Limit            | ✅ PASS |
 | P9    | Integrity Margin + Hard Trajectory Rejection | ✅ PASS |
-| P10   | Minimum-Excitation Active Perception         | 🚧 IN PROGRESS |
+| P10   | Minimum-Excitation Active Perception         | ✅ PASS |
 | P11   | Integrity-Constrained Exploration            | ⏳ TODO |
 | P12   | Dynamic Obstacle / Dynamic Map               | ⏳ TODO |
 | P13   | Latency-Aware Safety                         | ⏳ TODO |
@@ -172,8 +172,8 @@ IMPACT 的目标不是始终追求最低定位误差，而是：
                             └──────────► New Observation
 ```
 
-P8 已完成 `PL` 与 `AL` 的独立计算，P9 已完成 `M = AL - PL` 的整轨迹在线硬认证。
-当前开发重点是 P10：在名义轨迹被拒绝后，用最小额外代价恢复完整性。
+P8 已完成 `PL` 与 `AL` 的独立计算，P9 已完成 `M = AL - PL` 的整轨迹在线硬认证，
+P10 已完成在名义轨迹被拒绝后以最小额外代价恢复完整性的主动感知闭环。
 
 ---
 
@@ -595,6 +595,28 @@ P9 保持原 `AlertLimit` 消息兼容，同时发布完整 AL 剖面；认证�
 
 ---
 
+## P10 — Minimum-Excitation Active Perception
+
+固定长走廊三组 Gazebo + FAST-LIO 正式飞行结果：
+
+| 指标 | Baseline | Yaw-only | Minimum-Excitation |
+|---|---:|---:|---:|
+| 预测最低 Margin | 0.045083 m | 0.045083 m | 0.419631 m |
+| 实际最低 Margin | -0.320630 m | -0.448158 m | +0.104633 m |
+| ATE RMS | 0.121176 m | 0.085154 m | 0.117578 m |
+| 路径长度 | 7.506819 m | 7.704924 m | 7.572734 m |
+
+系统从 `/cloud_registered` 在线构建时间衰减 voxel surfel Information Map；名义轨迹
+不满足 `M_min >= 0.10 m` 时，仅对硬可行候选比较最小额外代价。正式轮次选择并执行
+`right_lateral`，相对 baseline 多走 `0.065915 m`、无任务时间开销。77 项算法测试、
+ROS 契约 Gate、16 项三臂飞行汇总 Gate、Gazebo/RViz 录制和外部资产隔离审计均通过。
+
+报告与轻量证据见
+[`docs/P10_MINIMUM_EXCITATION_ACCEPTANCE_REPORT.md`](docs/P10_MINIMUM_EXCITATION_ACCEPTANCE_REPORT.md)
+和 [`evidence/P10/`](evidence/P10/)。
+
+---
+
 # 7. Codex 开发顺序
 
 本仓库采用严格阶段 Gate。
@@ -638,10 +660,10 @@ P8  Alert Limit
 P9  Integrity Margin
  │
  ▼
-P10 Minimum Excitation        ← CURRENT
+P10 Minimum Excitation        PASS
  │
  ▼
-P11 Integrity Exploration
+P11 Integrity Exploration     ← NEXT
  │
  ▼
 P12 Dynamic Obstacles
@@ -670,7 +692,7 @@ Hardware Deployment
 
 ---
 
-# 8. 当前开发：P10
+# 8. 已完成：P10；下一阶段：P11
 
 ## P9 — Integrity Margin（已完成）
 
@@ -732,6 +754,10 @@ Predict future information
        ↓
 Find minimum-cost candidate with M > 0
 ```
+
+正式 Gate 已证明 baseline/yaw-only 均不能恢复 Margin，minimum-excitation 选择
+`right_lateral` 后实际最低 Margin 为 `+0.104633 m`，相对 baseline 仅增加
+`0.065915 m` 路径。Ground Truth 仅供独立评价，未进入算法闭环。
 
 ---
 
@@ -869,7 +895,8 @@ IMPACT/
 │   ├── P6_DIRECTIONAL_INTEGRITY_REPORT.md
 │   ├── P7_PROTECTION_LEVEL_CALIBRATION_REPORT.md
 │   ├── P8_ALERT_LIMIT_REPORT.md
-│   └── P9_INTEGRITY_MARGIN_REPORT.md
+│   ├── P9_INTEGRITY_MARGIN_REPORT.md
+│   └── P10_MINIMUM_EXCITATION_ACCEPTANCE_REPORT.md
 │
 ├── evidence/
 │   └── P*/
@@ -885,7 +912,9 @@ IMPACT/
 │   ├── run_p7_calibration.sh
 │   ├── run_p8_alert_limit.sh
 │   ├── run_p9_integrity_margin.sh
-│   └── view_p9_combined.sh
+│   ├── run_p10_flight_gate.sh
+│   ├── run_p10_visual_capture.sh
+│   └── view_p10_combined.sh
 │
 └── src/
     ├── xq_autonomy/
@@ -949,6 +978,15 @@ IMPACT/
 
 # P9 — Gazebo + RViz replay
 ./scripts/view_p9_combined.sh
+
+# P10 — three-arm Gazebo + FAST-LIO flight gate
+./scripts/run_p10_flight_gate.sh
+
+# P10 — create Gazebo + RViz replay evidence
+./scripts/run_p10_visual_capture.sh
+
+# P10 — replay Gazebo and RViz together
+./scripts/view_p10_combined.sh
 ```
 
 部分阶段同时提供 RViz / Gazebo replay 工具。

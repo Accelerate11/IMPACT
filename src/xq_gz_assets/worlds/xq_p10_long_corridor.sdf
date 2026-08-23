@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<sdf version="1.10">
+  <world name="xq_p10_long_corridor">
+    <gravity>0 0 -9.80665</gravity>
+    <physics name="xq_p10_400hz_physics" type="ode">
+      <max_step_size>0.0025</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>400</real_time_update_rate>
+    </physics>
+
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu"/>
+
+    <scene>
+      <ambient>0.70 0.72 0.76</ambient>
+      <background>0.16 0.18 0.22</background>
+    </scene>
+    <light name="xq_p10_corridor_sun" type="directional">
+      <pose>0 0 8 0 0 0</pose>
+      <diffuse>0.9 0.9 0.86 1</diffuse>
+      <direction>-0.3 0.2 -1</direction>
+    </light>
+
+    <!-- Dedicated P10 world.  It intentionally has no ceiling so later
+         Gazebo record/replay remains visible from the approved top view. -->
+    <model name="xq_p10_corridor_shell">
+      <static>true</static>
+      <link name="shell_link">
+        <collision name="floor_c"><pose>0 0 -0.06 0 0 0</pose><geometry><box><size>30 5 0.12</size></box></geometry></collision>
+        <visual name="floor_v"><pose>0 0 -0.06 0 0 0</pose><geometry><box><size>30 5 0.12</size></box></geometry><material><diffuse>0.42 0.44 0.48 1</diffuse></material></visual>
+        <collision name="wall_n_c"><pose>0 2.5 1.55 0 0 0</pose><geometry><box><size>30 0.16 3.10</size></box></geometry></collision>
+        <visual name="wall_n_v"><pose>0 2.5 1.55 0 0 0</pose><geometry><box><size>30 0.16 3.10</size></box></geometry><material><diffuse>0.64 0.68 0.73 1</diffuse></material></visual>
+        <collision name="wall_s_c"><pose>0 -2.5 1.55 0 0 0</pose><geometry><box><size>30 0.16 3.10</size></box></geometry></collision>
+        <visual name="wall_s_v"><pose>0 -2.5 1.55 0 0 0</pose><geometry><box><size>30 0.16 3.10</size></box></geometry><material><diffuse>0.58 0.63 0.69 1</diffuse></material></visual>
+        <collision name="end_w_c"><pose>-15 0 1.55 0 0 0</pose><geometry><box><size>0.16 5 3.10</size></box></geometry></collision>
+        <visual name="end_w_v"><pose>-15 0 1.55 0 0 0</pose><geometry><box><size>0.16 5 3.10</size></box></geometry><material><diffuse>0.50 0.58 0.65 1</diffuse></material></visual>
+        <collision name="end_e_c"><pose>15 0 1.55 0 0 0</pose><geometry><box><size>0.16 5 3.10</size></box></geometry></collision>
+        <visual name="end_e_v"><pose>15 0 1.55 0 0 0</pose><geometry><box><size>0.16 5 3.10</size></box></geometry><material><diffuse>0.63 0.53 0.42 1</diffuse></material></visual>
+
+        <!-- Mid-path integrity bottleneck.  The panel surface is y=0.80 m:
+             baseline violates the reserved margin, while the frozen 0.40 m
+             right-lateral sinusoid increases clearance without a large detour. -->
+        <collision name="integrity_panel_c"><pose>-8.25 0.86 1.20 0 0 0</pose><geometry><box><size>2.50 0.12 2.20</size></box></geometry></collision>
+        <visual name="integrity_panel_v"><pose>-8.25 0.86 1.20 0 0 0</pose><geometry><box><size>2.50 0.12 2.20</size></box></geometry><material><diffuse>0.78 0.30 0.14 1</diffuse></material></visual>
+
+        <collision name="south_fins_c"><pose>-8.25 -2.18 1.10 0 0 0</pose><geometry><box><size>2.80 0.45 2.20</size></box></geometry></collision>
+        <visual name="south_fins_v"><pose>-8.25 -2.18 1.10 0 0 0</pose><geometry><box><size>2.80 0.45 2.20</size></box></geometry><material><diffuse>0.20 0.52 0.66 1</diffuse></material></visual>
+        <collision name="pier_01_c"><pose>-2.0 2.12 1.0 0 0 0</pose><geometry><box><size>0.45 0.60 2.0</size></box></geometry></collision>
+        <visual name="pier_01_v"><pose>-2.0 2.12 1.0 0 0 0</pose><geometry><box><size>0.45 0.60 2.0</size></box></geometry><material><diffuse>0.29 0.62 0.35 1</diffuse></material></visual>
+        <collision name="pier_02_c"><pose>5.0 -2.12 0.8 0 0 0</pose><geometry><box><size>0.55 0.65 1.6</size></box></geometry></collision>
+        <visual name="pier_02_v"><pose>5.0 -2.12 0.8 0 0 0</pose><geometry><box><size>0.55 0.65 1.6</size></box></geometry><material><diffuse>0.62 0.45 0.18 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <include>
+      <name>xq_agent_01</name>
+      <uri>model://xq_iris_mid360</uri>
+      <pose>-12 0 1.2 0 0 0</pose>
+    </include>
+  </world>
+</sdf>
