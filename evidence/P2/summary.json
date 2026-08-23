@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "gate": "P2_MID360_SENSOR_VALIDATION",
+  "status": "PASS",
+  "capture_wall_duration_s": 600.434543045,
+  "lidar_rate_hz": 10.000083403531306,
+  "imu_rate_hz": 200.00083395532502,
+  "lidar_messages": 5996,
+  "imu_messages": 119912,
+  "minimum_points_per_frame": 23040,
+  "checks": {
+    "duration": true,
+    "lidar_rate": true,
+    "imu_rate": true,
+    "lidar_gap": true,
+    "imu_gap": true,
+    "timestamps_monotonic": true,
+    "frames": true,
+    "tf": true,
+    "finite_values": true,
+    "point_layout": true,
+    "point_count": true
+  },
+  "rosbag_present": true,
+  "external_assets_unchanged": true,
+  "generated_at_utc": "2026-08-22T13:29:09.100752+00:00"
+}

@@ -1,0 +1,30 @@
+xq_asset_set: xq_gz_assets
+xq_sdf_version: "1.10"
+xq_gazebo_target: "Harmonic / gz-sim8"
+xq_world:
+  xq_name: xq_indoor_office
+  xq_file: worlds/xq_indoor_office.sdf
+xq_agent:
+  xq_instance_name: xq_agent_01
+  xq_model_uri: model://xq_iris_mid360
+  xq_spawn_pose_xyz_rpy: [-7.0, -5.0, 1.2, 0.0, 0.0, 0.0]
+xq_dynamic_obstacle:
+  xq_instance_name: xq_dynamic_obstacle
+  xq_spawn_pose_xyz_rpy: [0.0, -5.8, 0.55, 0.0, 0.0, 0.0]
+  xq_initial_linear_velocity_mps: [-0.10, 0.0, 0.0]
+xq_frames:
+  xq_world: xq_world
+  xq_base: xq_base_link
+  xq_lidar: xq_mid360_link
+  xq_imu: xq_imu_link
+xq_gz_topics:
+  xq_lidar_scan: /xq/lidar
+  xq_lidar_points: /xq/lidar/points
+  xq_imu: /xq/imu
+  xq_ground_truth_odometry: /model/xq_agent_01/odometry
+  xq_velocity_command: /model/xq_agent_01/cmd_vel
+  xq_dynamic_obstacle_velocity_command: /model/xq_dynamic_obstacle/cmd_vel
+xq_sensor_rates_hz:
+  xq_lidar: 10.0
+  xq_imu: 200.0
+  xq_ground_truth_odometry: 50.0

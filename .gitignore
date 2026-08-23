@@ -1,0 +1,17 @@
+xq_build/
+xq_install/
+xq_log/
+xq_test_log/
+build/
+install/
+log/
+runs/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+experiments/results/
+*.db3
+*.db3.zstd
+*.tlog
+*.tlog-journal
+eeprom.bin

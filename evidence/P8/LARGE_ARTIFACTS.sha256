@@ -1,0 +1,4 @@
+# SHA256  BYTES  WSL_RELATIVE_PATH
+246373a7972701cc38ed056092d09fb40361c498a04dc5a4aef2391b91817a98  1075773440  experiments/results/impact_p8/p8_gazebo_final_20260823T104800Z/rosbag/rosbag_0.db3
+e1d1b11b2b910e74dc3ca18b1fa134d33e497dad68d645a91a786c1e81f82827  409670491  experiments/results/impact_p8/p8_gazebo_final_20260823T104800Z/rosbag/rosbag_0.db3.zstd
+768c49857b61e0a816231d6632ca90eaecdf32092a252b42bd681dc85115e4b0  9035776  experiments/results/impact_p8/p8_gazebo_final_20260823T104800Z/gz_record/state.tlog

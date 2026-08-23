@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "gate": "P7_PROTECTION_LEVEL_CALIBRATION_CAPTURE",
+  "scenario": "long_corridor",
+  "status": "PASS",
+  "capture_wall_duration_s": 76.01396002699767,
+  "odom_frequency_hz": 10.00000000013158,
+  "odom_max_gap_s": 0.10000000100001216,
+  "ate_rms_m": 0.04325730648304626,
+  "rpe_translation_rms_m_1s": 0.004421563529423978,
+  "yaw_error_rms_deg": 0.047579814930872634,
+  "processing_latency_mean_s": 0.03785808186728142,
+  "processing_latency_max_s": 0.07500000000000018,
+  "checks": {
+    "duration": true,
+    "frequency": true,
+    "continuous": true,
+    "monotonic": true,
+    "finite": true,
+    "matched_samples": true,
+    "no_obvious_jump": true,
+    "structured_room_ate": true
+  },
+  "rosbag_present": true,
+  "algorithm_ground_truth_isolated": true,
+  "external_assets_unchanged": true,
+  "generated_at_utc": "2026-08-23T08:27:23.122046+00:00",
+  "p7_capture": {
+    "schema_version": 1,
+    "gate": "P7_PROTECTION_LEVEL_CALIBRATION_CAPTURE",
+    "status": "PASS",
+    "scenario": "long_corridor",
+    "split": "test",
+    "trajectory_variant": "validation",
+    "matched_samples": 657,
+    "calibration_sha256": "771bdffcf3d4422d4641424dab326a08aa5be2b0dffd7f9d2f2f9ff82ea9f038",
+    "metrics": {
+      "x": {
+        "count": 657,
+        "coverage_95": 1.0,
+        "coverage_99": 1.0,
+        "mean_pl95_m": 0.13622824224249322,
+        "missed_integrity_events_95": 0,
+        "false_alarm_rate": null,
+        "false_alarm_note": "P8 Alert Limit is not defined in P7"
+      },
+      "y": {
+        "count": 657,
+        "coverage_95": 1.0,
+        "coverage_99": 1.0,
+        "mean_pl95_m": 0.17801237910235218,
+        "missed_integrity_events_95": 0,
+        "false_alarm_rate": null,
+        "false_alarm_note": "P8 Alert Limit is not defined in P7"
+      },
+      "z": {
+        "count": 657,
+        "coverage_95": 1.0,
+        "coverage_99": 1.0,
+        "mean_pl95_m": 0.3338782605658403,
+        "missed_integrity_events_95": 0,
+        "false_alarm_rate": null,
+        "false_alarm_note": "P8 Alert Limit is not defined in P7"
+      },
+      "weak": {
+        "count": 657,
+        "coverage_95": 1.0,
+        "coverage_99": 1.0,
+        "mean_pl95_m": 0.13533951332140726,
+        "missed_integrity_events_95": 0,
+        "false_alarm_rate": null,
+        "false_alarm_note": "P8 Alert Limit is not defined in P7"
+      }
+    },
+    "raw_directional_samples": null,
+    "ground_truth_consumer": "xq_p7_calibration_collector_only",
+    "predictor_ground_truth_subscribed": false,
+    "generated_at_utc": "2026-08-23T08:27:11.305857+00:00"
+  }
+}

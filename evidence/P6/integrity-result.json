@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "gate": "P6_DIRECTIONAL_INTEGRITY_PREDICTOR",
+  "status": "PASS",
+  "checks": {
+    "fast_lio_geometry_live": true,
+    "directional_integrity_live": true,
+    "finite_outputs": true,
+    "integrity_covariance_positive_definite": true,
+    "protection_level_equation_exact": true,
+    "effective_constraints_present": true,
+    "ground_truth_not_used": true,
+    "planner_feedback_disabled_in_p6": true
+  },
+  "samples": {
+    "geometry": 80,
+    "integrity": 80
+  },
+  "metrics": {
+    "condition_number_min": 2.2445154196196495,
+    "condition_number_max": 3.054430156283006,
+    "weak_pl_min_m": 0.023289119474792827,
+    "weak_pl_max_m": 0.0329813928685767,
+    "effective_points_min": 3506,
+    "effective_points_max": 3567,
+    "minimum_integrity_covariance_eigenvalue": 2.365632876742951e-05,
+    "maximum_pl_formula_error": 6.938893903907228e-18
+  },
+  "generated_at_utc": "2026-08-23T06:59:35.031043+00:00"
+}

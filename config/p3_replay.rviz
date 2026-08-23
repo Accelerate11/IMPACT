@@ -1,0 +1,150 @@
+Panels:
+  - Class: rviz_common/Displays
+    Help Height: 78
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /P3 LiDAR1
+        - /FAST-LIO Odometry1
+      Splitter Ratio: 0.5
+    Tree Height: 650
+  - Class: rviz_common/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: rviz_common/Time
+    Experimental: false
+    Name: Time
+    SyncMode: 0
+    SyncSource: ""
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.35
+      Cell Size: 1
+      Class: rviz_default_plugins/Grid
+      Color: 100; 100; 100
+      Enabled: true
+      Line Style:
+        Line Width: 0.03
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 30
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: AxisColor
+      Decay Time: 30
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Min Color: 0; 0; 0
+      Name: P3 LiDAR
+      Position Transformer: XYZ
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.025
+      Style: Points
+      Topic:
+        Depth: 10
+        Durability Policy: Volatile
+        Filter size: 20
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /livox/lidar
+      Use Fixed Frame: true
+      Value: true
+    - Angle Tolerance: 0.001
+      Class: rviz_default_plugins/Odometry
+      Enabled: true
+      Keep: 1000
+      Name: FAST-LIO Odometry
+      Position Tolerance: 0.001
+      Shape:
+        Alpha: 1
+        Axes Length: 0.35
+        Axes Radius: 0.03
+        Color: 255; 25; 25
+        Head Length: 0.25
+        Head Radius: 0.08
+        Shaft Length: 0.6
+        Shaft Radius: 0.03
+        Value: Arrow
+      Topic:
+        Depth: 20
+        Durability Policy: Volatile
+        Filter size: 100
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /localization/odom
+      Value: true
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Frame Timeout: 15
+      Marker Scale: 0.6
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree: {}
+      Update Interval: 0
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 18; 22; 28
+    Fixed Frame: xq_lio_map
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/Interact
+      Hide Inactive Objects: true
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+    - Class: rviz_default_plugins/Measure
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 14
+      Focal Point:
+        X: 1.5
+        Y: -4
+        Z: 1
+      Name: Current View
+      Near Clip Distance: 0.01
+      Pitch: 0.72
+      Target Frame: xq_lio_map
+      Value: Orbit (rviz)
+      Yaw: 0.75
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 900
+  Hide Left Dock: false
+  Hide Right Dock: false
+  Time:
+    collapsed: false
+  Views:
+    collapsed: false
+  Width: 1450
+  X: 80
+  Y: 60

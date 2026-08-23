@@ -1,0 +1,18 @@
+xq_p6_directional_integrity:
+  ros__parameters:
+    use_sim_time: true
+    eta: 0.02
+    epsilon: 0.01
+    k_alpha: 3.0
+    a_d: 0.40
+    a_nnis: 0.20
+    a_timing: 0.20
+    a_residual: 0.20
+    nnis_term: 0.0
+    timing_jitter_term: 0.0
+    residual_dynamics_term: 0.0
+    degeneracy_condition_reference: 100.0
+    degeneracy_cap: 3.0
+    covariance_floor: 1.0e-9
+    maximum_odom_age_s: 0.25
+

@@ -1,0 +1,3 @@
+ceiling_transparent_response=data: true
+camera_pose_response=data: true
+PASS: ceiling transparent in the GUI; overhead camera pose applied.

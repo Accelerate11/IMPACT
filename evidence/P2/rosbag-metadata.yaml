@@ -1,0 +1,107 @@
+rosbag2_bagfile_information:
+  version: 5
+  storage_identifier: sqlite3
+  duration:
+    nanoseconds: 552660123453
+  starting_time:
+    nanoseconds_since_epoch: 1787404795055918746
+  message_count: 365535
+  topics_with_message_count:
+    - topic_metadata:
+        name: /clock
+        type: rosgraph_msgs/msg/Clock
+        serialization_format: cdr
+        offered_qos_profiles: "- history: 3\n  depth: 0\n  reliability: 2\n  durability: 2\n  deadline:\n    sec: 9223372036\n    nsec: 854775807\n  lifespan:\n    sec: 9223372036\n    nsec: 854775807\n  liveliness: 1\n  liveliness_lease_duration:\n    sec: 9223372036\n    nsec: 854775807\n  avoid_ros_namespace_conventions: false"
+      message_count: 239694
+    - topic_metadata:
+        name: /livox/imu
+        type: sensor_msgs/msg/Imu
+        serialization_format: cdr
+        offered_qos_profiles: "- history: 3\n  depth: 0\n  reliability: 2\n  durability: 2\n  deadline:\n    sec: 9223372036\n    nsec: 854775807\n  lifespan:\n    sec: 9223372036\n    nsec: 854775807\n  liveliness: 1\n  liveliness_lease_duration:\n    sec: 9223372036\n    nsec: 854775807\n  avoid_ros_namespace_conventions: false"
+      message_count: 119846
+    - topic_metadata:
+        name: /livox/lidar
+        type: sensor_msgs/msg/PointCloud2
+        serialization_format: cdr
+        offered_qos_profiles: "- history: 3\n  depth: 0\n  reliability: 1\n  durability: 2\n  deadline:\n    sec: 9223372036\n    nsec: 854775807\n  lifespan:\n    sec: 9223372036\n    nsec: 854775807\n  liveliness: 1\n  liveliness_lease_duration:\n    sec: 9223372036\n    nsec: 854775807\n  avoid_ros_namespace_conventions: false"
+      message_count: 5993
+    - topic_metadata:
+        name: /tf_static
+        type: tf2_msgs/msg/TFMessage
+        serialization_format: cdr
+        offered_qos_profiles: "- history: 3\n  depth: 0\n  reliability: 1\n  durability: 1\n  deadline:\n    sec: 9223372036\n    nsec: 854775807\n  lifespan:\n    sec: 9223372036\n    nsec: 854775807\n  liveliness: 1\n  liveliness_lease_duration:\n    sec: 9223372036\n    nsec: 854775807\n  avoid_ros_namespace_conventions: false"
+      message_count: 2
+  compression_format: zstd
+  compression_mode: FILE
+  relative_file_paths:
+    - rosbag_0.db3.zstd
+    - rosbag_1.db3.zstd
+    - rosbag_2.db3.zstd
+    - rosbag_3.db3.zstd
+    - rosbag_4.db3.zstd
+    - rosbag_5.db3.zstd
+    - rosbag_6.db3.zstd
+    - rosbag_7.db3.zstd
+    - rosbag_8.db3.zstd
+    - rosbag_9.db3.zstd
+  files:
+    - path: rosbag_0.db3
+      starting_time:
+        nanoseconds_since_epoch: 1787404795055918746
+      duration:
+        nanoseconds: 59999901539
+      message_count: 39624
+    - path: rosbag_1.db3
+      starting_time:
+        nanoseconds_since_epoch: 1787404855055996219
+      duration:
+        nanoseconds: 59999486691
+      message_count: 39533
+    - path: rosbag_2.db3
+      starting_time:
+        nanoseconds_since_epoch: 1787404915058024468
+      duration:
+        nanoseconds: 59997933337
+      message_count: 39643
+    - path: rosbag_3.db3
+      starting_time:
+        nanoseconds_since_epoch: 1787404975058406879
+      duration:
+        nanoseconds: 59997677985
+      message_count: 39564
+    - path: rosbag_4.db3
+      starting_time:
+        nanoseconds_since_epoch: 1787405035058557833
+      duration:
+        nanoseconds: 59998630963
+      message_count: 39575
+    - path: rosbag_5.db3
+      starting_time:
+        nanoseconds_since_epoch: 1787405095059561273
+      duration:
+        nanoseconds: 59998132510
+      message_count: 39611
+    - path: rosbag_6.db3
+      starting_time:
+        nanoseconds_since_epoch: 1787405155060094000
+      duration:
+        nanoseconds: 59998501230
+      message_count: 39599
+    - path: rosbag_7.db3
+      starting_time:
+        nanoseconds_since_epoch: 1787405215061100699
+      duration:
+        nanoseconds: 59998804867
+      message_count: 39640
+    - path: rosbag_8.db3
+      starting_time:
+        nanoseconds_since_epoch: 1787405275062420745
+      duration:
+        nanoseconds: 59998300885
+      message_count: 39500
+    - path: rosbag_9.db3
+      starting_time:
+        nanoseconds_since_epoch: 1787405335063229699
+      duration:
+        nanoseconds: 12652812500
+      message_count: 9246

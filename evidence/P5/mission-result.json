@@ -1,0 +1,391 @@
+{
+  "schema_version": 1,
+  "gate": "P5_BASELINE_MAP_FRONTIER_EGO",
+  "baseline": "BASELINE_V1",
+  "status": "PASS",
+  "reason": "autonomous P5 exploration and landing completed",
+  "generated_at_utc": "2026-08-23T04:31:54.958776+00:00",
+  "elapsed_s": 281.101,
+  "verified_parameters": {
+    "AHRS_EKF_TYPE": 3,
+    "EK3_ENABLE": 1,
+    "EK3_SRC1_POSXY": 6,
+    "EK3_SRC1_VELXY": 6,
+    "EK3_SRC1_POSZ": 6,
+    "EK3_SRC1_VELZ": 6,
+    "EK3_SRC1_YAW": 6,
+    "VISO_TYPE": 2,
+    "GPS_TYPE": 0,
+    "GPS_TYPE2": 0,
+    "SIM_GPS_DISABLE": 1,
+    "SIM_GPS2_DISABLE": 1
+  },
+  "external_nav": {
+    "schema_version": 1,
+    "healthy": true,
+    "source_count": 1512,
+    "output_count": 1512,
+    "rejected_count": 0,
+    "esekf_velocity_count": 1512,
+    "differenced_velocity_count": 0,
+    "source_rate_hz": 5.359665051512423,
+    "source_age_s": 0.12327269300021726,
+    "source_stamp_s": 156.4,
+    "mavros_subscribers": 2,
+    "ground_truth_subscribed": false
+  },
+  "exploration": {
+    "schema_version": 1,
+    "algorithm": "BASELINE_V1",
+    "enabled": false,
+    "finished": true,
+    "resolution_m": 0.1,
+    "selection_objective": "J=I-lambda*d",
+    "distance_lambda": 0.18,
+    "scan_count": 758,
+    "known_cells": 31681,
+    "known_fraction": 0.40409438775510204,
+    "frontier_cells": 0,
+    "frontier_clusters": 0,
+    "reachable_free_cells": 1,
+    "viewpoint_mode": "none",
+    "goals_published": 4,
+    "goals_reached": 2,
+    "goals_failed": 2,
+    "active_goal": null,
+    "ground_truth_subscribed": false
+  },
+  "ego_adapter": {
+    "schema_version": 1,
+    "enabled": false,
+    "healthy": false,
+    "received": 23815,
+    "forwarded": 21258,
+    "rejected": 0,
+    "last_forward_age_s": 25.578207017999375,
+    "ground_truth_subscribed": false
+  },
+  "bspline_count": 110,
+  "checks": {
+    "gps_disabled": true,
+    "no_artificial_waypoints": true,
+    "frontier_automatic": true,
+    "frontier_discovered": true,
+    "ego_planned": true,
+    "ego_forwarded": true,
+    "auto_finished": true,
+    "landed_and_disarmed": true
+  },
+  "final": {
+    "connected": true,
+    "armed": false,
+    "mode": "LAND",
+    "xyz_m": [
+      0.394510954618454,
+      6.954213619232178,
+      -0.05242781713604927
+    ]
+  },
+  "events": [
+    {
+      "elapsed_s": 0.0,
+      "kind": "START",
+      "phase": "WAIT_FCU",
+      "detail": "P4 GPS-off ExternalNav mission created"
+    },
+    {
+      "elapsed_s": 0.042,
+      "kind": "P5_READY",
+      "phase": "WAIT_FCU",
+      "detail": "No waypoint list; waiting for autonomous Frontier goals"
+    },
+    {
+      "elapsed_s": 2.9,
+      "kind": "TRANSITION",
+      "phase": "SET_STREAM",
+      "detail": "SET_STREAM: FCU heartbeat connected"
+    },
+    {
+      "elapsed_s": 3.001,
+      "kind": "REQUEST",
+      "phase": "SET_STREAM",
+      "detail": "stream"
+    },
+    {
+      "elapsed_s": 3.1,
+      "kind": "RESPONSE",
+      "phase": "SET_STREAM",
+      "detail": "stream accepted=True"
+    },
+    {
+      "elapsed_s": 3.101,
+      "kind": "TRANSITION",
+      "phase": "VERIFY_NAV",
+      "detail": "VERIFY_NAV: MAVLink streams requested"
+    },
+    {
+      "elapsed_s": 3.191,
+      "kind": "FCU_ODOM_LOCK",
+      "phase": "VERIFY_NAV",
+      "detail": "origin=(0.0028759518172591925, 0.022371064871549606, -0.02496790513396263)"
+    },
+    {
+      "elapsed_s": 3.2,
+      "kind": "PARAM",
+      "phase": "VERIFY_NAV",
+      "detail": "AHRS_EKF_TYPE=3"
+    },
+    {
+      "elapsed_s": 4.3,
+      "kind": "PARAM",
+      "phase": "VERIFY_NAV",
+      "detail": "EK3_ENABLE=1"
+    },
+    {
+      "elapsed_s": 5.3,
+      "kind": "PARAM",
+      "phase": "VERIFY_NAV",
+      "detail": "EK3_SRC1_POSXY=6"
+    },
+    {
+      "elapsed_s": 6.4,
+      "kind": "PARAM",
+      "phase": "VERIFY_NAV",
+      "detail": "EK3_SRC1_VELXY=6"
+    },
+    {
+      "elapsed_s": 7.4,
+      "kind": "PARAM",
+      "phase": "VERIFY_NAV",
+      "detail": "EK3_SRC1_POSZ=6"
+    },
+    {
+      "elapsed_s": 8.5,
+      "kind": "PARAM",
+      "phase": "VERIFY_NAV",
+      "detail": "EK3_SRC1_VELZ=6"
+    },
+    {
+      "elapsed_s": 9.6,
+      "kind": "PARAM",
+      "phase": "VERIFY_NAV",
+      "detail": "EK3_SRC1_YAW=6"
+    },
+    {
+      "elapsed_s": 10.7,
+      "kind": "PARAM",
+      "phase": "VERIFY_NAV",
+      "detail": "VISO_TYPE=2"
+    },
+    {
+      "elapsed_s": 11.7,
+      "kind": "PARAM",
+      "phase": "VERIFY_NAV",
+      "detail": "GPS_TYPE=0"
+    },
+    {
+      "elapsed_s": 12.8,
+      "kind": "PARAM",
+      "phase": "VERIFY_NAV",
+      "detail": "GPS_TYPE2=0"
+    },
+    {
+      "elapsed_s": 13.9,
+      "kind": "PARAM",
+      "phase": "VERIFY_NAV",
+      "detail": "SIM_GPS_DISABLE=1"
+    },
+    {
+      "elapsed_s": 15.0,
+      "kind": "PARAM",
+      "phase": "VERIFY_NAV",
+      "detail": "SIM_GPS2_DISABLE=1"
+    },
+    {
+      "elapsed_s": 15.001,
+      "kind": "TRANSITION",
+      "phase": "SET_GUIDED",
+      "detail": "SET_GUIDED: GPS-off ExternalNav contract verified"
+    },
+    {
+      "elapsed_s": 15.101,
+      "kind": "REQUEST",
+      "phase": "SET_GUIDED",
+      "detail": "mode"
+    },
+    {
+      "elapsed_s": 15.2,
+      "kind": "RESPONSE",
+      "phase": "SET_GUIDED",
+      "detail": "mode accepted=True"
+    },
+    {
+      "elapsed_s": 15.201,
+      "kind": "TRANSITION",
+      "phase": "ARM",
+      "detail": "ARM: GUIDED confirmed"
+    },
+    {
+      "elapsed_s": 15.301,
+      "kind": "REQUEST",
+      "phase": "ARM",
+      "detail": "arm"
+    },
+    {
+      "elapsed_s": 15.4,
+      "kind": "RESPONSE",
+      "phase": "ARM",
+      "detail": "arm accepted=False"
+    },
+    {
+      "elapsed_s": 17.401,
+      "kind": "REQUEST",
+      "phase": "ARM",
+      "detail": "arm"
+    },
+    {
+      "elapsed_s": 17.5,
+      "kind": "RESPONSE",
+      "phase": "ARM",
+      "detail": "arm accepted=False"
+    },
+    {
+      "elapsed_s": 19.5,
+      "kind": "REQUEST",
+      "phase": "ARM",
+      "detail": "arm"
+    },
+    {
+      "elapsed_s": 19.6,
+      "kind": "RESPONSE",
+      "phase": "ARM",
+      "detail": "arm accepted=False"
+    },
+    {
+      "elapsed_s": 21.6,
+      "kind": "REQUEST",
+      "phase": "ARM",
+      "detail": "arm"
+    },
+    {
+      "elapsed_s": 21.7,
+      "kind": "RESPONSE",
+      "phase": "ARM",
+      "detail": "arm accepted=False"
+    },
+    {
+      "elapsed_s": 23.7,
+      "kind": "REQUEST",
+      "phase": "ARM",
+      "detail": "arm"
+    },
+    {
+      "elapsed_s": 23.8,
+      "kind": "RESPONSE",
+      "phase": "ARM",
+      "detail": "arm accepted=False"
+    },
+    {
+      "elapsed_s": 25.801,
+      "kind": "REQUEST",
+      "phase": "ARM",
+      "detail": "arm"
+    },
+    {
+      "elapsed_s": 25.9,
+      "kind": "RESPONSE",
+      "phase": "ARM",
+      "detail": "arm accepted=False"
+    },
+    {
+      "elapsed_s": 27.901,
+      "kind": "REQUEST",
+      "phase": "ARM",
+      "detail": "arm"
+    },
+    {
+      "elapsed_s": 28.0,
+      "kind": "RESPONSE",
+      "phase": "ARM",
+      "detail": "arm accepted=False"
+    },
+    {
+      "elapsed_s": 30.001,
+      "kind": "REQUEST",
+      "phase": "ARM",
+      "detail": "arm"
+    },
+    {
+      "elapsed_s": 30.1,
+      "kind": "RESPONSE",
+      "phase": "ARM",
+      "detail": "arm accepted=True"
+    },
+    {
+      "elapsed_s": 31.0,
+      "kind": "TRANSITION",
+      "phase": "TAKEOFF",
+      "detail": "TAKEOFF: armed with ExternalNav"
+    },
+    {
+      "elapsed_s": 31.101,
+      "kind": "REQUEST",
+      "phase": "TAKEOFF",
+      "detail": "takeoff"
+    },
+    {
+      "elapsed_s": 31.2,
+      "kind": "RESPONSE",
+      "phase": "TAKEOFF",
+      "detail": "takeoff accepted=True"
+    },
+    {
+      "elapsed_s": 31.201,
+      "kind": "TRANSITION",
+      "phase": "ASCEND",
+      "detail": "ASCEND: takeoff accepted"
+    },
+    {
+      "elapsed_s": 42.0,
+      "kind": "TRANSITION",
+      "phase": "EXPLORE_START",
+      "detail": "EXPLORE_START: takeoff complete; enabling Frontier"
+    },
+    {
+      "elapsed_s": 42.3,
+      "kind": "TRANSITION",
+      "phase": "EXPLORE",
+      "detail": "EXPLORE: first autonomous Frontier goal published"
+    },
+    {
+      "elapsed_s": 254.8,
+      "kind": "TRANSITION",
+      "phase": "LAND",
+      "detail": "LAND: Frontier exhaustion automatically declared"
+    },
+    {
+      "elapsed_s": 254.901,
+      "kind": "REQUEST",
+      "phase": "LAND",
+      "detail": "land"
+    },
+    {
+      "elapsed_s": 255.0,
+      "kind": "RESPONSE",
+      "phase": "LAND",
+      "detail": "land accepted=True"
+    },
+    {
+      "elapsed_s": 255.001,
+      "kind": "TRANSITION",
+      "phase": "DESCEND",
+      "detail": "DESCEND: landing accepted"
+    },
+    {
+      "elapsed_s": 281.101,
+      "kind": "PASS",
+      "phase": "DONE",
+      "detail": "autonomous P5 exploration and landing completed"
+    }
+  ]
+}

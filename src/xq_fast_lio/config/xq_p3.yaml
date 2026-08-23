@@ -1,0 +1,56 @@
+/**:
+  ros__parameters:
+    feature_extract_enable: false
+    point_filter_num: 2
+    max_iteration: 4
+    filter_size_surf: 0.25
+    filter_size_map: 0.30
+    cube_side_length: 200.0
+    runtime_pos_log_enable: false
+    map_file_path: ""
+
+    common:
+      lid_topic: /livox/lidar
+      imu_topic: /livox/imu
+      odom_topic: /localization/odom
+      map_frame: xq_lio_map
+      body_frame: livox_imu
+      time_sync_en: false
+      time_offset_lidar_to_imu: 0.0
+
+    # P2 publishes an idealized instantaneous PointCloud2 frame.  Type 5
+    # selects the generic PointXYZI path and deliberately does not invent
+    # per-point acquisition times that are absent from the simulator.
+    preprocess:
+      lidar_type: 5
+      scan_line: 32
+      blind: 0.35
+      timestamp_unit: 3
+      scan_rate: 10
+
+    mapping:
+      acc_cov: 0.10
+      gyr_cov: 0.10
+      b_acc_cov: 0.0001
+      b_gyr_cov: 0.0001
+      fov_degree: 360.0
+      det_range: 30.0
+      extrinsic_est_en: false
+      # Transform a LiDAR-frame point into the IMU frame.  SDF positions are
+      # lidar=[0.04,0,0.135], imu=[0,0,0.015] in xq_base_link.
+      extrinsic_T: [0.04, 0.0, 0.12]
+      extrinsic_R: [1.0, 0.0, 0.0,
+                    0.0, 1.0, 0.0,
+                    0.0, 0.0, 1.0]
+
+    publish:
+      path_en: false
+      effect_map_en: false
+      map_en: false
+      scan_publish_en: false
+      dense_publish_en: false
+      scan_bodyframe_pub_en: false
+
+    pcd_save:
+      pcd_save_en: false
+      interval: -1

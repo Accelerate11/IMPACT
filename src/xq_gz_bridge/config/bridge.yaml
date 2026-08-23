@@ -1,0 +1,25 @@
+xq_gz_bridge_node:
+  ros__parameters:
+    use_sim_time: true
+
+    gz_clock_topic: /clock
+    ros_clock_topic: /clock
+
+    gz_lidar_topic: /xq/lidar/points
+    ros_lidar_topic: /xq/agent_01/sensors/lidar/points
+    lidar_frame_id: xq_mid360_link
+
+    gz_imu_topic: /xq/imu
+    ros_imu_topic: /xq/agent_01/sensors/imu
+    imu_frame_id: xq_imu_link
+
+    ros_cmd_vel_topic: /xq/agent_01/cmd_vel
+    gz_cmd_vel_topic: /model/xq_agent_01/cmd_vel
+
+    publish_ground_truth: true
+    ground_truth_source_type: odometry
+    gz_ground_truth_topic: /model/xq_agent_01/odometry
+    ros_ground_truth_topic: /xq/eval/agent_01/ground_truth
+    ground_truth_entity_name: xq_agent_01
+    world_frame_id: xq_world
+    base_frame_id: xq_base_link

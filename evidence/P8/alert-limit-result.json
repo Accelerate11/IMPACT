@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "gate": "P8_STATIC_OBSTACLE_ALERT_LIMIT",
+  "status": "PASS",
+  "generated_at_utc": "2026-08-23T10:53:32.559633+00:00",
+  "checks": {
+    "minimum_messages": true,
+    "multiple_ego_trajectories": true,
+    "all_outputs_valid": true,
+    "trajectory_samples_present": true,
+    "obstacle_points_present": true,
+    "static_obstacle_v1": true,
+    "mapped_cloud_source": true,
+    "direction_unit_norm": true,
+    "nearest_point_geometry": true,
+    "alert_limit_equation": true,
+    "environmental_clearance_varies": true
+  },
+  "metrics": {
+    "messages": 436,
+    "trajectory_ids": 83,
+    "maximum_trajectory_samples": 74,
+    "maximum_obstacle_points": 8376,
+    "geometric_clearance_min_m": 0.1245061714258408,
+    "geometric_clearance_max_m": 0.9293145445989694,
+    "alert_limit_min_m": -0.4930911305929189,
+    "alert_limit_max_m": 0.36521843778064506,
+    "alert_limit_mean_m": 0.12648671624271343,
+    "latency_reserve_max_m": 0.06947764597660568,
+    "negative_alert_limit_messages": 53,
+    "maximum_direction_norm_error": 4.723998969780041e-13,
+    "maximum_nearest_point_distance_error_m": 8.43769498715119e-14,
+    "maximum_equation_error_m": 0.0
+  },
+  "data_contract": {
+    "trajectory_source": "/planning/bspline",
+    "obstacle_source": "/xq/p5/cloud_map",
+    "ground_truth_subscribed": false,
+    "planner_feedback_enabled": false,
+    "dynamic_obstacles_enabled": false
+  }
+}

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <world name="xq_p1_ardupilot_empty">
+    <physics name="xq_1ms" type="ignore">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu"/>
+    <plugin filename="gz-sim-navsat-system" name="gz::sim::systems::NavSat"/>
+
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>-35.363262</latitude_deg>
+      <longitude_deg>149.165237</longitude_deg>
+      <elevation>584</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+
+    <light type="directional" name="xq_sun">
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <model name="xq_ground">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>40 40 0.1</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>40 40 0.1</size></box></geometry>
+          <material>
+            <ambient>0.35 0.37 0.40 1</ambient>
+            <diffuse>0.45 0.47 0.50 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Read-only external dependency. The P1 runner hashes it before and after. -->
+    <include>
+      <uri>model://iris_with_ardupilot</uri>
+      <name>xq_p1_uav1</name>
+      <pose degrees="true">0 0 0.195 0 0 90</pose>
+    </include>
+  </world>
+</sdf>

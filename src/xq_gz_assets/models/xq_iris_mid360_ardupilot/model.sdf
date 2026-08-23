@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <model name="xq_iris_mid360_ardupilot">
+    <!--
+      SDFormat merge-include keeps the upstream ArduPilot model untouched while
+      making this payload part of the same dynamic model.  The upstream model
+      remains a runtime dependency and is hashed before and after each P4 run.
+    -->
+    <include merge="true">
+      <uri>model://iris_with_ardupilot</uri>
+    </include>
+
+    <!-- Dedicated LIO IMU.  ArduPilot continues to use its own upstream IMU. -->
+    <link name="xq_lio_imu_link">
+      <pose relative_to="iris_with_standoffs::base_link">0 0 0 0 0 0</pose>
+      <inertial>
+        <mass>0.020</mass>
+        <inertia>
+          <ixx>0.00001</ixx><ixy>0</ixy><ixz>0</ixz>
+          <iyy>0.00001</iyy><iyz>0</iyz><izz>0.00001</izz>
+        </inertia>
+      </inertial>
+      <sensor name="xq_lio_imu" type="imu">
+        <topic>/xq/p4/imu</topic>
+        <always_on>true</always_on>
+        <update_rate>200</update_rate>
+        <imu>
+          <angular_velocity>
+            <x><noise type="gaussian"><mean>0</mean><stddev>0.00020</stddev></noise></x>
+            <y><noise type="gaussian"><mean>0</mean><stddev>0.00020</stddev></noise></y>
+            <z><noise type="gaussian"><mean>0</mean><stddev>0.00020</stddev></noise></z>
+          </angular_velocity>
+          <linear_acceleration>
+            <x><noise type="gaussian"><mean>0</mean><stddev>0.0020</stddev></noise></x>
+            <y><noise type="gaussian"><mean>0</mean><stddev>0.0020</stddev></noise></y>
+            <z><noise type="gaussian"><mean>0</mean><stddev>0.0020</stddev></noise></z>
+          </linear_acceleration>
+        </imu>
+      </sensor>
+    </link>
+    <joint name="xq_lio_imu_joint" type="fixed">
+      <parent>iris_with_standoffs::base_link</parent>
+      <child>xq_lio_imu_link</child>
+    </joint>
+
+    <link name="xq_mid360_link">
+      <pose relative_to="iris_with_standoffs::base_link">0.04 0 0.12 0 0 0</pose>
+      <inertial>
+        <mass>0.265</mass>
+        <inertia>
+          <ixx>0.00045</ixx><ixy>0</ixy><ixz>0</ixz>
+          <iyy>0.00045</iyy><iyz>0</iyz><izz>0.00055</izz>
+        </inertia>
+      </inertial>
+      <collision name="xq_mid360_collision">
+        <geometry><cylinder><radius>0.040</radius><length>0.065</length></cylinder></geometry>
+      </collision>
+      <visual name="xq_mid360_visual">
+        <geometry><cylinder><radius>0.040</radius><length>0.065</length></cylinder></geometry>
+        <material>
+          <ambient>0.02 0.02 0.025 1</ambient>
+          <diffuse>0.04 0.04 0.05 1</diffuse>
+          <specular>0.55 0.55 0.55 1</specular>
+        </material>
+      </visual>
+      <sensor name="xq_mid360_lidar" type="gpu_lidar">
+        <topic>/xq/p4/lidar</topic>
+        <always_on>true</always_on>
+        <update_rate>10</update_rate>
+        <visualize>false</visualize>
+        <lidar>
+          <scan>
+            <horizontal>
+              <samples>720</samples><resolution>1</resolution>
+              <min_angle>-3.14159265359</min_angle>
+              <max_angle>3.14159265359</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>32</samples><resolution>1</resolution>
+              <min_angle>-0.12217304764</min_angle>
+              <max_angle>0.90757121104</max_angle>
+            </vertical>
+          </scan>
+          <range><min>0.10</min><max>40.0</max><resolution>0.02</resolution></range>
+          <noise><type>gaussian</type><mean>0</mean><stddev>0.015</stddev></noise>
+        </lidar>
+      </sensor>
+    </link>
+    <joint name="xq_mid360_joint" type="fixed">
+      <parent>iris_with_standoffs::base_link</parent>
+      <child>xq_mid360_link</child>
+    </joint>
+  </model>
+</sdf>

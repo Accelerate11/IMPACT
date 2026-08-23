@@ -1,0 +1,24 @@
+std_msgs/Header header
+
+int64 trajectory_id
+uint32 trajectory_sample_count
+uint32 obstacle_point_count
+
+geometry_msgs/Point critical_sample_point
+geometry_msgs/Point nearest_obstacle_point
+float64[3] obstacle_direction_map
+float64 geometric_clearance
+
+float64 body_radius
+float64 base_reserve
+float64 tracking_reserve
+float64 dynamic_reserve
+float64 latency_reserve
+float64 speed
+float64 latency_p99
+float64 maximum_acceleration
+float64 alert_limit
+
+bool valid
+bool static_obstacles_only
+string obstacle_source

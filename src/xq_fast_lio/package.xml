@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>xq_fast_lio</name>
+  <version>0.1.0</version>
+
+  <description>
+    This is a modified version of LOAM which is original algorithm
+    is described in the following paper:
+    J. Zhang and S. Singh. LOAM: Lidar Odometry and Mapping in Real-time.
+    Robotics: Science and Systems Conference (RSS). Berkeley, CA, July 2014.
+  </description>
+
+  <maintainer email="xq-sim@invalid.local">Xuanqiong-X1 team</maintainer>
+
+  <license>BSD</license>
+
+  <author email="zhangji@cmu.edu">Ji Zhang</author>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>rosidl_default_generators</buildtool_depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>rclcpp</depend>
+  <depend>rclcpp_components</depend>
+  <depend>std_msgs</depend>
+  <depend>std_srvs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+  <depend>pcl_conversions</depend>
+  <depend>visualization_msgs</depend>
+  <depend>xq_livox_interfaces</depend>
+  <depend>xq_sim_interfaces</depend>
+
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  <member_of_group>rosidl_interface_packages</member_of_group>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

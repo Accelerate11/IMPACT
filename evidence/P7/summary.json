@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "gate": "P7_PROTECTION_LEVEL_CALIBRATION",
+  "status": "PASS",
+  "checks": {
+    "train_test_separated": true,
+    "calibration_frozen_before_test": true,
+    "two_independent_test_scenarios": true,
+    "aggregate_95_coverage": true,
+    "each_test_scenario_95_coverage": true
+  },
+  "calibration_file": "/home/accelerate/xuanqiong_x1_sim_ws/experiments/results/impact_p7/p7_20260823T082157Z_48605/p7-calibration.json",
+  "calibration_sha256": "771bdffcf3d4422d4641424dab326a08aa5be2b0dffd7f9d2f2f9ff82ea9f038",
+  "aggregate": {
+    "coverage_95": 1.0,
+    "coverage_99": 1.0,
+    "sample_directions": 5256,
+    "false_alarm_rate": null,
+    "false_alarm_note": "P8 Alert Limit is intentionally not defined in P7",
+    "missed_integrity_event_rate_95": 0.0
+  },
+  "test_scenarios": {
+    "structured_room": {
+      "coverage_95": 1.0,
+      "coverage_99": 1.0,
+      "directional": {
+        "x": {
+          "count": 657,
+          "coverage_95": 1.0,
+          "coverage_99": 1.0,
+          "mean_pl95_m": 0.11664890425868772,
+          "missed_integrity_events_95": 0,
+          "false_alarm_rate": null,
+          "false_alarm_note": "P8 Alert Limit is not defined in P7"
+        },
+        "y": {
+          "count": 657,
+          "coverage_95": 1.0,
+          "coverage_99": 1.0,
+          "mean_pl95_m": 0.19545014327132812,
+          "missed_integrity_events_95": 0,
+          "false_alarm_rate": null,
+          "false_alarm_note": "P8 Alert Limit is not defined in P7"
+        },
+        "z": {
+          "count": 657,
+          "coverage_95": 1.0,
+          "coverage_99": 1.0,
+          "mean_pl95_m": 0.3075408755888303,
+          "missed_integrity_events_95": 0,
+          "false_alarm_rate": null,
+          "false_alarm_note": "P8 Alert Limit is not defined in P7"
+        },
+        "weak": {
+          "count": 657,
+          "coverage_95": 1.0,
+          "coverage_99": 1.0,
+          "mean_pl95_m": 0.11588921371463556,
+          "missed_integrity_events_95": 0,
+          "false_alarm_rate": null,
+          "false_alarm_note": "P8 Alert Limit is not defined in P7"
+        }
+      }
+    },
+    "long_corridor": {
+      "coverage_95": 1.0,
+      "coverage_99": 1.0,
+      "directional": {
+        "x": {
+          "count": 657,
+          "coverage_95": 1.0,
+          "coverage_99": 1.0,
+          "mean_pl95_m": 0.13622824224249322,
+          "missed_integrity_events_95": 0,
+          "false_alarm_rate": null,
+          "false_alarm_note": "P8 Alert Limit is not defined in P7"
+        },
+        "y": {
+          "count": 657,
+          "coverage_95": 1.0,
+          "coverage_99": 1.0,
+          "mean_pl95_m": 0.17801237910235218,
+          "missed_integrity_events_95": 0,
+          "false_alarm_rate": null,
+          "false_alarm_note": "P8 Alert Limit is not defined in P7"
+        },
+        "z": {
+          "count": 657,
+          "coverage_95": 1.0,
+          "coverage_99": 1.0,
+          "mean_pl95_m": 0.3338782605658403,
+          "missed_integrity_events_95": 0,
+          "false_alarm_rate": null,
+          "false_alarm_note": "P8 Alert Limit is not defined in P7"
+        },
+        "weak": {
+          "count": 657,
+          "coverage_95": 1.0,
+          "coverage_99": 1.0,
+          "mean_pl95_m": 0.13533951332140726,
+          "missed_integrity_events_95": 0,
+          "false_alarm_rate": null,
+          "false_alarm_note": "P8 Alert Limit is not defined in P7"
+        }
+      }
+    }
+  },
+  "test_inputs": [
+    {
+      "path": "/home/accelerate/xuanqiong_x1_sim_ws/experiments/results/impact_p7/p7_20260823T082157Z_48605/test_structured_room/p7-capture.json",
+      "sha256": "ff1d4091810805bc36c7cf551da755be79e62ca6ce6665d64d318738c9feee76"
+    },
+    {
+      "path": "/home/accelerate/xuanqiong_x1_sim_ws/experiments/results/impact_p7/p7_20260823T082157Z_48605/test_long_corridor/p7-capture.json",
+      "sha256": "538d0061f8b6b200280e835a9009a1f60ef5691d10b7bac0f7a9402786010508"
+    }
+  ],
+  "test_data_used_for_tuning": false,
+  "generated_at_utc": "2026-08-23T08:27:23.255216+00:00"
+}

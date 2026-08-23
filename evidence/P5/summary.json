@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "gate": "P5_BASELINE_MAP_FRONTIER_EGO",
+  "baseline": "BASELINE_V1",
+  "status": "PASS",
+  "mission_checks": {
+    "gps_disabled": true,
+    "no_artificial_waypoints": true,
+    "frontier_automatic": true,
+    "frontier_discovered": true,
+    "ego_planned": true,
+    "ego_forwarded": true,
+    "auto_finished": true,
+    "landed_and_disarmed": true
+  },
+  "exploration": {
+    "schema_version": 1,
+    "algorithm": "BASELINE_V1",
+    "enabled": false,
+    "finished": true,
+    "resolution_m": 0.1,
+    "selection_objective": "J=I-lambda*d",
+    "distance_lambda": 0.18,
+    "scan_count": 758,
+    "known_cells": 31681,
+    "known_fraction": 0.40409438775510204,
+    "frontier_cells": 0,
+    "frontier_clusters": 0,
+    "reachable_free_cells": 1,
+    "viewpoint_mode": "none",
+    "goals_published": 4,
+    "goals_reached": 2,
+    "goals_failed": 2,
+    "active_goal": null,
+    "ground_truth_subscribed": false
+  },
+  "ego_bspline_count": 110,
+  "evaluation": {
+    "schema_version": 1,
+    "gate": "P5_EVALUATION_MAP_COLLISION",
+    "status": "PASS",
+    "generated_at_utc": "2026-08-23T04:31:56.630395+00:00",
+    "ground_truth_consumer": "xq_p5_evaluator_only",
+    "world": "xq_p5_structured_room",
+    "evaluation_map": {
+      "resolution_m": 0.05,
+      "width": 400,
+      "height": 320,
+      "occupied_cells": 6636,
+      "sha256": "82c8742458fbc6f76654dd1becdc9ca9982f87744e44e40e63fb95d32e5ecd07"
+    },
+    "metrics": {
+      "airborne_duration_s": 237.70491564400072,
+      "samples": 7594,
+      "path_length_m": 43.17005297164078,
+      "collision_samples": 0,
+      "minimum_clearance_m": 0.2500000000000001
+    },
+    "checks": {
+      "evaluation_resolution_0_05_m": true,
+      "airborne_duration": true,
+      "samples_present": true,
+      "no_collision": true,
+      "inside_evaluation_map": true
+    }
+  },
+  "rosbag_present": true,
+  "ground_truth_isolated": true,
+  "external_assets_unchanged": true,
+  "generated_at_utc": "2026-08-23T04:32:15.328784+00:00"
+}

@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "gate": "P6_DIRECTIONAL_INTEGRITY_PREDICTOR",
+  "baseline": "BASELINE_V1+P6_NON_CONTROLLING",
+  "status": "PASS",
+  "mission_checks": {
+    "gps_disabled": true,
+    "no_artificial_waypoints": true,
+    "frontier_automatic": true,
+    "frontier_discovered": true,
+    "ego_planned": true,
+    "ego_forwarded": true,
+    "auto_finished": true,
+    "landed_and_disarmed": true
+  },
+  "exploration": {
+    "schema_version": 1,
+    "algorithm": "BASELINE_V1",
+    "enabled": false,
+    "finished": true,
+    "resolution_m": 0.1,
+    "selection_objective": "J=I-lambda*d",
+    "distance_lambda": 0.18,
+    "scan_count": 726,
+    "known_cells": 31545,
+    "known_fraction": 0.402359693877551,
+    "frontier_cells": 0,
+    "frontier_clusters": 0,
+    "reachable_free_cells": 11321,
+    "viewpoint_mode": "none",
+    "goals_published": 4,
+    "goals_reached": 2,
+    "goals_failed": 2,
+    "active_goal": null,
+    "ground_truth_subscribed": false
+  },
+  "ego_bspline_count": 125,
+  "evaluation": {
+    "schema_version": 1,
+    "gate": "P5_EVALUATION_MAP_COLLISION",
+    "status": "PASS",
+    "generated_at_utc": "2026-08-23T07:04:09.565988+00:00",
+    "ground_truth_consumer": "xq_p5_evaluator_only",
+    "world": "xq_p5_structured_room",
+    "evaluation_map": {
+      "resolution_m": 0.05,
+      "width": 400,
+      "height": 320,
+      "occupied_cells": 6636,
+      "sha256": "82c8742458fbc6f76654dd1becdc9ca9982f87744e44e40e63fb95d32e5ecd07"
+    },
+    "metrics": {
+      "airborne_duration_s": 238.78671782499987,
+      "samples": 7405,
+      "path_length_m": 42.14105056415276,
+      "collision_samples": 0,
+      "minimum_clearance_m": 0.30000000000000004
+    },
+    "checks": {
+      "evaluation_resolution_0_05_m": true,
+      "airborne_duration": true,
+      "samples_present": true,
+      "no_collision": true,
+      "inside_evaluation_map": true
+    }
+  },
+  "rosbag_present": true,
+  "ground_truth_isolated": true,
+  "external_assets_unchanged": true,
+  "generated_at_utc": "2026-08-23T07:04:27.874299+00:00",
+  "directional_integrity": {
+    "schema_version": 1,
+    "gate": "P6_DIRECTIONAL_INTEGRITY_PREDICTOR",
+    "status": "PASS",
+    "checks": {
+      "fast_lio_geometry_live": true,
+      "directional_integrity_live": true,
+      "finite_outputs": true,
+      "integrity_covariance_positive_definite": true,
+      "protection_level_equation_exact": true,
+      "effective_constraints_present": true,
+      "ground_truth_not_used": true,
+      "planner_feedback_disabled_in_p6": true
+    },
+    "samples": {
+      "geometry": 80,
+      "integrity": 80
+    },
+    "metrics": {
+      "condition_number_min": 2.2445154196196495,
+      "condition_number_max": 3.054430156283006,
+      "weak_pl_min_m": 0.023289119474792827,
+      "weak_pl_max_m": 0.0329813928685767,
+      "effective_points_min": 3506,
+      "effective_points_max": 3567,
+      "minimum_integrity_covariance_eigenvalue": 2.365632876742951e-05,
+      "maximum_pl_formula_error": 6.938893903907228e-18
+    },
+    "generated_at_utc": "2026-08-23T06:59:35.031043+00:00"
+  }
+}

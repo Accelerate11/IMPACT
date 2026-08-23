@@ -1,0 +1,287 @@
+Panels:
+  - Class: rviz_common/Displays
+    Help Height: 78
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /Navigation Obstacles1
+        - /Mapped Cloud1
+        - /Frontiers1
+        - /EGO B-Spline1
+        - /FAST-LIO Path1
+        - /Evaluation Truth Path1
+      Splitter Ratio: 0.5
+    Tree Height: 700
+  - Class: rviz_common/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: rviz_common/Time
+    Experimental: false
+    Name: Time
+    SyncMode: 0
+    SyncSource: ""
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.35
+      Cell Size: 1
+      Class: rviz_default_plugins/Grid
+      Color: 90; 100; 110
+      Enabled: true
+      Line Style:
+        Line Width: 0.03
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 24
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Alpha: 0.65
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/PointCloud2
+      Color: 235; 235; 235
+      Color Transformer: AxisColor
+      Decay Time: 1
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Min Color: 20; 80; 255
+      Name: Mapped Cloud
+      Position Transformer: XYZ
+      Selectable: true
+      Size (Pixels): 2
+      Size (m): 0.025
+      Style: Points
+      Topic:
+        Depth: 10
+        Durability Policy: Volatile
+        Filter size: 50
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /xq/p5/cloud_map
+      Use Fixed Frame: true
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
+      Color: 255; 115; 20
+      Enabled: true
+      Head Diameter: 0.18
+      Head Length: 0.12
+      Length: 0.30
+      Line Style: Lines
+      Line Width: 0.045
+      Name: FAST-LIO Path
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 255; 115; 20
+      Pose Style: None
+      Radius: 0.03
+      Shaft Diameter: 0.07
+      Shaft Length: 0.20
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 20
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /xq/replay/lio_path
+      Value: true
+    - Alpha: 0.72
+      Class: rviz_default_plugins/Map
+      Color Scheme: map
+      Draw Behind: true
+      Enabled: false
+      Name: Native Map (Mesa fallback disabled)
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 20
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /xq/p5/navigation_map
+      Update Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: ""
+      Use Timestamp: false
+      Value: false
+    - Class: rviz_default_plugins/Marker
+      Enabled: true
+      Marker Topic:
+        Depth: 10
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /xq/replay/navigation_obstacles
+      Name: Navigation Obstacles
+      Namespaces:
+        xq_p5_navigation_obstacles: true
+      Queue Size: 100
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
+      Color: 40; 255; 105
+      Enabled: true
+      Head Diameter: 0.18
+      Head Length: 0.12
+      Length: 0.30
+      Line Style: Lines
+      Line Width: 0.07
+      Name: EGO B-Spline
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 40; 255; 105
+      Pose Style: None
+      Radius: 0.03
+      Shaft Diameter: 0.07
+      Shaft Length: 0.20
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 20
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /xq/replay/ego_path
+      Value: true
+    - Class: rviz_default_plugins/Marker
+      Enabled: true
+      Marker Topic:
+        Depth: 10
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /xq/p5/frontiers
+      Name: Frontiers
+      Namespaces: {}
+      Queue Size: 100
+      Value: true
+    - Alpha: 0.9
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
+      Color: 40; 145; 255
+      Enabled: true
+      Head Diameter: 0.18
+      Head Length: 0.12
+      Length: 0.30
+      Line Style: Lines
+      Line Width: 0.025
+      Name: Evaluation Truth Path
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 40; 145; 255
+      Pose Style: None
+      Radius: 0.03
+      Shaft Diameter: 0.07
+      Shaft Length: 0.20
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 20
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /xq/replay/truth_path
+      Value: true
+    - Class: rviz_default_plugins/Marker
+      Enabled: true
+      Marker Topic:
+        Depth: 10
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /xq/replay/uav_marker
+      Name: UAV
+      Namespaces:
+        xq_p5_replay: true
+      Queue Size: 100
+      Value: true
+    - Class: rviz_default_plugins/Marker
+      Enabled: true
+      Marker Topic:
+        Depth: 20
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /xq/replay/p6_integrity
+      Name: P6/P7/P8 Integrity
+      Namespaces:
+        xq_p6_directional_integrity: true
+        xq_p8_alert_limit: true
+      Queue Size: 200
+      Value: true
+    - Class: rviz_default_plugins/TF
+      Enabled: false
+      Frame Timeout: 15
+      Marker Scale: 0.5
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree: {}
+      Update Interval: 0
+      Value: false
+  Enabled: true
+  Global Options:
+    Background Color: 15; 19; 25
+    Fixed Frame: xq_lio_map
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/Interact
+      Hide Inactive Objects: true
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+    - Class: rviz_default_plugins/Measure
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 20
+      Focal Point:
+        X: 2
+        Y: 0
+        Z: 1
+      Name: Current View
+      Near Clip Distance: 0.01
+      Pitch: 0.72
+      Target Frame: xq_lio_map
+      Value: Orbit (rviz)
+      Yaw: 0.75
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 900
+  Hide Left Dock: false
+  Hide Right Dock: false
+  Time:
+    collapsed: false
+  Views:
+    collapsed: false
+  Width: 1500
+  X: 50
+  Y: 50

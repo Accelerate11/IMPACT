@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "gate": "P2_MID360_SENSOR_CONTRACT",
+  "status": "PASS",
+  "generated_at_utc": "2026-08-22T13:29:07.720138+00:00",
+  "capture_wall_duration_s": 600.434543045,
+  "checks": {
+    "duration": true,
+    "lidar_rate": true,
+    "imu_rate": true,
+    "lidar_gap": true,
+    "imu_gap": true,
+    "timestamps_monotonic": true,
+    "frames": true,
+    "tf": true,
+    "finite_values": true,
+    "point_layout": true,
+    "point_count": true
+  },
+  "lidar": {
+    "count": 5996,
+    "stamp_span_s": 599.495,
+    "rate_hz": 10.000083403531306,
+    "mean_dt_s": 0.09999916597165434,
+    "std_dt_s": 6.457122702886853e-05,
+    "min_dt_s": 0.095,
+    "max_dt_s": 0.1,
+    "monotonic_violations": 0,
+    "zero_stamp_count": 0,
+    "topic": "/livox/lidar",
+    "frame": "livox_frame",
+    "fields": [
+      {
+        "name": "x",
+        "offset": 0,
+        "datatype": 7,
+        "count": 1
+      },
+      {
+        "name": "y",
+        "offset": 4,
+        "datatype": 7,
+        "count": 1
+      },
+      {
+        "name": "z",
+        "offset": 8,
+        "datatype": 7,
+        "count": 1
+      },
+      {
+        "name": "intensity",
+        "offset": 16,
+        "datatype": 7,
+        "count": 1
+      },
+      {
+        "name": "ring",
+        "offset": 24,
+        "datatype": 4,
+        "count": 1
+      }
+    ],
+    "min_points_per_frame": 23040,
+    "max_points_per_frame": 23040,
+    "frame_mismatches": 0
+  },
+  "imu": {
+    "count": 119912,
+    "stamp_span_s": 599.5525,
+    "rate_hz": 200.00083395532502,
+    "mean_dt_s": 0.004999979151199868,
+    "std_dt_s": 7.219526630478331e-06,
+    "min_dt_s": 0.0025,
+    "max_dt_s": 0.005,
+    "monotonic_violations": 0,
+    "zero_stamp_count": 0,
+    "topic": "/livox/imu",
+    "frame": "livox_imu",
+    "frame_mismatches": 0
+  },
+  "tf": {
+    "livox_frame": {
+      "available": true,
+      "finite": true,
+      "quaternion_norm": 1.0,
+      "translation_m": [
+        0.04,
+        0.0,
+        0.135
+      ],
+      "rotation_xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "valid": true
+    },
+    "livox_imu": {
+      "available": true,
+      "finite": true,
+      "quaternion_norm": 1.0,
+      "translation_m": [
+        0.0,
+        0.0,
+        0.015
+      ],
+      "rotation_xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "valid": true
+    }
+  },
+  "nan_or_inf_violations": 0,
+  "layout_violations": 0
+}

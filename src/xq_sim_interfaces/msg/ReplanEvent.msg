@@ -1,0 +1,14 @@
+std_msgs/Header header
+uint64 seq
+string trigger_reason
+builtin_interfaces/Time trigger_stamp
+builtin_interfaces/Time map_ready_stamp
+builtin_interfaces/Time optimizer_start_stamp
+builtin_interfaces/Time candidate_ready_stamp
+builtin_interfaces/Time safety_pass_stamp
+builtin_interfaces/Time accepted_stamp
+float64 latency_ms
+bool accepted
+bool brake_fallback
+string outcome
+

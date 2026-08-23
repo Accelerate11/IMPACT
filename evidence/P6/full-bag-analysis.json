@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "analysis": "P6_FULL_ROSBAG_DIRECTIONAL_INTEGRITY",
+  "status": "PASS",
+  "checks": {
+    "geometry_stream_full_run": true,
+    "integrity_stream_full_run": true,
+    "all_outputs_finite": true,
+    "integrity_covariance_positive_definite": true,
+    "protection_level_equation_exact": true,
+    "effective_constraints_present": true,
+    "directional_response_observed": true
+  },
+  "counts": {
+    "geometry": 1467,
+    "integrity": 1467
+  },
+  "metrics": {
+    "condition_number_min": 1.4433365748830917,
+    "condition_number_max": 5.46364761215457,
+    "weak_pl_min_m": 0.023289119474792827,
+    "weak_pl_max_m": 0.05289558335102662,
+    "axis_pl_min_m": [
+      0.014594029574106323,
+      0.02243227007561624,
+      0.01644495846263198
+    ],
+    "axis_pl_max_m": [
+      0.05288476952970121,
+      0.042504549185869336,
+      0.027413212268352104
+    ],
+    "effective_points_min": 1196,
+    "effective_points_max": 4074,
+    "weak_axis_dominance_counts_xyz": [
+      675,
+      792,
+      0
+    ],
+    "minimum_integrity_covariance_eigenvalue": 2.365632876742951e-05,
+    "maximum_pl_formula_error": 6.938893903907228e-18
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "events": [
+    {
+      "at_s": 3.0,
+      "fault_id": "F1_camera_unplug",
+      "target_module": "camera",
+      "action": "fail",
+      "duration_s": 2.0,
+      "severity": 1.0,
+      "seed": 20260820
+    },
+    {
+      "at_s": 6.0,
+      "fault_id": "F2_npu_process_stop",
+      "target_module": "npu",
+      "action": "fail",
+      "duration_s": 2.0,
+      "severity": 1.0,
+      "seed": 20260820
+    },
+    {
+      "at_s": 9.0,
+      "fault_id": "F3_planner_timeout",
+      "target_module": "planner",
+      "action": "sleep",
+      "duration_s": 2.0,
+      "severity": 1.0,
+      "seed": 20260820
+    },
+    {
+      "at_s": 13.0,
+      "fault_id": "F4_lidar_pause",
+      "target_module": "lidar",
+      "action": "pause",
+      "duration_s": 3.2,
+      "severity": 1.0,
+      "seed": 20260820
+    },
+    {
+      "at_s": 17.0,
+      "fault_id": "F5_localization_high_covariance",
+      "target_module": "localization",
+      "action": "high_covariance",
+      "duration_s": 2.5,
+      "severity": 0.25,
+      "seed": 20260820
+    },
+    {
+      "at_s": 21.0,
+      "fault_id": "F6_ground_link_20pct",
+      "target_module": "ground_link",
+      "action": "drop",
+      "duration_s": 5.0,
+      "severity": 0.20,
+      "seed": 1
+    },
+    {
+      "at_s": 28.0,
+      "fault_id": "F7_cpu_load_proxy",
+      "target_module": "cpu",
+      "action": "load_proxy",
+      "duration_s": 3.0,
+      "severity": 1.0,
+      "seed": 20260820
+    },
+    {
+      "at_s": 33.0,
+      "fault_id": "F8_battery_low",
+      "target_module": "battery",
+      "action": "low",
+      "duration_s": 2.0,
+      "severity": 0.20,
+      "seed": 20260820
+    }
+  ]
+}

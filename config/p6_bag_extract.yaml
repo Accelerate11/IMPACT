@@ -1,0 +1,10 @@
+output_bags:
+  - uri: /tmp/xq_p6_integrity_extract_20260823
+    storage_id: sqlite3
+    all: false
+    topics:
+      - /localization/geometry
+      - /integrity/directional
+    compression_mode: none
+    compression_format: ""
+

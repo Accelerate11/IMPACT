@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "gate": "P8_STATIC_OBSTACLE_ALERT_LIMIT_LIVE",
+  "baseline": "BASELINE_V1+P8_NON_CONTROLLING",
+  "status": "PASS",
+  "mission_checks": {
+    "gps_disabled": true,
+    "no_artificial_waypoints": true,
+    "frontier_automatic": true,
+    "frontier_discovered": true,
+    "ego_planned": true,
+    "ego_forwarded": true,
+    "auto_finished": true,
+    "landed_and_disarmed": true
+  },
+  "exploration": {
+    "schema_version": 1,
+    "algorithm": "BASELINE_V1",
+    "enabled": false,
+    "finished": true,
+    "resolution_m": 0.1,
+    "selection_objective": "J=I-lambda*d",
+    "distance_lambda": 0.18,
+    "scan_count": 649,
+    "known_cells": 31101,
+    "known_fraction": 0.39669642857142856,
+    "frontier_cells": 0,
+    "frontier_clusters": 0,
+    "reachable_free_cells": 11751,
+    "viewpoint_mode": "none",
+    "goals_published": 4,
+    "goals_reached": 2,
+    "goals_failed": 2,
+    "active_goal": null,
+    "ground_truth_subscribed": false
+  },
+  "ego_bspline_count": 97,
+  "evaluation": {
+    "schema_version": 1,
+    "gate": "P5_EVALUATION_MAP_COLLISION",
+    "status": "PASS",
+    "generated_at_utc": "2026-08-23T10:53:31.998416+00:00",
+    "ground_truth_consumer": "xq_p5_evaluator_only",
+    "world": "xq_p5_structured_room",
+    "evaluation_map": {
+      "resolution_m": 0.05,
+      "width": 400,
+      "height": 320,
+      "occupied_cells": 6636,
+      "sha256": "82c8742458fbc6f76654dd1becdc9ca9982f87744e44e40e63fb95d32e5ecd07"
+    },
+    "metrics": {
+      "airborne_duration_s": 222.09430775999863,
+      "samples": 7588,
+      "path_length_m": 38.58504125619564,
+      "collision_samples": 0,
+      "minimum_clearance_m": 0.25415229867972866
+    },
+    "checks": {
+      "evaluation_resolution_0_05_m": true,
+      "airborne_duration": true,
+      "samples_present": true,
+      "no_collision": true,
+      "inside_evaluation_map": true
+    }
+  },
+  "rosbag_present": true,
+  "ground_truth_isolated": true,
+  "external_assets_unchanged": true,
+  "gazebo_gui_requested": false,
+  "gazebo_record_present": true,
+  "generated_at_utc": "2026-08-23T10:53:50.161224+00:00",
+  "alert_limit": {
+    "schema_version": 1,
+    "gate": "P8_STATIC_OBSTACLE_ALERT_LIMIT",
+    "status": "PASS",
+    "generated_at_utc": "2026-08-23T10:53:32.559633+00:00",
+    "checks": {
+      "minimum_messages": true,
+      "multiple_ego_trajectories": true,
+      "all_outputs_valid": true,
+      "trajectory_samples_present": true,
+      "obstacle_points_present": true,
+      "static_obstacle_v1": true,
+      "mapped_cloud_source": true,
+      "direction_unit_norm": true,
+      "nearest_point_geometry": true,
+      "alert_limit_equation": true,
+      "environmental_clearance_varies": true
+    },
+    "metrics": {
+      "messages": 436,
+      "trajectory_ids": 83,
+      "maximum_trajectory_samples": 74,
+      "maximum_obstacle_points": 8376,
+      "geometric_clearance_min_m": 0.1245061714258408,
+      "geometric_clearance_max_m": 0.9293145445989694,
+      "alert_limit_min_m": -0.4930911305929189,
+      "alert_limit_max_m": 0.36521843778064506,
+      "alert_limit_mean_m": 0.12648671624271343,
+      "latency_reserve_max_m": 0.06947764597660568,
+      "negative_alert_limit_messages": 53,
+      "maximum_direction_norm_error": 4.723998969780041e-13,
+      "maximum_nearest_point_distance_error_m": 8.43769498715119e-14,
+      "maximum_equation_error_m": 0.0
+    },
+    "data_contract": {
+      "trajectory_source": "/planning/bspline",
+      "obstacle_source": "/xq/p5/cloud_map",
+      "ground_truth_subscribed": false,
+      "planner_feedback_enabled": false,
+      "dynamic_obstacles_enabled": false
+    }
+  }
+}

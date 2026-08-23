@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "gate": "P1_ARDUPILOT_MAVROS_FLIGHT_BASELINE",
+  "status": "PASS",
+  "reason": "ARM-TAKEOFF-HOVER-LAND completed",
+  "generated_at_utc": "2026-08-22T12:52:38.711506+00:00",
+  "elapsed_s": 80.034,
+  "final": {
+    "connected": true,
+    "armed": false,
+    "mode": "LAND",
+    "relative_altitude_m": 0.10864156577736139
+  },
+  "events": [
+    {
+      "elapsed_s": 0.0,
+      "kind": "START",
+      "phase": "WAIT_FCU",
+      "detail": "P1 state machine created"
+    },
+    {
+      "elapsed_s": 0.9,
+      "kind": "TRANSITION",
+      "phase": "SET_STREAM",
+      "detail": "SET_STREAM: FCU heartbeat connected"
+    },
+    {
+      "elapsed_s": 1.001,
+      "kind": "REQUEST",
+      "phase": "SET_STREAM",
+      "detail": "stream"
+    },
+    {
+      "elapsed_s": 1.1,
+      "kind": "RESPONSE",
+      "phase": "SET_STREAM",
+      "detail": "stream accepted=True"
+    },
+    {
+      "elapsed_s": 1.101,
+      "kind": "TRANSITION",
+      "phase": "WAIT_ODOM",
+      "detail": "WAIT_ODOM: MAVLink stream request completed"
+    },
+    {
+      "elapsed_s": 37.89,
+      "kind": "ODOM_LOCK",
+      "phase": "WAIT_ODOM",
+      "detail": "origin_z=-0.015"
+    },
+    {
+      "elapsed_s": 37.926,
+      "kind": "TRANSITION",
+      "phase": "SET_GUIDED",
+      "detail": "SET_GUIDED: local odometry available"
+    },
+    {
+      "elapsed_s": 38.027,
+      "kind": "REQUEST",
+      "phase": "SET_GUIDED",
+      "detail": "mode"
+    },
+    {
+      "elapsed_s": 38.126,
+      "kind": "RESPONSE",
+      "phase": "SET_GUIDED",
+      "detail": "mode accepted=True"
+    },
+    {
+      "elapsed_s": 38.127,
+      "kind": "TRANSITION",
+      "phase": "ARM",
+      "detail": "ARM: GUIDED confirmed by state topic"
+    },
+    {
+      "elapsed_s": 38.227,
+      "kind": "REQUEST",
+      "phase": "ARM",
+      "detail": "arm"
+    },
+    {
+      "elapsed_s": 38.327,
+      "kind": "RESPONSE",
+      "phase": "ARM",
+      "detail": "arm accepted=True"
+    },
+    {
+      "elapsed_s": 39.027,
+      "kind": "TRANSITION",
+      "phase": "TAKEOFF",
+      "detail": "TAKEOFF: armed confirmed by state topic"
+    },
+    {
+      "elapsed_s": 39.127,
+      "kind": "REQUEST",
+      "phase": "TAKEOFF",
+      "detail": "takeoff"
+    },
+    {
+      "elapsed_s": 39.227,
+      "kind": "RESPONSE",
+      "phase": "TAKEOFF",
+      "detail": "takeoff accepted=True"
+    },
+    {
+      "elapsed_s": 39.228,
+      "kind": "TRANSITION",
+      "phase": "ASCEND",
+      "detail": "ASCEND: takeoff accepted"
+    },
+    {
+      "elapsed_s": 43.526,
+      "kind": "TRANSITION",
+      "phase": "HOVER",
+      "detail": "HOVER: altitude reached 1.638 m"
+    },
+    {
+      "elapsed_s": 73.535,
+      "kind": "TRANSITION",
+      "phase": "LAND",
+      "detail": "LAND: hovered for 30.0 s"
+    },
+    {
+      "elapsed_s": 73.635,
+      "kind": "REQUEST",
+      "phase": "LAND",
+      "detail": "land"
+    },
+    {
+      "elapsed_s": 73.735,
+      "kind": "RESPONSE",
+      "phase": "LAND",
+      "detail": "land accepted=True"
+    },
+    {
+      "elapsed_s": 73.735,
+      "kind": "TRANSITION",
+      "phase": "DESCEND",
+      "detail": "DESCEND: land accepted"
+    },
+    {
+      "elapsed_s": 80.034,
+      "kind": "PASS",
+      "phase": "DONE",
+      "detail": "ARM-TAKEOFF-HOVER-LAND completed"
+    }
+  ]
+}

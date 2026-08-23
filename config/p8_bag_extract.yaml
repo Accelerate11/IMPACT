@@ -1,0 +1,8 @@
+output_bags:
+  - uri: /tmp/xq_p8_alert_limit_extract
+    storage_id: sqlite3
+    all: false
+    topics:
+      - /integrity/alert_limit
+    compression_mode: none
+    compression_format: ""

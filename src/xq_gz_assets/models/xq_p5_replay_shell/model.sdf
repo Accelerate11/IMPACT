@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<sdf version="1.10">
+  <model name="xq_p5_replay_shell">
+    <static>true</static>
+    <link name="xq_shell_link">
+      <visual name="xq_floor_visual">
+        <pose>0 0 -0.06 0 0 0</pose>
+        <geometry><box><size>20 16 0.12</size></box></geometry>
+        <material><ambient>0.38 0.40 0.43 1</ambient><diffuse>0.48 0.50 0.53 1</diffuse></material>
+      </visual>
+      <visual name="xq_wall_west_visual">
+        <pose>-10 0 1.55 0 0 0</pose>
+        <geometry><box><size>0.20 16 3.10</size></box></geometry>
+        <material><ambient>0.62 0.65 0.69 1</ambient><diffuse>0.72 0.75 0.79 1</diffuse></material>
+      </visual>
+      <visual name="xq_wall_east_visual">
+        <pose>10 0 1.55 0 0 0</pose>
+        <geometry><box><size>0.20 16 3.10</size></box></geometry>
+        <material><ambient>0.62 0.65 0.69 1</ambient><diffuse>0.72 0.75 0.79 1</diffuse></material>
+      </visual>
+      <visual name="xq_wall_south_visual">
+        <pose>0 -8 1.55 0 0 0</pose>
+        <geometry><box><size>20 0.20 3.10</size></box></geometry>
+        <material><ambient>0.62 0.65 0.69 1</ambient><diffuse>0.72 0.75 0.79 1</diffuse></material>
+      </visual>
+      <visual name="xq_wall_north_visual">
+        <pose>0 8 1.55 0 0 0</pose>
+        <geometry><box><size>20 0.20 3.10</size></box></geometry>
+        <material><ambient>0.62 0.65 0.69 1</ambient><diffuse>0.72 0.75 0.79 1</diffuse></material>
+      </visual>
+      <visual name="xq_core_west_visual">
+        <pose>-3.0 0 1.55 0 0 0</pose>
+        <geometry><box><size>0.18 4.4 3.10</size></box></geometry>
+        <material><ambient>0.27 0.36 0.43 1</ambient><diffuse>0.34 0.46 0.55 1</diffuse></material>
+      </visual>
+      <visual name="xq_core_east_visual">
+        <pose>3.0 0 1.55 0 0 0</pose>
+        <geometry><box><size>0.18 4.4 3.10</size></box></geometry>
+        <material><ambient>0.27 0.36 0.43 1</ambient><diffuse>0.34 0.46 0.55 1</diffuse></material>
+      </visual>
+      <visual name="xq_core_south_visual">
+        <pose>0 -2.2 1.55 0 0 0</pose>
+        <geometry><box><size>6.18 0.18 3.10</size></box></geometry>
+        <material><ambient>0.27 0.36 0.43 1</ambient><diffuse>0.34 0.46 0.55 1</diffuse></material>
+      </visual>
+      <visual name="xq_core_north_visual">
+        <pose>0 2.2 1.55 0 0 0</pose>
+        <geometry><box><size>6.18 0.18 3.10</size></box></geometry>
+        <material><ambient>0.27 0.36 0.43 1</ambient><diffuse>0.34 0.46 0.55 1</diffuse></material>
+      </visual>
+      <visual name="xq_partition_nw_visual">
+        <pose>-6.7 3.9 1.30 0 0 0</pose>
+        <geometry><box><size>4.8 0.16 2.60</size></box></geometry>
+        <material><ambient>0.61 0.54 0.39 1</ambient><diffuse>0.72 0.65 0.49 1</diffuse></material>
+      </visual>
+      <visual name="xq_partition_ne_visual">
+        <pose>6.8 4.7 1.30 0 0 0</pose>
+        <geometry><box><size>0.16 5.2 2.60</size></box></geometry>
+        <material><ambient>0.48 0.57 0.43 1</ambient><diffuse>0.58 0.68 0.53 1</diffuse></material>
+      </visual>
+      <visual name="xq_partition_sw_visual">
+        <pose>-5.8 -4.8 1.30 0 0 0</pose>
+        <geometry><box><size>0.16 3.8 2.60</size></box></geometry>
+        <material><ambient>0.50 0.42 0.52 1</ambient><diffuse>0.61 0.52 0.63 1</diffuse></material>
+      </visual>
+      <visual name="xq_partition_se_visual">
+        <pose>6.6 -4.5 1.30 0 0 0</pose>
+        <geometry><box><size>5.0 0.16 2.60</size></box></geometry>
+        <material><ambient>0.47 0.49 0.60 1</ambient><diffuse>0.57 0.59 0.71 1</diffuse></material>
+      </visual>
+    </link>
+    <link name="xq_ceiling_link">
+      <visual name="xq_ceiling_visual">
+        <pose>0 0 3.15 0 0 0</pose>
+        <geometry><box><size>20 16 0.10</size></box></geometry>
+        <material><ambient>0.72 0.73 0.74 1</ambient><diffuse>0.82 0.83 0.84 1</diffuse></material>
+      </visual>
+    </link>
+  </model>
+</sdf>

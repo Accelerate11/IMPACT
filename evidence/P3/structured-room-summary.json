@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "gate": "P3_FAST_LIO2_BASELINE",
+  "scenario": "structured_room",
+  "status": "PASS",
+  "capture_wall_duration_s": 86.03327110300006,
+  "odom_frequency_hz": 9.999999999999998,
+  "odom_max_gap_s": 0.10000000100001216,
+  "ate_rms_m": 0.033024640806950153,
+  "rpe_translation_rms_m_1s": 0.0025834087007343296,
+  "yaw_error_rms_deg": 0.1567221770893454,
+  "processing_latency_mean_s": 0.03884480786347914,
+  "processing_latency_max_s": 0.33000000000000007,
+  "checks": {
+    "duration": true,
+    "frequency": true,
+    "continuous": true,
+    "monotonic": true,
+    "finite": true,
+    "matched_samples": true,
+    "no_obvious_jump": true,
+    "structured_room_ate": true
+  },
+  "rosbag_present": true,
+  "algorithm_ground_truth_isolated": true,
+  "external_assets_unchanged": true,
+  "generated_at_utc": "2026-08-22T14:25:37.675139+00:00"
+}

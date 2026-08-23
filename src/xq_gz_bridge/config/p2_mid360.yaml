@@ -1,0 +1,34 @@
+xq_gz_bridge_node:
+  ros__parameters:
+    use_sim_time: true
+
+    gz_clock_topic: /clock
+    ros_clock_topic: /clock
+
+    gz_lidar_topic: /xq/lidar/points
+    ros_lidar_topic: /livox/lidar
+    lidar_frame_id: livox_frame
+
+    gz_imu_topic: /xq/imu
+    ros_imu_topic: /livox/imu
+    imu_frame_id: livox_imu
+
+    ros_cmd_vel_topic: /xq/p2/cmd_vel
+    gz_cmd_vel_topic: /model/xq_agent_01/cmd_vel
+    publish_ground_truth: false
+
+    # The range noise is implemented in the Gazebo sensor SDF. Remaining
+    # effects are deterministic bridge-layer conditioning knobs.
+    lidar_range_noise_std_m: 0.015
+    lidar_dropout_ratio: 0.0
+    imu_dropout_ratio: 0.0
+    lidar_timestamp_jitter_ms: 0.0
+    imu_timestamp_jitter_ms: 0.0
+    random_seed: 20260822
+
+    motion_distortion_enabled: false
+    lidar_scan_period_s: 0.1
+    motion_linear_velocity_mps: [0.0, 0.0, 0.0]
+    motion_yaw_rate_rps: 0.0
+    lidar_extrinsic_error_xyz_m: [0.0, 0.0, 0.0]
+    lidar_extrinsic_error_rpy_rad: [0.0, 0.0, 0.0]

@@ -1,0 +1,24 @@
+/xq_p8_alert_limit
+  Subscribers:
+    /clock: rosgraph_msgs/msg/Clock
+    /localization/odom: nav_msgs/msg/Odometry
+    /planning/bspline: traj_utils/msg/Bspline
+    /xq/p5/cloud_map: sensor_msgs/msg/PointCloud2
+  Publishers:
+    /integrity/alert_limit: xq_sim_interfaces/msg/AlertLimit
+    /integrity/alert_limit_debug: std_msgs/msg/String
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+  Service Servers:
+    /xq_p8_alert_limit/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /xq_p8_alert_limit/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /xq_p8_alert_limit/get_parameters: rcl_interfaces/srv/GetParameters
+    /xq_p8_alert_limit/list_parameters: rcl_interfaces/srv/ListParameters
+    /xq_p8_alert_limit/set_parameters: rcl_interfaces/srv/SetParameters
+    /xq_p8_alert_limit/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+

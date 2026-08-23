@@ -1,0 +1,23 @@
+/xq_p6_directional_integrity
+  Subscribers:
+    /clock: rosgraph_msgs/msg/Clock
+    /localization/geometry: xq_sim_interfaces/msg/LocalizationGeometry
+    /localization/odom: nav_msgs/msg/Odometry
+  Publishers:
+    /integrity/debug: std_msgs/msg/String
+    /integrity/directional: xq_sim_interfaces/msg/DirectionalIntegrity
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+  Service Servers:
+    /xq_p6_directional_integrity/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /xq_p6_directional_integrity/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /xq_p6_directional_integrity/get_parameters: rcl_interfaces/srv/GetParameters
+    /xq_p6_directional_integrity/list_parameters: rcl_interfaces/srv/ListParameters
+    /xq_p6_directional_integrity/set_parameters: rcl_interfaces/srv/SetParameters
+    /xq_p6_directional_integrity/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+

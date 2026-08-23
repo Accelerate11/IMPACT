@@ -1,0 +1,35 @@
+xq_stack_node:
+  ros__parameters:
+    use_sim_time: true
+    agent_id: agent_01
+    seed: 20260820
+    map_width_m: 21.0
+    map_height_m: 17.0
+    map_resolution_m: 0.10
+    dynamic_ttl_s: 2.5
+    control_rate_hz: 20.0
+    planning_rate_hz: 2.0
+    health_publish_rate_hz: 2.0
+    dynamic_publish_rate_hz: 5.0
+    planner_deadline_s: 0.8
+    # Sensor period (0.10 s) + control period (0.05 s) + measured proxy
+    # planning allowance (~0.05 s).  This is not the planner deadline.
+    safety_reaction_time_s: 0.20
+    max_speed_mps: 0.8
+    max_yaw_rate_rps: 0.9
+    body_radius_m: 0.25
+    base_margin_m: 0.10
+    lidar_warn_age_s: 0.25
+    lidar_fail_age_s: 0.75
+    initial_x_m: -7.0
+    initial_y_m: -5.0
+    initial_yaw_rad: 0.0
+    max_cloud_points: 360
+    mapping_max_rays: 240
+    # Do not plan from the first partial scan; establish a minimally stable
+    # local occupancy map before selecting an exploration frontier.
+    planning_warmup_scans: 5
+    # The planner is a 2-D proxy.  Slice the 3-D Mid-360 cloud around the
+    # vehicle body so floor and ceiling returns do not become planar walls.
+    obstacle_min_z_m: -0.55
+    obstacle_max_z_m: 0.85
