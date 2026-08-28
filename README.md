@@ -79,9 +79,7 @@ IMPACT 因此引入两个量。
 
 导航系统在给定置信水平下能够保证的定位误差范围：
 
-[
-PL(\mathbf d)
-]
+[PL(\mathbf d)]
 
 ### Alert Limit — `AL`
 
