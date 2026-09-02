@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "gate": "P11_INTEGRITY_CONSTRAINED_EXPLORATION",
+  "status": "PASS",
+  "scenario": "xq_p11_integrity_exploration_open_top",
+  "variants": [
+    "information_only",
+    "integrity_constrained"
+  ],
+  "predicted_minimum_margins_m": {
+    "high_information_direct": 0.05444704856536914,
+    "geometry_rich_right": 0.6064449184693758
+  },
+  "utilities": {
+    "high_information_direct": 0.6825,
+    "geometry_rich_right": 0.4319158476467023
+  },
+  "actual_minimum_integrity_margins_m": {
+    "information_only": -0.29955907758308864,
+    "integrity_constrained": 0.12136114182624591
+  },
+  "executed_information_gain_total": {
+    "information_only": 4.0,
+    "integrity_constrained": 3.5
+  },
+  "executed_information_gain_mean_per_batch": {
+    "information_only": 1.0,
+    "integrity_constrained": 0.875
+  },
+  "ground_truth_path_length_m": {
+    "information_only": 24.098819237995308,
+    "integrity_constrained": 24.359144327425376
+  },
+  "mission_time_s": {
+    "information_only": 108.30000000000001,
+    "integrity_constrained": 108.30000000000001
+  },
+  "ate_rms_m": {
+    "information_only": 0.07790339615472104,
+    "integrity_constrained": 0.08659863785283142
+  },
+  "forward_progress_m": {
+    "information_only": 23.984448160201914,
+    "integrity_constrained": 23.99333178260121
+  },
+  "truth_final_x_m": {
+    "information_only": 11.984448160201916,
+    "integrity_constrained": 11.99333178260121
+  },
+  "decision_batches": {
+    "information_only": 4,
+    "integrity_constrained": 4
+  },
+  "selected_sequences": {
+    "information_only": [
+      "high_information_direct",
+      "high_information_direct",
+      "high_information_direct",
+      "high_information_direct"
+    ],
+    "integrity_constrained": [
+      "geometry_rich_right",
+      "high_information_direct",
+      "geometry_rich_right",
+      "high_information_direct"
+    ]
+  },
+  "actual_margin_gain_m": 0.42092021940933455,
+  "mean_information_gain_loss_per_batch": 0.125,
+  "extra_path_m": 0.2603250894300686,
+  "mission_time_overhead_s": 0.0,
+  "critical_batch_id": 20261100,
+  "prediction_comparison_source": "integrity_constrained_critical_rolling_snapshot",
+  "checks": {
+    "both_flight_arms_pass": true,
+    "both_arms_reach_corridor_goal": true,
+    "both_arms_cover_full_corridor": true,
+    "rolling_decision_batches_complete": true,
+    "common_snapshot_has_required_candidates": true,
+    "unconstrained_candidate_required": true,
+    "integrity_candidate_required": true,
+    "direct_task_utility_higher": true,
+    "direct_predicted_insufficient": true,
+    "safe_predicted_reserved": true,
+    "direct_integrity_hard_rejected": true,
+    "safe_all_hard_feasible": true,
+    "collision_constraint_satisfied": true,
+    "return_energy_constraint_satisfied": true,
+    "information_only_actually_insufficient": true,
+    "integrity_constrained_actually_reserved": true,
+    "minimum_actual_margin_gain": true,
+    "bounded_information_loss": true,
+    "bounded_extra_path": true,
+    "bounded_mission_time": true,
+    "ate_not_materially_degraded": true,
+    "same_frozen_calibration": true,
+    "algorithm_ground_truth_absent": true,
+    "margin_not_in_utility": true,
+    "finite_comparison_metrics": true
+  },
+  "thresholds": {
+    "schema_version": 1,
+    "frozen_before_formal_gate": true,
+    "world": "xq_p11_integrity_exploration.sdf",
+    "random_seed": 20260827,
+    "margin_reserve_m": 0.1,
+    "visibility_radius_m": 2.8,
+    "information_scale_m_inv2": 2500.0,
+    "minimum_prediction_variance_m2": 1e-05,
+    "collision_probability_limit": 0.01,
+    "energy_remaining": 32.0,
+    "mission_distance_m": 24.0,
+    "minimum_forward_progress_m": 23.5,
+    "minimum_truth_final_x_m": 11.5,
+    "minimum_decision_batches": 4,
+    "information_weight": 1.0,
+    "travel_time_weight": 0.01,
+    "energy_weight": 0.005,
+    "direct_information_gain": 1.0,
+    "safe_information_gain": 0.75,
+    "minimum_actual_margin_gain_m": 0.1,
+    "maximum_information_gain_loss": 0.3,
+    "maximum_extra_path_m": 1.0,
+    "maximum_mission_time_overhead_s": 1.0,
+    "maximum_ate_degradation_m": 0.1,
+    "required_unconstrained_candidate": "high_information_direct",
+    "required_integrity_candidate": "geometry_rich_right"
+  },
+  "ground_truth_policy": "evaluation_and_logging_only",
+  "generated_at_utc": "2026-08-27T10:23:12.146422+00:00"
+}

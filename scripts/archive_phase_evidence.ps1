@@ -1,5 +1,6 @@
 param(
-  [string]$WslDistro = "Ubuntu-22.04"
+  [string]$WslDistro = "Ubuntu-22.04",
+  [string]$OnlyPhase = ""
 )
 
 $ErrorActionPreference = "Stop"
@@ -114,10 +115,80 @@ $files = @(
   @("P10", "experiments/results/impact_p10/visual_20260823T154916Z_18660/visualization.json", "visualization.json"),
   @("P10", "experiments/results/impact_p10/visual_20260823T154916Z_18660/flight-result.json", "visual-flight-result.json"),
   @("P10", "experiments/results/impact_p10/visual_20260823T154916Z_18660/isolation-audit.txt", "visual-isolation-audit.txt"),
-  @("P10", "experiments/results/impact_p10/visual_20260823T154916Z_18660/rosbag/metadata.yaml", "visual-rosbag-metadata.yaml")
+  @("P10", "experiments/results/impact_p10/visual_20260823T154916Z_18660/rosbag/metadata.yaml", "visual-rosbag-metadata.yaml"),
+  @("P11", "experiments/results/impact_p11/contract_20260827T053924Z_1726/contract-result.json", "contract-result.json"),
+  @("P11", "experiments/results/impact_p11/contract_20260827T053924Z_1726/selector-node-graph.txt", "contract-selector-node-graph.txt"),
+  @("P11", "experiments/results/impact_p11/contract_20260827T053924Z_1726/isolation-audit.txt", "contract-isolation-audit.txt"),
+  @("P11", "experiments/results/impact_p11/contract_20260827T053924Z_1726/rosbag/metadata.yaml", "contract-rosbag-metadata.yaml"),
+  @("P11", "experiments/results/impact_p11/gate_20260827T101925Z_22733/summary.json", "flight-gate-summary.json"),
+  @("P11", "experiments/results/impact_p11/gate_20260827T101925Z_22733/configuration.sha256", "configuration.sha256"),
+  @("P11", "experiments/results/impact_p11/gate_20260827T101925Z_22733/configuration/p11_gate_thresholds.json", "p11-gate-thresholds.json"),
+  @("P11", "experiments/results/impact_p11/gate_20260827T101925Z_22733/configuration/build-manifest.json", "build-manifest.json"),
+  @("P11", "experiments/results/impact_p11/gate_20260827T101925Z_22733/information_only/flight-result.json", "information-only-flight-result.json"),
+  @("P11", "experiments/results/impact_p11/gate_20260827T101925Z_22733/integrity_constrained/flight-result.json", "integrity-constrained-flight-result.json"),
+  @("P11", "experiments/results/impact_p11/gate_20260827T101925Z_22733/integrity_constrained/xq_p11_integrity_exploration-graph.txt", "integrity-exploration-node-graph.txt"),
+  @("P11", "experiments/results/impact_p11/gate_20260827T101925Z_22733/integrity_constrained/xq_p11_flight_controller-graph.txt", "flight-controller-node-graph.txt"),
+  @("P11", "experiments/results/impact_p11/gate_20260827T101925Z_22733/integrity_constrained/xq_p10_information_map-graph.txt", "information-map-node-graph.txt"),
+  @("P11", "experiments/results/impact_p11/gate_20260827T101925Z_22733/integrity_constrained/run.env", "integrity-constrained-run.env"),
+  @("P11", "experiments/results/impact_p11/gate_20260827T101925Z_22733/isolation-audit.txt", "flight-gate-isolation-audit.txt"),
+  @("P11", "experiments/results/impact_p11/gate_20260827T101925Z_22733/information_only/rosbag/metadata.yaml", "information-only-rosbag-metadata.yaml"),
+  @("P11", "experiments/results/impact_p11/gate_20260827T101925Z_22733/integrity_constrained/rosbag/metadata.yaml", "integrity-constrained-rosbag-metadata.yaml"),
+  @("P11", "experiments/results/impact_p11/visual_20260827T102347Z_24548/visualization.json", "visualization.json"),
+  @("P11", "experiments/results/impact_p11/visual_20260827T102347Z_24548/flight-result.json", "visual-flight-result.json"),
+  @("P11", "experiments/results/impact_p11/visual_20260827T102347Z_24548/isolation-audit.txt", "visual-isolation-audit.txt"),
+  @("P11", "experiments/results/impact_p11/visual_20260827T102347Z_24548/rosbag/metadata.yaml", "visual-rosbag-metadata.yaml"),
+  @("P12", "experiments/results/impact_p12/gate_20260827T165121Z_879/flight-result.json", "flight-result.json"),
+  @("P12", "experiments/results/impact_p12/gate_20260827T165121Z_879/run.env", "run.env"),
+  @("P12", "experiments/results/impact_p12/gate_20260827T165121Z_879/configuration.sha256", "configuration.sha256"),
+  @("P12", "experiments/results/impact_p12/gate_20260827T165121Z_879/configuration/p12_gate_thresholds.json", "p12-gate-thresholds.json"),
+  @("P12", "experiments/results/impact_p12/gate_20260827T165121Z_879/configuration/build-manifest.json", "build-manifest.json"),
+  @("P12", "experiments/results/impact_p12/gate_20260827T165121Z_879/xq_p12_dynamic_map-graph.txt", "dynamic-map-node-graph.txt"),
+  @("P12", "experiments/results/impact_p12/gate_20260827T165121Z_879/xq_p12_flight_controller-graph.txt", "flight-controller-node-graph.txt"),
+  @("P12", "experiments/results/impact_p12/gate_20260827T165121Z_879/xq_p11_integrity_exploration-graph.txt", "exploration-node-graph.txt"),
+  @("P12", "experiments/results/impact_p12/gate_20260827T165121Z_879/isolation-audit.txt", "isolation-audit.txt"),
+  @("P12", "experiments/results/impact_p12/gate_20260827T165121Z_879/rosbag/metadata.yaml", "rosbag-metadata.yaml"),
+  @("P13", "experiments/results/impact_p13/gate_20260828T055346Z_1323/p13-gate-result.json", "p13-gate-result.json"),
+  @("P13", "experiments/results/impact_p13/gate_20260828T055346Z_1323/configuration.sha256", "configuration.sha256"),
+  @("P13", "experiments/results/impact_p13/gate_20260828T055346Z_1323/configuration/p13_gate_thresholds.json", "p13-gate-thresholds.json"),
+  @("P13", "experiments/results/impact_p13/gate_20260828T055346Z_1323/configuration/build-manifest.json", "build-manifest.json"),
+  @("P13", "experiments/results/impact_p13/gate_20260828T055346Z_1323/low_50ms/trial-result.json", "low-50ms-trial-result.json"),
+  @("P13", "experiments/results/impact_p13/gate_20260828T055346Z_1323/low_50ms/p12-retention-result.json", "low-50ms-p12-retention-result.json"),
+  @("P13", "experiments/results/impact_p13/gate_20260828T055346Z_1323/low_50ms/run.env", "low-50ms-run.env"),
+  @("P13", "experiments/results/impact_p13/gate_20260828T055346Z_1323/low_50ms/xq_p13_flight_controller-graph.txt", "low-50ms-controller-node-graph.txt"),
+  @("P13", "experiments/results/impact_p13/gate_20260828T055346Z_1323/low_50ms/rosbag/metadata.yaml", "low-50ms-rosbag-metadata.yaml"),
+  @("P13", "experiments/results/impact_p13/gate_20260828T055346Z_1323/high_200ms/trial-result.json", "high-200ms-trial-result.json"),
+  @("P13", "experiments/results/impact_p13/gate_20260828T055346Z_1323/high_200ms/p12-retention-result.json", "high-200ms-p12-retention-result.json"),
+  @("P13", "experiments/results/impact_p13/gate_20260828T055346Z_1323/high_200ms/run.env", "high-200ms-run.env"),
+  @("P13", "experiments/results/impact_p13/gate_20260828T055346Z_1323/high_200ms/xq_p13_flight_controller-graph.txt", "high-200ms-controller-node-graph.txt"),
+  @("P13", "experiments/results/impact_p13/gate_20260828T055346Z_1323/high_200ms/rosbag/metadata.yaml", "high-200ms-rosbag-metadata.yaml"),
+  @("P13", "experiments/results/impact_p13/gate_20260828T055346Z_1323/isolation-audit.txt", "isolation-audit.txt"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/p14-gate-result.json", "p14-gate-result.json"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/configuration.sha256", "configuration.sha256"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/configuration/p14_gate_thresholds.json", "p14-gate-thresholds.json"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/configuration/p14_matrix_schedule.json", "p14-matrix-schedule.json"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/configuration/p14_emergency_schedule.json", "p14-emergency-schedule.json"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/configuration/.xq_build_manifest.json", "build-manifest.json"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/matrix/trial-result.json", "matrix-trial-result.json"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/matrix/p12-retention-result.json", "matrix-p12-retention-result.json"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/matrix/p13-retention-result.json", "matrix-p13-retention-result.json"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/matrix/run.env", "matrix-run.env"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/matrix/impact_p14_controller-graph.txt", "matrix-controller-node-graph.txt"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/matrix/impact_sensor_proxy-graph.txt", "matrix-sensor-proxy-node-graph.txt"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/matrix/xq_p12_dynamic_map-graph.txt", "matrix-dynamic-map-node-graph.txt"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/matrix/xq_p11_integrity_exploration-graph.txt", "matrix-exploration-node-graph.txt"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/matrix/rosbag/metadata.yaml", "matrix-rosbag-metadata.yaml"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/emergency/trial-result.json", "emergency-trial-result.json"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/emergency/run.env", "emergency-run.env"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/emergency/impact_p14_controller-graph.txt", "emergency-controller-node-graph.txt"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/emergency/impact_sensor_proxy-graph.txt", "emergency-sensor-proxy-node-graph.txt"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/emergency/rosbag/metadata.yaml", "emergency-rosbag-metadata.yaml"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/external-assets.before.sha256", "external-assets.before.sha256"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/external-assets.after.sha256", "external-assets.after.sha256"),
+  @("P14", "experiments/results/impact_p14/gate_20260828T072511Z_12130/isolation-audit.txt", "isolation-audit.txt")
 )
 
 foreach ($entry in $files) {
+  if ($OnlyPhase -and $entry[0] -ne $OnlyPhase) { continue }
   Copy-EvidenceFile -Phase $entry[0] -SourceRelative $entry[1] -DestinationRelative $entry[2]
 }
 
@@ -153,9 +224,31 @@ $largeArtifacts = @{
     "experiments/results/impact_p10/visual_20260823T154916Z_18660/rosbag",
     "experiments/results/impact_p10/visual_20260823T154916Z_18660/gz_record"
   )
+  P11 = @(
+    "experiments/results/impact_p11/contract_20260827T053924Z_1726/rosbag",
+    "experiments/results/impact_p11/gate_20260827T101925Z_22733/information_only/rosbag",
+    "experiments/results/impact_p11/gate_20260827T101925Z_22733/integrity_constrained/rosbag",
+    "experiments/results/impact_p11/visual_20260827T102347Z_24548/rosbag",
+    "experiments/results/impact_p11/visual_20260827T102347Z_24548/gz_record"
+  )
+  P12 = @(
+    "experiments/results/impact_p12/gate_20260827T165121Z_879/rosbag",
+    "experiments/results/impact_p12/gate_20260827T165121Z_879/gz_record"
+  )
+  P13 = @(
+    "experiments/results/impact_p13/gate_20260828T055346Z_1323/low_50ms/rosbag",
+    "experiments/results/impact_p13/gate_20260828T055346Z_1323/high_200ms/rosbag",
+    "experiments/results/impact_p13/gate_20260828T055346Z_1323/high_200ms/gz_record"
+  )
+  P14 = @(
+    "experiments/results/impact_p14/gate_20260828T072511Z_12130/matrix/rosbag",
+    "experiments/results/impact_p14/gate_20260828T072511Z_12130/matrix/gz_record",
+    "experiments/results/impact_p14/gate_20260828T072511Z_12130/emergency/rosbag"
+  )
 }
 
 foreach ($phase in $largeArtifacts.Keys) {
+  if ($OnlyPhase -and $phase -ne $OnlyPhase) { continue }
   $manifest = @("# SHA256  BYTES  WSL_RELATIVE_PATH")
   foreach ($relativeDirectory in $largeArtifacts[$phase]) {
     $directory = Join-Path $wslRoot ($relativeDirectory -replace '/', '\')
@@ -175,4 +268,8 @@ foreach ($phase in $largeArtifacts.Keys) {
   [System.IO.File]::WriteAllText($manifestPath, (($manifest -join "`n") + "`n"), $utf8WithoutBom)
 }
 
-Write-Host "Archived P0-P10 lightweight evidence to $archiveRoot"
+if ($OnlyPhase) {
+  Write-Host "Archived $OnlyPhase lightweight evidence to $archiveRoot"
+} else {
+  Write-Host "Archived P0-P14 lightweight evidence to $archiveRoot"
+}

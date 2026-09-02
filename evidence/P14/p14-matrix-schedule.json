@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "seed": 20260828,
+  "faults": [
+    {"id": "F1_camera", "type": "camera_failure", "start_time_s": 80.0, "duration_s": 2.0, "severity": 1.0},
+    {"id": "F2_ground_link", "type": "20_percent_packet_loss", "start_time_s": 84.0, "duration_s": 3.0, "severity": 0.2, "seed": 20260901},
+    {"id": "F3_cpu", "type": "cpu_load", "start_time_s": 89.0, "duration_s": 2.0, "severity": 0.85},
+    {"id": "F4_imu", "type": "imu_dropout", "start_time_s": 93.0, "duration_s": 0.7, "severity": 1.0},
+    {"id": "F5_jitter", "type": "timestamp_jitter", "start_time_s": 97.0, "duration_s": 2.0, "severity": 0.025},
+    {"id": "F6_odom_delay", "type": "odom_delay", "start_time_s": 101.0, "duration_s": 2.0, "severity": 0.18},
+    {"id": "F7_covariance", "type": "localization_covariance_inflation", "start_time_s": 105.0, "duration_s": 2.0, "severity": 0.25},
+    {"id": "F8_planner", "type": "planner_delay", "start_time_s": 109.0, "duration_s": 1.2, "severity": 0.35},
+    {"id": "F9_battery", "type": "low_battery", "start_time_s": 113.0, "duration_s": 1.2, "severity": 0.20},
+    {"id": "F10_lidar_short", "type": "lidar_dropout", "start_time_s": 117.0, "duration_s": 0.9, "severity": 1.0}
+  ]
+}

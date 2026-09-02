@@ -1,0 +1,37 @@
+/xq_p13_flight_controller
+  Subscribers:
+    /clock: rosgraph_msgs/msg/Clock
+    /integrity/directional: xq_sim_interfaces/msg/DirectionalIntegrity
+    /integrity/exploration_decision: xq_sim_interfaces/msg/IntegrityExplorationDecision
+    /integrity/information_map: xq_sim_interfaces/msg/InformationMap
+    /livox/lidar: sensor_msgs/msg/PointCloud2
+    /localization/odom: nav_msgs/msg/Odometry
+    /mapping/p12/dynamic_voxels: sensor_msgs/msg/PointCloud2
+    /mapping/p12/static_voxels: sensor_msgs/msg/PointCloud2
+    /mapping/p12/status: std_msgs/msg/String
+    /planning/p11/selected_bspline: traj_utils/msg/Bspline
+    /planning/p11/unconstrained_bspline: traj_utils/msg/Bspline
+  Publishers:
+    /integrity/p13/latency_trace: std_msgs/msg/String
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /planning/p11/frontier_candidate_set: xq_sim_interfaces/msg/ExplorationCandidateSet
+    /planning/p11/frontier_candidates: traj_utils/msg/Bspline
+    /planning/p12/replan_event: xq_sim_interfaces/msg/ReplanEvent
+    /rosout: rcl_interfaces/msg/Log
+    /xq/p11/flight_status: std_msgs/msg/String
+    /xq/p12/flight_status: std_msgs/msg/String
+    /xq/p13/flight_status: std_msgs/msg/String
+    /xq/p3/cmd_vel: geometry_msgs/msg/Twist
+  Service Servers:
+    /xq_p13_flight_controller/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /xq_p13_flight_controller/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /xq_p13_flight_controller/get_parameters: rcl_interfaces/srv/GetParameters
+    /xq_p13_flight_controller/list_parameters: rcl_interfaces/srv/ListParameters
+    /xq_p13_flight_controller/set_parameters: rcl_interfaces/srv/SetParameters
+    /xq_p13_flight_controller/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+

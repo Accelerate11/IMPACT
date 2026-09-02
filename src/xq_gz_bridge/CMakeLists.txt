@@ -17,7 +17,15 @@ find_package(rclcpp REQUIRED)
 find_package(rosgraph_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(gz-msgs10 REQUIRED)
+find_package(gz-sim8 REQUIRED)
 find_package(gz-transport13 REQUIRED)
+
+add_library(xq_p12_obstacle_motion_system SHARED
+  src/p12_obstacle_motion_system.cpp
+)
+target_link_libraries(xq_p12_obstacle_motion_system
+  gz-sim8::gz-sim8
+)
 
 add_library(xq_gz_bridge_conversions
   src/conversions.cpp
@@ -57,6 +65,7 @@ install(
   TARGETS
     xq_gz_bridge_conversions
     xq_gz_bridge_node
+    xq_p12_obstacle_motion_system
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION lib/${PROJECT_NAME}

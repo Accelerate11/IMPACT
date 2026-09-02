@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "gate": "COMPLEX_SCENE_FULL_AUTONOMY_DEMO",
+  "status": "PASS",
+  "reference_run": "/tmp/xq_complex_live_172_32642",
+  "scene": "xq_complex_warehouse",
+  "mode": "full_normal_autonomy_no_fault_injection",
+  "renderer": "D3D12 (NVIDIA GeForce RTX 4060 Laptop GPU)",
+  "metrics": {
+    "mission_elapsed_s": 133.0825,
+    "path_length_m": 24.72989804368936,
+    "forward_progress_m": 23.98467934962829,
+    "segments_completed": 4,
+    "decisions_applied": 4,
+    "integrity_interventions": 2,
+    "decision_sequence": [
+      "geometry_rich_right",
+      "geometry_rich_right",
+      "high_information_direct",
+      "high_information_direct"
+    ],
+    "dynamic_replan_events": 2,
+    "dynamic_brake_duration_s": 24.549999999999997,
+    "minimum_obstacle_clearance_m": 1.7652636076940378,
+    "localization_ate_rms_m": 0.08344059359026249,
+    "p13_latency_p99_ms": 153.28119,
+    "p13_final_integrity_margin_m": 0.06622385091687352
+  },
+  "checks": {
+    "open_roof_walls_retained": true,
+    "gpu_hardware_rendering": true,
+    "no_fault_injection_processes": true,
+    "utility_only_candidate_rejected_by_integrity": true,
+    "hard_feasible_detour_executed": true,
+    "dynamic_obstacle_detected": true,
+    "brake_and_ttl_reopen": true,
+    "full_corridor_complete": true,
+    "p13_latency_safety_pass": true,
+    "algorithm_ground_truth_subscribed": false
+  },
+  "formal_gate_compatibility": {
+    "p13_status": "PASS",
+    "p12_status": "FAIL",
+    "p12_checks_passed": 12,
+    "p12_checks_total": 13,
+    "p12_only_failed_check": "dynamic_detection_latency",
+    "p12_measured_hazard_to_detection_latency_s": 2.7550000000000026,
+    "p12_threshold_s": 1.5,
+    "note": "The formal P12 threshold belongs to its dedicated narrow-corridor world. The complex demo starts the mover 6.6 m off-axis and retains this mismatch as an explicit compatibility diagnostic rather than weakening the frozen threshold."
+  }
+}

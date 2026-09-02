@@ -1,0 +1,121 @@
+{
+  "schema_version": 2,
+  "artifact": "P7_FROZEN_DIRECTIONAL_PL_CALIBRATION",
+  "train_only": true,
+  "test_data_used": false,
+  "directions": [
+    "x",
+    "y",
+    "z",
+    "weak"
+  ],
+  "domain_shift_reserve": {
+    "factor": 4.488730014232155,
+    "per_direction_q95_ratio": {
+      "x": 2.5675205690454366,
+      "y": 4.488730014232155,
+      "z": 1.4728534857067124,
+      "weak": 2.5616202612706975
+    },
+    "source": "training scenarios only"
+  },
+  "directional": {
+    "x": {
+      "k95": 10.25170026459741,
+      "k99": 11.873128407286291,
+      "base_k95": 2.2838754463050663,
+      "base_k99": 2.6450974706968013,
+      "selection_rule": "train-only worst cross-scenario shift reserve times max per-scenario higher empirical quantile",
+      "per_train_scenario": [
+        {
+          "scenario": "structured_room",
+          "count": 657,
+          "q95": 0.8895256668398085,
+          "q99": 1.1383136454418916
+        },
+        {
+          "scenario": "long_corridor",
+          "count": 657,
+          "q95": 2.2838754463050663,
+          "q99": 2.6450974706968013
+        }
+      ]
+    },
+    "y": {
+      "k95": 26.39137113291112,
+      "k99": 27.327887717669373,
+      "base_k95": 5.879473937891906,
+      "base_k99": 6.088111254413259,
+      "selection_rule": "train-only worst cross-scenario shift reserve times max per-scenario higher empirical quantile",
+      "per_train_scenario": [
+        {
+          "scenario": "structured_room",
+          "count": 657,
+          "q95": 1.3098301566924722,
+          "q99": 1.4100633600595127
+        },
+        {
+          "scenario": "long_corridor",
+          "count": 657,
+          "q95": 5.879473937891906,
+          "q99": 6.088111254413259
+        }
+      ]
+    },
+    "z": {
+      "k95": 51.234940240510646,
+      "k99": 52.32846694430485,
+      "base_k95": 11.414128289753004,
+      "base_k99": 11.657744346037749,
+      "selection_rule": "train-only worst cross-scenario shift reserve times max per-scenario higher empirical quantile",
+      "per_train_scenario": [
+        {
+          "scenario": "structured_room",
+          "count": 657,
+          "q95": 7.749669875871065,
+          "q99": 7.873418102008331
+        },
+        {
+          "scenario": "long_corridor",
+          "count": 657,
+          "q95": 11.414128289753004,
+          "q99": 11.657744346037749
+        }
+      ]
+    },
+    "weak": {
+      "k95": 10.183845769443833,
+      "k99": 11.766835018577282,
+      "base_k95": 2.268758810878468,
+      "base_k99": 2.6214174123346385,
+      "selection_rule": "train-only worst cross-scenario shift reserve times max per-scenario higher empirical quantile",
+      "per_train_scenario": [
+        {
+          "scenario": "structured_room",
+          "count": 657,
+          "q95": 0.885673354938661,
+          "q99": 1.1487952545152849
+        },
+        {
+          "scenario": "long_corridor",
+          "count": 657,
+          "q95": 2.268758810878468,
+          "q99": 2.6214174123346385
+        }
+      ]
+    }
+  },
+  "train_inputs": [
+    {
+      "path": "/home/accelerate/xuanqiong_x1_sim_ws/experiments/results/impact_p7/p7_20260823T082157Z_48605/train_structured_room/p7-capture.json",
+      "sha256": "1fcd851c5290441c636b20601e646267e20c25f7e278fafe0b0a73909cf3f4fc",
+      "scenario": "structured_room"
+    },
+    {
+      "path": "/home/accelerate/xuanqiong_x1_sim_ws/experiments/results/impact_p7/p7_20260823T082157Z_48605/train_long_corridor/p7-capture.json",
+      "sha256": "612edd61bdaa6c25cf948e292c4c08b6dd0c2faee3296cd291b1b87a77d6168d",
+      "scenario": "long_corridor"
+    }
+  ],
+  "generated_at_utc": "2026-08-23T08:24:39.994091+00:00"
+}

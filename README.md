@@ -16,13 +16,31 @@ IMPACT 是一套面向 **GNSS 拒止、未知环境与动态场景** 的单机�
 
 ## 当前状态
 
-> **2026-08-23：SIL 仿真 P0–P10 已通过，P11–P14 待执行。**
+> **2026-09-02：SIL 仿真 P0–P14 及复杂组合三维完整算法 Gate 已全部通过，下一阶段为硬件部署。**
 
 当前仓库不是仅包含方案文档的空工程，已经建立从 Gazebo / ArduPilot SITL 到 FAST-LIO2、Frontier、EGO-Planner 和导航完整性估计的可重复仿真链路。
 
-P9 已完成 `M_min=min(AL-PL)` 整轨迹硬认证；P10 已在实际 FAST-LIO 注册点云构建的
-Information Map 上完成最小激励主动感知恢复。正式长走廊对比中 baseline 与 yaw-only
-实际 Margin 为负，`right_lateral` 以 `0.065915 m` 额外路径恢复到 `+0.104633 m`。
+P9 已完成 `M_min=min(AL-PL)` 整轨迹硬认证；P10 已完成最小激励主动恢复；P11 已把
+完整性、碰撞和返航能量作为 Frontier 候选的硬过滤，再最大化任务效用。P11 现以
+四个滚动 batch 飞完整条 24 m 走廊；正式双臂 Gazebo 对比中实际最低 Margin 从
+`-0.299559 m` 提升到 `+0.121361 m`，额外路径 `0.260325 m`，没有任务时间开销。
+P12 已完成 LiDAR-only 动态体素、制动重规划、TTL 清除和在线通道重开；正式轮次动态
+检测延迟 `0.1325 s`、重规划延迟 `0.2100 s`，重开后飞满 `23.9851 m` 净前进。
+P13 已完成真实端到端时间链和 nearest-rank p99 安全闭环；同一几何下高时延使未缓解
+AL 降低 `0.09058 m`，速度上限由 `0.420` 降至 `0.145 m/s`，两轮均飞完整走廊。
+P14 已完成十类确定性故障注入和弹性状态机；矩阵轮次飞满 `23.9495 m`，持续 LiDAR
+中断实际走完 `NORMAL→CAUTIOUS→RECOVERY→BRAKE→HOVER→LAND` 并下降 `0.5278 m`。
+
+面向正常飞行展示，又完成了更复杂的组合三维仓库 Gate。它在同一 24 m 任务中同时要求
+`right→left→up_right→direct`、动态障碍制动/重开和 P13 时延闭环，以排除固定绕行方向、
+只会二维绕障或只在单模块通过的情况。冻结正式比较把实际最低 Margin 从
+`-0.078022 m` 提升到 `+0.158314 m`；完整算法真实爬升 `1.052533 m`，同时横向+垂向
+位移 `0.801914 m`，额外路径 `1.590837 m`，P13 p99 为 `186.868 ms`。
+Gazebo 与 RViz 可由
+[`scripts/run_complex_compositional_live_visualization.sh`](scripts/run_complex_compositional_live_visualization.sh)
+同时启动，详见
+[`docs/COMPLEX_SCENE_SUITE_REPORT.md`](docs/COMPLEX_SCENE_SUITE_REPORT.md) 和
+[`docs/COMPLEX_COMPOSITIONAL_3D_ACCEPTANCE_REPORT.md`](docs/COMPLEX_COMPOSITIONAL_3D_ACCEPTANCE_REPORT.md)。
 
 | Phase | 内容                                           | 状态     |
 | ----- | -------------------------------------------- | ------ |
@@ -37,10 +55,11 @@ Information Map 上完成最小激励主动感知恢复。正式长走廊对比�
 | P8    | Environment-dependent Alert Limit            | ✅ PASS |
 | P9    | Integrity Margin + Hard Trajectory Rejection | ✅ PASS |
 | P10   | Minimum-Excitation Active Perception         | ✅ PASS |
-| P11   | Integrity-Constrained Exploration            | ⏳ TODO |
-| P12   | Dynamic Obstacle / Dynamic Map               | ⏳ TODO |
-| P13   | Latency-Aware Safety                         | ⏳ TODO |
-| P14   | Fault Injection & Resilient Autonomy         | ⏳ TODO |
+| P11   | Integrity-Constrained Exploration            | ✅ PASS |
+| P12   | Dynamic Obstacle / Dynamic Map               | ✅ PASS |
+| P13   | Latency-Aware Safety                         | ✅ PASS |
+| P14   | Fault Injection & Resilient Autonomy         | ✅ PASS |
+| COMPLEX | Compositional 3D Full Autonomy             | ✅ PASS |
 | HW    | Mid-360S + Atlas + CUAV 实机闭环                 | ⏳ TODO |
 
 完整执行记录见：
@@ -171,7 +190,8 @@ IMPACT 的目标不是始终追求最低定位误差，而是：
 ```
 
 P8 已完成 `PL` 与 `AL` 的独立计算，P9 已完成 `M = AL - PL` 的整轨迹在线硬认证，
-P10 已完成在名义轨迹被拒绝后以最小额外代价恢复完整性的主动感知闭环。
+P10 已完成在名义轨迹被拒绝后以最小额外代价恢复完整性的主动感知闭环；P11 已完成
+Frontier 多候选完整性硬认证后的任务效用选择。
 
 ---
 
@@ -615,6 +635,46 @@ ROS 契约 Gate、16 项三臂飞行汇总 Gate、Gazebo/RViz 录制和外部资
 
 ---
 
+## P11 — Integrity-Constrained Exploration
+
+固定双臂 Gazebo + FAST-LIO 正式结果：
+
+| 指标 | Information-only | Integrity-constrained |
+|---|---:|---:|
+| 滚动 batch | 4 | 4 |
+| 实际最低 Margin | -0.299559 m | +0.121361 m |
+| 信息收益总计 | 4.00 | 3.50 |
+| ATE RMS | 0.077903 m | 0.086599 m |
+| 真值路径长度 | 24.098819 m | 24.359144 m |
+| 真值净前进 | 23.984448 m | 23.993332 m |
+| Gazebo 终点 x | +11.984448 m | +11.993332 m |
+
+P11 不重写 Frontier；它对同一 Frontier 的多个局部轨迹先执行完整性、碰撞概率和
+返航能量硬过滤，再按 `J=w_I I-w_T T-w_E E` 排序。Margin 不进入效用函数。正式
+全程按 `7.5 + 7.5 + 7.5 + 1.5 m` 重规划；两处完整性不足窗口选择
+`geometry_rich_right`，其余窗口保留效用更高的 direct。实际 Margin 提升
+`0.420920 m`，平均每 batch 信息损失 `0.125`，时间开销 `0 s`。
+
+83 项算法测试、ROS 合同 Gate、24 项双臂飞行汇总 Gate、Gazebo/RViz 双窗口回放和
+外部资产隔离审计均通过。报告与轻量证据见
+[`docs/P11_INTEGRITY_CONSTRAINED_EXPLORATION_REPORT.md`](docs/P11_INTEGRITY_CONSTRAINED_EXPLORATION_REPORT.md)
+和 [`evidence/P11/`](evidence/P11/)。
+
+---
+
+## P12 — Dynamic Obstacle / Dynamic Map
+
+正式 Gazebo + FAST-LIO 轮次完成单个移动障碍的 LiDAR-only 检测、制动重规划、TTL 清除、
+通道重开和 24 m 全走廊飞行。检测/重规划延迟分别为 `0.1325 / 0.2100 s`，动态残留
+`4.025 s`，障碍离开后 `5.25 s` 重开，ATE RMS `0.07591 m`，净前进 `23.9851 m`。
+静态结构保留率 `1.007`，外部地图/模型逐字节隔离审计通过。
+
+报告与轻量证据见
+[`docs/P12_DYNAMIC_OBSTACLE_ACCEPTANCE_REPORT.md`](docs/P12_DYNAMIC_OBSTACLE_ACCEPTANCE_REPORT.md)
+和 [`evidence/P12/`](evidence/P12/)。
+
+---
+
 # 7. Codex 开发顺序
 
 本仓库采用严格阶段 Gate。
@@ -661,16 +721,16 @@ P9  Integrity Margin
 P10 Minimum Excitation        PASS
  │
  ▼
-P11 Integrity Exploration     ← NEXT
+P11 Integrity Exploration     PASS
  │
  ▼
-P12 Dynamic Obstacles
+P12 Dynamic Obstacles         PASS
  │
  ▼
-P13 Latency-aware Safety
+P13 Latency-aware Safety      PASS
  │
  ▼
-P14 Fault Injection
+P14 Fault Injection          PASS
  │
  ▼
 Hardware Deployment
@@ -690,7 +750,7 @@ Hardware Deployment
 
 ---
 
-# 8. 已完成：P10；下一阶段：P11
+# 8. 已完成：P14；下一阶段：Hardware Deployment
 
 ## P9 — Integrity Margin（已完成）
 
@@ -783,6 +843,12 @@ M_{\min}(\tau)\ge M_{\text{reserve}}
 
 使安全完整性成为硬约束，而不是可被其他收益抵消的软权重。
 
+正式 Gate 已证明：系统以相对 FAST-LIO 起点建立 24 m 终点，按四个 batch 逐段重新
+认证。效用更高但完整性不足的 direct 在第一、第三段被硬拒绝；约束臂序列为
+`right, direct, right, direct`，实际最低 Margin 为 `+0.121361 m`，Gazebo 真值从
+`x=-12 m` 飞至 `x=+11.993 m`。碰撞概率、返航能量和完整性均为独立硬门，Ground
+Truth 只进入 evaluator/logger。
+
 ---
 
 ## P12 — Dynamic Environment
@@ -811,6 +877,10 @@ Dynamic occupancy decay
 Passage becomes free again
 ```
 
+正式 Gate 已证明：动态地图在 12 m LiDAR 探测范围内建立 path-certified dynamic
+voxels，但仅在 4 m 规划前视内制动；障碍离开后指数 TTL 清除并经连续确认重开。
+全过程 Ground Truth 只进入 evaluator，最终净前进 `23.9851 m`。
+
 ---
 
 ## P13 — Latency-Aware Safety
@@ -837,11 +907,16 @@ max
 
 并让 `p99` 延迟直接进入 `AL`。
 
+正式 50/200 ms 双轮次 Gate 已通过：实测端到端 p99 为 `150.51 / 301.29 ms`，高时延
+未缓解 AL 从 `0.16773 m` 降至 `0.07714 m`，控制器把速度上限从 `0.42000` 降至
+`0.14500 m/s`，将 Margin 恢复到 `0.06000 m`。两轮均保留 P12 动态障碍能力并飞完
+24 m。详见 [`docs/P13_LATENCY_AWARE_SAFETY_ACCEPTANCE_REPORT.md`](docs/P13_LATENCY_AWARE_SAFETY_ACCEPTANCE_REPORT.md)。
+
 ---
 
 ## P14 — Fault Injection
 
-计划加入：
+已实际注入：
 
 * LiDAR dropout；
 * IMU dropout；
@@ -854,7 +929,7 @@ max
 * covariance inflation；
 * low battery。
 
-最终验证：
+正式 Gate 的降级策略：
 
 ```text
 NORMAL
@@ -869,6 +944,16 @@ HOVER
   ↓
 RETURN / LAND
 ```
+
+正式矩阵逐项验证 camera failure、20% packet loss、CPU load、IMU dropout、timestamp
+jitter、odometry delay、covariance inflation、planner delay、low battery 和短时 LiDAR
+dropout。飞行净前进 `23.9495 m`、ATE RMS `0.08834 m`；P12 动态障碍与 P13 时延安全
+保持性同时通过。
+
+独立持续 LiDAR 故障轮次实际走完
+`NORMAL→CAUTIOUS→RECOVERY→BRAKE→HOVER→LAND`，下降 `0.5278 m` 后末速为零。
+算法闭环不订阅 Ground Truth，真值仅进入 evaluator。详见
+[`docs/P14_FAULT_INJECTION_ACCEPTANCE_REPORT.md`](docs/P14_FAULT_INJECTION_ACCEPTANCE_REPORT.md)。
 
 ---
 
@@ -894,10 +979,17 @@ IMPACT/
 │   ├── P7_PROTECTION_LEVEL_CALIBRATION_REPORT.md
 │   ├── P8_ALERT_LIMIT_REPORT.md
 │   ├── P9_INTEGRITY_MARGIN_REPORT.md
-│   └── P10_MINIMUM_EXCITATION_ACCEPTANCE_REPORT.md
+│   ├── P10_MINIMUM_EXCITATION_ACCEPTANCE_REPORT.md
+│   ├── P11_INTEGRITY_CONSTRAINED_EXPLORATION_REPORT.md
+│   ├── P12_DYNAMIC_OBSTACLE_ACCEPTANCE_REPORT.md
+│   ├── P13_LATENCY_AWARE_SAFETY_ACCEPTANCE_REPORT.md
+│   ├── P14_FAULT_INJECTION_ACCEPTANCE_REPORT.md
+│   ├── COMPLEX_3D_FULL_AUTONOMY_REPORT.md
+│   └── COMPLEX_COMPOSITIONAL_3D_ACCEPTANCE_REPORT.md
 │
 ├── evidence/
-│   └── P*/
+│   ├── P*/
+│   └── COMPLEX_DEMO/
 │
 ├── scripts/
 │   ├── build_isolated.sh
@@ -912,9 +1004,11 @@ IMPACT/
 │   ├── run_p9_integrity_margin.sh
 │   ├── run_p10_flight_gate.sh
 │   ├── run_p10_visual_capture.sh
-│   └── view_p10_combined.sh
+│   ├── run_p14_fault_gate.sh
+│   └── view_p14_combined.sh
 │
 └── src/
+    ├── impact_fault_injection/
     ├── xq_autonomy/
     ├── xq_ego_planner/
     ├── xq_fast_lio/
@@ -985,7 +1079,50 @@ IMPACT/
 
 # P10 — replay Gazebo and RViz together
 ./scripts/view_p10_combined.sh
+
+# P11 — full-corridor integrity-constrained flight gate
+./scripts/run_p11_flight_gate.sh
+
+# P11 — Gazebo + RViz replay
+./scripts/view_p11_combined.sh
+
+# P12 — LiDAR dynamic obstacle + TTL reopening gate
+bash scripts/run_p12_flight_gate.sh
+
+# P12 — Gazebo + RViz replay of latest PASS
+bash scripts/view_p12_combined.sh
+
+# P13 — 50/200 ms latency-aware safety gate
+bash scripts/run_p13_flight_gate.sh
+
+# P13 — Gazebo + RViz replay of latest PASS high-latency trial
+bash scripts/view_p13_combined.sh
+
+# P14 — deterministic fault matrix + persistent-LiDAR emergency gate
+bash scripts/run_p14_fault_gate.sh
+
+# P14 — Gazebo + RViz replay of latest PASS matrix trial
+bash scripts/view_p14_combined.sh
+
+# Complex live demo — full normal flight algorithm, no fault injection
+bash scripts/run_complex_live_visualization.sh
+
+# 3D complex live demo — right, left, up, direct; no fault injection
+bash scripts/run_complex_3d_live_visualization.sh
+
+# Recommended compositional 3D demo — right, left, up-right, direct; dynamic obstacle; no fault injection
+bash scripts/run_complex_compositional_live_visualization.sh
 ```
+
+复杂场景实时入口只启动正常飞行算法，不启动 P14 故障注入节点。推荐组合场景展示流程为
+`right → dynamic brake/reopen → left → up_right → direct → goal`：三个完整性硬约束分别拒绝
+高效用但负 Margin 的平面候选，第三段实际爬升越过低门槛，最后完成 24 m 全航程。
+Gazebo 保留墙体、移除屋顶，并优先使用 WSLg D3D12 GPU 渲染；RViz 同步显示 LiDAR、
+FAST-LIO、动静态体素、四候选轨迹、认证轨迹和 P13 安全包络。完整结果与验证边界见
+[`docs/COMPLEX_COMPOSITIONAL_3D_ACCEPTANCE_REPORT.md`](docs/COMPLEX_COMPOSITIONAL_3D_ACCEPTANCE_REPORT.md)。
+
+正式无人值守 Gate 不启动 GUI，但保留同一 Gazebo 传感器渲染路径，并在 `run.env` 记录
+实际 renderer；本轮为 `D3D12 (NVIDIA GeForce RTX 4060 Laptop GPU)`。
 
 部分阶段同时提供 RViz / Gazebo replay 工具。
 

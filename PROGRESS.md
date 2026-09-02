@@ -1,6 +1,6 @@
 # IMPACT 执行进度
 
-更新时间：2026-08-23
+更新时间：2026-09-02
 
 | 阶段 | 状态 | 证据/说明 |
 |---|---|---|
@@ -17,7 +17,13 @@
 | P8 Alert Limit | PASS | `docs/P8_ALERT_LIMIT_REPORT.md`；逐轨迹净空与静态障碍 AL Gate |
 | P9 Integrity Margin | PASS | `docs/P9_INTEGRITY_MARGIN_REPORT.md`；同协方差宽/窄场景硬认证 Gate |
 | P10 Minimum-Excitation Active Perception | PASS | `docs/P10_MINIMUM_EXCITATION_ACCEPTANCE_REPORT.md`；三组 Gazebo+FAST-LIO 飞行、可视化与隔离 Gate |
-| P11-P14 | NOT_STARTED | P10 已验收；等待明确命令后按原 IMPACT 企划和前置 Gate 推进 P11 |
+| P11 Integrity-Constrained Exploration | PASS | `docs/P11_INTEGRITY_CONSTRAINED_EXPLORATION_REPORT.md`；ROS 合同、双臂 Gazebo、RViz/Gazebo 可视化与隔离 Gate |
+| P12 Dynamic Obstacle / Dynamic Map | PASS | `docs/P12_DYNAMIC_OBSTACLE_ACCEPTANCE_REPORT.md`；LiDAR-only 动态体素、制动重规划、TTL 重开、全走廊 Gazebo/RViz 与隔离 Gate |
+| P13 Latency-Aware Safety | PASS | `docs/P13_LATENCY_AWARE_SAFETY_ACCEPTANCE_REPORT.md`；50/200 ms 双轮次、p99→AL→速度闭环、P12 保持性与 Gazebo/RViz Gate |
+| P14 Fault Injection & Resilient Autonomy | PASS | `docs/P14_FAULT_INJECTION_ACCEPTANCE_REPORT.md`；十类故障矩阵、持续 LiDAR 失效安全、P12/P13 保持性与 Gazebo/RViz Gate |
+| 复杂场景完整正常飞行展示 | PASS | `docs/COMPLEX_SCENE_FULL_AUTONOMY_DEMO_REPORT.md`；无故障注入、24 m 双航程、Gazebo+RViz、GPU 与隔离 Gate |
+| 三维复杂场景完整算法 | PASS | `docs/COMPLEX_3D_FULL_AUTONOMY_REPORT.md`；right→left→up→direct、真实爬升、24 m 双航程、无故障注入 |
+| 复杂组合三维完整算法 | PASS | `docs/COMPLEX_COMPOSITIONAL_3D_ACCEPTANCE_REPORT.md`；right→left→up_right→direct、动态障碍、P13 p99、GPU Gazebo+RViz |
 
 ## 已解决问题
 
@@ -201,3 +207,137 @@
   `16ce2f5f24fe237c22ba5c39c423ed8e6f36a4a1f62a032811e12cf009078133`。
 - 边界：证明固定静态长走廊 Gazebo SIL 的有限候选主动恢复，不代表动态障碍、连续
   动作全局最优、Atlas 满载性能或实机安全保证。
+
+## P11 正式结果
+
+- ROS 合同证据：`experiments/results/impact_p11/contract_20260827T053924Z_1726`；
+  高信息完整性不足、安全低信息、碰撞越界和返航能量不足四类候选均按独立硬门处理，
+  Margin 未进入效用，选择器节点图无 Ground Truth。
+- 全走廊双臂证据：`experiments/results/impact_p11/gate_20260827T101925Z_22733`；
+  两臂均从 Gazebo `x=-12 m` 飞至 `x≈+12 m`，净前进 `23.984448 / 23.993332 m`；
+  四个滚动 batch 逐段重建候选并重新硬认证，24 项配对检查全部 PASS。
+- information-only 四段均 direct；integrity-constrained 序列为
+  `right, direct, right, direct`。实际最低 Margin 为 `-0.299559 / +0.121361 m`，
+  完整性约束提升 `0.420920 m`，约束臂四段最低值均不低于 `+0.121361 m`。
+- 平均每 batch 信息收益损失 `0.125`、额外路径 `0.260325 m`、时间开销 `0 s`、
+  ATE 增量 `0.008695 m`。
+- 可视化证据：`experiments/results/impact_p11/visual_20260827T102347Z_24548`；Gazebo
+  `state.tlog` 1,404,928 bytes、RViz bag 目录 189,121,443 bytes，开顶保留墙体，
+  双窗口已实际启动并显示四个 batch。
+- 83/83 算法测试、13 包隔离构建、合同 Gate、正式飞行 Gate、可视化录制/回放和
+  外部资产逐字节审计全部 PASS。
+- 边界：验证固定静态场景 24 m 走廊中有限 Frontier 多视点候选的滚动硬认证与选择，不代表
+  Frontier 覆盖率、动态障碍、连续全局最优、Atlas 满载或实机安全保证。
+
+## P12 正式结果
+
+- 正式证据：`experiments/results/impact_p12/gate_20260827T165121Z_879`；13 项自动检查
+  全部 PASS，动态检测/重规划延迟 `0.1325 / 0.2100 s`。
+- 障碍离开后动态残留 `4.025 s`，`5.25 s` 完成 TTL 清除与连续空闲确认并发布重开事件；
+  动态体素峰值 55，重规划事件恰为 brake/reopen 两次。
+- 四个滚动 batch 全部完成，净前进 `23.985103 m`、真值路径 `24.505402 m`、ATE RMS
+  `0.075913 m`、最低物理净空 `3.637212 m`。
+- 静态结构保留率 `1.007018`；算法节点无 Ground Truth 订阅；外部 Gazebo 地图/模型
+  逐字节隔离审计 PASS。
+- 可视化原件：同一 PASS 轮次含 277 MB 压缩 rosbag 与 1.8 MB Gazebo state；
+  `scripts/view_p12_combined.sh` 同时打开 Gazebo 和 RViz，开顶且保留墙体。
+- 93/93 自研自主算法测试（含 10/10 P12 定向测试）、13 包隔离构建、SDF 验证、正式飞行 Gate 和录制回放通过。
+- 边界：单刚体动态障碍、固定室内长走廊 Gazebo SIL；不代表多目标语义跟踪、Atlas
+  满载、HIL 或实机安全保证。
+
+## P13 正式结果
+
+- 正式证据：`experiments/results/impact_p13/gate_20260828T055346Z_1323`；9 项配对 Gate
+  全部 PASS，两轮 P13 trial 和两轮 P12 保持性检查均通过。
+- 50/200 ms profile 的 planner p50 为 `50.10 / 200.24 ms`，端到端 p99 为
+  `150.51 / 301.29 ms`，差值 `150.79 ms`。
+- 高时延未缓解 AL 从 `0.16773` 降至 `0.07714 m`、Margin 降至 `-0.02286 m`；降速
+  后速度上限 `0.14500 m/s`、AL `0.16000 m`、Margin 恢复到 `0.06000 m`。
+- 两轮净前进 `23.99 / 23.96 m`，ATE RMS `0.084 / 0.079 m`；高时延任务时间由
+  `132.4 s` 增至 `221.4 s`。
+- 外部资产字节级未变；Gazebo+RViz 高时延正式录制双窗口已启动验证，开顶并保留墙体。
+- 98/98 自研自主算法测试（含 5/5 P13 定向测试）和 13 包隔离构建通过。
+- 边界：固定 Gazebo SIL 和软件规划负载；Atlas 满载、组合故障、HIL 与实机属于后续阶段。
+
+## P14 正式结果
+
+- 正式证据：`experiments/results/impact_p14/gate_20260828T072511Z_12130`；统一 Gate 的
+  matrix、persistent-LiDAR emergency、P12/P13 保持性、同世界与隔离检查全部 PASS。
+- 十类故障均实际作用于代理或处理链；状态映射覆盖 NORMAL、CAUTIOUS、RECOVERY、
+  BRAKE、RETURN，20% 丢包窗为 30 发/6 丢。
+- 矩阵轮次净前进 `23.9495 m`、ATE RMS `0.08834 m`；P12 动态检测/重规划为
+  `0.1575/0.0625 s`，P13 端到端 p99 为 `298.22 ms`、安全 Margin `0.0600 m`。
+- 持续 LiDAR 中断实际依次进入 `NORMAL→CAUTIOUS→RECOVERY→BRAKE→HOVER→LAND`，
+  高度下降 `0.5278 m`，最终速度 `0 m/s`；Ground Truth 仅供独立 evaluator。
+- 102/102 自研算法测试、14 包隔离构建和 Gazebo+RViz 双窗口正式录制回放均通过；
+  Gazebo 开顶并保留墙体，外部资产逐字节未变。
+- 边界：固定 Gazebo SIL 与项目内故障代理；真实传感器驱动、Atlas 满载/功耗温升、
+  openEuler、CUAV、HIL 和实机安全仍属于硬件部署阶段。
+
+## 复杂场景完整正常飞行正式结果
+
+- 正式证据：
+  `experiments/results/impact_complex_comparison/gate_20260828T122049Z_319`；不启动故障
+  注入，信息优先与完整性约束两航程的 P11/P12/P13 evaluator 和 17 项汇总检查均 PASS。
+- 两航程均完成 4 个滚动 batch 和约 24 m 净前进；完整算法执行
+  `right, right, direct, direct`，基线执行 `direct × 4`。
+- 实际最低 Margin 为 `-0.466501 / +0.124017 m`，完整算法提升 `0.590518 m`；额外
+  路径 `0.712621 m`，任务时间开销 `0.050 s`。
+- 两航程均触发 2 次动态制动/重开；完整算法最小物理净空 `1.753211 m`，P13 端到端
+  p99 `161.768 ms`，最终安全 Margin `0.061590 m`。
+- GPU 渲染器为 `D3D12 (NVIDIA GeForce RTX 4060 Laptop GPU)`；场景只拆屋顶、保留
+  墙体、隔墙、六层货架、门架、杂物、完整性挑战区和运动体。
+- 外部 Gazebo 地图/模型前后字节级一致；核心算法节点无 Ground Truth 订阅。Git 轻量
+  证据位于 `evidence/COMPLEX_DEMO/gate_20260828T122049Z_319/`，大型 rosbag 留在 WSL
+  并以 SHA-256 索引。
+
+## 双向复杂场景正式结果
+
+- 新增独立世界 `xq_complex_bidirectional_warehouse.sdf`；第二个完整性挑战区镜像，
+  精确 Gate 要求 `right, left, direct, direct`，用于排除固定右绕。
+- 正式证据：
+  `experiments/results/impact_complex_comparison/gate_20260828T125712Z_315`；基线为
+  `direct × 4`，完整算法精确执行右/左/直/直，干预恰为 2 次。
+- 实际最低 Margin 从 `-0.492817 m` 提升到 `+0.146311 m`，提升 `0.639128 m`；额外
+  路径 `0.743725 m`，任务时间开销 `0.100 s`。
+- 两臂净前进均约 24 m、动态重规划均为 2 次；完整算法 ATE RMS `0.066186 m`、动态
+  净空 `1.906157 m`、P13 p99 `157.282 ms`、最终安全 Margin `0.064046 m`。
+- revision 3 在正式双航程前冻结；所有场景改动均增加真实可观测几何或把结构移出保护
+  管，未降低任何冻结阈值。外部资产隔离审计 PASS，故障注入关闭。
+- Git 轻量证据位于
+  `evidence/COMPLEX_DEMO/bidirectional_gate_20260828T125712Z_315/`；完整报告见
+  `docs/COMPLEX_SCENE_SUITE_REPORT.md`。
+
+## 三维复杂场景完整正常飞行正式结果
+
+- 新增独立开顶世界 `xq_complex_3d_warehouse.sdf` 和默认关闭、仅由该场景显式启用的
+  `geometry_rich_up` 候选；现有场景和其他项目地图不受影响。
+- 冻结前单臂诊断 `gate_20260828T134940Z_10283` 的第三批候选中，直/右/左 Margin
+  分别为 `-0.095/-0.098/-0.103 m`，UP 为 `+0.498 m`，算法自然选择 UP。
+- revision 2 在首次双臂前冻结；正式 Gate
+  `experiments/results/impact_complex_comparison/gate_20260828T135423Z_11540` PASS。
+- 基线精确执行 `direct × 4`；完整算法精确执行 `right, left, up, direct`。实际最低
+  Margin 从 `-0.509323 m` 提升到 `+0.147368 m`，提升 `+0.656691 m`。
+- Ground Truth 最大垂向偏移为 `0.115599 / 0.660182 m`，证明 UP 已真实执行；两臂均
+  完成约 24 m，完整算法额外路径 `1.104322 m`，任务时间反而减少 `7.4725 s`。
+- 动态安全、P13 包络、ATE、Ground Truth 隔离、冻结阈值与外部资产审计均 PASS；轻量
+  证据位于 `evidence/COMPLEX_DEMO/spatial_gate_20260828T135423Z_11540/`。
+
+## 复杂组合三维完整算法正式结果
+
+- 新增独立开顶世界 `xq_complex_compositional_warehouse.sdf`，保留墙体和内部结构；正常
+  飞行栈同时覆盖 P6/P10/P11/P12/P13，不启动 P14 故障注入。
+- revision 3 在独立信息优先臂 `gate_20260902T121313Z_326` 与完整性约束臂
+  `gate_20260902T121632Z_422` 均通过后冻结。正式双臂 Gate
+  `gate_20260902T122517Z_286` 的 26 项汇总检查全部通过。
+- 信息优先精确执行 `direct × 4`；完整性约束精确执行
+  `right, left, up_right, direct`，恰有 3 次完整性干预。
+- 实际最低 Margin 为 `-0.078022 / +0.158314 m`，提升 `0.236336 m`；两臂净前进
+  `24.007881 / 23.998857 m`，约束臂额外路径 `1.590837 m`，任务时间少 `15.4875 s`。
+- 约束臂最大垂向位移 `1.052533 m`、同时横向+垂向位移 `0.801914 m`；动态障碍最小
+  物理净空 `3.503246 m`，P13 p99 `186.868 ms`，均满足冻结 Gate。
+- 稀疏动态地图将典型活动体素从约 5.9 万降到约 1.2–1.5 万，并加入有界实际观测信息
+  记忆、端到端时延因果闭合和 15 s 动态转静态确认窗；120 项自研测试通过。
+- GPU 为 `D3D12 (NVIDIA GeForce RTX 4060 Laptop GPU)`；外部资产前后字节级一致，
+  Ground Truth 仅供 evaluator。轻量证据位于
+  `evidence/COMPLEX_DEMO/compositional_gate_20260902T122517Z_286/`。

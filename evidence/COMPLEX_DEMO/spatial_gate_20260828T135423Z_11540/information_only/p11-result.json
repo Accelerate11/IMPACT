@@ -1,0 +1,478 @@
+{
+  "schema_version": 1,
+  "gate": "P11_INTEGRITY_EXPLORATION_FLIGHT_ARM",
+  "variant": "information_only",
+  "status": "PASS",
+  "metrics": {
+    "matched_samples": 1415,
+    "ate_rms_m": 0.08934385154121546,
+    "position_error_max_m": 0.14813120551106881,
+    "weak_direction_error_rms_m": 0.0606043297988531,
+    "weak_direction_error_max_m": 0.14087837647898846,
+    "actual_minimum_integrity_margin_m": -0.5093233236712968,
+    "actual_minimum_integrity_margin_estimate_x_m": 11.089168330983979,
+    "actual_minimum_integrity_margin_estimate_y_m": -0.0198253869134306,
+    "actual_minimum_integrity_margin_stamp_s": 79.0875,
+    "actual_minimum_integrity_margin_alert_limit_m": 0.03438775221213375,
+    "actual_minimum_integrity_margin_protection_level_m": 0.5437110758834306,
+    "actual_minimum_integrity_margin_nearest_static_xyz_m": [
+      11.125,
+      -0.625,
+      0.125
+    ],
+    "actual_segment_minimum_integrity_margins_m": [
+      -0.4816388078212098,
+      -0.5093233236712968,
+      -0.39486335947626683,
+      0.42300825724153224
+    ],
+    "actual_segment_minimum_integrity_samples": [
+      {
+        "stamp_s": 27.2675,
+        "margin_m": -0.4816388078212098,
+        "alert_limit_m": 0.07736832890005663,
+        "protection_level_m": 0.5590071367212665,
+        "estimate_x_m": 3.9469672560114475,
+        "estimate_y_m": -0.021853920580446475,
+        "nearest_static_x_m": 3.875,
+        "nearest_static_y_m": 0.625,
+        "nearest_static_z_m": 0.125
+      },
+      {
+        "stamp_s": 79.0875,
+        "margin_m": -0.5093233236712968,
+        "alert_limit_m": 0.03438775221213375,
+        "protection_level_m": 0.5437110758834306,
+        "estimate_x_m": 11.089168330983979,
+        "estimate_y_m": -0.0198253869134306,
+        "nearest_static_x_m": 11.125,
+        "nearest_static_y_m": -0.625,
+        "nearest_static_z_m": 0.125
+      },
+      {
+        "stamp_s": 120.815,
+        "margin_m": -0.39486335947626683,
+        "alert_limit_m": 0.06507873230000694,
+        "protection_level_m": 0.45994209177627376,
+        "estimate_x_m": 19.882323651202572,
+        "estimate_y_m": -0.02288906262582843,
+        "nearest_static_x_m": 19.875,
+        "nearest_static_y_m": -0.125,
+        "nearest_static_z_m": -0.625
+      },
+      {
+        "stamp_s": 133.0075,
+        "margin_m": 0.42300825724153224,
+        "alert_limit_m": 1.0188031255248724,
+        "protection_level_m": 0.5957948682833402,
+        "estimate_x_m": 22.840220384529445,
+        "estimate_y_m": -0.024704348352921218,
+        "nearest_static_x_m": 22.875,
+        "nearest_static_y_m": -1.625,
+        "nearest_static_z_m": 0.125
+      }
+    ],
+    "actual_minimum_alert_limit_m": 0.03068733468571161,
+    "actual_maximum_protection_level_m": 0.6095540668320215,
+    "integrity_margin_samples": 668,
+    "ground_truth_path_length_m": 24.113970108217718,
+    "maximum_lateral_excursion_m": 0.09384067794172272,
+    "maximum_vertical_excursion_m": 0.11559912555432117,
+    "mission_time_s": 140.13,
+    "executed_information_gain": 4.0,
+    "truth_start_x_m": -12.0,
+    "truth_final_x_m": 12.00239129517202,
+    "truth_start_z_m": 1.2,
+    "truth_final_z_m": 1.0844008744456788,
+    "forward_progress_m": 24.002391295172018
+  },
+  "decision": {
+    "batch_id": 20301103,
+    "trajectory_ids": [
+      206611031,
+      206611032,
+      206611033,
+      206611034
+    ],
+    "candidate_names": [
+      "high_information_direct",
+      "geometry_rich_right",
+      "geometry_rich_left",
+      "geometry_rich_up"
+    ],
+    "frontier_ids": [
+      "frontier_main",
+      "frontier_main",
+      "frontier_main",
+      "frontier_main"
+    ],
+    "information_gains": [
+      1.0,
+      0.75,
+      0.75,
+      0.75
+    ],
+    "utilities": [
+      0.8249758876985331,
+      0.5701700779717478,
+      0.5701700779717478,
+      0.570170001066438
+    ],
+    "predicted_minimum_margins": [
+      0.7756376412153885,
+      0.1433421753642753,
+      0.4420756496477292,
+      0.6693038514877767
+    ],
+    "integrity_feasible": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "collision_feasible": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "energy_feasible": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "feasible": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "unconstrained_selected_name": "high_information_direct",
+    "selected_name": "high_information_direct",
+    "hard_constraint": true,
+    "margin_in_utility": false,
+    "reason": "INTEGRITY_CONSTRAINED_FRONTIER_SELECTED"
+  },
+  "decisions": [
+    {
+      "batch_id": 20271100,
+      "trajectory_ids": [
+        203611001,
+        203611002,
+        203611003,
+        203611004
+      ],
+      "candidate_names": [
+        "high_information_direct",
+        "geometry_rich_right",
+        "geometry_rich_left",
+        "geometry_rich_up"
+      ],
+      "frontier_ids": [
+        "frontier_main",
+        "frontier_main",
+        "frontier_main",
+        "frontier_main"
+      ],
+      "information_gains": [
+        1.0,
+        0.75,
+        0.75,
+        0.75
+      ],
+      "utilities": [
+        0.6825,
+        0.4306875607858029,
+        0.4306875607858029,
+        0.4306875607858029
+      ],
+      "predicted_minimum_margins": [
+        -0.0865877376553286,
+        0.6071569954647758,
+        -0.6212987145948106,
+        -0.09150903911556102
+      ],
+      "integrity_feasible": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "collision_feasible": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_feasible": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "feasible": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "unconstrained_selected_name": "high_information_direct",
+      "selected_name": "geometry_rich_right",
+      "hard_constraint": true,
+      "margin_in_utility": false,
+      "reason": "INTEGRITY_CONSTRAINED_FRONTIER_SELECTED"
+    },
+    {
+      "batch_id": 20281101,
+      "trajectory_ids": [
+        204611011,
+        204611012,
+        204611013,
+        204611014
+      ],
+      "candidate_names": [
+        "high_information_direct",
+        "geometry_rich_right",
+        "geometry_rich_left",
+        "geometry_rich_up"
+      ],
+      "frontier_ids": [
+        "frontier_main",
+        "frontier_main",
+        "frontier_main",
+        "frontier_main"
+      ],
+      "information_gains": [
+        1.0,
+        0.75,
+        0.75,
+        0.75
+      ],
+      "utilities": [
+        0.6449999999741101,
+        0.3931875607602074,
+        0.3931875607602074,
+        0.3931875481755458
+      ],
+      "predicted_minimum_margins": [
+        -0.13084875049793604,
+        -0.595968801923609,
+        0.562281569565235,
+        -0.13599748604637846
+      ],
+      "integrity_feasible": [
+        false,
+        false,
+        true,
+        false
+      ],
+      "collision_feasible": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_feasible": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "feasible": [
+        false,
+        false,
+        true,
+        false
+      ],
+      "unconstrained_selected_name": "high_information_direct",
+      "selected_name": "geometry_rich_left",
+      "hard_constraint": true,
+      "margin_in_utility": false,
+      "reason": "INTEGRITY_CONSTRAINED_FRONTIER_SELECTED"
+    },
+    {
+      "batch_id": 20291102,
+      "trajectory_ids": [
+        205611021,
+        205611022,
+        205611023,
+        205611024
+      ],
+      "candidate_names": [
+        "high_information_direct",
+        "geometry_rich_right",
+        "geometry_rich_left",
+        "geometry_rich_up"
+      ],
+      "frontier_ids": [
+        "frontier_main",
+        "frontier_main",
+        "frontier_main",
+        "frontier_main"
+      ],
+      "information_gains": [
+        1.0,
+        0.75,
+        0.75,
+        0.75
+      ],
+      "utilities": [
+        0.6074999999175943,
+        0.35568756070403984,
+        0.35568756070403984,
+        0.3556875421108733
+      ],
+      "predicted_minimum_margins": [
+        -0.09545597925178731,
+        -0.09740671719890157,
+        -0.10271194324551128,
+        0.5666711529504083
+      ],
+      "integrity_feasible": [
+        false,
+        false,
+        false,
+        true
+      ],
+      "collision_feasible": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_feasible": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "feasible": [
+        false,
+        false,
+        false,
+        true
+      ],
+      "unconstrained_selected_name": "high_information_direct",
+      "selected_name": "geometry_rich_up",
+      "hard_constraint": true,
+      "margin_in_utility": false,
+      "reason": "INTEGRITY_CONSTRAINED_FRONTIER_SELECTED"
+    },
+    {
+      "batch_id": 20301103,
+      "trajectory_ids": [
+        206611031,
+        206611032,
+        206611033,
+        206611034
+      ],
+      "candidate_names": [
+        "high_information_direct",
+        "geometry_rich_right",
+        "geometry_rich_left",
+        "geometry_rich_up"
+      ],
+      "frontier_ids": [
+        "frontier_main",
+        "frontier_main",
+        "frontier_main",
+        "frontier_main"
+      ],
+      "information_gains": [
+        1.0,
+        0.75,
+        0.75,
+        0.75
+      ],
+      "utilities": [
+        0.8249758876985331,
+        0.5701700779717478,
+        0.5701700779717478,
+        0.570170001066438
+      ],
+      "predicted_minimum_margins": [
+        0.7756376412153885,
+        0.1433421753642753,
+        0.4420756496477292,
+        0.6693038514877767
+      ],
+      "integrity_feasible": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "collision_feasible": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "energy_feasible": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "feasible": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "unconstrained_selected_name": "high_information_direct",
+      "selected_name": "high_information_direct",
+      "hard_constraint": true,
+      "margin_in_utility": false,
+      "reason": "INTEGRITY_CONSTRAINED_FRONTIER_SELECTED"
+    }
+  ],
+  "flight_status": {
+    "variant": "information_only",
+    "phase": "COMPLETE",
+    "elapsed_s": 140.13,
+    "path_length_m": 24.427232627466054,
+    "mission_start_x_m": -0.011361378632979289,
+    "mission_goal_x_m": 23.98863862136702,
+    "mission_distance_m": 24.0,
+    "current_position_x_m": 23.989957377641563,
+    "current_position_y_m": -0.023203708615709476,
+    "current_position_z_m": 0.014116665866215752,
+    "segment_index": 3,
+    "segments_completed": 4,
+    "decisions_applied": 4,
+    "rolling_horizon": true,
+    "selected_applied": true,
+    "executed_name": "high_information_direct",
+    "dynamic_obstacle_confirmed": true,
+    "passage_reopened": true,
+    "replan_event_count": 3,
+    "dynamic_brake_duration_s": 31.55249999999999,
+    "nearest_dynamic_range_m": null,
+    "finished": true,
+    "ground_truth_subscribed": false
+  },
+  "decision_batch_counts": {
+    "total": 4,
+    "applied": 4,
+    "rejected_resamples": 0
+  },
+  "checks": {
+    "matched_samples": true,
+    "integrity_samples": true,
+    "controller_complete": true,
+    "decision_valid_hard": true,
+    "margin_not_in_utility": true,
+    "selected_applied": true,
+    "executed_candidate_matches_decision": true,
+    "rolling_horizon_complete": true,
+    "corridor_goal_reached": true,
+    "finite_core_metrics": true,
+    "ground_truth_evaluator_only": true
+  },
+  "calibration_sha256": "771bdffcf3d4422d4641424dab326a08aa5be2b0dffd7f9d2f2f9ff82ea9f038",
+  "ground_truth_consumer": "xq_p11_flight_evaluator_only",
+  "algorithm_ground_truth_subscribed": false,
+  "generated_at_utc": "2026-08-28T13:56:51.730643+00:00"
+}

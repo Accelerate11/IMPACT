@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "gate": "P14_FAULT_MATRIX_TRIAL",
+  "trial": "matrix",
+  "status": "PASS",
+  "checks": {
+    "all_fault_events_observed": true,
+    "fault_to_mode_contract": true,
+    "lidar_dropout_applied": true,
+    "imu_dropout_applied": true,
+    "timestamp_jitter_applied": true,
+    "odom_delay_applied": true,
+    "covariance_inflation_applied": true,
+    "planner_delay_applied": true,
+    "cpu_load_and_shedding_applied": true,
+    "camera_geometry_fallback": true,
+    "ground_loss_seeded_20_percent": true,
+    "full_corridor_complete": true,
+    "localization_ate": true,
+    "controller_complete": true,
+    "ground_truth_evaluator_only": true
+  },
+  "metrics": {
+    "fault_events_observed": 10,
+    "modes_by_fault": {
+      "F1_camera": [
+        "NORMAL"
+      ],
+      "F2_ground_link": [
+        "NORMAL"
+      ],
+      "F3_cpu": [
+        "CAUTIOUS"
+      ],
+      "F4_imu": [
+        "CAUTIOUS"
+      ],
+      "F5_jitter": [
+        "CAUTIOUS"
+      ],
+      "F6_odom_delay": [
+        "RECOVERY"
+      ],
+      "F7_covariance": [
+        "RECOVERY"
+      ],
+      "F8_planner": [
+        "BRAKE"
+      ],
+      "F9_battery": [
+        "RETURN"
+      ],
+      "F10_lidar_short": [
+        "CAUTIOUS",
+        "RECOVERY"
+      ]
+    },
+    "forward_progress_m": 23.94952285982042,
+    "ate_rms_m": 0.08834359098604588,
+    "proxy_counters": {
+      "lidar_received": 1807,
+      "lidar_dropped": 8,
+      "imu_received": 44697,
+      "imu_dropped": 139,
+      "jittered_messages": 413,
+      "odom_delayed": 15,
+      "covariance_inflated": 16,
+      "ground_packets_sent": 2236,
+      "ground_packets_dropped": 6
+    },
+    "ground_fault_window": {
+      "sent": 30,
+      "dropped": 6,
+      "loss_ratio": 0.2
+    }
+  },
+  "final_status": {
+    "trial": "matrix",
+    "stamp_s": 224.20000000000002,
+    "mode": "NORMAL",
+    "reason": "all_critical_channels_healthy",
+    "active_fault_ids": [],
+    "geometry_only": false,
+    "essential_only": false,
+    "mission_continue": true,
+    "manual_override": false,
+    "current_position_x_m": 23.989136389773748,
+    "current_position_y_m": 0.0027257352403695766,
+    "current_position_z_m": 0.026165655224323625,
+    "initial_altitude_m": 0.003033383227941079,
+    "mission_goal_x_m": 23.988569840209337,
+    "base_flight_finished": true,
+    "landed": false,
+    "commanded_landing_descent_m": 0.0,
+    "trial_complete": true,
+    "observed_fault_events": [
+      {
+        "fault_id": "F1_camera",
+        "fault_type": "camera_failure",
+        "start_s": 80.06,
+        "duration_s": 2.0,
+        "severity": 1.0,
+        "seed": 20260828
+      },
+      {
+        "fault_id": "F2_ground_link",
+        "fault_type": "20_percent_packet_loss",
+        "start_s": 84.06,
+        "duration_s": 3.0,
+        "severity": 0.2,
+        "seed": 20260901
+      },
+      {
+        "fault_id": "F3_cpu",
+        "fault_type": "cpu_load",
+        "start_s": 89.06,
+        "duration_s": 2.0,
+        "severity": 0.85,
+        "seed": 20260828
+      },
+      {
+        "fault_id": "F4_imu",
+        "fault_type": "imu_dropout",
+        "start_s": 93.06,
+        "duration_s": 0.7,
+        "severity": 1.0,
+        "seed": 20260828
+      },
+      {
+        "fault_id": "F5_jitter",
+        "fault_type": "timestamp_jitter",
+        "start_s": 97.1025,
+        "duration_s": 2.0,
+        "severity": 0.025,
+        "seed": 20260828
+      },
+      {
+        "fault_id": "F6_odom_delay",
+        "fault_type": "odom_delay",
+        "start_s": 101.0625,
+        "duration_s": 2.0,
+        "severity": 0.18,
+        "seed": 20260828
+      },
+      {
+        "fault_id": "F7_covariance",
+        "fault_type": "localization_covariance_inflation",
+        "start_s": 105.06,
+        "duration_s": 2.0,
+        "severity": 0.25,
+        "seed": 20260828
+      },
+      {
+        "fault_id": "F8_planner",
+        "fault_type": "planner_delay",
+        "start_s": 109.06,
+        "duration_s": 1.2,
+        "severity": 0.35,
+        "seed": 20260828
+      },
+      {
+        "fault_id": "F9_battery",
+        "fault_type": "low_battery",
+        "start_s": 113.1025,
+        "duration_s": 1.2,
+        "severity": 0.2,
+        "seed": 20260828
+      },
+      {
+        "fault_id": "F10_lidar_short",
+        "fault_type": "lidar_dropout",
+        "start_s": 117.10000000000001,
+        "duration_s": 0.9,
+        "severity": 1.0,
+        "seed": 20260828
+      }
+    ],
+    "state_history": [
+      {
+        "stamp_s": 0.7325,
+        "mode": "NORMAL",
+        "reason": "all_critical_channels_healthy"
+      },
+      {
+        "stamp_s": 89.10000000000001,
+        "mode": "CAUTIOUS",
+        "reason": "cpu_load_shed_noncritical"
+      },
+      {
+        "stamp_s": 91.10000000000001,
+        "mode": "NORMAL",
+        "reason": "all_critical_channels_healthy"
+      },
+      {
+        "stamp_s": 93.10000000000001,
+        "mode": "CAUTIOUS",
+        "reason": "imu_dropout_lidar_only"
+      },
+      {
+        "stamp_s": 93.85000000000001,
+        "mode": "NORMAL",
+        "reason": "all_critical_channels_healthy"
+      },
+      {
+        "stamp_s": 97.1025,
+        "mode": "CAUTIOUS",
+        "reason": "timestamp_jitter"
+      },
+      {
+        "stamp_s": 99.25,
+        "mode": "NORMAL",
+        "reason": "all_critical_channels_healthy"
+      },
+      {
+        "stamp_s": 101.2,
+        "mode": "RECOVERY",
+        "reason": "odometry_stale"
+      },
+      {
+        "stamp_s": 103.2,
+        "mode": "NORMAL",
+        "reason": "all_critical_channels_healthy"
+      },
+      {
+        "stamp_s": 105.2,
+        "mode": "RECOVERY",
+        "reason": "localization_covariance_inflated"
+      },
+      {
+        "stamp_s": 107.2,
+        "mode": "NORMAL",
+        "reason": "all_critical_channels_healthy"
+      },
+      {
+        "stamp_s": 109.41000000000001,
+        "mode": "BRAKE",
+        "reason": "planner_timeout"
+      },
+      {
+        "stamp_s": 110.30000000000001,
+        "mode": "NORMAL",
+        "reason": "all_critical_channels_healthy"
+      },
+      {
+        "stamp_s": 113.2,
+        "mode": "RETURN",
+        "reason": "low_battery"
+      },
+      {
+        "stamp_s": 114.45,
+        "mode": "NORMAL",
+        "reason": "all_critical_channels_healthy"
+      },
+      {
+        "stamp_s": 117.15,
+        "mode": "CAUTIOUS",
+        "reason": "lidar_short_dropout"
+      },
+      {
+        "stamp_s": 117.65,
+        "mode": "RECOVERY",
+        "reason": "lidar_imu_propagation_limit"
+      },
+      {
+        "stamp_s": 118.00000000000001,
+        "mode": "NORMAL",
+        "reason": "all_critical_channels_healthy"
+      }
+    ],
+    "actual_planner_delay_count": 1,
+    "cpu_work_cycles": 40,
+    "integrity_recovery_active": false,
+    "ground_truth_subscribed": false
+  },
+  "algorithm_ground_truth_subscribed": false,
+  "generated_at_utc": "2026-08-28T07:29:01.986170+00:00"
+}

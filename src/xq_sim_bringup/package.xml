@@ -19,6 +19,7 @@
   <exec_depend>xq_gz_assets</exec_depend>
   <exec_depend>xq_gz_bridge</exec_depend>
   <exec_depend>xq_fast_lio</exec_depend>
+  <exec_depend>impact_fault_injection</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

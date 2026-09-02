@@ -72,6 +72,18 @@ F6 还要求至少 40 个窗口心跳、活动 fault ID 匹配、观测和计数
 bash scripts/run_smoke.sh --gui --duration 30
 ```
 
+P14 十类故障矩阵与持续 LiDAR 失效安全正式 Gate：
+
+```bash
+bash scripts/run_p14_fault_gate.sh
+```
+
+P14 最近一次 PASS 的 Gazebo + RViz 联合回放：
+
+```bash
+bash scripts/view_p14_combined.sh
+```
+
 每次运行都会只读扫描 `/proc`，从 Linux 建议范围 32–101 选择当时未占用的
 `ROS_DOMAIN_ID`，并生成唯一 `GZ_PARTITION`；DDS 仅限本机。停止时只向本次 launch 的
 专属进程组发信号，不使用 `killall`、全局 `pkill` 或主机网络级 `tc netem`。20% 丢包由
@@ -111,8 +123,9 @@ cd /home/accelerate/xuanqiong_x1_sim_ws
 source /opt/ros/humble/setup.bash
 source xq_install/setup.bash
 
-PYTHONPATH=src/xq_autonomy python3 -m pytest -q \
-  src/xq_autonomy/test
+PYTHONPATH="src/xq_autonomy:src/impact_fault_injection:${PYTHONPATH}" \
+  python3 -m pytest -q \
+  src/xq_autonomy/test src/impact_fault_injection/test
 
 colcon --log-base xq_test_log test \
   --build-base xq_build --install-base xq_install \
@@ -120,9 +133,9 @@ colcon --log-base xq_test_log test \
 colcon test-result --test-result-base xq_build --verbose
 ```
 
-Python 测试当前为 46 项，覆盖退化感知、动态地图 TTL、OAER、可达前沿、向量化障碍
-膨胀等价性、规划 deadline/BRAKE、Sentinel F1–F8
-边界、项目内确定性 20% 丢包、逐故障验收契约、P2 首帧启动状态、真值源码隔离和指标公式。C++ 测试覆盖 Gazebo/ROS
+Python 测试当前为 120 项，覆盖退化感知、动态地图 TTL、OAER、完整性约束探索、
+P12 动态障碍、P13 时延闭环、P14 十类故障与失效安全状态机，以及 P2 首帧启动状态、
+真值源码隔离和指标公式。C++ 测试覆盖 Gazebo/ROS
 时间戳、点云、IMU、真值、Twist 转换及活跃回调退出竞态。
 
 ## 6. 真值隔离检查
@@ -495,3 +508,67 @@ bash scripts/run_p9_live_gazebo.sh
 Gazebo 无房顶但保留宽/窄空间墙体；RViz 绿色表示 wide-room ACCEPT，红色表示
 narrow-passage REJECT，并显示 AL、方向 PL、最小 Margin 与储备。该阶段拒绝时不向
 `/planning/bspline` 发布候选轨迹；P10 才实现拒绝后的主动感知/恢复。
+
+## 17. 复杂场景完整正常飞行套件
+
+默认同向挑战场景的 Gazebo + RViz：
+
+```bash
+cd /home/accelerate/xuanqiong_x1_sim_ws
+bash scripts/run_complex_live_visualization.sh
+```
+
+更强的双向挑战场景同时要求右绕和左绕：
+
+```bash
+cd /home/accelerate/xuanqiong_x1_sim_ws
+XQ_COMPLEX_WORLD=xq_complex_bidirectional_warehouse.sdf \
+XQ_COMPLEX_LATERAL_OFFSET=0.70 \
+bash scripts/run_complex_live_visualization.sh
+```
+
+三维完整算法场景要求右绕、左绕、向上跨越和恢复直飞；这是当前推荐的 Gazebo + RViz
+展示入口：
+
+```bash
+cd /home/accelerate/xuanqiong_x1_sim_ws
+bash scripts/run_complex_3d_live_visualization.sh
+```
+
+组合三维场景进一步同时保留动态障碍制动/重开与 P13 时延闭环；这是最新推荐的
+Gazebo + RViz 展示入口：
+
+```bash
+cd /home/accelerate/xuanqiong_x1_sim_ws
+bash scripts/run_complex_compositional_live_visualization.sh
+```
+
+对应正式双航程 Gate：
+
+```bash
+cd /home/accelerate/xuanqiong_x1_sim_ws
+XQ_COMPLEX_THRESHOLDS=config/complex_bidirectional_thresholds.json \
+bash scripts/run_complex_algorithm_comparison.sh
+```
+
+三维场景冻结双航程 Gate：
+
+```bash
+cd /home/accelerate/xuanqiong_x1_sim_ws
+XQ_COMPLEX_THRESHOLDS=config/complex_3d_thresholds.json \
+bash scripts/run_complex_algorithm_comparison.sh
+```
+
+组合三维场景冻结双航程 Gate：
+
+```bash
+cd /home/accelerate/xuanqiong_x1_sim_ws
+XQ_COMPLEX_THRESHOLDS=config/complex_compositional_thresholds.json \
+bash scripts/run_complex_algorithm_comparison.sh
+```
+
+四个可视化入口都启动 P6/P10/P11/P12/P13 完整正常飞行栈，不启动 P14 故障注入。
+Gazebo 只移除屋顶，保留墙体与内部结构；RViz 显示点云、FAST-LIO、动静态体素、红色
+效用优先候选、绿色认证轨迹和实时完整性/动态/延迟状态板。三维入口额外启用默认关闭
+的垂向候选；组合入口要求真实执行 `right→left→up_right→direct`，并启用 3 s 有界观测
+信息记忆。不要额外启动第二个 `/clock` 发布器。

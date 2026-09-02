@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "gate": "P14_FAULT_MATRIX_TRIAL",
+  "trial": "emergency",
+  "status": "PASS",
+  "checks": {
+    "persistent_lidar_physically_dropped": true,
+    "ordered_fail_safe_sequence": true,
+    "land_command_completed": true,
+    "minimum_descent": true,
+    "stopped_after_landing": true,
+    "ground_truth_evaluator_only": true
+  },
+  "metrics": {
+    "observed_state_sequence": [
+      "NORMAL",
+      "CAUTIOUS",
+      "RECOVERY",
+      "BRAKE",
+      "HOVER",
+      "LAND"
+    ],
+    "required_state_sequence": [
+      "NORMAL",
+      "CAUTIOUS",
+      "RECOVERY",
+      "BRAKE",
+      "HOVER",
+      "LAND"
+    ],
+    "initial_altitude_m": 1.2,
+    "final_altitude_m": 0.6722229040444694,
+    "landing_descent_m": 0.5277770959555306,
+    "final_speed_mps": 0.0,
+    "proxy_counters": {
+      "lidar_received": 203,
+      "lidar_dropped": 57,
+      "imu_received": 4878,
+      "imu_dropped": 0,
+      "jittered_messages": 0,
+      "odom_delayed": 0,
+      "covariance_inflated": 0,
+      "ground_packets_sent": 244,
+      "ground_packets_dropped": 0
+    }
+  },
+  "final_status": {
+    "trial": "emergency",
+    "stamp_s": 24.450000000000003,
+    "mode": "LAND",
+    "reason": "lidar_persistent_3s",
+    "active_fault_ids": [
+      "F11_lidar_persistent"
+    ],
+    "geometry_only": false,
+    "essential_only": false,
+    "mission_continue": false,
+    "manual_override": false,
+    "current_position_x_m": 0.5805124783549706,
+    "current_position_y_m": 0.0006421769344025749,
+    "current_position_z_m": 0.021414514231363285,
+    "initial_altitude_m": 0.016979703525063353,
+    "mission_goal_x_m": 23.991162651347125,
+    "base_flight_finished": false,
+    "landed": true,
+    "commanded_landing_descent_m": 0.510000000000001,
+    "trial_complete": true,
+    "observed_fault_events": [
+      {
+        "fault_id": "F11_lidar_persistent",
+        "fault_type": "lidar_dropout",
+        "start_s": 18.02,
+        "duration_s": 12.0,
+        "severity": 1.0,
+        "seed": 20260828
+      }
+    ],
+    "state_history": [
+      {
+        "stamp_s": 1.0225,
+        "mode": "NORMAL",
+        "reason": "all_critical_channels_healthy"
+      },
+      {
+        "stamp_s": 18.05,
+        "mode": "CAUTIOUS",
+        "reason": "lidar_short_dropout"
+      },
+      {
+        "stamp_s": 18.55,
+        "mode": "RECOVERY",
+        "reason": "lidar_imu_propagation_limit"
+      },
+      {
+        "stamp_s": 19.3,
+        "mode": "BRAKE",
+        "reason": "lidar_persistent_1p2s"
+      },
+      {
+        "stamp_s": 19.900000000000002,
+        "mode": "HOVER",
+        "reason": "lidar_persistent_1p8s"
+      },
+      {
+        "stamp_s": 21.05,
+        "mode": "LAND",
+        "reason": "lidar_persistent_3s"
+      }
+    ],
+    "actual_planner_delay_count": 0,
+    "cpu_work_cycles": 0,
+    "integrity_recovery_active": false,
+    "ground_truth_subscribed": false
+  },
+  "algorithm_ground_truth_subscribed": false,
+  "generated_at_utc": "2026-08-28T07:29:52.380013+00:00"
+}

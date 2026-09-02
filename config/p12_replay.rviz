@@ -1,0 +1,257 @@
+Panels:
+  - Class: rviz_common/Displays
+    Help Height: 78
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /P12 Static Structure1
+        - /P12 Dynamic Voxels1
+        - /FAST-LIO Path1
+      Splitter Ratio: 0.52
+    Tree Height: 720
+  - Class: rviz_common/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: rviz_common/Time
+    Experimental: false
+    Name: Time
+    SyncMode: 0
+    SyncSource: ""
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.30
+      Cell Size: 1
+      Class: rviz_default_plugins/Grid
+      Color: 80; 88; 98
+      Enabled: true
+      Line Style:
+        Line Width: 0.03
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset: {X: 0, Y: 0, Z: 0}
+      Plane: XY
+      Plane Cell Count: 32
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Alpha: 0.58
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds: {Max Value: 10, Min Value: -10, Value: true}
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/PointCloud2
+      Color: 125; 200; 225
+      Color Transformer: FlatColor
+      Decay Time: 0
+      Enabled: true
+      Name: P12 Static Structure
+      Position Transformer: XYZ
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.055
+      Style: Squares
+      Topic:
+        Depth: 10
+        Durability Policy: Transient Local
+        Filter size: 50
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /mapping/p12/static_voxels
+      Use Fixed Frame: true
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds: {Max Value: 10, Min Value: -10, Value: true}
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/PointCloud2
+      Color: 255; 42; 26
+      Color Transformer: FlatColor
+      Decay Time: 0.8
+      Enabled: true
+      Name: P12 Dynamic Voxels
+      Position Transformer: XYZ
+      Selectable: true
+      Size (Pixels): 6
+      Size (m): 0.16
+      Style: Spheres
+      Topic:
+        Depth: 20
+        Durability Policy: Transient Local
+        Filter size: 80
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /mapping/p12/dynamic_voxels
+      Use Fixed Frame: true
+      Value: true
+    - Alpha: 0.52
+      Class: rviz_default_plugins/Map
+      Color Scheme: map
+      Draw Behind: true
+      Enabled: false
+      Name: P12 Occupancy (optional)
+      Topic:
+        Depth: 5
+        Durability Policy: Transient Local
+        Filter size: 20
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /mapping/p12/occupancy
+      Update Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: ""
+      Use Timestamp: false
+      Value: false
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
+      Color: 255; 150; 20
+      Enabled: true
+      Head Diameter: 0.18
+      Head Length: 0.12
+      Length: 0.30
+      Line Style: Lines
+      Line Width: 0.05
+      Name: FAST-LIO Path
+      Offset: {X: 0, Y: 0, Z: 0}
+      Pose Color: 255; 150; 20
+      Pose Style: None
+      Radius: 0.03
+      Shaft Diameter: 0.07
+      Shaft Length: 0.20
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 30
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /xq/replay/lio_path
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
+      Color: 55; 255; 100
+      Enabled: true
+      Head Diameter: 0.18
+      Head Length: 0.12
+      Length: 0.30
+      Line Style: Lines
+      Line Width: 0.07
+      Name: Selected B-Spline
+      Offset: {X: 0, Y: 0, Z: 0}
+      Pose Color: 55; 255; 100
+      Pose Style: None
+      Radius: 0.03
+      Shaft Diameter: 0.07
+      Shaft Length: 0.20
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 30
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /xq/replay/ego_path
+      Value: true
+    - Class: rviz_default_plugins/Marker
+      Enabled: true
+      Marker Topic:
+        Depth: 100
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /xq/replay/p6_integrity
+      Name: P11 Integrity Decisions
+      Namespaces: {}
+      Queue Size: 300
+      Value: true
+    - Class: rviz_default_plugins/Marker
+      Enabled: true
+      Marker Topic:
+        Depth: 10
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /xq/replay/uav_marker
+      Name: UAV
+      Namespaces: {}
+      Queue Size: 100
+      Value: true
+    - Alpha: 0.65
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
+      Color: 45; 135; 255
+      Enabled: false
+      Head Diameter: 0.18
+      Head Length: 0.12
+      Length: 0.30
+      Line Style: Lines
+      Line Width: 0.025
+      Name: Evaluation Truth Path (optional)
+      Offset: {X: 0, Y: 0, Z: 0}
+      Pose Color: 45; 135; 255
+      Pose Style: None
+      Radius: 0.03
+      Shaft Diameter: 0.07
+      Shaft Length: 0.20
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 20
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /xq/replay/truth_path
+      Value: false
+    - Class: rviz_default_plugins/TF
+      Enabled: false
+      Frame Timeout: 15
+      Marker Scale: 0.5
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree: {}
+      Update Interval: 0
+      Value: false
+  Enabled: true
+  Global Options:
+    Background Color: 14; 17; 22
+    Fixed Frame: xq_lio_map
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/Interact
+      Hide Inactive Objects: true
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+    - Class: rviz_default_plugins/Measure
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 31
+      Focal Point: {X: 12, Y: 0, Z: 0.8}
+      Name: Current View
+      Near Clip Distance: 0.01
+      Pitch: 0.93
+      Target Frame: xq_lio_map
+      Value: Orbit (rviz)
+      Yaw: 1.55
+    Saved: ~
+Window Geometry:
+  Displays: {collapsed: false}
+  Height: 900
+  Hide Left Dock: false
+  Hide Right Dock: false
+  Time: {collapsed: false}
+  Views: {collapsed: false}
+  Width: 1500
+  X: 35
+  Y: 35

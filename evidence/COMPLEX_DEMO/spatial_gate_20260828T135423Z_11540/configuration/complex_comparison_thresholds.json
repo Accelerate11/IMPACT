@@ -1,0 +1,63 @@
+{
+  "schema_version": 3,
+  "benchmark": "COMPLEX_3D_FULL_AUTONOMY_COMPARISON",
+  "threshold_revision": 2,
+  "frozen_before_formal_comparison": true,
+  "freeze_note": "Frozen after constrained-arm design diagnostic gate_20260828T134940Z_10283; no dual-arm formal result was used.",
+  "world": "xq_complex_3d_warehouse.sdf",
+  "variants": [
+    "information_only",
+    "integrity_constrained"
+  ],
+  "mission_distance_m": 24.0,
+  "lateral_offset_m": 0.70,
+  "enable_vertical_candidate": true,
+  "vertical_offset_m": 0.70,
+  "minimum_forward_progress_m": 23.5,
+  "maximum_ate_rms_m": 0.35,
+  "minimum_decision_batches": 4,
+  "minimum_integrity_interventions": 3,
+  "maximum_integrity_interventions": 3,
+  "required_unconstrained_candidate": "high_information_direct",
+  "required_unconstrained_sequence": [
+    "high_information_direct",
+    "high_information_direct",
+    "high_information_direct",
+    "high_information_direct"
+  ],
+  "required_integrity_sequence": [
+    "geometry_rich_right",
+    "geometry_rich_left",
+    "geometry_rich_up",
+    "high_information_direct"
+  ],
+  "required_intervention_pairs": [
+    [
+      "high_information_direct",
+      "geometry_rich_right"
+    ],
+    [
+      "high_information_direct",
+      "geometry_rich_left"
+    ],
+    [
+      "high_information_direct",
+      "geometry_rich_up"
+    ]
+  ],
+  "margin_reserve_m": 0.10,
+  "maximum_information_only_actual_margin_m": 0.0,
+  "minimum_integrity_constrained_actual_margin_m": 0.10,
+  "minimum_actual_margin_gain_m": 0.10,
+  "minimum_integrity_vertical_excursion_m": 0.50,
+  "maximum_information_only_vertical_excursion_m": 0.15,
+  "maximum_extra_path_m": 1.60,
+  "maximum_mission_time_overhead_s": 8.0,
+  "maximum_ate_degradation_m": 0.10,
+  "minimum_dynamic_replan_events": 2,
+  "minimum_physical_obstacle_clearance_m": 0.75,
+  "minimum_p13_integrity_margin_m": 0.06,
+  "maximum_p13_latency_p99_ms": 220.0,
+  "fault_injection_allowed": false,
+  "ground_truth_policy": "evaluation_only"
+}

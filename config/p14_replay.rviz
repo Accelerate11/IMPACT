@@ -1,0 +1,143 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+    Property Tree Widget:
+      Expanded: [/Global Options1, /P14 Fault State1, /Static Structure1, /Dynamic Voxels1]
+      Splitter Ratio: 0.52
+    Tree Height: 720
+  - Class: rviz_common/Views
+    Name: Views
+  - Class: rviz_common/Time
+    Experimental: false
+    Name: Time
+    SyncMode: 0
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.30
+      Cell Size: 1
+      Class: rviz_default_plugins/Grid
+      Color: 80; 88; 98
+      Enabled: true
+      Line Style: {Line Width: 0.03, Value: Lines}
+      Name: Grid
+      Plane: XY
+      Plane Cell Count: 32
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Alpha: 0.58
+      Class: rviz_default_plugins/PointCloud2
+      Color: 125; 200; 225
+      Color Transformer: FlatColor
+      Decay Time: 0
+      Enabled: true
+      Name: Static Structure
+      Position Transformer: XYZ
+      Size (Pixels): 3
+      Size (m): 0.055
+      Style: Squares
+      Topic:
+        Depth: 10
+        Durability Policy: Transient Local
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /mapping/p12/static_voxels
+      Use Fixed Frame: true
+      Value: true
+    - Alpha: 1
+      Class: rviz_default_plugins/PointCloud2
+      Color: 255; 42; 26
+      Color Transformer: FlatColor
+      Decay Time: 0.8
+      Enabled: true
+      Name: Dynamic Voxels
+      Position Transformer: XYZ
+      Size (Pixels): 6
+      Size (m): 0.16
+      Style: Spheres
+      Topic:
+        Depth: 20
+        Durability Policy: Transient Local
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /mapping/p12/dynamic_voxels
+      Use Fixed Frame: true
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
+      Color: 255; 150; 20
+      Enabled: true
+      Line Style: Lines
+      Line Width: 0.05
+      Name: FAST-LIO Path
+      Pose Style: None
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /xq/replay/lio_path
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
+      Color: 55; 255; 100
+      Enabled: true
+      Line Style: Lines
+      Line Width: 0.07
+      Name: Certified Trajectory
+      Pose Style: None
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /xq/replay/ego_path
+      Value: true
+    - Class: rviz_default_plugins/Marker
+      Enabled: true
+      Marker Topic:
+        Depth: 20
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /xq/replay/p13_latency
+      Name: P13 Latency Safety
+      Namespaces: {}
+      Queue Size: 100
+      Value: true
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Marker Topic:
+        Depth: 20
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /impact/p14/markers
+      Name: P14 Fault State
+      Namespaces: {}
+      Queue Size: 100
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 34; 38; 45
+    Fixed Frame: xq_lio_map
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/Interact
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+  Transformation: {Current: tf}
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 18
+      Focal Point: {X: 0, Y: 0, Z: 0.8}
+      Name: Current View
+      Pitch: 1.25
+      Target Frame: xq_lio_map
+      Yaw: 0.15
+Window Geometry: {Height: 900, Width: 1400, X: 40, Y: 40}

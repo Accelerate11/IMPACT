@@ -1,0 +1,1 @@
+PASS: pre-existing Gazebo map/model assets are byte-for-byte unchanged.

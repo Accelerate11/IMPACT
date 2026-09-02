@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "phase": "P13_LATENCY_AWARE_SAFETY",
+  "threshold_revision": 2,
+  "frozen_before_formal_gate": true,
+  "revision_note": "Gate now compares the pre-mitigation AL at the shared nominal speed, then separately verifies that the applied speed envelope restores the required margin; comparison thresholds are unchanged.",
+  "low_planner_delay_ms": 50.0,
+  "high_planner_delay_ms": 200.0,
+  "minimum_latency_samples": 30,
+  "minimum_p99_separation_ms": 100.0,
+  "minimum_speed_limit_reduction_mps": 0.05,
+  "minimum_alert_limit_reduction_m": 0.02,
+  "minimum_forward_progress_m": 23.5,
+  "maximum_ate_rms_m": 0.35,
+  "maximum_planner_delay_error_ms": 20.0,
+  "geometric_clearance_m": 0.82,
+  "fixed_buffer_m": 0.58,
+  "protection_level_m": 0.10,
+  "required_margin_m": 0.06,
+  "maximum_speed_mps": 0.42,
+  "maximum_acceleration_mps2": 0.8,
+  "mission_distance_m": 24.0
+}

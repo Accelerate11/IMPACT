@@ -1,0 +1,76 @@
+{
+  "schema_version": 4,
+  "benchmark": "COMPLEX_COMPOSITIONAL_3D_FULL_AUTONOMY_COMPARISON",
+  "threshold_revision": 3,
+  "frozen_before_formal_comparison": true,
+  "freeze_note": "Revision 3 frozen after separate pre-formal arms gate_20260902T121313Z_326 and gate_20260902T121632Z_422 passed P11/P12/P13. They established the exact direct baseline and right-left-up_right-direct constrained sequences, -0.083/0.177 m actual margins, 1.670 m extra path, 0.523 s time overhead, and 169/183 ms P13 p99 before the revision-3 dual-arm formal run.",
+  "world": "xq_complex_compositional_warehouse.sdf",
+  "variants": [
+    "information_only",
+    "integrity_constrained"
+  ],
+  "mission_distance_m": 24.0,
+  "lateral_offset_m": 0.70,
+  "enable_vertical_candidate": true,
+  "enable_diagonal_vertical_candidates": true,
+  "vertical_offset_m": 1.10,
+  "integrity_information_memory_horizon_s": 3.0,
+  "integrity_information_memory_max_frames": 20.0,
+  "segment_goal_tolerance_m": 0.08,
+  "post_dynamic_static_confirmation_s": 15.0,
+  "reversible_static_ttl_s": 4.0,
+  "maximum_rays": 600,
+  "obstacle_enter_start_s": 32.0,
+  "obstacle_enter_end_s": 36.0,
+  "obstacle_leave_start_s": 44.0,
+  "obstacle_leave_end_s": 48.0,
+  "minimum_forward_progress_m": 23.5,
+  "maximum_ate_rms_m": 0.35,
+  "minimum_decision_batches": 4,
+  "minimum_integrity_interventions": 3,
+  "maximum_integrity_interventions": 3,
+  "required_unconstrained_candidate": "high_information_direct",
+  "required_unconstrained_sequence": [
+    "high_information_direct",
+    "high_information_direct",
+    "high_information_direct",
+    "high_information_direct"
+  ],
+  "required_integrity_sequence": [
+    "geometry_rich_right",
+    "geometry_rich_left",
+    "geometry_rich_up_right",
+    "high_information_direct"
+  ],
+  "required_intervention_pairs": [
+    [
+      "high_information_direct",
+      "geometry_rich_right"
+    ],
+    [
+      "high_information_direct",
+      "geometry_rich_left"
+    ],
+    [
+      "high_information_direct",
+      "geometry_rich_up_right"
+    ]
+  ],
+  "margin_reserve_m": 0.10,
+  "maximum_information_only_actual_margin_m": 0.0,
+  "minimum_integrity_constrained_actual_margin_m": 0.10,
+  "minimum_actual_margin_gain_m": 0.10,
+  "minimum_integrity_vertical_excursion_m": 0.50,
+  "maximum_information_only_vertical_excursion_m": 0.15,
+  "minimum_integrity_simultaneous_lateral_vertical_excursion_m": 0.50,
+  "maximum_information_only_simultaneous_lateral_vertical_excursion_m": 0.15,
+  "maximum_extra_path_m": 2.00,
+  "maximum_mission_time_overhead_s": 8.0,
+  "maximum_ate_degradation_m": 0.10,
+  "minimum_dynamic_replan_events": 2,
+  "minimum_physical_obstacle_clearance_m": 0.75,
+  "minimum_p13_integrity_margin_m": 0.06,
+  "maximum_p13_latency_p99_ms": 220.0,
+  "fault_injection_allowed": false,
+  "ground_truth_policy": "evaluation_only"
+}

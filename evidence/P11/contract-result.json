@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "gate": "P11_ROS_CONTRACT",
+  "status": "PASS",
+  "scope": "algorithm_and_transport_contract_only_not_formal_gazebo_flight_gate",
+  "candidate_names": [
+    "high_information_direct",
+    "geometry_rich_right",
+    "collision_violation",
+    "return_energy_violation"
+  ],
+  "utilities": [
+    0.9,
+    0.649,
+    0.9895,
+    0.895
+  ],
+  "predicted_minimum_margins": [
+    -0.3124114800111859,
+    0.1948874180164969,
+    0.1948874180164969,
+    0.1948874180164969
+  ],
+  "integrity_feasible": [
+    false,
+    true,
+    true,
+    true
+  ],
+  "collision_feasible": [
+    true,
+    true,
+    false,
+    true
+  ],
+  "energy_feasible": [
+    true,
+    true,
+    true,
+    false
+  ],
+  "feasible": [
+    false,
+    true,
+    false,
+    false
+  ],
+  "unconstrained_selected_name": "high_information_direct",
+  "selected_name": "geometry_rich_right",
+  "reason": "INTEGRITY_CONSTRAINED_FRONTIER_SELECTED",
+  "checks": {
+    "valid_hard_decision": true,
+    "margin_absent_from_utility": true,
+    "profiles_aligned": true,
+    "required_candidates_present": true,
+    "unconstrained_prefers_high_information": true,
+    "integrity_selects_geometry_rich": true,
+    "direct_utility_higher": true,
+    "direct_integrity_rejected": true,
+    "safe_all_hard_feasible": true,
+    "collision_hard_rejected": true,
+    "energy_hard_rejected": true,
+    "selected_trajectory_published": true,
+    "unconstrained_trajectory_published": true,
+    "ground_truth_not_required": true
+  },
+  "generated_at_utc": "2026-08-27T05:39:32.411742+00:00"
+}

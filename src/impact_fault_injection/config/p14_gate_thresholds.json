@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "minimum_forward_progress_m": 23.5,
+  "maximum_matrix_ate_rms_m": 0.20,
+  "minimum_fault_events": 10,
+  "minimum_proxy_effect_count": 1,
+  "minimum_landing_descent_m": 0.35,
+  "maximum_emergency_stop_speed_mps": 0.08,
+  "expected_matrix_modes": {
+    "F1_camera": "NORMAL",
+    "F2_ground_link": "NORMAL",
+    "F3_cpu": "CAUTIOUS",
+    "F4_imu": "CAUTIOUS",
+    "F5_jitter": "CAUTIOUS",
+    "F6_odom_delay": "RECOVERY",
+    "F7_covariance": "RECOVERY",
+    "F8_planner": "BRAKE",
+    "F9_battery": "RETURN",
+    "F10_lidar_short": "CAUTIOUS"
+  },
+  "required_emergency_state_sequence": ["NORMAL", "CAUTIOUS", "RECOVERY", "BRAKE", "HOVER", "LAND"]
+}

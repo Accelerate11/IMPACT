@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
+export XQ_COMPLEX_WORLD="xq_complex_compositional_warehouse.sdf"
+export XQ_COMPLEX_LATERAL_OFFSET="0.70"
+export XQ_COMPLEX_ENABLE_VERTICAL="true"
+export XQ_COMPLEX_ENABLE_DIAGONAL_VERTICAL="true"
+export XQ_COMPLEX_VERTICAL_OFFSET="1.10"
+export XQ_COMPLEX_INFORMATION_MEMORY_HORIZON="3.0"
+export XQ_COMPLEX_INFORMATION_MEMORY_MAX_FRAMES="20.0"
+export XQ_COMPLEX_SEGMENT_GOAL_TOLERANCE="0.08"
+export XQ_COMPLEX_POST_DYNAMIC_STATIC_CONFIRMATION="15.0"
+export XQ_COMPLEX_REVERSIBLE_STATIC_TTL="4.0"
+export XQ_COMPLEX_MAXIMUM_RAYS="600"
+export XQ_COMPLEX_OBSTACLE_ENTER_START="32.0"
+export XQ_COMPLEX_OBSTACLE_ENTER_END="36.0"
+export XQ_COMPLEX_OBSTACLE_LEAVE_START="44.0"
+export XQ_COMPLEX_OBSTACLE_LEAVE_END="48.0"
+exec bash "${script_dir}/run_complex_live_visualization.sh"

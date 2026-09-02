@@ -2,7 +2,9 @@
 set -euo pipefail
 
 workspace_root="/home/accelerate/xuanqiong_x1_sim_ws"
-if [[ "${XQ_P10_REPLAY:-0}" == 1 ]]; then
+if [[ "${XQ_P11_REPLAY:-0}" == 1 ]]; then
+  default_run="$(ls -td "${workspace_root}"/experiments/results/impact_p11/visual_* 2>/dev/null | head -1)"
+elif [[ "${XQ_P10_REPLAY:-0}" == 1 ]]; then
   default_run="$(ls -td "${workspace_root}"/experiments/results/impact_p10/visual_* 2>/dev/null | head -1)"
 elif [[ "${XQ_P8_REPLAY:-0}" == 1 ]]; then
   default_run="${workspace_root}/experiments/results/impact_p8/p8_20260823T091322Z_57082"
@@ -62,7 +64,11 @@ setsid python3 "${workspace_root}/scripts/xq_clock_sanitizer.py" \
   >"${log_prefix}_clock.log" 2>&1 < /dev/null &
 helper_pids+=("$!")
 
-if [[ "${XQ_P10_REPLAY:-0}" == 1 ]]; then
+if [[ "${XQ_P11_REPLAY:-0}" == 1 ]]; then
+  setsid ros2 run xq_autonomy xq_p11_replay_visualizer --ros-args -p use_sim_time:=true \
+    >"${log_prefix}_p11_visualizer.log" 2>&1 < /dev/null &
+  helper_pids+=("$!")
+elif [[ "${XQ_P10_REPLAY:-0}" == 1 ]]; then
   setsid ros2 run xq_autonomy xq_p10_replay_visualizer --ros-args -p use_sim_time:=true \
     >"${log_prefix}_p10_visualizer.log" 2>&1 < /dev/null &
   helper_pids+=("$!")

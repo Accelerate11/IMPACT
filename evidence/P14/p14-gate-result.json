@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "gate": "P14_FAULT_INJECTION_AND_RESILIENT_AUTONOMY",
+  "status": "PASS",
+  "checks": {
+    "matrix_trial_pass": true,
+    "persistent_lidar_emergency_pass": true,
+    "p12_dynamic_obstacle_retained": true,
+    "p13_latency_safety_retained": true,
+    "same_accepted_world": true
+  },
+  "matrix_metrics": {
+    "fault_events_observed": 10,
+    "modes_by_fault": {
+      "F1_camera": [
+        "NORMAL"
+      ],
+      "F2_ground_link": [
+        "NORMAL"
+      ],
+      "F3_cpu": [
+        "CAUTIOUS"
+      ],
+      "F4_imu": [
+        "CAUTIOUS"
+      ],
+      "F5_jitter": [
+        "CAUTIOUS"
+      ],
+      "F6_odom_delay": [
+        "RECOVERY"
+      ],
+      "F7_covariance": [
+        "RECOVERY"
+      ],
+      "F8_planner": [
+        "BRAKE"
+      ],
+      "F9_battery": [
+        "RETURN"
+      ],
+      "F10_lidar_short": [
+        "CAUTIOUS",
+        "RECOVERY"
+      ]
+    },
+    "forward_progress_m": 23.94952285982042,
+    "ate_rms_m": 0.08834359098604588,
+    "proxy_counters": {
+      "lidar_received": 1807,
+      "lidar_dropped": 8,
+      "imu_received": 44697,
+      "imu_dropped": 139,
+      "jittered_messages": 413,
+      "odom_delayed": 15,
+      "covariance_inflated": 16,
+      "ground_packets_sent": 2236,
+      "ground_packets_dropped": 6
+    },
+    "ground_fault_window": {
+      "sent": 30,
+      "dropped": 6,
+      "loss_ratio": 0.2
+    }
+  },
+  "emergency_metrics": {
+    "observed_state_sequence": [
+      "NORMAL",
+      "CAUTIOUS",
+      "RECOVERY",
+      "BRAKE",
+      "HOVER",
+      "LAND"
+    ],
+    "required_state_sequence": [
+      "NORMAL",
+      "CAUTIOUS",
+      "RECOVERY",
+      "BRAKE",
+      "HOVER",
+      "LAND"
+    ],
+    "initial_altitude_m": 1.2,
+    "final_altitude_m": 0.6722229040444694,
+    "landing_descent_m": 0.5277770959555306,
+    "final_speed_mps": 0.0,
+    "proxy_counters": {
+      "lidar_received": 203,
+      "lidar_dropped": 57,
+      "imu_received": 4878,
+      "imu_dropped": 0,
+      "jittered_messages": 0,
+      "odom_delayed": 0,
+      "covariance_inflated": 0,
+      "ground_packets_sent": 244,
+      "ground_packets_dropped": 0
+    }
+  },
+  "p12_retention_metrics": {
+    "matched_samples": 1794,
+    "ate_rms_m": 0.08834966713681619,
+    "forward_progress_m": 23.94952285982042,
+    "dynamic_detection_latency_s": 0.15750000000000242,
+    "replan_latency_s": 0.0625,
+    "dynamic_residual_time_s": 0.020000000000003126,
+    "passage_reopen_time_s": 0.0,
+    "passage_reopen_raw_observer_skew_s": -0.3499999999999943,
+    "static_retention_ratio": 1.0075949367088608,
+    "minimum_obstacle_clearance_m": 3.627711721955122,
+    "dynamic_voxel_peak": 60,
+    "replan_event_count": 2,
+    "pose_command_success_ratio": 1.0
+  },
+  "p13_retention_metrics": {
+    "matched_samples": 1794,
+    "ate_rms_m": 0.08834966713681619,
+    "forward_progress_m": 23.94952285982042,
+    "latency_sample_count": 551,
+    "end_to_end_p50_ms": 149.77948899999998,
+    "end_to_end_p95_ms": 249.75743600000004,
+    "end_to_end_p99_ms": 298.21679500000005,
+    "end_to_end_max_ms": 308.355665,
+    "planner_processing_p50_ms": 50.097606000000006,
+    "planner_processing_p95_ms": 50.186370000000004,
+    "planner_processing_p99_ms": 50.419956,
+    "planner_processing_max_ms": 51.778909999999996,
+    "final_speed_limit_mps": 0.19771250767284318,
+    "minimum_speed_limit_mps": 0.13609840294311795,
+    "final_alert_limit_m": 0.16,
+    "minimum_alert_limit_m": 0.16,
+    "final_integrity_margin_m": 0.06,
+    "final_unmitigated_alert_limit_m": 0.10135660903078239,
+    "final_unmitigated_integrity_margin_m": 0.0013566090307823853
+  },
+  "world_sha256": "12c2cbbfdb76c1ccfacde2a0d7db590c37e25ff7553fc5edb69b294e144712fd",
+  "ground_truth_policy": "evaluation_only",
+  "generated_at_utc": "2026-08-28T07:29:59.572570+00:00"
+}

@@ -29,7 +29,12 @@ inside_workspace() {
     [[ "${candidate}" == "${workspace_root}"/experiments/results/impact_p7/* ]] ||
     [[ "${candidate}" == "${workspace_root}"/experiments/results/impact_p8/* ]] ||
     [[ "${candidate}" == "${workspace_root}"/experiments/results/impact_p9/* ]] ||
-    [[ "${candidate}" == "${workspace_root}"/experiments/results/impact_p10/* ]]
+    [[ "${candidate}" == "${workspace_root}"/experiments/results/impact_p10/* ]] ||
+    [[ "${candidate}" == "${workspace_root}"/experiments/results/impact_p11/* ]] ||
+    [[ "${candidate}" == "${workspace_root}"/experiments/results/impact_p12/* ]] ||
+    [[ "${candidate}" == "${workspace_root}"/experiments/results/impact_p13/* ]] ||
+    [[ "${candidate}" == "${workspace_root}"/experiments/results/impact_p14/* ]] ||
+    [[ "${candidate}" == "${workspace_root}"/experiments/results/impact_complex_comparison/* ]]
 }
 
 snapshot() {

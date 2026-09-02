@@ -1,0 +1,27 @@
+std_msgs/Header header
+
+int64 batch_id
+int64[] trajectory_ids
+string[] candidate_names
+string[] frontier_ids
+float64[] information_gains
+float64[] travel_times_s
+float64[] energy_costs
+float64[] collision_probabilities
+float64[] utilities
+float64[] predicted_minimum_margins
+bool[] integrity_feasible
+bool[] collision_feasible
+bool[] energy_feasible
+bool[] feasible
+
+int32 unconstrained_selected_index
+string unconstrained_selected_name
+int64 unconstrained_selected_trajectory_id
+int32 selected_index
+string selected_name
+int64 selected_trajectory_id
+bool valid
+bool hard_constraint
+bool margin_in_utility
+string reason

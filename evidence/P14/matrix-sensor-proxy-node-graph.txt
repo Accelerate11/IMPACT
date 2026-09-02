@@ -1,0 +1,27 @@
+/impact_sensor_proxy
+  Subscribers:
+    /clock: rosgraph_msgs/msg/Clock
+    /impact/fault_event: xq_sim_interfaces/msg/FaultEvent
+    /impact/raw/imu: sensor_msgs/msg/Imu
+    /impact/raw/lidar: sensor_msgs/msg/PointCloud2
+    /impact/raw/odom: nav_msgs/msg/Odometry
+  Publishers:
+    /impact/fault_proxy_status: std_msgs/msg/String
+    /livox/imu: sensor_msgs/msg/Imu
+    /livox/lidar: sensor_msgs/msg/PointCloud2
+    /localization/odom: nav_msgs/msg/Odometry
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+  Service Servers:
+    /impact_sensor_proxy/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /impact_sensor_proxy/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /impact_sensor_proxy/get_parameters: rcl_interfaces/srv/GetParameters
+    /impact_sensor_proxy/list_parameters: rcl_interfaces/srv/ListParameters
+    /impact_sensor_proxy/set_parameters: rcl_interfaces/srv/SetParameters
+    /impact_sensor_proxy/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+

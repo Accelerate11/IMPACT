@@ -1,6 +1,34 @@
 import numpy as np
 
-from xq_autonomy.integrity import compute_directional_integrity, information_from_constraints
+from xq_autonomy.integrity import (
+    TemporalInformationMemory,
+    compute_directional_integrity,
+    information_from_constraints,
+)
+
+
+def test_temporal_information_memory_is_disabled_by_default():
+    memory = TemporalInformationMemory()
+    first = np.diag((1.0, 2.0, 3.0))
+    second = np.diag((4.0, 5.0, 6.0))
+    assert np.array_equal(memory.update(first, 1.0), first)
+    assert np.array_equal(memory.update(second, 1.1), second)
+    assert memory.equivalent_frames == 1.0
+
+
+def test_temporal_information_memory_accumulates_complementary_geometry_boundedly():
+    memory = TemporalInformationMemory(horizon_s=5.0, maximum_equivalent_frames=3.0)
+    x_plane = np.diag((2.0, 0.0, 0.0))
+    y_plane = np.diag((0.0, 2.0, 0.0))
+    z_plane = np.diag((0.0, 0.0, 2.0))
+    memory.update(x_plane, 0.0)
+    memory.update(y_plane, 0.1)
+    combined = memory.update(z_plane, 0.2)
+    assert np.linalg.eigvalsh(combined)[0] > 1.8
+    for index in range(20):
+        combined = memory.update(np.eye(3), 0.3 + 0.1 * index)
+    assert memory.equivalent_frames <= 3.0
+    assert np.linalg.eigvalsh(combined)[-1] <= 3.0 + 1.0e-9
 
 
 def test_balanced_room_has_isotropic_information() -> None:
@@ -87,4 +115,3 @@ def test_protection_level_matches_directional_quadratic_form() -> None:
         result.weak_direction @ result.integrity_covariance @ result.weak_direction
     )
     assert abs(result.weak_direction_protection_level - expected_weak) < 1.0e-12
-

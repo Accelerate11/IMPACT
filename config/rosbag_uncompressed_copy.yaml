@@ -1,0 +1,6 @@
+output_bags:
+  - uri: /tmp/xq_integrity_uncompressed
+    storage_id: sqlite3
+    all: true
+    compression_mode: ""
+    compression_format: ""

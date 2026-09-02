@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "gate": "COMPLEX_FULL_AUTONOMY_COMPARISON",
+  "status": "PASS",
+  "world": "xq_complex_warehouse",
+  "world_sha256": "c51f2d519a976086e253e11ebe9c49819d3470e6eccca16198c467c6c37fe533",
+  "variants": [
+    "information_only",
+    "integrity_constrained"
+  ],
+  "selected_sequences": {
+    "information_only": [
+      "high_information_direct",
+      "high_information_direct",
+      "high_information_direct",
+      "high_information_direct"
+    ],
+    "integrity_constrained": [
+      "geometry_rich_right",
+      "geometry_rich_right",
+      "high_information_direct",
+      "high_information_direct"
+    ]
+  },
+  "integrity_intervention_count": 2,
+  "actual_intervention_pairs": [
+    [
+      "high_information_direct",
+      "geometry_rich_right"
+    ],
+    [
+      "high_information_direct",
+      "geometry_rich_right"
+    ]
+  ],
+  "required_intervention_pairs": [],
+  "required_intervention_count": 2,
+  "actual_minimum_integrity_margin_m": {
+    "information_only": -0.46650081916343245,
+    "integrity_constrained": 0.12401669579973251
+  },
+  "actual_margin_gain_m": 0.590517514963165,
+  "ground_truth_path_length_m": {
+    "information_only": 24.111017282985266,
+    "integrity_constrained": 24.82363871650727
+  },
+  "extra_path_m": 0.7126214335220027,
+  "mission_time_s": {
+    "information_only": 132.75,
+    "integrity_constrained": 132.79999999999998
+  },
+  "mission_time_overhead_s": 0.04999999999998295,
+  "ate_rms_m": {
+    "information_only": 0.06405364324905771,
+    "integrity_constrained": 0.07351523199470071
+  },
+  "forward_progress_m": {
+    "information_only": 24.00090230961949,
+    "integrity_constrained": 23.999298530487867
+  },
+  "dynamic_replan_events": {
+    "information_only": 2,
+    "integrity_constrained": 2
+  },
+  "minimum_dynamic_obstacle_clearance_m": {
+    "information_only": 1.8478963052259392,
+    "integrity_constrained": 1.7532106049720375
+  },
+  "p13_end_to_end_p99_ms": {
+    "information_only": 160.21989300000004,
+    "integrity_constrained": 161.768495
+  },
+  "p13_final_integrity_margin_m": {
+    "information_only": 0.062439479294827405,
+    "integrity_constrained": 0.06158961371017396
+  },
+  "checks": {
+    "all_component_evaluators_pass": true,
+    "both_complete_full_mission": true,
+    "both_have_rolling_decisions": true,
+    "required_integrity_interventions_observed": true,
+    "integrity_intervention_count_bounded": true,
+    "required_integrity_sequence_observed": true,
+    "information_only_executes_direct": true,
+    "information_only_actual_margin_is_unsafe": true,
+    "integrity_constrained_actual_margin_is_reserved": true,
+    "actual_margin_gain": true,
+    "bounded_extra_path": true,
+    "bounded_mission_time_overhead": true,
+    "localization_not_degraded": true,
+    "both_dynamic_brake_and_reopen": true,
+    "both_keep_physical_clearance": true,
+    "both_keep_p13_safety_envelope": true,
+    "same_frozen_calibration": true,
+    "algorithm_ground_truth_absent": true,
+    "no_fault_injection": true,
+    "finite_comparison_metrics": true
+  },
+  "thresholds": {
+    "schema_version": 1,
+    "benchmark": "COMPLEX_FULL_AUTONOMY_COMPARISON",
+    "threshold_revision": 1,
+    "frozen_before_formal_comparison": true,
+    "world": "xq_complex_warehouse.sdf",
+    "variants": [
+      "information_only",
+      "integrity_constrained"
+    ],
+    "mission_distance_m": 24.0,
+    "minimum_forward_progress_m": 23.5,
+    "maximum_ate_rms_m": 0.35,
+    "minimum_decision_batches": 4,
+    "minimum_integrity_interventions": 2,
+    "required_unconstrained_candidate": "high_information_direct",
+    "required_integrity_candidate": "geometry_rich_right",
+    "margin_reserve_m": 0.1,
+    "maximum_information_only_actual_margin_m": 0.0,
+    "minimum_integrity_constrained_actual_margin_m": 0.1,
+    "minimum_actual_margin_gain_m": 0.1,
+    "maximum_extra_path_m": 1.0,
+    "maximum_mission_time_overhead_s": 8.0,
+    "maximum_ate_degradation_m": 0.1,
+    "minimum_dynamic_replan_events": 2,
+    "minimum_physical_obstacle_clearance_m": 0.75,
+    "minimum_p13_integrity_margin_m": 0.06,
+    "maximum_p13_latency_p99_ms": 220.0,
+    "fault_injection_allowed": false,
+    "ground_truth_policy": "evaluation_only"
+  },
+  "comparison_fairness": {
+    "same_world": true,
+    "same_lidar_imu_fast_lio": true,
+    "same_dynamic_map": true,
+    "same_collision_and_energy_constraints": true,
+    "same_p13_latency_safety": true,
+    "only_difference": "integrity hard feasibility filter before task utility"
+  },
+  "ground_truth_policy": "evaluation_only",
+  "generated_at_utc": "2026-08-28T12:38:58.598504+00:00"
+}

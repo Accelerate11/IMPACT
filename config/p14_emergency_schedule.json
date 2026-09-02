@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "seed": 20260828,
+  "faults": [
+    {"id": "F11_lidar_persistent", "type": "lidar_dropout", "start_time_s": 18.0, "duration_s": 12.0, "severity": 1.0}
+  ]
+}
