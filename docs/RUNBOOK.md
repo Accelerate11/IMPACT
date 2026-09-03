@@ -84,13 +84,27 @@ P14 最近一次 PASS 的 Gazebo + RViz 联合回放：
 bash scripts/view_p14_combined.sh
 ```
 
+P15 map-derived 完整性配对研究 Gate：
+
+```bash
+bash scripts/run_p15_research_comparison.sh
+```
+
+P15 Gazebo + RViz 实时可视化：
+
+```bash
+bash scripts/run_p15_live_visualization.sh
+```
+
 每次运行都会只读扫描 `/proc`，从 Linux 建议范围 32–101 选择当时未占用的
 `ROS_DOMAIN_ID`，并生成唯一 `GZ_PARTITION`；DDS 仅限本机。停止时只向本次 launch 的
 专属进程组发信号，不使用 `killall`、全局 `pkill` 或主机网络级 `tc netem`。20% 丢包由
 `xq_network_relay` 在项目 heartbeat 话题内执行，窗口外配置丢包率严格为 0。
 
-WSL 的默认 D3D/EGL 组合会使 GPU lidar 崩溃；headless runner 已固定使用
-Mesa llvmpipe 与 surfaceless EGL。GUI 仅用于人工调试，不作为自动验收前提。
+旧 smoke runner 在默认 D3D/EGL 组合下曾使 GPU lidar 崩溃，因此该入口仍使用
+Mesa llvmpipe 与 surfaceless EGL。复杂场景与 P15 入口已在 WSLg D3D12 上通过，正式
+P15 runner 会把实际 renderer 写入 `run.env`。GUI 仅用于人工观察，不作为自动验收
+前提。
 
 ## 4. 证据与判读
 
@@ -133,9 +147,10 @@ colcon --log-base xq_test_log test \
 colcon test-result --test-result-base xq_build --verbose
 ```
 
-Python 测试当前为 120 项，覆盖退化感知、动态地图 TTL、OAER、完整性约束探索、
+Python 测试当前为 140 项，覆盖退化感知、动态地图 TTL、OAER、完整性约束探索、
 P12 动态障碍、P13 时延闭环、P14 十类故障与失效安全状态机，以及 P2 首帧启动状态、
-真值源码隔离和指标公式。C++ 测试覆盖 Gazebo/ROS
+P15 map-derived 候选指标、独立真值完整性评价、任务活性/中断记账、真值源码隔离和
+指标公式。C++ 测试覆盖 Gazebo/ROS
 时间戳、点云、IMU、真值、Twist 转换及活跃回调退出竞态。
 
 ## 6. 真值隔离检查
@@ -567,7 +582,16 @@ XQ_COMPLEX_THRESHOLDS=config/complex_compositional_thresholds.json \
 bash scripts/run_complex_algorithm_comparison.sh
 ```
 
-四个可视化入口都启动 P6/P10/P11/P12/P13 完整正常飞行栈，不启动 P14 故障注入。
+P15 在同一组合世界上使用在线 5×2 lattice、map-derived 指标、当前轨迹动态查询和运行时
+Margin 监督；这是当前推荐的研究 Gate 与可视化入口：
+
+```bash
+cd /home/accelerate/xuanqiong_x1_sim_ws
+bash scripts/run_p15_research_comparison.sh
+bash scripts/run_p15_live_visualization.sh
+```
+
+这些可视化入口都启动 P6/P10/P11/P12/P13 完整正常飞行栈，不启动 P14 故障注入。
 Gazebo 只移除屋顶，保留墙体与内部结构；RViz 显示点云、FAST-LIO、动静态体素、红色
 效用优先候选、绿色认证轨迹和实时完整性/动态/延迟状态板。三维入口额外启用默认关闭
 的垂向候选；组合入口要求真实执行 `right→left→up_right→direct`，并启用 3 s 有界观测

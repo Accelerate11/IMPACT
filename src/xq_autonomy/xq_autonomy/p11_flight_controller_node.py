@@ -1,4 +1,4 @@
-"""P11 two-arm flight controller and deterministic Frontier-candidate adapter."""
+"""P11 two-arm flight controller and auditable local candidate adapter."""
 
 from __future__ import annotations
 
@@ -22,7 +22,30 @@ from xq_sim_interfaces.msg import (
 )
 
 from .alert_limit import sample_bspline
+from .candidate_metrics import motion_energy_proxy, return_energy_proxy
 from .integrity_exploration import rolling_horizon_distances
+
+
+def interrupted_energy_total(
+    current_total: float,
+    decision_total: float,
+    elapsed_s: float,
+    duration_s: float,
+) -> float:
+    """Conservatively account the executed fraction of an interrupted plan."""
+    values = np.asarray(
+        (current_total, decision_total, elapsed_s, duration_s), dtype=float
+    )
+    if (
+        not np.isfinite(values).all()
+        or current_total < 0.0
+        or decision_total < current_total
+        or elapsed_s < 0.0
+        or duration_s <= 0.0
+    ):
+        raise ValueError("invalid interrupted energy accounting input")
+    fraction = min(max(elapsed_s / duration_s, 0.0), 1.0)
+    return float(current_total + fraction * (decision_total - current_total))
 
 
 def build_geometric_candidate_positions(
@@ -76,6 +99,65 @@ def build_geometric_candidate_positions(
     return tuple(families)
 
 
+def build_lattice_candidate_positions(
+    direct: np.ndarray,
+    profile: np.ndarray,
+    *,
+    lateral_offset_m: float,
+    lateral_levels: int,
+    vertical_offset_m: float = 0.0,
+    vertical_levels: int = 1,
+) -> tuple[tuple[str, np.ndarray], ...]:
+    """Generate a scenario-agnostic cross-track lattice around a task path.
+
+    The legacy family is retained for frozen P11--P14 evidence.  This research
+    family contains no ``safe`` or ``high_information`` labels: every member is
+    scored from its geometry and live map by the downstream selector.
+    """
+    baseline = np.asarray(direct, dtype=float)
+    window = np.asarray(profile, dtype=float).reshape(-1)
+    if (
+        baseline.ndim != 2
+        or baseline.shape[1:] != (3,)
+        or len(baseline) != len(window)
+        or not np.isfinite(baseline).all()
+        or not np.isfinite(window).all()
+        or not math.isfinite(lateral_offset_m)
+        or lateral_offset_m <= 0.0
+        or lateral_levels < 3
+        or lateral_levels % 2 == 0
+        or vertical_levels < 1
+    ):
+        raise ValueError("candidate lattice parameters are invalid")
+    if vertical_levels > 1 and (
+        not math.isfinite(vertical_offset_m) or vertical_offset_m <= 0.0
+    ):
+        raise ValueError("multi-level candidate lattice needs a positive vertical offset")
+
+    lateral = np.linspace(-lateral_offset_m, lateral_offset_m, lateral_levels)
+    vertical = (
+        np.asarray((0.0,))
+        if vertical_levels == 1
+        else np.linspace(0.0, vertical_offset_m, vertical_levels)
+    )
+    candidates: list[tuple[str, np.ndarray]] = []
+    for z_offset in vertical:
+        for y_offset in lateral:
+            points = baseline.copy()
+            points[:, 1] += float(y_offset) * window
+            points[:, 2] += float(z_offset) * window
+            name = (
+                "task_efficient_direct"
+                if abs(float(y_offset)) <= 1.0e-12 and abs(float(z_offset)) <= 1.0e-12
+                else f"lattice_y_{float(y_offset):+.2f}_z_{float(z_offset):+.2f}"
+            )
+            candidates.append((name, points))
+    # Put the direct trajectory first for stable visualization and logs; no
+    # selection code depends on this order.
+    candidates.sort(key=lambda item: (item[0] != "task_efficient_direct", item[0]))
+    return tuple(candidates)
+
+
 class P11FlightControllerNode(Node):
     VARIANTS = ("information_only", "integrity_constrained")
 
@@ -104,10 +186,20 @@ class P11FlightControllerNode(Node):
             "final_settle_s": 3.0,
             "segment_goal_tolerance_m": 0.25,
             "maximum_segment_extension_s": 90.0,
+            "terminal_extension_mode": "fixed",
+            "terminal_progress_epsilon_m": 0.01,
+            "terminal_stall_timeout_s": 12.0,
             "direct_information_gain": 1.0,
             "safe_information_gain": 0.75,
             "collision_probability": 0.001,
             "return_energy_cost": 4.0,
+            "candidate_generation_mode": "legacy",
+            "candidate_metric_source": "metadata",
+            "lattice_lateral_levels": 5,
+            "lattice_vertical_levels": 2,
+            "energy_drag_weight": 0.15,
+            "energy_climb_weight": 1.5,
+            "energy_acceleration_weight": 0.05,
         }
         for name, value in defaults.items():
             self.declare_parameter(name, value)
@@ -129,11 +221,17 @@ class P11FlightControllerNode(Node):
         self._planned_energy_spent = 0.0
         self._segment_index = 0
         self._segments_completed = 0
+        self._planning_windows_closed = 0
+        self._interrupted_decisions = 0
         self._decisions_applied = 0
+        self._applied_batch_ids: set[int] = set()
         self._current_segment_distance_m = 0.0
         self._current_segment_duration_s = 0.0
         self._current_segment_end_x_m = float("nan")
+        self._best_terminal_error_m = math.inf
+        self._last_terminal_progress_s: float | None = None
         self._mission_start_x_m: float | None = None
+        self._mission_start_position: np.ndarray | None = None
         self._mission_goal_x_m: float | None = None
         self._mission_cruise_z_m: float | None = None
         self._finished = False
@@ -178,8 +276,20 @@ class P11FlightControllerNode(Node):
             latched_qos,
         )
         self.create_timer(0.05, self._timer)
+        generation_mode = str(self.get_parameter("candidate_generation_mode").value)
+        metric_source = str(self.get_parameter("candidate_metric_source").value)
+        if generation_mode not in {"legacy", "lattice"}:
+            raise ValueError(f"unsupported candidate_generation_mode: {generation_mode}")
+        if metric_source not in {"metadata", "online_map"}:
+            raise ValueError(f"unsupported candidate_metric_source: {metric_source}")
+        if str(self.get_parameter("terminal_extension_mode").value) not in {
+            "fixed",
+            "progress_watchdog",
+        }:
+            raise ValueError("unsupported terminal_extension_mode")
         self.get_logger().info(
-            f"P11 flight variant={self.variant}; Frontier adapter has no Ground Truth"
+            f"P11 flight variant={self.variant}; candidates={generation_mode}; "
+            f"metrics={metric_source}; no Ground Truth"
         )
 
     def _float(self, name: str) -> float:
@@ -281,18 +391,38 @@ class P11FlightControllerNode(Node):
         lateral_window = self._lateral_window(
             phase, str(self.get_parameter("lateral_candidate_shape").value)
         )
-        candidate_positions = build_geometric_candidate_positions(
-            direct,
-            lateral_window,
-            lateral_offset_m=self._float("lateral_offset_m"),
-            enable_vertical_candidate=bool(
+        generation_mode = str(self.get_parameter("candidate_generation_mode").value)
+        if generation_mode == "lattice":
+            vertical_enabled = bool(
                 self.get_parameter("enable_vertical_candidate").value
-            ),
-            enable_diagonal_vertical_candidates=bool(
+            ) or bool(
                 self.get_parameter("enable_diagonal_vertical_candidates").value
-            ),
-            vertical_offset_m=self._float("vertical_offset_m"),
-        )
+            )
+            candidate_positions = build_lattice_candidate_positions(
+                direct,
+                lateral_window,
+                lateral_offset_m=self._float("lateral_offset_m"),
+                lateral_levels=int(self.get_parameter("lattice_lateral_levels").value),
+                vertical_offset_m=self._float("vertical_offset_m"),
+                vertical_levels=(
+                    int(self.get_parameter("lattice_vertical_levels").value)
+                    if vertical_enabled
+                    else 1
+                ),
+            )
+        else:
+            candidate_positions = build_geometric_candidate_positions(
+                direct,
+                lateral_window,
+                lateral_offset_m=self._float("lateral_offset_m"),
+                enable_vertical_candidate=bool(
+                    self.get_parameter("enable_vertical_candidate").value
+                ),
+                enable_diagonal_vertical_candidates=bool(
+                    self.get_parameter("enable_diagonal_vertical_candidates").value
+                ),
+                vertical_offset_m=self._float("vertical_offset_m"),
+            )
         batch_id = 20261100 + self._segment_index
         trajectory_base = 202611000 + 10 * self._segment_index
         self._candidates = [
@@ -304,6 +434,47 @@ class P11FlightControllerNode(Node):
             for _, positions in candidate_positions
         ]
         candidate_count = len(candidate_positions)
+        metric_source = str(self.get_parameter("candidate_metric_source").value)
+        if metric_source == "online_map":
+            if self._mission_start_position is None:
+                raise RuntimeError("mission home was not initialized")
+            incremental_energy = [
+                motion_energy_proxy(
+                    positions,
+                    duration,
+                    drag_weight=self._float("energy_drag_weight"),
+                    climb_weight=self._float("energy_climb_weight"),
+                    acceleration_weight=self._float("energy_acceleration_weight"),
+                )
+                for _, positions in candidate_positions
+            ]
+            return_energy = [
+                return_energy_proxy(positions[-1], self._mission_start_position)
+                for _, positions in candidate_positions
+            ]
+            # This placeholder is a trajectory-derived progress efficiency.
+            # The scoring node replaces it with the live map observation score
+            # before either comparison arm is selected.
+            task_gains = [
+                float(
+                    np.linalg.norm(positions[-1] - positions[0])
+                    / max(length, 1.0e-12)
+                )
+                for (_, positions), length in zip(candidate_positions, path_lengths)
+            ]
+            collision_probabilities = [0.0] * candidate_count
+        else:
+            incremental_energy = path_lengths
+            return_energy = [self._float("return_energy_cost")] * candidate_count
+            task_gains = [
+                self._float(
+                    "direct_information_gain"
+                    if name == "high_information_direct"
+                    else "safe_information_gain"
+                )
+                for name, _ in candidate_positions
+            ]
+            collision_probabilities = [self._float("collision_probability")] * candidate_count
         metadata = ExplorationCandidateSet()
         metadata.header.stamp = self.get_clock().now().to_msg()
         metadata.header.frame_id = "xq_lio_map"
@@ -311,23 +482,20 @@ class P11FlightControllerNode(Node):
         metadata.trajectory_ids = [message.traj_id for message in self._candidates]
         metadata.candidate_names = [name for name, _ in candidate_positions]
         metadata.frontier_ids = ["frontier_main"] * candidate_count
-        metadata.information_gains = [
-            self._float(
-                "direct_information_gain"
-                if name == "high_information_direct"
-                else "safe_information_gain"
-            )
-            for name, _ in candidate_positions
-        ]
+        metadata.information_gains = task_gains
         metadata.travel_times_s = [duration] * candidate_count
         metadata.energy_costs = [
-            self._planned_energy_spent + length for length in path_lengths
+            self._planned_energy_spent + value for value in incremental_energy
         ]
-        metadata.return_energy_costs = [self._float("return_energy_cost")] * candidate_count
-        metadata.collision_probabilities = [self._float("collision_probability")] * candidate_count
+        metadata.return_energy_costs = return_energy
+        metadata.collision_probabilities = collision_probabilities
+        metadata.candidate_generation_mode = generation_mode
+        metadata.metric_source = metric_source
         metadata.ground_truth_used = False
         self._metadata = metadata
         self._trajectory_start_sim_s = None
+        self._best_terminal_error_m = math.inf
+        self._last_terminal_progress_s = None
         self._current_segment_distance_m = distance
         self._current_segment_duration_s = duration
         self._current_segment_end_x_m = float(start[0] + distance)
@@ -415,10 +583,18 @@ class P11FlightControllerNode(Node):
                 ),
                 "segment_index": self._segment_index,
                 "segments_completed": self._segments_completed,
+                "planning_windows_closed": self._planning_windows_closed,
+                "interrupted_decisions": self._interrupted_decisions,
                 "decisions_applied": self._decisions_applied,
                 "current_batch_id": int(self._metadata.batch_id) if self._metadata else -1,
                 "current_segment_end_x_m": self._current_segment_end_x_m,
                 "rolling_horizon": True,
+                "candidate_generation_mode": str(
+                    self.get_parameter("candidate_generation_mode").value
+                ),
+                "candidate_metric_source": str(
+                    self.get_parameter("candidate_metric_source").value
+                ),
                 "candidate_set_published": self._metadata is not None,
                 "decision_valid": bool(self._decision is not None and self._decision.valid),
                 "unconstrained_selected_name": (
@@ -440,6 +616,37 @@ class P11FlightControllerNode(Node):
         self.get_logger().info(f"P11 flight phase={phase} t={elapsed_s:.2f}s")
         self._last_phase = phase
 
+    def _close_interrupted_planning_window(self, now_s: float) -> None:
+        """Close an accepted window without claiming terminal completion."""
+        trajectory = (
+            self._unconstrained if self.variant == "information_only" else self._selected
+        )
+        if (
+            trajectory is None
+            or self._decision is None
+            or self._trajectory_start_sim_s is None
+        ):
+            raise RuntimeError("no active planning window to interrupt")
+        executed_index = (
+            int(self._decision.unconstrained_selected_index)
+            if self.variant == "information_only"
+            else int(self._decision.selected_index)
+        )
+        if not 0 <= executed_index < len(self._decision.energy_costs):
+            raise RuntimeError("interrupted planning window has invalid energy index")
+        duration = float(
+            trajectory.knots[-int(trajectory.order) - 1]
+            - trajectory.knots[int(trajectory.order)]
+        )
+        self._planned_energy_spent = interrupted_energy_total(
+            self._planned_energy_spent,
+            float(self._decision.energy_costs[executed_index]),
+            max(float(now_s) - self._trajectory_start_sim_s, 0.0),
+            duration,
+        )
+        self._planning_windows_closed += 1
+        self._interrupted_decisions += 1
+
     def _timer(self) -> None:
         now_s = self._now_s()
         if now_s <= 0.0:
@@ -458,7 +665,8 @@ class P11FlightControllerNode(Node):
             return
         if self._mission_start_x_m is None:
             assert self._odom is not None
-            self._mission_start_x_m = float(self._position(self._odom)[0])
+            self._mission_start_position = self._position(self._odom).copy()
+            self._mission_start_x_m = float(self._mission_start_position[0])
             self._mission_goal_x_m = (
                 self._mission_start_x_m + self._float("mission_distance_m")
             )
@@ -503,6 +711,10 @@ class P11FlightControllerNode(Node):
             return
         if self._trajectory_start_sim_s is None:
             self._trajectory_start_sim_s = now_s
+            batch_id = int(self._decision.batch_id)
+            if batch_id not in self._applied_batch_ids:
+                self._applied_batch_ids.add(batch_id)
+                self._decisions_applied += 1
         assert self._odom is not None
         elapsed = now_s - self._trajectory_start_sim_s
         duration = float(
@@ -523,6 +735,11 @@ class P11FlightControllerNode(Node):
         )
         terminal_error = float(np.linalg.norm(terminal - self._position(self._odom)))
         terminal_reached = terminal_error <= self._float("segment_goal_tolerance_m")
+        if elapsed >= duration:
+            epsilon = self._float("terminal_progress_epsilon_m")
+            if terminal_error <= self._best_terminal_error_m - epsilon:
+                self._best_terminal_error_m = terminal_error
+                self._last_terminal_progress_s = now_s
         if elapsed >= duration + settle and terminal_reached:
             executed_index = (
                 int(self._decision.unconstrained_selected_index)
@@ -537,7 +754,7 @@ class P11FlightControllerNode(Node):
                 self._decision.energy_costs[executed_index]
             )
             self._segments_completed += 1
-            self._decisions_applied += 1
+            self._planning_windows_closed += 1
             if final_segment:
                 self._finished = True
                 self.command_publisher.publish(command)
@@ -550,13 +767,24 @@ class P11FlightControllerNode(Node):
             self._selected = None
             self._unconstrained = None
             self._trajectory_start_sim_s = None
+            self._best_terminal_error_m = math.inf
+            self._last_terminal_progress_s = None
             self.command_publisher.publish(command)
             self._publish_status("REPLAN", elapsed_from_node)
             return
-        if (
-            elapsed
-            >= duration + settle + self._float("maximum_segment_extension_s")
-            and not terminal_reached
+        extension_expired = bool(
+            elapsed >= duration + settle + self._float("maximum_segment_extension_s")
+        )
+        progress_watchdog = str(
+            self.get_parameter("terminal_extension_mode").value
+        ) == "progress_watchdog"
+        stalled = bool(
+            self._last_terminal_progress_s is None
+            or now_s - self._last_terminal_progress_s
+            >= self._float("terminal_stall_timeout_s")
+        )
+        if extension_expired and not terminal_reached and (
+            not progress_watchdog or stalled
         ):
             self.command_publisher.publish(command)
             self._publish_status("FAIL_CLOSED_TRACKING_TIMEOUT", elapsed_from_node)
@@ -583,6 +811,9 @@ def main(args=None) -> None:
         rclpy.spin(node)
     except (KeyboardInterrupt, ExternalShutdownException):
         pass
+    except Exception:
+        if rclpy.ok():
+            raise
     finally:
         if rclpy.ok():
             stop = Twist()

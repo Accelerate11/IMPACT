@@ -1,0 +1,33 @@
+stdin is not a terminal device. Keyboard handling disabled.[INFO] [1788371688.258617512] [rosbag2_recorder]: Press SPACE for pausing/resuming
+[INFO] [1788371688.259699124] [rosbag2_storage]: Opened database '/home/accelerate/xuanqiong_x1_sim_ws/experiments/results/impact_complex_comparison/p15_research_20260903_final_v4/information_only/rosbag/rosbag_0.db3' for READ_WRITE.
+[INFO] [1788371688.261356236] [rosbag2_recorder]: Listening for topics...
+[INFO] [1788371688.261393682] [rosbag2_recorder]: Event publisher thread: Starting
+[INFO] [1788371688.261460860] [rosbag2_recorder]: Recording...
+[INFO] [1788371689.985304080] [rosbag2_recorder]: Subscribed to topic '/tf_static'
+[INFO] [1788371691.637000969] [rosbag2_recorder]: Subscribed to topic '/localization/geometry'
+[INFO] [1788371691.638112312] [rosbag2_recorder]: Subscribed to topic '/localization/odom'
+[INFO] [1788371691.638614177] [rosbag2_recorder]: Subscribed to topic '/tf'
+[INFO] [1788371692.049164663] [rosbag2_recorder]: Subscribed to topic '/xq/eval/p12/obstacle_state'
+[INFO] [1788371692.458623841] [rosbag2_recorder]: Subscribed to topic '/clock'
+[INFO] [1788371692.560127484] [rosbag2_recorder]: Subscribed to topic '/integrity/directional'
+[INFO] [1788371692.560932113] [rosbag2_recorder]: Subscribed to topic '/xq/eval/agent_01/ground_truth'
+[INFO] [1788371693.067598335] [rosbag2_recorder]: Subscribed to topic '/planning/p11/selected_bspline'
+[INFO] [1788371693.068674164] [rosbag2_recorder]: Subscribed to topic '/integrity/exploration_debug'
+[INFO] [1788371693.070057035] [rosbag2_recorder]: Subscribed to topic '/integrity/exploration_decision'
+[INFO] [1788371693.071889173] [rosbag2_recorder]: Subscribed to topic '/mapping/p12/dynamic_voxels'
+[INFO] [1788371693.072773992] [rosbag2_recorder]: Subscribed to topic '/planning/p11/unconstrained_bspline'
+[INFO] [1788371693.175034487] [rosbag2_recorder]: Subscribed to topic '/integrity/information_map'
+[INFO] [1788371693.175724355] [rosbag2_recorder]: Subscribed to topic '/mapping/p12/status'
+[INFO] [1788371693.278097407] [rosbag2_recorder]: Subscribed to topic '/planning/p11/frontier_candidates'
+[INFO] [1788371693.279023823] [rosbag2_recorder]: Subscribed to topic '/xq/p13/flight_status'
+[INFO] [1788371693.280018026] [rosbag2_recorder]: Subscribed to topic '/integrity/p13/latency_trace'
+[INFO] [1788371693.280905825] [rosbag2_recorder]: Subscribed to topic '/planning/p12/replan_event'
+[INFO] [1788371693.281934167] [rosbag2_recorder]: Subscribed to topic '/xq/p3/cmd_vel'
+[INFO] [1788371693.282770842] [rosbag2_recorder]: Subscribed to topic '/xq/p11/flight_status'
+[INFO] [1788371693.283783389] [rosbag2_recorder]: Subscribed to topic '/planning/p11/frontier_candidate_set'
+[INFO] [1788371693.285383679] [rosbag2_recorder]: Subscribed to topic '/xq/p12/flight_status'
+[INFO] [1788371693.285409981] [rosbag2_recorder]: All requested topics are subscribed. Stopping discovery...
+[INFO] [1788371822.435075105] [rosbag2_cpp]: Writing remaining messages from cache to the bag. It may take a while
+[INFO] [1788371822.435836662] [rosbag2_compression]: Compressing file: /home/accelerate/xuanqiong_x1_sim_ws/experiments/results/impact_complex_comparison/p15_research_20260903_final_v4/information_only/rosbag/rosbag_0.db3
+[INFO] [1788371822.680353721] [rosbag2_recorder]: Event publisher thread: Exiting
+[INFO] [1788371822.680450303] [rosbag2_recorder]: Recording stopped

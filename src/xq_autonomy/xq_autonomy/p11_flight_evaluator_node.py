@@ -21,6 +21,7 @@ from std_msgs.msg import String
 from xq_sim_interfaces.msg import DirectionalIntegrity, IntegrityExplorationDecision
 
 from .p10_active_perception_node import _cloud_xyz
+from .integrity_evaluation import evaluate_ground_truth_integrity
 
 
 def _stamp(message) -> float:
@@ -32,6 +33,17 @@ def _yaw(message: Odometry) -> float:
     return math.atan2(
         2.0 * (q.w * q.z + q.x * q.y),
         1.0 - 2.0 * (q.y * q.y + q.z * q.z),
+    )
+
+
+def rolling_horizon_complete(
+    status: dict[str, object], minimum_batches: int, accepted_batches: int
+) -> bool:
+    """Validate closed planning windows, including safety-interrupted ones."""
+    return bool(
+        status.get("rolling_horizon") is True
+        and int(status.get("planning_windows_closed", 0)) >= int(minimum_batches)
+        and int(status.get("decisions_applied", 0)) == int(accepted_batches)
     )
 
 
@@ -185,6 +197,7 @@ class P11FlightEvaluatorNode(Node):
                 float(points[index][0]),
                 float(points[index][1]),
                 float(points[index][2]),
+                float(position[2]),
             )
         )
 
@@ -258,7 +271,15 @@ class P11FlightEvaluatorNode(Node):
             "candidate_names": list(decision.candidate_names),
             "frontier_ids": list(decision.frontier_ids),
             "information_gains": list(decision.information_gains),
+            "progress_efficiencies": list(decision.progress_efficiencies),
+            "map_observation_gains": list(decision.map_observation_gains),
+            "localization_information_traces": list(
+                decision.localization_information_traces
+            ),
             "utilities": list(decision.utilities),
+            "energy_costs": list(decision.energy_costs),
+            "return_energy_costs": list(decision.return_energy_costs),
+            "collision_probabilities": list(decision.collision_probabilities),
             "predicted_minimum_margins": list(decision.predicted_minimum_margins),
             "integrity_feasible": list(decision.integrity_feasible),
             "collision_feasible": list(decision.collision_feasible),
@@ -268,6 +289,10 @@ class P11FlightEvaluatorNode(Node):
             "selected_name": decision.selected_name,
             "hard_constraint": decision.hard_constraint,
             "margin_in_utility": decision.margin_in_utility,
+            "minimum_intervention_applied": decision.minimum_intervention_applied,
+            "utility_indifference_band": decision.utility_indifference_band,
+            "candidate_generation_mode": decision.candidate_generation_mode,
+            "metric_source": decision.metric_source,
             "reason": decision.reason,
         }
 
@@ -302,6 +327,7 @@ class P11FlightEvaluatorNode(Node):
                 weak_errors.append(abs(float(weak @ error)))
         norm_errors = np.linalg.norm(errors, axis=1)
         truth_relative = truth - truth[0]
+        matched_stamps = np.asarray([sample[0] for sample in matched], dtype=float)
         margins = np.asarray([sample[1] for sample in self.margin_samples], dtype=float)
         alerts = np.asarray([sample[2] for sample in self.margin_samples], dtype=float)
         protections = np.asarray([sample[3] for sample in self.margin_samples], dtype=float)
@@ -350,7 +376,29 @@ class P11FlightEvaluatorNode(Node):
                 )
         truth_start = truth[0]
         truth_final = truth[-1]
-        return {
+        gt_integrity = {"gt_integrity_matched_samples": 0}
+        if self.margin_samples:
+            directions = np.asarray(
+                [
+                    (
+                        sample[6] - sample[4],
+                        sample[7] - sample[5],
+                        sample[8] - sample[9],
+                    )
+                    for sample in self.margin_samples
+                ],
+                dtype=float,
+            )
+            gt_integrity = evaluate_ground_truth_integrity(
+                matched_stamps,
+                errors,
+                np.asarray([sample[0] for sample in self.margin_samples], dtype=float),
+                alerts,
+                protections,
+                directions,
+                rotation,
+            )
+        metrics = {
             "matched_samples": len(matched),
             "ate_rms_m": float(np.sqrt(np.mean(norm_errors ** 2))),
             "position_error_max_m": float(np.max(norm_errors)),
@@ -411,6 +459,8 @@ class P11FlightEvaluatorNode(Node):
             "truth_final_z_m": float(truth_final[2]),
             "forward_progress_m": float(truth_final[0] - truth_start[0]),
         }
+        metrics.update(gt_integrity)
+        return metrics
 
     def _finalize(self) -> None:
         metrics = self._metrics()
@@ -439,11 +489,10 @@ class P11FlightEvaluatorNode(Node):
             "selected_applied": status.get("selected_applied") is True,
             "executed_candidate_matches_decision": status.get("executed_name")
             == executed_expected,
-            "rolling_horizon_complete": bool(
-                status.get("rolling_horizon") is True
-                and int(status.get("segments_completed", 0))
-                >= int(self.get_parameter("minimum_decision_batches").value)
-                and int(status.get("decisions_applied", 0)) == len(applied_decisions)
+            "rolling_horizon_complete": rolling_horizon_complete(
+                status,
+                int(self.get_parameter("minimum_decision_batches").value),
+                len(applied_decisions),
             ),
             "corridor_goal_reached": bool(
                 metrics.get("forward_progress_m") is not None
@@ -462,9 +511,12 @@ class P11FlightEvaluatorNode(Node):
                 )
             ),
             "ground_truth_evaluator_only": True,
+            "gt_integrity_evaluation_present": int(
+                metrics.get("gt_integrity_matched_samples", 0)
+            ) >= 20,
         }
         result = {
-            "schema_version": 1,
+            "schema_version": 2,
             "gate": "P11_INTEGRITY_EXPLORATION_FLIGHT_ARM",
             "variant": self.variant,
             "status": "PASS" if all(checks.values()) else "FAIL",
@@ -510,6 +562,12 @@ def main(args=None) -> None:
         rclpy.spin(node)
     except (KeyboardInterrupt, ExternalShutdownException):
         pass
+    except Exception:
+        # Humble may surface an RCLError from WaitSet construction when the
+        # launch context is invalidated between two executor iterations.
+        # Suppress only that shutdown race; callback failures still propagate.
+        if rclpy.ok():
+            raise
     finally:
         if not node._finalized and node._complete_wall_s is not None:
             node._finalize()

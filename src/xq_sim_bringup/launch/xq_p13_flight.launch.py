@@ -85,6 +85,11 @@ def generate_launch_description() -> LaunchDescription:
         DeclareLaunchArgument("path_clearance_radius_m", default_value="0.70"),
         DeclareLaunchArgument("planning_lookahead_m", default_value="4.0"),
         DeclareLaunchArgument("clear_confirmation_s", default_value="1.0"),
+        DeclareLaunchArgument(
+            "dynamic_path_query_mode", default_value="forward_axis"
+        ),
+        DeclareLaunchArgument("minimum_dynamic_cluster_points", default_value="1"),
+        DeclareLaunchArgument("dynamic_cluster_radius_m", default_value="0.45"),
         DeclareLaunchArgument("mission_distance_m", default_value="24.0"),
         DeclareLaunchArgument("lateral_offset_m", default_value="0.60"),
         DeclareLaunchArgument(
@@ -95,7 +100,23 @@ def generate_launch_description() -> LaunchDescription:
             "enable_diagonal_vertical_candidates", default_value="false"
         ),
         DeclareLaunchArgument("vertical_offset_m", default_value="0.70"),
+        DeclareLaunchArgument("candidate_generation_mode", default_value="legacy"),
+        DeclareLaunchArgument("candidate_metric_source", default_value="metadata"),
+        DeclareLaunchArgument("lattice_lateral_levels", default_value="5"),
+        DeclareLaunchArgument("lattice_vertical_levels", default_value="2"),
+        DeclareLaunchArgument("task_progress_weight", default_value="0.85"),
+        DeclareLaunchArgument("task_map_age_time_constant_s", default_value="20.0"),
+        DeclareLaunchArgument("research_energy_remaining", default_value="32.0"),
+        DeclareLaunchArgument("utility_indifference_band", default_value="0.0"),
         DeclareLaunchArgument("segment_goal_tolerance_m", default_value="0.25"),
+        DeclareLaunchArgument("terminal_extension_mode", default_value="fixed"),
+        DeclareLaunchArgument(
+            "runtime_integrity_guard_mode", default_value="disabled"
+        ),
+        DeclareLaunchArgument("runtime_integrity_margin_m", default_value="0.12"),
+        DeclareLaunchArgument(
+            "runtime_integrity_confirmation_s", default_value="0.15"
+        ),
         DeclareLaunchArgument("geometric_clearance_m", default_value="0.82"),
         DeclareLaunchArgument("fixed_buffer_m", default_value="0.58"),
         DeclareLaunchArgument("protection_level_m", default_value="0.10"),
@@ -213,10 +234,15 @@ def generate_launch_description() -> LaunchDescription:
                 "minimum_prediction_variance_m2": 0.00001,
                 "margin_reserve_m": 0.10,
                 "collision_probability_limit": 0.01,
-                "energy_remaining": 32.0,
+                "energy_remaining": f("research_energy_remaining"),
                 "information_weight": 1.0,
                 "travel_time_weight": 0.01,
                 "energy_weight": 0.005,
+                "task_progress_weight": f("task_progress_weight"),
+                "task_map_age_time_constant_s": f(
+                    "task_map_age_time_constant_s"
+                ),
+                "utility_indifference_band": f("utility_indifference_band"),
             }],
         ),
         Node(
@@ -239,6 +265,14 @@ def generate_launch_description() -> LaunchDescription:
                 "path_clearance_radius_m": f("path_clearance_radius_m"),
                 "planning_lookahead_m": f("planning_lookahead_m"),
                 "mission_distance_m": f("mission_distance_m"),
+                "variant": LaunchConfiguration("flight_variant"),
+                "dynamic_path_query_mode": LaunchConfiguration(
+                    "dynamic_path_query_mode"
+                ),
+                "minimum_dynamic_cluster_points": i(
+                    "minimum_dynamic_cluster_points"
+                ),
+                "dynamic_cluster_radius_m": f("dynamic_cluster_radius_m"),
                 "lateral_offset_m": f("lateral_offset_m"),
                 "lateral_candidate_shape": LaunchConfiguration(
                     "lateral_candidate_shape"
@@ -280,10 +314,38 @@ def generate_launch_description() -> LaunchDescription:
                     "enable_diagonal_vertical_candidates"
                 ),
                 "vertical_offset_m": f("vertical_offset_m"),
+                "candidate_generation_mode": LaunchConfiguration(
+                    "candidate_generation_mode"
+                ),
+                "candidate_metric_source": LaunchConfiguration(
+                    "candidate_metric_source"
+                ),
+                "lattice_lateral_levels": i("lattice_lateral_levels"),
+                "lattice_vertical_levels": i("lattice_vertical_levels"),
                 "segment_goal_tolerance_m": f("segment_goal_tolerance_m"),
+                "terminal_extension_mode": LaunchConfiguration(
+                    "terminal_extension_mode"
+                ),
+                "runtime_integrity_guard_mode": LaunchConfiguration(
+                    "runtime_integrity_guard_mode"
+                ),
+                "runtime_integrity_margin_m": f("runtime_integrity_margin_m"),
+                "runtime_integrity_confirmation_s": f(
+                    "runtime_integrity_confirmation_s"
+                ),
+                "runtime_integrity_calibration_file": LaunchConfiguration(
+                    "calibration_file"
+                ),
                 "path_clearance_radius_m": f("path_clearance_radius_m"),
                 "planning_lookahead_m": f("planning_lookahead_m"),
                 "clear_confirmation_s": f("clear_confirmation_s"),
+                "dynamic_path_query_mode": LaunchConfiguration(
+                    "dynamic_path_query_mode"
+                ),
+                "minimum_dynamic_cluster_points": i(
+                    "minimum_dynamic_cluster_points"
+                ),
+                "dynamic_cluster_radius_m": f("dynamic_cluster_radius_m"),
                 "latency_profile": LaunchConfiguration("latency_profile"),
                 "planner_delay_ms": f("planner_delay_ms"),
                 "geometric_clearance_m": f("geometric_clearance_m"),

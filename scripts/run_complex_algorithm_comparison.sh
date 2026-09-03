@@ -6,6 +6,7 @@ workspace_root="$(cd -- "${script_dir}/.." && pwd -P)"
 timestamp="$(date -u +%Y%m%dT%H%M%SZ)"
 result_dir="$(realpath -m -- "${1:-${workspace_root}/experiments/results/impact_complex_comparison/gate_${timestamp}_$$}")"
 comparison_thresholds="$(realpath -m -- "${XQ_COMPLEX_THRESHOLDS:-${workspace_root}/config/complex_comparison_thresholds.json}")"
+comparison_analyzer="$(realpath -m -- "${XQ_COMPLEX_ANALYZER:-${workspace_root}/scripts/analyze_complex_comparison.py}")"
 case "${result_dir}" in
   "${workspace_root}"/experiments/results/impact_complex_comparison/*) ;;
   *) echo "Complex comparison results must stay under this workspace." >&2; exit 2 ;;
@@ -13,6 +14,10 @@ esac
 case "${comparison_thresholds}" in
   "${workspace_root}"/config/*.json) ;;
   *) echo "Complex comparison thresholds must stay under the project config directory." >&2; exit 2 ;;
+esac
+case "${comparison_analyzer}" in
+  "${workspace_root}"/scripts/*.py) ;;
+  *) echo "Complex comparison analyzer must stay under the project scripts directory." >&2; exit 2 ;;
 esac
 mkdir -p -- "${result_dir}/configuration" "${result_dir}/ros_logs"
 
@@ -23,7 +28,7 @@ for required in \
   "${workspace_root}/config/complex_dynamic_thresholds.json" \
   "${comparison_thresholds}" \
   "${workspace_root}/config/p13_gate_thresholds.json" \
-  "${workspace_root}/scripts/analyze_complex_comparison.py" \
+  "${comparison_analyzer}" \
   "${workspace_root}/scripts/audit_external_assets.sh"; do
   [[ -f "${required}" ]] || { echo "Missing complex-comparison dependency: ${required}" >&2; exit 2; }
 done
@@ -54,6 +59,20 @@ obstacle_enter_start_s="$(python3 -c 'import json,sys; print(json.load(open(sys.
 obstacle_enter_end_s="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("obstacle_enter_end_s", 28.0))' "${comparison_thresholds}")"
 obstacle_leave_start_s="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("obstacle_leave_start_s", 44.0))' "${comparison_thresholds}")"
 obstacle_leave_end_s="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("obstacle_leave_end_s", 48.0))' "${comparison_thresholds}")"
+candidate_generation_mode="${XQ_CANDIDATE_GENERATION_MODE:-legacy}"
+candidate_metric_source="${XQ_CANDIDATE_METRIC_SOURCE:-metadata}"
+lattice_lateral_levels="${XQ_LATTICE_LATERAL_LEVELS:-5}"
+lattice_vertical_levels="${XQ_LATTICE_VERTICAL_LEVELS:-2}"
+task_progress_weight="${XQ_TASK_PROGRESS_WEIGHT:-0.85}"
+task_map_age_time_constant_s="${XQ_TASK_MAP_AGE_TIME_CONSTANT_S:-20.0}"
+research_energy_remaining="${XQ_RESEARCH_ENERGY_REMAINING:-32.0}"
+utility_indifference_band="${XQ_UTILITY_INDIFFERENCE_BAND:-0.0}"
+dynamic_path_query_mode="${XQ_DYNAMIC_PATH_QUERY_MODE:-forward_axis}"
+minimum_dynamic_cluster_points="${XQ_MINIMUM_DYNAMIC_CLUSTER_POINTS:-1}"
+dynamic_cluster_radius_m="${XQ_DYNAMIC_CLUSTER_RADIUS_M:-0.45}"
+terminal_extension_mode="${XQ_TERMINAL_EXTENSION_MODE:-fixed}"
+runtime_integrity_guard_mode="${XQ_RUNTIME_INTEGRITY_GUARD_MODE:-disabled}"
+runtime_integrity_margin_m="${XQ_RUNTIME_INTEGRITY_MARGIN_M:-0.12}"
 [[ "${world_filename}" == "$(basename -- "${world_filename}")" ]] || {
   echo "Complex world must be a project-local installed world filename." >&2; exit 2;
 }
@@ -73,15 +92,22 @@ cp -- "${workspace_root}/xq_install/.xq_build_manifest.json" "${result_dir}/conf
 for source in \
   src/xq_sim_bringup/launch/xq_p13_flight.launch.py \
   src/xq_autonomy/xq_autonomy/integrity_exploration.py \
+  src/xq_autonomy/xq_autonomy/candidate_metrics.py \
+  src/xq_autonomy/xq_autonomy/integrity_evaluation.py \
   src/xq_autonomy/xq_autonomy/integrity.py \
+  src/xq_autonomy/xq_autonomy/dynamic_planning.py \
   src/xq_autonomy/xq_autonomy/p6_directional_integrity_node.py \
   src/xq_autonomy/xq_autonomy/p11_integrity_exploration_node.py \
   src/xq_autonomy/xq_autonomy/p11_flight_controller_node.py \
+  src/xq_autonomy/xq_autonomy/p11_flight_evaluator_node.py \
   src/xq_autonomy/xq_autonomy/dynamic_voxel_map.py \
   src/xq_autonomy/xq_autonomy/p12_dynamic_map_node.py \
+  src/xq_autonomy/xq_autonomy/p12_flight_controller_node.py \
+  src/xq_autonomy/xq_autonomy/p12_flight_evaluator_node.py \
   src/xq_autonomy/xq_autonomy/p13_flight_controller_node.py \
+  src/xq_autonomy/xq_autonomy/p13_flight_evaluator_node.py \
   scripts/analyze_p13_latency_bag.py \
-  scripts/analyze_complex_comparison.py; do
+  "${comparison_analyzer#${workspace_root}/}"; do
   cp -- "${workspace_root}/${source}" "${result_dir}/configuration/$(basename "${source}")"
 done
 sha256sum "${result_dir}"/configuration/* >"${result_dir}/configuration.sha256"
@@ -160,6 +186,20 @@ for index in "${!variants[@]}"; do
     echo "obstacle_enter_end_s=${obstacle_enter_end_s}"
     echo "obstacle_leave_start_s=${obstacle_leave_start_s}"
     echo "obstacle_leave_end_s=${obstacle_leave_end_s}"
+    echo "candidate_generation_mode=${candidate_generation_mode}"
+    echo "candidate_metric_source=${candidate_metric_source}"
+    echo "lattice_lateral_levels=${lattice_lateral_levels}"
+    echo "lattice_vertical_levels=${lattice_vertical_levels}"
+    echo "task_progress_weight=${task_progress_weight}"
+    echo "task_map_age_time_constant_s=${task_map_age_time_constant_s}"
+    echo "research_energy_remaining=${research_energy_remaining}"
+    echo "utility_indifference_band=${utility_indifference_band}"
+    echo "dynamic_path_query_mode=${dynamic_path_query_mode}"
+    echo "minimum_dynamic_cluster_points=${minimum_dynamic_cluster_points}"
+    echo "dynamic_cluster_radius_m=${dynamic_cluster_radius_m}"
+    echo "terminal_extension_mode=${terminal_extension_mode}"
+    echo "runtime_integrity_guard_mode=${runtime_integrity_guard_mode}"
+    echo "runtime_integrity_margin_m=${runtime_integrity_margin_m}"
     echo "flight_mode=full_normal_autonomy_no_fault_injection"
     echo "comparison_difference=integrity_hard_filter_only"
     echo "recording_profile=low_interference_algorithm_evidence"
@@ -179,6 +219,7 @@ for index in "${!variants[@]}"; do
     /integrity/exploration_debug /planning/p11/frontier_candidate_set \
     /planning/p11/frontier_candidates /planning/p11/selected_bspline \
     /planning/p11/unconstrained_bspline /xq/p11/flight_status /xq/p12/flight_status \
+    /xq/p3/cmd_vel \
     /xq/eval/p12/obstacle_state /xq/eval/agent_01/ground_truth /tf /tf_static /clock \
     >"${arm_dir}/rosbag.log" 2>&1 < /dev/null & pids+=("$!")
 
@@ -208,6 +249,20 @@ for index in "${!variants[@]}"; do
     mission_distance_m:=24.0 lateral_offset_m:="${lateral_offset_m}" lateral_candidate_shape:=challenge_then_center \
     enable_vertical_candidate:="${enable_vertical_candidate}" vertical_offset_m:="${vertical_offset_m}" \
     enable_diagonal_vertical_candidates:="${enable_diagonal_vertical_candidates}" \
+    candidate_generation_mode:="${candidate_generation_mode}" \
+    candidate_metric_source:="${candidate_metric_source}" \
+    lattice_lateral_levels:="${lattice_lateral_levels}" \
+    lattice_vertical_levels:="${lattice_vertical_levels}" \
+    task_progress_weight:="${task_progress_weight}" \
+    task_map_age_time_constant_s:="${task_map_age_time_constant_s}" \
+    research_energy_remaining:="${research_energy_remaining}" \
+    utility_indifference_band:="${utility_indifference_band}" \
+    dynamic_path_query_mode:="${dynamic_path_query_mode}" \
+    minimum_dynamic_cluster_points:="${minimum_dynamic_cluster_points}" \
+    dynamic_cluster_radius_m:="${dynamic_cluster_radius_m}" \
+    terminal_extension_mode:="${terminal_extension_mode}" \
+    runtime_integrity_guard_mode:="${runtime_integrity_guard_mode}" \
+    runtime_integrity_margin_m:="${runtime_integrity_margin_m}" \
     segment_goal_tolerance_m:="${segment_goal_tolerance_m}" \
     geometric_clearance_m:=0.82 fixed_buffer_m:=0.58 protection_level_m:=0.10 \
     required_margin_m:=0.06 maximum_speed_mps:=0.42 maximum_acceleration_mps2:=0.8 \
@@ -219,58 +274,10 @@ for index in "${!variants[@]}"; do
     obstacle_leave_end_s:="${obstacle_leave_end_s}" \
     >"${arm_dir}/launch.log" 2>&1 < /dev/null & pids+=("$!")
   launch_pid="${pids[1]}"
-  parameter_ready=false
-  for attempt in {1..40}; do
-    if ros2 param get /xq_p13_flight_controller enable_vertical_candidate \
-      >"${arm_dir}/vertical-candidate.parameter.txt" 2>&1; then
-      ros2 param get /xq_p13_flight_controller vertical_offset_m \
-        >"${arm_dir}/vertical-offset.parameter.txt" 2>&1
-      ros2 param get /xq_p13_flight_controller enable_diagonal_vertical_candidates \
-        >"${arm_dir}/diagonal-vertical-candidates.parameter.txt" 2>&1
-      ros2 param get /xq_p13_flight_controller segment_goal_tolerance_m \
-        >"${arm_dir}/segment-goal-tolerance.parameter.txt" 2>&1
-      ros2 param get /xq_p12_dynamic_map post_dynamic_static_confirmation_s \
-        >"${arm_dir}/post-dynamic-static-confirmation.parameter.txt" 2>&1
-      ros2 param get /xq_p12_dynamic_map reversible_static_ttl_s \
-        >"${arm_dir}/reversible-static-ttl.parameter.txt" 2>&1
-      parameter_ready=true
-      break
-    fi
-    sleep 0.25
-  done
-  [[ "${parameter_ready}" == true ]] || {
-    echo "P13 flight-controller spatial-candidate parameters were not readable." >&2; exit 8;
-  }
-  grep -Eiq "Boolean value is: ${enable_vertical_candidate}$" \
-    "${arm_dir}/vertical-candidate.parameter.txt" || {
-      echo "P13 flight-controller vertical-candidate parameter does not match the frozen scenario." >&2
-      cat "${arm_dir}/vertical-candidate.parameter.txt" >&2
-      exit 8
-    }
-  grep -Eiq "Boolean value is: ${enable_diagonal_vertical_candidates}$" \
-    "${arm_dir}/diagonal-vertical-candidates.parameter.txt" || {
-      echo "P13 flight-controller diagonal-spatial parameter does not match the frozen scenario." >&2
-      cat "${arm_dir}/diagonal-vertical-candidates.parameter.txt" >&2
-      exit 8
-    }
-  grep -Fxiq "Double value is: ${segment_goal_tolerance_m}" \
-    "${arm_dir}/segment-goal-tolerance.parameter.txt" || {
-      echo "P13 flight-controller segment-goal tolerance does not match the frozen scenario." >&2
-      cat "${arm_dir}/segment-goal-tolerance.parameter.txt" >&2
-      exit 8
-    }
-  grep -Fxiq "Double value is: ${post_dynamic_static_confirmation_s}" \
-    "${arm_dir}/post-dynamic-static-confirmation.parameter.txt" || {
-      echo "P12 post-dynamic static confirmation does not match the frozen scenario." >&2
-      cat "${arm_dir}/post-dynamic-static-confirmation.parameter.txt" >&2
-      exit 8
-    }
-  grep -Fxiq "Double value is: ${reversible_static_ttl_s}" \
-    "${arm_dir}/reversible-static-ttl.parameter.txt" || {
-      echo "P12 reversible-static TTL does not match the frozen scenario." >&2
-      cat "${arm_dir}/reversible-static-ttl.parameter.txt" >&2
-      exit 8
-    }
+  # Runtime configuration is audited from the same status messages consumed
+  # by the evaluators and recorded in the bag.  Avoid ros2cli parameter calls:
+  # each call creates an extra DDS participant and can block independently of
+  # an otherwise healthy data plane.
   deadline=$((SECONDS + 330))
   while [[ ! -s "${arm_dir}/p13-result.json" ]] && ((SECONDS < deadline)); do
     kill -0 "${launch_pid}" 2>/dev/null || {
@@ -293,8 +300,11 @@ for index in "${!variants[@]}"; do
   }
   for node in xq_p13_flight_controller xq_p12_dynamic_map xq_p11_integrity_exploration; do
     graph_ready=false
-    for attempt in 1 2 3 4 5 6 7 8 9 10; do
-      if timeout 8 ros2 node info "/${node}" \
+    # ros2cli discovery can leave a DDS participant blocked during heavily
+    # loaded Gazebo teardown.  TERM alone is not a hard bound, so force KILL
+    # after two seconds and keep the whole evidence audit under 24 seconds.
+    for attempt in 1 2 3; do
+      if timeout --kill-after=2s 6s ros2 node info "/${node}" \
         >"${arm_dir}/${node}-graph.txt" 2>/dev/null; then
         graph_ready=true
         break
@@ -312,6 +322,11 @@ for index in "${!variants[@]}"; do
   done
   stop_groups
   [[ -f "${arm_dir}/rosbag/metadata.yaml" ]] || { echo "Complex ${variant} rosbag missing." >&2; exit 9; }
+  if grep -Eq 'Traceback|process has died|\[ERROR\]' "${arm_dir}/launch.log"; then
+    echo "Complex ${variant} launch log contains a node failure or traceback." >&2
+    grep -En 'Traceback|process has died|\[ERROR\]' "${arm_dir}/launch.log" >&2 || true
+    exit 10
+  fi
   for result in p11-result.json p12-result.json p13-result.json; do
     [[ "$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["status"])' "${arm_dir}/${result}")" == PASS ]] || {
       echo "Complex ${variant} ${result} failed." >&2
@@ -331,7 +346,7 @@ if [[ ${#variants[@]} -ne 2 ]] ||
   exit 0
 fi
 
-python3 "${script_dir}/analyze_complex_comparison.py" \
+python3 "${comparison_analyzer}" \
   --result-dir "${result_dir}" --thresholds "${comparison_thresholds}" \
   --world-sha256 "${world_sha}" --output "${result_dir}/comparison-result.json" \
   >"${result_dir}/analysis.log"

@@ -16,7 +16,7 @@ IMPACT 是一套面向 **GNSS 拒止、未知环境与动态场景** 的单机�
 
 ## 当前状态
 
-> **2026-09-02：SIL 仿真 P0–P14 及复杂组合三维完整算法 Gate 已全部通过，下一阶段为硬件部署。**
+> **2026-09-03：SIL 仿真 P0–P15 已通过；P15 完成 map-derived 研究比较，下一阶段仍为多场景统计实验与硬件部署。**
 
 当前仓库不是仅包含方案文档的空工程，已经建立从 Gazebo / ArduPilot SITL 到 FAST-LIO2、Frontier、EGO-Planner 和导航完整性估计的可重复仿真链路。
 
@@ -30,6 +30,10 @@ P13 已完成真实端到端时间链和 nearest-rank p99 安全闭环；同一�
 AL 降低 `0.09058 m`，速度上限由 `0.420` 降至 `0.145 m/s`，两轮均飞完整走廊。
 P14 已完成十类确定性故障注入和弹性状态机；矩阵轮次飞满 `23.9495 m`，持续 LiDAR
 中断实际走完 `NORMAL→CAUTIOUS→RECOVERY→BRAKE→HOVER→LAND` 并下降 `0.5278 m`。
+P15 将候选扩展为在线 5×2 三维 lattice，并由地图/轨迹计算任务收益、碰撞概率和运动/
+返航能耗。只改变完整性硬过滤的正式配对比较中，独立真值最低 Margin 从
+`0.021936 m` 提升到 `0.281308 m`，Availability 从 `0.807069` 提升到 `1.0`，路径
+开销仅 `0.6701%`；两个实验臂均飞满约 24 m。
 
 面向正常飞行展示，又完成了更复杂的组合三维仓库 Gate。它在同一 24 m 任务中同时要求
 `right→left→up_right→direct`、动态障碍制动/重开和 P13 时延闭环，以排除固定绕行方向、
@@ -59,6 +63,7 @@ Gazebo 与 RViz 可由
 | P12   | Dynamic Obstacle / Dynamic Map               | ✅ PASS |
 | P13   | Latency-Aware Safety                         | ✅ PASS |
 | P14   | Fault Injection & Resilient Autonomy         | ✅ PASS |
+| P15   | Map-Derived Integrity Planning Research Gate | ✅ PASS |
 | COMPLEX | Compositional 3D Full Autonomy             | ✅ PASS |
 | HW    | Mid-360S + Atlas + CUAV 实机闭环                 | ⏳ TODO |
 
@@ -733,6 +738,9 @@ P13 Latency-aware Safety      PASS
 P14 Fault Injection          PASS
  │
  ▼
+P15 Map-derived Research     PASS
+ │
+ ▼
 Hardware Deployment
 ```
 
@@ -750,7 +758,7 @@ Hardware Deployment
 
 ---
 
-# 8. 已完成：P14；下一阶段：Hardware Deployment
+# 8. 已完成：P15；下一阶段：多场景统计实验与 Hardware Deployment
 
 ## P9 — Integrity Margin（已完成）
 
@@ -957,6 +965,22 @@ dropout。飞行净前进 `23.9495 m`、ATE RMS `0.08834 m`；P12 动态障碍�
 
 ---
 
+## P15 — Map-Derived Integrity Planning Research Gate
+
+P15 取消候选名称到人工指标的绑定，在每个滚动规划窗在线生成 5×2 三维 lattice。任务
+收益来自路径前进效率和在线 surfel 的置信度/几何质量/陈旧度；碰撞概率、运动能耗和
+返航储备均由候选轨迹计算。完整性 Margin 仍只作为硬约束，不进入任务效用。
+
+正式比较的两个实验臂共享世界、候选、地图指标、碰撞/能量门、动态地图和时延闭环，
+唯一变量是完整性硬过滤。约束臂把独立真值最低 Margin 提升 `0.259372 m`、Availability
+提升 `0.192931`，ATE 仅增加 `0.000739 m`，路径增加 `0.167721 m`，任务时间减少
+`3.5125 s`。20 项自动检查和 140 项算法/验收契约测试全部通过。详见
+[`docs/P15_RESEARCH_GRADE_CANDIDATE_DESIGN.md`](docs/P15_RESEARCH_GRADE_CANDIDATE_DESIGN.md)
+与
+[`docs/P15_RESEARCH_GRADE_ACCEPTANCE_REPORT.md`](docs/P15_RESEARCH_GRADE_ACCEPTANCE_REPORT.md)。
+
+---
+
 # 9. Repository Structure
 
 当前主要目录：
@@ -984,6 +1008,8 @@ IMPACT/
 │   ├── P12_DYNAMIC_OBSTACLE_ACCEPTANCE_REPORT.md
 │   ├── P13_LATENCY_AWARE_SAFETY_ACCEPTANCE_REPORT.md
 │   ├── P14_FAULT_INJECTION_ACCEPTANCE_REPORT.md
+│   ├── P15_RESEARCH_GRADE_CANDIDATE_DESIGN.md
+│   ├── P15_RESEARCH_GRADE_ACCEPTANCE_REPORT.md
 │   ├── COMPLEX_3D_FULL_AUTONOMY_REPORT.md
 │   └── COMPLEX_COMPOSITIONAL_3D_ACCEPTANCE_REPORT.md
 │
@@ -1005,6 +1031,8 @@ IMPACT/
 │   ├── run_p10_flight_gate.sh
 │   ├── run_p10_visual_capture.sh
 │   ├── run_p14_fault_gate.sh
+│   ├── run_p15_research_comparison.sh
+│   ├── run_p15_live_visualization.sh
 │   └── view_p14_combined.sh
 │
 └── src/
@@ -1103,6 +1131,12 @@ bash scripts/run_p14_fault_gate.sh
 
 # P14 — Gazebo + RViz replay of latest PASS matrix trial
 bash scripts/view_p14_combined.sh
+
+# P15 — map-derived paired research Gate
+bash scripts/run_p15_research_comparison.sh
+
+# P15 — Gazebo + RViz live visualization, GPU when available
+bash scripts/run_p15_live_visualization.sh
 
 # Complex live demo — full normal flight algorithm, no fault injection
 bash scripts/run_complex_live_visualization.sh

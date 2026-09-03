@@ -16,7 +16,11 @@ from sensor_msgs.msg import PointCloud2
 from std_msgs.msg import String
 from xq_sim_interfaces.msg import ReplanEvent
 
-from .dynamic_planning import DynamicPassageGate, path_obstruction
+from .dynamic_planning import (
+    DynamicPassageGate,
+    resample_polyline,
+    supported_polyline_obstruction,
+)
 from .p11_flight_controller_node import P11FlightControllerNode
 from .p12_dynamic_map_node import _cloud_xyz
 
@@ -33,9 +37,20 @@ class P12FlightControllerNode(P11FlightControllerNode):
             # still rejecting genuinely stale obstacle state.
             "dynamic_cloud_timeout_s": 1.50,
             "minimum_dynamic_range_m": 0.75,
+            # Legacy phases retain the original +X corridor.  P15 opts into
+            # the commanded 3-D B-spline query explicitly.
+            "dynamic_path_query_mode": "forward_axis",
+            "dynamic_path_query_max_points": 16,
+            "minimum_dynamic_cluster_points": 1,
+            "dynamic_cluster_radius_m": 0.45,
         }
         for name, value in additions.items():
             self.declare_parameter(name, value)
+        if str(self.get_parameter("dynamic_path_query_mode").value) not in {
+            "forward_axis",
+            "active_trajectory",
+        }:
+            raise ValueError("unsupported dynamic_path_query_mode")
         self._dynamic_points = np.empty((0, 3), dtype=np.float64)
         self._dynamic_stamp_s = -math.inf
         self._dynamic_stamp_msg = Time()
@@ -48,6 +63,7 @@ class P12FlightControllerNode(P11FlightControllerNode):
         self._dynamic_brake_duration_s = 0.0
         self._last_guard_s: float | None = None
         self._nearest_dynamic_range_m = math.inf
+        self._dynamic_support_count = 0
         self._last_p12_phase = ""
         self._dynamic_callbacks = 0
         self._last_guard_debug_s = -math.inf
@@ -116,7 +132,14 @@ class P12FlightControllerNode(P11FlightControllerNode):
         self._map_status = payload
         self._map_status_stamp_s = float(payload.get("stamp_s", -math.inf))
 
-    def _publish_replan(self, reason: str, *, brake: bool) -> None:
+    def _publish_replan(
+        self,
+        reason: str,
+        *,
+        brake: bool,
+        use_dynamic_stamp: bool = True,
+        outcome: str | None = None,
+    ) -> None:
         now = self.get_clock().now().to_msg()
         event = ReplanEvent()
         event.header.stamp = now
@@ -124,7 +147,9 @@ class P12FlightControllerNode(P11FlightControllerNode):
         self._replan_count += 1
         event.seq = self._replan_count
         event.trigger_reason = reason
-        event.trigger_stamp = self._dynamic_stamp_msg if brake else now
+        event.trigger_stamp = (
+            self._dynamic_stamp_msg if brake and use_dynamic_stamp else now
+        )
         event.map_ready_stamp = now
         event.optimizer_start_stamp = now
         event.candidate_ready_stamp = now
@@ -132,12 +157,53 @@ class P12FlightControllerNode(P11FlightControllerNode):
         event.accepted_stamp = now
         event.latency_ms = max(
             0.0,
-            1000.0 * (self._now_s() - self._dynamic_stamp_s) if brake else 0.0,
+            1000.0 * (self._now_s() - self._dynamic_stamp_s)
+            if brake and use_dynamic_stamp
+            else 0.0,
         )
         event.accepted = True
         event.brake_fallback = brake
-        event.outcome = "BRAKE_ACCEPTED" if brake else "CORRIDOR_TRAJECTORY_REACCEPTED"
+        event.outcome = outcome or (
+            "BRAKE_ACCEPTED" if brake else "CORRIDOR_TRAJECTORY_REACCEPTED"
+        )
         self.replan_publisher.publish(event)
+
+    def _dynamic_query_path(self, position: np.ndarray) -> np.ndarray:
+        """Build the remaining commanded path used by the safety guard."""
+        lookahead = self._float("planning_lookahead_m")
+        fallback = np.stack(
+            (position, position + np.asarray((lookahead, 0.0, 0.0)))
+        )
+        if str(self.get_parameter("dynamic_path_query_mode").value) != (
+            "active_trajectory"
+        ):
+            return fallback
+        trajectory = (
+            self._unconstrained
+            if self.variant == "information_only"
+            else self._selected
+        )
+        if trajectory is None or len(trajectory.pos_pts) < 2:
+            return fallback
+        points = np.asarray(
+            [(point.x, point.y, point.z) for point in trajectory.pos_pts],
+            dtype=float,
+        )
+        if not np.isfinite(points).all():
+            return fallback
+        closest = int(np.argmin(np.linalg.norm(points - position, axis=1)))
+        path = np.vstack((position, points[closest:]))
+        keep = np.concatenate(
+            ([True], np.linalg.norm(np.diff(path, axis=0), axis=1) > 1.0e-6)
+        )
+        path = path[keep]
+        return (
+            resample_polyline(
+                path, int(self.get_parameter("dynamic_path_query_max_points").value)
+            )
+            if len(path) >= 2
+            else fallback
+        )
 
     def _guard(self, now_s: float) -> tuple[bool, str]:
         cloud_age_s = now_s - self._dynamic_stamp_s
@@ -145,6 +211,7 @@ class P12FlightControllerNode(P11FlightControllerNode):
             "dynamic_cloud_timeout_s"
         ):
             self._nearest_dynamic_range_m = math.inf
+            self._dynamic_support_count = 0
             if now_s - self._last_guard_debug_s >= 2.0:
                 self.get_logger().info(
                     f"P12 guard fresh=false callbacks={self._dynamic_callbacks} "
@@ -155,17 +222,21 @@ class P12FlightControllerNode(P11FlightControllerNode):
                 return True, "BRAKE_DYNAMIC_MAP_STALE"
             return False, "NO_FRESH_DYNAMIC_OCCUPANCY"
         position = self._position(self._odom)
-        goal = position + np.asarray((self._float("planning_lookahead_m"), 0.0, 0.0))
-        query_points = self._dynamic_points[
-            np.linalg.norm(self._dynamic_points - position, axis=1)
-            >= self._float("minimum_dynamic_range_m")
-        ] if len(self._dynamic_points) else self._dynamic_points
-        blocked, distance = path_obstruction(
+        query_path = self._dynamic_query_path(position)
+        # These are already world-frame, temporally confirmed map voxels, not
+        # raw LiDAR returns.  Never reapply the sensor blind-range filter here:
+        # a voxel observed earlier must remain capable of braking when the
+        # vehicle gets closer than the LiDAR's minimum range.
+        query_points = self._dynamic_points
+        blocked, distance, support_count = supported_polyline_obstruction(
             query_points,
-            position,
-            goal,
+            query_path,
             clearance_radius_m=self._float("path_clearance_radius_m"),
             lookahead_m=self._float("planning_lookahead_m"),
+            minimum_support_points=int(
+                self.get_parameter("minimum_dynamic_cluster_points").value
+            ),
+            support_radius_m=self._float("dynamic_cluster_radius_m"),
         )
         status_fresh = now_s - self._map_status_stamp_s <= self._float(
             "dynamic_cloud_timeout_s"
@@ -175,6 +246,12 @@ class P12FlightControllerNode(P11FlightControllerNode):
             status_distance = self._map_status.get("nearest_forward_dynamic_range_m")
             if status_distance is not None:
                 distance = min(distance, float(status_distance))
+        if status_fresh:
+            support_count = max(
+                support_count,
+                int(self._map_status.get("forward_path_support_count", 0)),
+            )
+        self._dynamic_support_count = support_count
         self._nearest_dynamic_range_m = distance
         if now_s - self._last_guard_debug_s >= 2.0:
             self.get_logger().info(
@@ -183,6 +260,8 @@ class P12FlightControllerNode(P11FlightControllerNode):
                 f"map_status_fresh={str(status_fresh).lower()} "
                 f"map_blocked={str(self._map_status.get('forward_path_blocked') is True).lower()} "
                 f"raw_blocked={str(self._map_status.get('raw_path_blocked') is True).lower()} "
+                f"support={support_count}/"
+                f"{int(self.get_parameter('minimum_dynamic_cluster_points').value)} "
                 f"blocked={str(blocked).lower()} nearest="
                 f"{distance if math.isfinite(distance) else -1.0:.3f}m"
             )
@@ -220,6 +299,8 @@ class P12FlightControllerNode(P11FlightControllerNode):
             "current_position_z_m": float(position[2]) if position is not None else None,
             "segment_index": self._segment_index,
             "segments_completed": self._segments_completed,
+            "planning_windows_closed": self._planning_windows_closed,
+            "interrupted_decisions": self._interrupted_decisions,
             "decisions_applied": self._decisions_applied,
             "rolling_horizon": True,
             "selected_applied": bool(
@@ -236,6 +317,14 @@ class P12FlightControllerNode(P11FlightControllerNode):
                 self._nearest_dynamic_range_m
                 if math.isfinite(self._nearest_dynamic_range_m)
                 else None
+            ),
+            "dynamic_support_count": self._dynamic_support_count,
+            "minimum_dynamic_cluster_points": int(
+                self.get_parameter("minimum_dynamic_cluster_points").value
+            ),
+            "dynamic_cluster_radius_m": self._float("dynamic_cluster_radius_m"),
+            "dynamic_path_query_mode": str(
+                self.get_parameter("dynamic_path_query_mode").value
             ),
             "finished": self._finished,
             "ground_truth_subscribed": False,
@@ -260,6 +349,8 @@ class P12FlightControllerNode(P11FlightControllerNode):
         if brake and initialization_complete and not self._finished:
             if self._trajectory_start_sim_s is not None:
                 self._trajectory_start_sim_s += delta
+            if self._last_terminal_progress_s is not None:
+                self._last_terminal_progress_s += delta
             self._dynamic_brake_duration_s += delta
             self.command_publisher.publish(Twist())
             elapsed = now_s - self._start_sim_s if self._start_sim_s is not None else 0.0
@@ -275,6 +366,9 @@ def main(args=None) -> None:
         rclpy.spin(node)
     except (KeyboardInterrupt, ExternalShutdownException):
         pass
+    except Exception:
+        if rclpy.ok():
+            raise
     finally:
         if rclpy.ok():
             for _ in range(3):

@@ -5,8 +5,12 @@ int64[] trajectory_ids
 string[] candidate_names
 string[] frontier_ids
 float64[] information_gains
+float64[] progress_efficiencies
+float64[] map_observation_gains
+float64[] localization_information_traces
 float64[] travel_times_s
 float64[] energy_costs
+float64[] return_energy_costs
 float64[] collision_probabilities
 float64[] utilities
 float64[] predicted_minimum_margins
@@ -24,4 +28,8 @@ int64 selected_trajectory_id
 bool valid
 bool hard_constraint
 bool margin_in_utility
+bool minimum_intervention_applied
+float64 utility_indifference_band
+string candidate_generation_mode
+string metric_source
 string reason

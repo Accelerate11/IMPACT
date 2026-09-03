@@ -1,0 +1,4 @@
+# Large raw artifacts retained in the WSL formal result directory.
+# Format: SHA256  bytes  relative_path
+294f0e0690f60a4383ea060c9342bdc24aa68f45378f00a8bcc23bbc84c0620b  18757936  information_only/rosbag/rosbag_0.db3.zstd
+506de2f67cd0e0bf8796714819f8d6d227c2d3313fb46d98939868319b21c4a5  18639362  integrity_constrained/rosbag/rosbag_0.db3.zstd

@@ -220,6 +220,9 @@ def main(args=None) -> None:
         rclpy.spin(node)
     except (KeyboardInterrupt, ExternalShutdownException):
         pass
+    except Exception:
+        if rclpy.ok():
+            raise
     finally:
         if not node.finalized and node.complete_wall_s is not None:
             node._finalize()

@@ -1,0 +1,164 @@
+[INFO] [launch]: All log files can be found below /home/accelerate/xuanqiong_x1_sim_ws/experiments/results/impact_complex_comparison/p15_research_20260903_final_v4/ros_logs/integrity_constrained/2026-09-03-01-57-18-237352-accelerate-22487
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [xq_p13_gazebo-1]: process started with pid [22537]
+[INFO] [static_transform_publisher-2]: process started with pid [22539]
+[INFO] [static_transform_publisher-3]: process started with pid [22541]
+[INFO] [xq_gz_bridge_node-4]: process started with pid [22543]
+[INFO] [fastlio_mapping-5]: process started with pid [22545]
+[INFO] [xq_p6_directional_integrity-6]: process started with pid [22547]
+[INFO] [xq_p10_information_map-7]: process started with pid [22549]
+[INFO] [xq_p11_integrity_exploration-8]: process started with pid [22551]
+[INFO] [xq_p12_dynamic_map-9]: process started with pid [22553]
+[INFO] [xq_p12_obstacle_driver-10]: process started with pid [22559]
+[INFO] [xq_p13_flight_controller-11]: process started with pid [22561]
+[INFO] [xq_p11_flight_evaluator-12]: process started with pid [22563]
+[INFO] [xq_p12_flight_evaluator-13]: process started with pid [22565]
+[INFO] [xq_p13_flight_evaluator-14]: process started with pid [22567]
+[static_transform_publisher-3] [INFO] [1788371839.511131198] [xq_p13_base_to_livox_imu]: Spinning until stopped - publishing transform
+[static_transform_publisher-3] translation: ('0.000000', '0.000000', '0.015000')
+[static_transform_publisher-3] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-3] from 'xq_base_link' to 'livox_imu'
+[static_transform_publisher-2] [INFO] [1788371839.862871599] [xq_p13_base_to_livox]: Spinning until stopped - publishing transform
+[static_transform_publisher-2] translation: ('0.040000', '0.000000', '0.135000')
+[static_transform_publisher-2] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-2] from 'xq_base_link' to 'livox_frame'
+[fastlio_mapping-5] [INFO] [1788371841.151206700] [xq_fast_lio]: p_pre->lidar_type 5
+[fastlio_mapping-5] [INFO] [1788371841.157291808] [xq_fast_lio]: Node init finished.
+[xq_p12_obstacle_driver-10] [INFO] [1788371841.687969210] [xq_p12_obstacle_driver]: P12 obstacle driver is evaluation/scenario-only
+[xq_gz_bridge_node-4] [INFO] [1788371841.903164658] [xq_gz_bridge_node]: XQ bridge ready: lidar /xq/lidar/points -> /livox/lidar, IMU /xq/imu -> /livox/imu, cmd_vel /xq/p3/cmd_vel -> /model/xq_agent_01/cmd_vel
+[xq_gz_bridge_node-4] [INFO] [1788371841.903257263] [xq_gz_bridge_node]: P2 conditioning: range_noise_std=0.0150 m, lidar_dropout=0.000, imu_dropout=0.000, lidar_jitter=0.000 ms, imu_jitter=0.000 ms, motion_distortion=false
+[xq_gz_bridge_node-4] [WARN] [1788371841.903277181] [xq_gz_bridge_node]: Ground truth is enabled on evaluation-only topic /xq/eval/agent_01/ground_truth; autonomy nodes must not subscribe
+[xq_p13_flight_evaluator-14] [INFO] [1788371842.044356819] [xq_p13_flight_evaluator]: P13 evaluator is the only P13 consumer of Ground Truth
+[xq_p6_directional_integrity-6] [INFO] [1788371842.266294854] [xq_p6_directional_integrity]: P6 predictor ready: no Ground Truth subscription; planner feedback disabled
+[xq_p10_information_map-7] [INFO] [1788371842.401448739] [xq_p10_information_map]: P10 temporal surfel map ready: FAST-LIO registered cloud only; no Ground Truth
+[xq_p11_integrity_exploration-8] [INFO] [1788371842.551949143] [xq_p11_integrity_exploration]: P11 ready: Margin/collision/return-energy hard filter precedes task utility; no GT
+[xq_p11_flight_evaluator-12] [INFO] [1788371842.655837844] [xq_complex_p11_flight_evaluator]: P11 evaluator variant=integrity_constrained; Ground Truth is evaluation-only
+[xq_p12_dynamic_map-9] [INFO] [1788371842.786097198] [xq_p12_dynamic_map]: P12 dynamic map: LiDAR geometry only; Ground Truth forbidden
+[xq_p13_flight_controller-11] [INFO] [1788371842.844928932] [xq_p13_flight_controller]: P11 flight variant=integrity_constrained; candidates=lattice; metrics=online_map; no Ground Truth
+[xq_p13_flight_controller-11] [INFO] [1788371842.851189820] [xq_p13_flight_controller]: P12 controller extends P11; only dynamic voxel map may trigger replanning
+[xq_p13_flight_controller-11] [INFO] [1788371842.859082803] [xq_p13_flight_controller]: P13 latency-aware safety: measured nearest-rank p99 drives AL and speed; Ground Truth forbidden
+[xq_p12_flight_evaluator-13] [INFO] [1788371842.879166795] [xq_p12_flight_evaluator]: P12 evaluator is the only consumer of obstacle scenario truth
+[fastlio_mapping-5] [WARN] [1788371843.306599896] [xq_fast_lio]: No point, skip this scan!
+[fastlio_mapping-5]
+[fastlio_mapping-5] [INFO] [1788371843.418041411] [xq_fast_lio]: Initialize the map kdtree
+[xq_p12_obstacle_driver-10] [INFO] [1788371843.685546203] [xq_p12_obstacle_driver]: P12 obstacle state=PARKED y=6.60
+[xq_p13_flight_controller-11] [INFO] [1788371843.766471387] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=0 cloud_age=infs points=0
+[xq_p13_flight_controller-11] [INFO] [1788371843.766979179] [xq_p13_flight_controller]: P12 flight phase=WAIT_INITIALIZATION t=0.00s
+[xq_p13_flight_controller-11] [INFO] [1788371845.786345896] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=12 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371847.786536493] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=22 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371849.786314807] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=32 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371851.797087616] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=42 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371853.843712826] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=52 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371853.359692413] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=62 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371853.361916378] [xq_p13_flight_controller]: P11 rolling batch=20261100 segment=1 x=-0.01->7.49 m
+[xq_p13_flight_controller-11] [INFO] [1788371853.363059999] [xq_p13_flight_controller]: P12 flight phase=WAIT_HARD_DECISION t=12.02s
+[xq_p12_dynamic_map-9] [INFO] [1788371853.406375910] [xq_p12_dynamic_map]: P12 baseline static frozen: 2719 occupied voxels
+[xq_p11_integrity_exploration-8] [INFO] [1788371853.785231464] [xq_p11_integrity_exploration]: P11 batch=20271100 unconstrained=lattice_y_-0.35_z_+0.00 selected=lattice_y_-0.35_z_+0.00 | task_efficient_direct:clearance=0.656m,M=-0.088m,feasible=false; lattice_y_+0.00_z_+1.10:clearance=0.280m,M=-0.467m,feasible=false; lattice_y_+0.35_z_+0.00:clearance=0.317m,M=-0.427m,feasible=false; lattice_y_+0.35_z_+1.10:clearance=0.265m,M=-0.482m,feasible=false; lattice_y_+0.70_z_+0.00:clearance=0.123m,M=-0.623m,feasible=false; lattice_y_+0.70_z_+1.10:clearance=0.246m,M=-0.502m,feasible=false; lattice_y_-0.35_z_+0.00:clearance=1.003m,M=0.259m,feasible=true; lattice_y_-0.35_z_+1.10:clearance=0.260m,M=-0.487m,feasible=false; lattice_y_-0.70_z_+0.00:clearance=1.351m,M=0.606m,feasible=true; lattice_y_-0.70_z_+1.10:clearance=0.278m,M=-0.470m,feasible=false
+[xq_p13_flight_controller-11] [INFO] [1788371853.812414198] [xq_p13_flight_controller]: P12 flight phase=EXECUTE t=12.42s
+[xq_p13_flight_controller-11] [INFO] [1788371855.409218498] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=72 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371857.412449061] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=82 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371859.415726040] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=92 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371861.436869470] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=102 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371863.443169045] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=112 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371865.446004534] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=122 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371867.451129304] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=132 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371868.456062138] [xq_p13_flight_controller]: P12 flight phase=BRAKE_DYNAMIC t=27.02s
+[xq_p13_flight_controller-11] [INFO] [1788371869.482476465] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=142 cloud_age=0.200s points=78 map_status_fresh=true map_blocked=true raw_blocked=true support=62/5 blocked=true nearest=2.926m
+[xq_p13_flight_controller-11] [INFO] [1788371871.522035970] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=152 cloud_age=0.200s points=71 map_status_fresh=true map_blocked=true raw_blocked=true support=59/5 blocked=true nearest=2.926m
+[xq_p12_obstacle_driver-10] [INFO] [1788371872.938528891] [xq_p12_obstacle_driver]: P12 obstacle state=ENTERING y=6.60
+[xq_p13_flight_controller-11] [INFO] [1788371873.569326767] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=162 cloud_age=0.200s points=40 map_status_fresh=true map_blocked=true raw_blocked=true support=37/5 blocked=true nearest=2.926m
+[xq_p13_flight_controller-11] [INFO] [1788371875.583464992] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=172 cloud_age=0.200s points=40 map_status_fresh=true map_blocked=true raw_blocked=true support=37/5 blocked=true nearest=2.926m
+[xq_p12_obstacle_driver-10] [INFO] [1788371876.987174692] [xq_p12_obstacle_driver]: P12 obstacle state=BLOCKING y=0.00
+[xq_p13_flight_controller-11] [INFO] [1788371877.606651516] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=182 cloud_age=0.200s points=40 map_status_fresh=true map_blocked=true raw_blocked=true support=37/5 blocked=true nearest=2.927m
+[xq_p13_flight_controller-11] [INFO] [1788371879.618313252] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=192 cloud_age=0.200s points=40 map_status_fresh=true map_blocked=true raw_blocked=true support=37/5 blocked=true nearest=2.926m
+[xq_p13_flight_controller-11] [INFO] [1788371881.624702849] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=202 cloud_age=0.197s points=40 map_status_fresh=true map_blocked=true raw_blocked=true support=37/5 blocked=true nearest=2.926m
+[xq_p13_flight_controller-11] [INFO] [1788371883.646805522] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=212 cloud_age=0.200s points=40 map_status_fresh=true map_blocked=true raw_blocked=true support=37/5 blocked=true nearest=2.926m
+[xq_p12_obstacle_driver-10] [INFO] [1788371882.583508041] [xq_p12_obstacle_driver]: P12 obstacle state=EXITING y=0.00
+[xq_p13_flight_controller-11] [INFO] [1788371883.191982224] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=222 cloud_age=0.200s points=10 map_status_fresh=true map_blocked=true raw_blocked=true support=9/5 blocked=true nearest=2.799m
+[xq_p13_flight_controller-11] [INFO] [1788371885.207746997] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=232 cloud_age=0.200s points=7 map_status_fresh=true map_blocked=true raw_blocked=false support=3/5 blocked=true nearest=-1.000m
+[xq_p12_obstacle_driver-10] [INFO] [1788371886.606989752] [xq_p12_obstacle_driver]: P12 obstacle state=LEFT y=-6.60
+[xq_p13_flight_controller-11] [INFO] [1788371887.214899984] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=242 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=true raw_blocked=false support=0/5 blocked=true nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371887.417593379] [xq_p13_flight_controller]: P12 flight phase=VERIFY_TTL_CLEAR t=48.22s
+[xq_p13_flight_controller-11] [INFO] [1788371888.428746044] [xq_p13_flight_controller]: P12 flight phase=EXECUTE t=49.22s
+[xq_p13_flight_controller-11] [INFO] [1788371889.236379291] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=252 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371891.238839685] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=262 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371893.255242774] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=272 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371895.258234482] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=282 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371897.289054471] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=292 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371899.293524126] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=302 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371901.327314755] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=312 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371901.986168819] [xq_p13_flight_controller]: P12 flight phase=TRACK_TERMINAL t=62.67s
+[xq_p13_flight_controller-11] [INFO] [1788371902.997950397] [xq_p13_flight_controller]: P12 flight phase=REPLAN t=63.67s
+[xq_p13_flight_controller-11] [INFO] [1788371903.046587718] [xq_p13_flight_controller]: P11 rolling batch=20261101 segment=2 x=7.50->15.00 m
+[xq_p13_flight_controller-11] [INFO] [1788371903.047914263] [xq_p13_flight_controller]: P12 flight phase=WAIT_HARD_DECISION t=63.72s
+[xq_p13_flight_controller-11] [INFO] [1788371903.354420312] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=322 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p11_integrity_exploration-8] [INFO] [1788371903.575578657] [xq_p11_integrity_exploration]: P11 batch=20281101 unconstrained=task_efficient_direct selected=lattice_y_+0.35_z_+0.00 | task_efficient_direct:clearance=0.615m,M=-0.129m,feasible=false; lattice_y_+0.00_z_+1.10:clearance=0.651m,M=-0.096m,feasible=false; lattice_y_+0.35_z_+0.00:clearance=0.961m,M=0.217m,feasible=true; lattice_y_+0.35_z_+1.10:clearance=0.984m,M=0.237m,feasible=true; lattice_y_+0.70_z_+0.00:clearance=1.309m,M=0.564m,feasible=true; lattice_y_+0.70_z_+1.10:clearance=1.056m,M=0.309m,feasible=true; lattice_y_-0.35_z_+0.00:clearance=0.278m,M=-0.466m,feasible=false; lattice_y_-0.35_z_+1.10:clearance=0.350m,M=-0.397m,feasible=false; lattice_y_-0.70_z_+0.00:clearance=0.147m,M=-0.598m,feasible=false; lattice_y_-0.70_z_+1.10:clearance=0.259m,M=-0.489m,feasible=false
+[xq_p13_flight_controller-11] [INFO] [1788371903.606134885] [xq_p13_flight_controller]: P12 flight phase=EXECUTE t=64.27s
+[xq_p13_flight_controller-11] [INFO] [1788371905.368373745] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=332 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371907.387264539] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=342 cloud_age=0.200s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371909.442718080] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=352 cloud_age=0.205s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371911.521753477] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=363 cloud_age=0.040s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371913.534620376] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=373 cloud_age=0.040s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371913.030312130] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=383 cloud_age=0.040s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371915.041443209] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=393 cloud_age=0.040s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371917.080528420] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=403 cloud_age=0.050s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371919.087139481] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=413 cloud_age=0.050s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371921.098688906] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=423 cloud_age=0.050s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371923.120951856] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=433 cloud_age=0.050s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371925.190175787] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=443 cloud_age=0.050s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371927.197327856] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=453 cloud_age=0.050s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371929.217674785] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=463 cloud_age=0.050s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371929.415449720] [xq_p13_flight_controller]: P12 flight phase=TRACK_TERMINAL t=92.27s
+[xq_p13_flight_controller-11] [INFO] [1788371930.423250420] [xq_p13_flight_controller]: P12 flight phase=REPLAN t=93.27s
+[xq_p13_flight_controller-11] [INFO] [1788371930.426308824] [xq_p13_flight_controller]: P11 rolling batch=20261102 segment=3 x=15.01->22.51 m
+[xq_p13_flight_controller-11] [INFO] [1788371930.427286929] [xq_p13_flight_controller]: P12 flight phase=WAIT_HARD_DECISION t=93.27s
+[xq_p11_integrity_exploration-8] [INFO] [1788371930.935605543] [xq_p11_integrity_exploration]: P11 batch=20291102 unconstrained=lattice_y_+0.00_z_+1.10 selected=lattice_y_-0.35_z_+1.10 | task_efficient_direct:clearance=0.650m,M=-0.094m,feasible=false; lattice_y_+0.00_z_+1.10:clearance=0.645m,M=-0.102m,feasible=false; lattice_y_+0.35_z_+0.00:clearance=0.315m,M=-0.429m,feasible=false; lattice_y_+0.35_z_+1.10:clearance=0.295m,M=-0.452m,feasible=false; lattice_y_+0.70_z_+0.00:clearance=0.124m,M=-0.621m,feasible=false; lattice_y_+0.70_z_+1.10:clearance=0.058m,M=-0.690m,feasible=false; lattice_y_-0.35_z_+0.00:clearance=0.641m,M=-0.103m,feasible=false; lattice_y_-0.35_z_+1.10:clearance=0.995m,M=0.248m,feasible=true; lattice_y_-0.70_z_+0.00:clearance=0.648m,M=-0.097m,feasible=false; lattice_y_-0.70_z_+1.10:clearance=0.906m,M=0.158m,feasible=true
+[xq_p13_flight_controller-11] [INFO] [1788371930.975971751] [xq_p13_flight_controller]: P12 flight phase=EXECUTE t=93.82s
+[xq_p13_flight_controller-11] [INFO] [1788371931.226948870] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=473 cloud_age=0.050s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371933.238315920] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=483 cloud_age=0.050s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371935.265709507] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=493 cloud_age=0.050s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371937.266272174] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=503 cloud_age=0.050s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371939.269304135] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=513 cloud_age=0.043s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371941.311815019] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=523 cloud_age=0.050s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371943.328374596] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=533 cloud_age=0.050s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371942.861735134] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=543 cloud_age=0.050s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371944.870188156] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=553 cloud_age=0.050s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371946.883923649] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=563 cloud_age=0.050s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371948.919248256] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=573 cloud_age=0.050s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371950.929488325] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=583 cloud_age=0.050s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371952.950395089] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=593 cloud_age=0.050s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371954.951195155] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=603 cloud_age=0.050s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371956.713248580] [xq_p13_flight_controller]: P12 flight phase=TRACK_TERMINAL t=121.82s
+[xq_p13_flight_controller-11] [INFO] [1788371956.979962822] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=613 cloud_age=0.048s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371957.728028774] [xq_p13_flight_controller]: P12 flight phase=REPLAN t=122.82s
+[xq_p13_flight_controller-11] [INFO] [1788371957.783313007] [xq_p13_flight_controller]: P11 rolling batch=20261103 segment=4 x=22.51->23.99 m
+[xq_p13_flight_controller-11] [INFO] [1788371957.784372978] [xq_p13_flight_controller]: P12 flight phase=WAIT_HARD_DECISION t=122.87s
+[xq_p11_integrity_exploration-8] [INFO] [1788371957.964954749] [xq_p11_integrity_exploration]: P11 batch=20301103 unconstrained=task_efficient_direct selected=task_efficient_direct | task_efficient_direct:clearance=1.490m,M=0.747m,feasible=true; lattice_y_+0.00_z_+1.10:clearance=1.032m,M=0.258m,feasible=true; lattice_y_+0.35_z_+0.00:clearance=1.431m,M=0.682m,feasible=true; lattice_y_+0.35_z_+1.10:clearance=1.027m,M=0.251m,feasible=true; lattice_y_+0.70_z_+0.00:clearance=1.125m,M=0.364m,feasible=true; lattice_y_+0.70_z_+1.10:clearance=1.028m,M=0.247m,feasible=true; lattice_y_-0.35_z_+0.00:clearance=1.259m,M=0.509m,feasible=true; lattice_y_-0.35_z_+1.10:clearance=1.026m,M=0.250m,feasible=true; lattice_y_-0.70_z_+0.00:clearance=0.913m,M=0.152m,feasible=true; lattice_y_-0.70_z_+1.10:clearance=0.907m,M=0.126m,feasible=true
+[xq_p13_flight_controller-11] [INFO] [1788371957.998144712] [xq_p13_flight_controller]: P12 flight phase=EXECUTE t=123.07s
+[xq_p13_flight_controller-11] [INFO] [1788371959.047790377] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=623 cloud_age=0.100s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371961.063454542] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=633 cloud_age=0.100s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371963.060657152] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=643 cloud_age=0.100s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371963.560452234] [xq_p13_flight_controller]: P12 flight phase=TRACK_TERMINAL t=128.62s
+[xq_p13_flight_controller-11] [INFO] [1788371965.066520044] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=653 cloud_age=0.100s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371966.578068335] [xq_p13_flight_controller]: P12 flight phase=COMPLETE t=131.62s
+[xq_p13_flight_controller-11] [INFO] [1788371967.076955050] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=663 cloud_age=0.100s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p12_flight_evaluator-13] [INFO] [1788371967.632871433] [xq_p12_flight_evaluator]: P12 dynamic flight -> PASS
+[xq_p13_flight_evaluator-14] [INFO] [1788371967.639893681] [xq_p13_flight_evaluator]: P13 complex_50ms -> PASS
+[xq_p11_flight_evaluator-12] [INFO] [1788371967.826437979] [xq_complex_p11_flight_evaluator]: P11 integrity_constrained flight arm -> PASS
+[xq_p13_flight_controller-11] [INFO] [1788371969.124156418] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=673 cloud_age=0.100s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[xq_p13_flight_controller-11] [INFO] [1788371971.172031819] [xq_p13_flight_controller]: P12 guard fresh=true callbacks=683 cloud_age=0.100s points=0 map_status_fresh=true map_blocked=false raw_blocked=false support=0/5 blocked=false nearest=-1.000m
+[static_transform_publisher-2] [INFO] [1788371972.304212037] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[xq_gz_bridge_node-4] [INFO] [1788371972.304219662] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[static_transform_publisher-3] [INFO] [1788371972.304384459] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [xq_gz_bridge_node-4]: process has finished cleanly [pid 22543]
+[INFO] [static_transform_publisher-2]: process has finished cleanly [pid 22539]
+[INFO] [static_transform_publisher-3]: process has finished cleanly [pid 22541]
+[INFO] [fastlio_mapping-5]: process has finished cleanly [pid 22545]
+[INFO] [xq_p12_obstacle_driver-10]: process has finished cleanly [pid 22559]
+[INFO] [xq_p10_information_map-7]: process has finished cleanly [pid 22549]
+[INFO] [xq_p11_integrity_exploration-8]: process has finished cleanly [pid 22551]
+[INFO] [xq_p12_flight_evaluator-13]: process has finished cleanly [pid 22565]
+[INFO] [xq_p13_flight_controller-11]: process has finished cleanly [pid 22561]
+[INFO] [xq_p11_flight_evaluator-12]: process has finished cleanly [pid 22563]
+[INFO] [xq_p12_dynamic_map-9]: process has finished cleanly [pid 22553]
+[INFO] [xq_p6_directional_integrity-6]: process has finished cleanly [pid 22547]

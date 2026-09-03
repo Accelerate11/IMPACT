@@ -14,10 +14,12 @@ from xq_autonomy.p13_flight_controller_node import (
     localization_snapshot_covers_sensor,
     online_speed_limited_parameter,
     ordered_map_dependency_completion,
+    runtime_integrity_margin,
 )
 from xq_autonomy.p11_flight_controller_node import (
     P11FlightControllerNode,
     build_geometric_candidate_positions,
+    build_lattice_candidate_positions,
 )
 
 
@@ -65,6 +67,25 @@ def test_online_envelope_limits_velocity_without_freezing_trajectory_time():
     assert online_speed_limited_parameter(
         "trajectory_duration_s", 28.0, 0.04
     ) == pytest.approx(28.0)
+
+
+def test_runtime_integrity_margin_uses_current_map_covariance_and_latency():
+    common = dict(
+        position=np.zeros(3),
+        velocity=np.asarray((0.4, 0.0, 0.0)),
+        static_points=np.asarray(((1.0, 0.0, 0.0), (3.0, 1.0, 0.0))),
+        integrity_covariance=np.diag((0.0004, 0.0001, 0.0001)),
+        k_alpha=3.0,
+        maximum_acceleration_mps2=0.8,
+        body_radius_m=0.35,
+        base_reserve_m=0.10,
+        tracking_reserve_m=0.10,
+    )
+    low = runtime_integrity_margin(latency_p99_s=0.05, **common)
+    high = runtime_integrity_margin(latency_p99_s=0.25, **common)
+    assert low[0] == pytest.approx(low[1] - low[2])
+    assert high[0] < low[0]
+    assert low[2] == pytest.approx(0.06)
 
 
 def test_existing_localization_snapshot_can_complete_sensor_stage_immediately():
@@ -228,6 +249,30 @@ def test_optional_vertical_candidate_extends_family_without_changing_defaults():
             lateral_offset_m=0.7,
             enable_vertical_candidate=True,
             vertical_offset_m=0.0,
+        )
+
+
+def test_research_lattice_is_generic_symmetric_and_keeps_direct_first():
+    direct = np.column_stack((np.linspace(0.0, 2.0, 5), np.zeros(5), np.ones(5)))
+    profile = np.asarray((0.0, 1.0, 1.0, 0.5, 0.0))
+    candidates = build_lattice_candidate_positions(
+        direct,
+        profile,
+        lateral_offset_m=0.8,
+        lateral_levels=5,
+        vertical_offset_m=0.6,
+        vertical_levels=2,
+    )
+    assert len(candidates) == 10
+    assert candidates[0][0] == "task_efficient_direct"
+    lateral_extrema = [float(np.max(path[:, 1])) for _, path in candidates]
+    assert max(lateral_extrema) == pytest.approx(0.8)
+    assert min(float(np.min(path[:, 1])) for _, path in candidates) == pytest.approx(-0.8)
+    assert max(float(np.max(path[:, 2])) for _, path in candidates) == pytest.approx(1.6)
+    assert all(np.allclose(path[[0, -1]], direct[[0, -1]]) for _, path in candidates)
+    with pytest.raises(ValueError, match="lattice"):
+        build_lattice_candidate_positions(
+            direct, profile, lateral_offset_m=0.8, lateral_levels=4
         )
     with pytest.raises(ValueError):
         build_geometric_candidate_positions(

@@ -305,12 +305,13 @@ class P12FlightEvaluatorNode(Node):
             "pose_command_success_ratio": self._pose_commands_applied / float(max(1, self._pose_commands)),
         }
         result = {
-            "schema_version": 1,
+            "schema_version": 2,
             "gate": "P12_DYNAMIC_OBSTACLE_FLIGHT",
             "status": "PASS" if all(checks.values()) else "FAIL",
             "metrics": metrics,
             "checks": checks,
             "flight_status": self._flight_status,
+            "map_status": self._map_status,
             "ground_truth_consumer": "xq_p12_flight_evaluator_only",
             "algorithm_ground_truth_subscribed": False,
             "generated_at_utc": datetime.now(timezone.utc).isoformat(),
@@ -339,6 +340,9 @@ def main(args=None) -> None:
         rclpy.spin(node)
     except (KeyboardInterrupt, ExternalShutdownException):
         pass
+    except Exception:
+        if rclpy.ok():
+            raise
     finally:
         if not node._finalized and node._complete_wall_s is not None:
             node._finalize()

@@ -3,7 +3,14 @@ import math
 import numpy as np
 import pytest
 
-from xq_autonomy.dynamic_planning import DynamicPassageGate, path_obstruction
+from xq_autonomy.dynamic_planning import (
+    DynamicPassageGate,
+    path_obstruction,
+    polyline_obstruction,
+    polyline_proximity,
+    resample_polyline,
+    supported_polyline_obstruction,
+)
 from xq_autonomy.dynamic_voxel_map import TemporalDynamicVoxelMap
 
 
@@ -83,6 +90,97 @@ def test_off_path_and_beyond_lookahead_voxels_do_not_block():
     )
     assert not blocked
     assert math.isinf(distance)
+
+
+def test_polyline_guard_follows_commanded_lateral_route_not_world_x_axis():
+    path = np.asarray(
+        ((0.0, 0.0, 1.0), (1.0, 0.8, 1.0), (3.0, 0.8, 1.0)), dtype=float
+    )
+    points = np.asarray(((2.0, 0.0, 1.0), (2.5, 0.82, 1.0)), dtype=float)
+    blocked, along = polyline_obstruction(
+        points,
+        path,
+        clearance_radius_m=0.30,
+        lookahead_m=4.0,
+    )
+    assert blocked
+    assert 2.0 < along < 3.5
+    distances, coordinates = polyline_proximity(
+        points, path, lookahead_m=4.0
+    )
+    assert distances[0] > 0.30
+    assert distances[1] < 0.05
+    assert coordinates[1] == pytest.approx(along, abs=0.05)
+
+
+def test_polyline_guard_avoids_false_brake_below_vertical_candidate():
+    path = np.asarray(
+        ((0.0, 0.0, 1.0), (1.0, 0.0, 2.0), (3.0, 0.0, 2.0)), dtype=float
+    )
+    horizontal_only = np.asarray(((2.0, 0.0, 1.0),), dtype=float)
+    blocked, distance = polyline_obstruction(
+        horizontal_only,
+        path,
+        clearance_radius_m=0.40,
+        lookahead_m=4.0,
+    )
+    assert not blocked
+    assert math.isinf(distance)
+
+
+def test_supported_obstruction_rejects_sparse_registration_outliers():
+    path = np.asarray(((0.0, 0.0, 1.0), (4.0, 0.0, 1.0)), dtype=float)
+    sparse = np.asarray(
+        ((1.0, 0.05, 1.0), (2.0, -0.04, 1.0), (3.0, 0.03, 1.0)),
+        dtype=float,
+    )
+    blocked, distance, support = supported_polyline_obstruction(
+        sparse,
+        path,
+        clearance_radius_m=0.70,
+        lookahead_m=4.0,
+        minimum_support_points=5,
+        support_radius_m=0.45,
+    )
+    assert not blocked
+    assert math.isinf(distance)
+    assert support == 1
+
+
+def test_supported_obstruction_retains_compact_dynamic_object():
+    path = np.asarray(((0.0, 0.0, 1.0), (4.0, 0.0, 1.0)), dtype=float)
+    obstacle = np.asarray(
+        (
+            (2.00, -0.20, 0.85),
+            (2.00, 0.00, 0.85),
+            (2.00, 0.20, 0.85),
+            (2.00, -0.20, 1.10),
+            (2.00, 0.00, 1.10),
+            (2.00, 0.20, 1.10),
+        ),
+        dtype=float,
+    )
+    blocked, distance, support = supported_polyline_obstruction(
+        obstacle,
+        path,
+        clearance_radius_m=0.70,
+        lookahead_m=4.0,
+        minimum_support_points=5,
+        support_radius_m=0.45,
+    )
+    assert blocked
+    assert distance == pytest.approx(2.0)
+    assert support == 6
+
+
+def test_polyline_resampling_preserves_endpoints_and_curved_route():
+    phase = np.linspace(0.0, 1.0, 48)
+    path = np.column_stack((7.5 * phase, 0.7 * np.sin(np.pi * phase), phase))
+    reduced = resample_polyline(path, 16)
+    assert reduced.shape == (16, 3)
+    assert np.array_equal(reduced[0], path[0])
+    assert np.array_equal(reduced[-1], path[-1])
+    assert np.max(reduced[:, 1]) > 0.68
 
 
 def test_all_endpoints_contribute_hits_when_free_space_rays_are_subsampled():

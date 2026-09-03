@@ -149,6 +149,11 @@ def main(args=None) -> None:
         rclpy.spin(node)
     except (KeyboardInterrupt, ExternalShutdownException):
         pass
+    except Exception:
+        # Suppress only Humble's intentional-shutdown context race.  Any
+        # callback failure while the context is live remains fatal.
+        if rclpy.ok():
+            raise
     finally:
         node.destroy_node()
         if rclpy.ok():

@@ -6,6 +6,7 @@ from collections import deque
 from concurrent.futures import Future, ThreadPoolExecutor
 import json
 import math
+from pathlib import Path
 import time
 
 from geometry_msgs.msg import Twist
@@ -66,6 +67,76 @@ def ordered_map_dependency_completion(
     )
 
 
+def runtime_integrity_margin(
+    position: np.ndarray,
+    velocity: np.ndarray,
+    static_points: np.ndarray,
+    integrity_covariance: np.ndarray,
+    *,
+    k_alpha: float,
+    latency_p99_s: float,
+    maximum_acceleration_mps2: float,
+    body_radius_m: float,
+    base_reserve_m: float,
+    tracking_reserve_m: float,
+) -> tuple[float, float, float]:
+    """Current map-derived ``AL - PL`` for the nearest static surface."""
+    current = np.asarray(position, dtype=float).reshape(3)
+    speed_vector = np.asarray(velocity, dtype=float).reshape(3)
+    points = np.asarray(static_points, dtype=float)
+    covariance = np.asarray(integrity_covariance, dtype=float).reshape(3, 3)
+    scalars = np.asarray(
+        (
+            k_alpha,
+            latency_p99_s,
+            maximum_acceleration_mps2,
+            body_radius_m,
+            base_reserve_m,
+            tracking_reserve_m,
+        ),
+        dtype=float,
+    )
+    if (
+        points.ndim != 2
+        or points.shape[1] != 3
+        or len(points) == 0
+        or not np.isfinite(points).all()
+        or not np.isfinite(current).all()
+        or not np.isfinite(speed_vector).all()
+        or not np.isfinite(covariance).all()
+        or not np.isfinite(scalars).all()
+        or k_alpha <= 0.0
+        or min(
+            latency_p99_s,
+            maximum_acceleration_mps2,
+            body_radius_m,
+            base_reserve_m,
+            tracking_reserve_m,
+        )
+        < 0.0
+    ):
+        raise ValueError("invalid runtime integrity geometry")
+    deltas = points - current
+    distance2 = np.einsum("ij,ij->i", deltas, deltas)
+    index = int(np.argmin(distance2))
+    clearance = math.sqrt(max(float(distance2[index]), 0.0))
+    if clearance <= 1.0e-9:
+        return -math.inf, 0.0, math.inf
+    direction = deltas[index] / clearance
+    protection = k_alpha * math.sqrt(
+        max(float(direction @ covariance @ direction), 0.0)
+    )
+    speed = float(np.linalg.norm(speed_vector))
+    latency_reserve = (
+        speed * latency_p99_s
+        + 0.5 * maximum_acceleration_mps2 * latency_p99_s * latency_p99_s
+    )
+    alert = clearance - (
+        body_radius_m + base_reserve_m + tracking_reserve_m + latency_reserve
+    )
+    return float(alert - protection), float(alert), float(protection)
+
+
 class P13FlightControllerNode(P12FlightControllerNode):
     def __init__(self) -> None:
         super().__init__()
@@ -85,6 +156,18 @@ class P13FlightControllerNode(P12FlightControllerNode):
             "integrity_recovery_speed_mps": 0.08,
             "integrity_recovery_max_offset_m": 0.35,
             "integrity_recovery_half_period_s": 3.0,
+            "runtime_integrity_guard_mode": "disabled",
+            "runtime_integrity_margin_m": 0.12,
+            "runtime_integrity_confirmation_s": 0.15,
+            "runtime_integrity_replan_cooldown_s": 1.0,
+            "runtime_integrity_calibration_file": "",
+            # Keep the online monitor's safety geometry identical to the
+            # P11 selector and independent evaluator.  These parameters were
+            # previously declared only in those nodes, so the controller must
+            # own its copies instead of reaching across node boundaries.
+            "body_radius_m": 0.35,
+            "base_reserve_m": 0.10,
+            "tracking_reserve_m": 0.10,
         }
         for name, value in defaults.items():
             self.declare_parameter(name, value)
@@ -113,9 +196,39 @@ class P13FlightControllerNode(P12FlightControllerNode):
         self._p13_pending_pipeline: dict[str, int | float] | None = None
         self._p13_planner_trigger_perf_ns = 0
         self._p13_planner_future: Future[int] | None = None
+        self._p13_runtime_margin_m = math.inf
+        self._p13_runtime_alert_limit_m = math.inf
+        self._p13_runtime_protection_level_m = math.inf
+        self._p13_runtime_below_since_s: float | None = None
+        self._p13_runtime_last_replan_s = -math.inf
+        self._p13_runtime_replan_count = 0
         self._p13_planner_executor = ThreadPoolExecutor(
             max_workers=1, thread_name_prefix="xq_p13_planner"
         )
+        if str(self.get_parameter("runtime_integrity_guard_mode").value) not in {
+            "disabled",
+            "current_margin_replan",
+        }:
+            raise ValueError("unsupported runtime_integrity_guard_mode")
+        self._p13_runtime_k_alpha: float | None = None
+        if str(self.get_parameter("runtime_integrity_guard_mode").value) != "disabled":
+            calibration_path = Path(
+                str(self.get_parameter("runtime_integrity_calibration_file").value)
+            )
+            if not calibration_path.is_file():
+                raise ValueError("runtime integrity calibration file is missing")
+            calibration = json.loads(calibration_path.read_text(encoding="utf-8"))
+            if not calibration.get("train_only") or calibration.get(
+                "test_data_used", True
+            ):
+                raise ValueError("runtime integrity requires train-only calibration")
+            factors = [
+                float(item["k95"])
+                for item in calibration.get("directional", {}).values()
+            ]
+            if not factors or not np.isfinite(factors).all() or min(factors) <= 0.0:
+                raise ValueError("runtime integrity calibration has no valid k95")
+            self._p13_runtime_k_alpha = max(factors)
 
         reliable = QoSProfile(depth=50, reliability=ReliabilityPolicy.RELIABLE)
         latest_sensor = QoSProfile(
@@ -530,6 +643,30 @@ class P13FlightControllerNode(P12FlightControllerNode):
                 if self._p13_integrity_recovery_direction is not None
                 else None
             ),
+            "runtime_integrity_guard_mode": str(
+                self.get_parameter("runtime_integrity_guard_mode").value
+            ),
+            "runtime_integrity_margin_m": (
+                self._p13_runtime_margin_m
+                if math.isfinite(self._p13_runtime_margin_m)
+                else None
+            ),
+            "runtime_integrity_alert_limit_m": (
+                self._p13_runtime_alert_limit_m
+                if math.isfinite(self._p13_runtime_alert_limit_m)
+                else None
+            ),
+            "runtime_integrity_protection_level_m": (
+                self._p13_runtime_protection_level_m
+                if math.isfinite(self._p13_runtime_protection_level_m)
+                else None
+            ),
+            "runtime_integrity_replan_count": self._p13_runtime_replan_count,
+            "runtime_integrity_k_alpha": self._p13_runtime_k_alpha,
+            "planning_windows_closed": self._planning_windows_closed,
+            "interrupted_decisions": self._interrupted_decisions,
+            "decisions_applied": self._decisions_applied,
+            "planned_energy_spent": self._planned_energy_spent,
         }
         output = String()
         output.data = json.dumps(payload, separators=(",", ":"))
@@ -587,8 +724,7 @@ class P13FlightControllerNode(P12FlightControllerNode):
         self._p13_envelope = self._calculate_envelope(latency_for_safety)
         self._p13_speed_limit_mps = self._p13_envelope.speed_limit_mps
         trajectory_certified_steady_ns = time.perf_counter_ns()
-        super()._timer()
-        self._retry_rejected_candidate_set()
+        self._run_control_cycle()
         command_sent_perf_ns = time.perf_counter_ns()
 
         sensor_age_s = 1.0e-9 * float(pipeline["sensor_age_at_receive_ns"])
@@ -647,9 +783,100 @@ class P13FlightControllerNode(P12FlightControllerNode):
         message.data = json.dumps(trace, separators=(",", ":"))
         self.p13_trace_publisher.publish(message)
 
-    def _timer(self) -> None:
+    def _runtime_integrity_guard(self) -> bool:
+        if (
+            str(self.get_parameter("runtime_integrity_guard_mode").value)
+            != "current_margin_replan"
+            or self.variant != "integrity_constrained"
+            or self._selected is None
+            or self._trajectory_start_sim_s is None
+            or self._odom is None
+            or self._integrity is None
+            or len(self._p13_static_points) == 0
+            or self._finished
+        ):
+            self._p13_runtime_below_since_s = None
+            return False
+        stats = self._current_stats()
+        latency = stats.p99_s if math.isfinite(stats.p99_s) else self._fallback_latency_s()
+        velocity = self._odom.twist.twist.linear
+        try:
+            margin, alert, protection = runtime_integrity_margin(
+                self._position(self._odom),
+                np.asarray((velocity.x, velocity.y, velocity.z), dtype=float),
+                self._p13_static_points,
+                np.asarray(self._integrity.integrity_covariance, dtype=float),
+                k_alpha=(
+                    self._p13_runtime_k_alpha
+                    if self._p13_runtime_k_alpha is not None
+                    else float(self._integrity.k_alpha)
+                ),
+                latency_p99_s=latency,
+                maximum_acceleration_mps2=float(
+                    self.get_parameter("maximum_acceleration_mps2").value
+                ),
+                body_radius_m=float(self.get_parameter("body_radius_m").value),
+                base_reserve_m=float(self.get_parameter("base_reserve_m").value),
+                tracking_reserve_m=float(
+                    self.get_parameter("tracking_reserve_m").value
+                ),
+            )
+        except ValueError:
+            return False
+        self._p13_runtime_margin_m = margin
+        self._p13_runtime_alert_limit_m = alert
+        self._p13_runtime_protection_level_m = protection
+        now_s = self._now_s()
+        threshold = float(self.get_parameter("runtime_integrity_margin_m").value)
+        if margin >= threshold:
+            self._p13_runtime_below_since_s = None
+            return False
+        if self._p13_runtime_below_since_s is None:
+            self._p13_runtime_below_since_s = now_s
+            return False
+        if (
+            now_s - self._p13_runtime_below_since_s
+            < float(self.get_parameter("runtime_integrity_confirmation_s").value)
+            or now_s - self._p13_runtime_last_replan_s
+            < float(
+                self.get_parameter("runtime_integrity_replan_cooldown_s").value
+            )
+        ):
+            return False
+
+        self._p13_runtime_last_replan_s = now_s
+        self._p13_runtime_replan_count += 1
+        self._p13_runtime_below_since_s = None
+        self._close_interrupted_planning_window(now_s)
+        self._publish_replan(
+            "INTEGRITY_MARGIN_RUNTIME_REPLAN",
+            brake=True,
+            use_dynamic_stamp=False,
+            outcome="INTEGRITY_RUNTIME_BRAKE_REPLAN",
+        )
+        self._candidates = []
+        self._metadata = None
+        self._decision = None
+        self._selected = None
+        self._unconstrained = None
+        self._trajectory_start_sim_s = None
+        self._best_terminal_error_m = math.inf
+        self._last_terminal_progress_s = None
+        self.command_publisher.publish(Twist())
+        self.get_logger().warning(
+            "P15 runtime integrity margin below reserve; hover and replan "
+            f"margin={margin:.3f}m threshold={threshold:.3f}m"
+        )
+        return True
+
+    def _run_control_cycle(self) -> None:
+        if self._runtime_integrity_guard():
+            return
         super()._timer()
         self._retry_rejected_candidate_set()
+
+    def _timer(self) -> None:
+        self._run_control_cycle()
 
     def destroy_node(self):
         self._p13_planner_executor.shutdown(wait=True, cancel_futures=True)
@@ -663,6 +890,9 @@ def main(args=None) -> None:
         rclpy.spin(node)
     except (KeyboardInterrupt, ExternalShutdownException):
         pass
+    except Exception:
+        if rclpy.ok():
+            raise
     finally:
         if rclpy.ok():
             from geometry_msgs.msg import Twist

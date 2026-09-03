@@ -62,6 +62,8 @@ class ExplorationSelection:
     predictions: tuple[ExplorationPrediction, ...]
     hard_constraint: bool = True
     margin_in_utility: bool = False
+    minimum_intervention_applied: bool = False
+    utility_indifference_band: float = 0.0
 
 
 def _validate_candidate(candidate: ExplorationForecast) -> None:
@@ -100,6 +102,7 @@ def select_integrity_constrained_exploration(
     information_weight: float,
     travel_time_weight: float,
     energy_weight: float,
+    utility_indifference_band: float = 0.0,
     minimum_prediction_variance: float = 1.0e-12,
 ) -> ExplorationSelection:
     """Select maximum task utility after all hard constraints are satisfied."""
@@ -114,6 +117,7 @@ def select_integrity_constrained_exploration(
             information_weight,
             travel_time_weight,
             energy_weight,
+            utility_indifference_band,
             minimum_prediction_variance,
         )
     ).all():
@@ -128,6 +132,8 @@ def select_integrity_constrained_exploration(
         raise ValueError("task utility weights must be nonnegative")
     if information_weight <= 0.0:
         raise ValueError("information weight must be positive")
+    if utility_indifference_band < 0.0:
+        raise ValueError("utility indifference band must be nonnegative")
 
     names = [item.forecast.candidate.name for item in forecasts]
     identifiers = [item.trajectory_id for item in forecasts]
@@ -188,21 +194,49 @@ def select_integrity_constrained_exploration(
         else None
     )
     hard_feasible = [item for item in predictions if item.feasible]
-    selected = (
-        max(
-            hard_feasible,
-            key=lambda item: (
-                item.utility,
-                item.candidate.forecast.candidate.name,
-            ),
-        )
-        if hard_feasible
-        else None
-    )
+    selected = None
+    minimum_intervention_applied = False
+    if hard_feasible:
+        maximum_utility = max(item.utility for item in hard_feasible)
+        near_optimal = [
+            item
+            for item in hard_feasible
+            if item.utility >= maximum_utility - utility_indifference_band - 1.0e-12
+        ]
+        if utility_indifference_band > 0.0 and len(near_optimal) > 1:
+            # When map-gain differences are below the declared resolution of
+            # the task model, prefer the least intervention.  Integrity margin
+            # remains absent from this ordering: every member already passed
+            # the same hard reserve.
+            selected = min(
+                near_optimal,
+                key=lambda item: (
+                    item.candidate.energy_cost + item.candidate.return_energy_cost,
+                    item.candidate.travel_time_s,
+                    -item.utility,
+                    item.candidate.forecast.candidate.name,
+                ),
+            )
+            # "Applied" means the declared indifference policy resolved a
+            # multi-candidate near-optimal set.  The selected trajectory may
+            # still coincide with the exact utility maximizer when task and
+            # energy rankings agree; that is a valid zero-change outcome, not
+            # evidence that the policy was bypassed.
+            minimum_intervention_applied = True
+        else:
+            selected = max(
+                hard_feasible,
+                key=lambda item: (
+                    item.utility,
+                    item.candidate.forecast.candidate.name,
+                ),
+            )
     return ExplorationSelection(
         selected_name=(selected.candidate.forecast.candidate.name if selected else None),
         unconstrained_selected_name=(
             unconstrained.candidate.forecast.candidate.name if unconstrained else None
         ),
         predictions=tuple(predictions),
+        minimum_intervention_applied=minimum_intervention_applied,
+        utility_indifference_band=float(utility_indifference_band),
     )

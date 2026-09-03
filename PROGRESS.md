@@ -1,6 +1,6 @@
 # IMPACT 执行进度
 
-更新时间：2026-09-02
+更新时间：2026-09-03
 
 | 阶段 | 状态 | 证据/说明 |
 |---|---|---|
@@ -21,6 +21,7 @@
 | P12 Dynamic Obstacle / Dynamic Map | PASS | `docs/P12_DYNAMIC_OBSTACLE_ACCEPTANCE_REPORT.md`；LiDAR-only 动态体素、制动重规划、TTL 重开、全走廊 Gazebo/RViz 与隔离 Gate |
 | P13 Latency-Aware Safety | PASS | `docs/P13_LATENCY_AWARE_SAFETY_ACCEPTANCE_REPORT.md`；50/200 ms 双轮次、p99→AL→速度闭环、P12 保持性与 Gazebo/RViz Gate |
 | P14 Fault Injection & Resilient Autonomy | PASS | `docs/P14_FAULT_INJECTION_ACCEPTANCE_REPORT.md`；十类故障矩阵、持续 LiDAR 失效安全、P12/P13 保持性与 Gazebo/RViz Gate |
+| P15 Map-Derived Integrity Planning | PASS | `docs/P15_RESEARCH_GRADE_ACCEPTANCE_REPORT.md`；在线三维 lattice、map-derived 指标、独立真值完整性评价与只改变硬门的配对 Gate |
 | 复杂场景完整正常飞行展示 | PASS | `docs/COMPLEX_SCENE_FULL_AUTONOMY_DEMO_REPORT.md`；无故障注入、24 m 双航程、Gazebo+RViz、GPU 与隔离 Gate |
 | 三维复杂场景完整算法 | PASS | `docs/COMPLEX_3D_FULL_AUTONOMY_REPORT.md`；right→left→up→direct、真实爬升、24 m 双航程、无故障注入 |
 | 复杂组合三维完整算法 | PASS | `docs/COMPLEX_COMPOSITIONAL_3D_ACCEPTANCE_REPORT.md`；right→left→up_right→direct、动态障碍、P13 p99、GPU Gazebo+RViz |
@@ -341,3 +342,26 @@
 - GPU 为 `D3D12 (NVIDIA GeForce RTX 4060 Laptop GPU)`；外部资产前后字节级一致，
   Ground Truth 仅供 evaluator。轻量证据位于
   `evidence/COMPLEX_DEMO/compositional_gate_20260902T122517Z_286/`。
+
+## P15 正式结果
+
+- 正式证据：
+  `experiments/results/impact_complex_comparison/p15_research_20260903_final_v4`；P11/P12/P13
+  两臂 Gate 和比较器 20 项检查全部 PASS，两个实验臂均完成约 24 m 净前进。
+- 每个滚动窗在线生成 5×2 三维 lattice；任务收益、碰撞概率、运动能耗和返航储备由
+  在线地图与候选轨迹计算，不再按候选名称赋值。完整性 Margin 只作硬过滤。
+- 信息优先与完整性约束臂的独立真值最低 Margin 为 `0.021936 / 0.281308 m`，提升
+  `0.259372 m`；Availability 为 `0.807069 / 1.000000`，提升 `0.192931`；两臂
+  HMI 和真实安全违规均为 0，PL empirical coverage 均为 1.0。
+- 约束臂路径开销 `0.6701%`，任务时间开销 `-2.5993%`，ATE 绝对变化
+  `+0.000739 m`；完整性硬门在第二、第三 batch 改变选择，最小干预效用带实际应用
+  三次。
+- 动态安全改为当前活动轨迹查询，并预声明 5 体素、0.45 m 连通支持；运行时 Margin
+  guard、progress watchdog、中断能耗记账和完成/关闭/中断/已执行四类计数已纳入测试。
+- 两臂运行时状态均报告 4 个完成段、4 个关闭规划窗和 4 个已执行决策；约束臂 0 次
+  中断。两个 launch 日志均无 Traceback、节点死亡和 ROS `[ERROR]`。
+- 140/140 Python 算法与验收契约测试、隔离构建和 GPU Gazebo 正式运行通过；renderer
+  为 `D3D12 (NVIDIA GeForce RTX 4060 Laptop GPU)`。轻量证据位于 `evidence/P15/`，
+  大型 rosbag 以 SHA-256 索引留在 WSL。
+- 边界：固定复杂组合世界的一次配对 SIL 机制验证；多 seed、多场景、公开 baseline、
+  统计显著性、Atlas HIL 与实机仍待完成。

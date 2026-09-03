@@ -18,6 +18,20 @@ obstacle_enter_start_s="${XQ_COMPLEX_OBSTACLE_ENTER_START:-24.0}"
 obstacle_enter_end_s="${XQ_COMPLEX_OBSTACLE_ENTER_END:-28.0}"
 obstacle_leave_start_s="${XQ_COMPLEX_OBSTACLE_LEAVE_START:-44.0}"
 obstacle_leave_end_s="${XQ_COMPLEX_OBSTACLE_LEAVE_END:-48.0}"
+candidate_generation_mode="${XQ_CANDIDATE_GENERATION_MODE:-legacy}"
+candidate_metric_source="${XQ_CANDIDATE_METRIC_SOURCE:-metadata}"
+lattice_lateral_levels="${XQ_LATTICE_LATERAL_LEVELS:-5}"
+lattice_vertical_levels="${XQ_LATTICE_VERTICAL_LEVELS:-2}"
+task_progress_weight="${XQ_TASK_PROGRESS_WEIGHT:-0.85}"
+task_map_age_time_constant_s="${XQ_TASK_MAP_AGE_TIME_CONSTANT_S:-20.0}"
+research_energy_remaining="${XQ_RESEARCH_ENERGY_REMAINING:-32.0}"
+utility_indifference_band="${XQ_UTILITY_INDIFFERENCE_BAND:-0.0}"
+dynamic_path_query_mode="${XQ_DYNAMIC_PATH_QUERY_MODE:-forward_axis}"
+minimum_dynamic_cluster_points="${XQ_MINIMUM_DYNAMIC_CLUSTER_POINTS:-1}"
+dynamic_cluster_radius_m="${XQ_DYNAMIC_CLUSTER_RADIUS_M:-0.45}"
+terminal_extension_mode="${XQ_TERMINAL_EXTENSION_MODE:-fixed}"
+runtime_integrity_guard_mode="${XQ_RUNTIME_INTEGRITY_GUARD_MODE:-disabled}"
+runtime_integrity_margin_m="${XQ_RUNTIME_INTEGRITY_MARGIN_M:-0.12}"
 [[ "${world_filename}" == "$(basename -- "${world_filename}")" ]] || {
   echo "Complex visualization world must be an installed project-local filename." >&2; exit 2;
 }
@@ -89,6 +103,20 @@ setsid ros2 launch xq_sim_bringup xq_p13_flight.launch.py \
   mission_distance_m:=24.0 lateral_offset_m:="${lateral_offset_m}" lateral_candidate_shape:=challenge_then_center \
   enable_vertical_candidate:="${enable_vertical_candidate}" vertical_offset_m:="${vertical_offset_m}" \
   enable_diagonal_vertical_candidates:="${enable_diagonal_vertical_candidates}" \
+  candidate_generation_mode:="${candidate_generation_mode}" \
+  candidate_metric_source:="${candidate_metric_source}" \
+  lattice_lateral_levels:="${lattice_lateral_levels}" \
+  lattice_vertical_levels:="${lattice_vertical_levels}" \
+  task_progress_weight:="${task_progress_weight}" \
+  task_map_age_time_constant_s:="${task_map_age_time_constant_s}" \
+  research_energy_remaining:="${research_energy_remaining}" \
+  utility_indifference_band:="${utility_indifference_band}" \
+  dynamic_path_query_mode:="${dynamic_path_query_mode}" \
+  minimum_dynamic_cluster_points:="${minimum_dynamic_cluster_points}" \
+  dynamic_cluster_radius_m:="${dynamic_cluster_radius_m}" \
+  terminal_extension_mode:="${terminal_extension_mode}" \
+  runtime_integrity_guard_mode:="${runtime_integrity_guard_mode}" \
+  runtime_integrity_margin_m:="${runtime_integrity_margin_m}" \
   segment_goal_tolerance_m:="${segment_goal_tolerance_m}" \
   geometric_clearance_m:=0.82 fixed_buffer_m:=0.58 \
   protection_level_m:=0.10 required_margin_m:=0.06 maximum_speed_mps:=0.42 \
@@ -143,6 +171,11 @@ echo "Mode: full normal flight stack; fault injection is disabled."
 echo "Spatial candidates: vertical=${enable_vertical_candidate}, vertical_offset_m=${vertical_offset_m}."
 echo "Observed-information memory: horizon=${integrity_information_memory_horizon_s}s, max_frames=${integrity_information_memory_max_frames}."
 echo "Compositional candidates: diagonal_vertical=${enable_diagonal_vertical_candidates}."
+echo "Research candidates: generation=${candidate_generation_mode}, metrics=${candidate_metric_source}, lattice=${lattice_lateral_levels}x${lattice_vertical_levels}."
+echo "Minimum-intervention utility band: ${utility_indifference_band}."
+echo "Dynamic safety path query: ${dynamic_path_query_mode}."
+echo "Terminal extension policy: ${terminal_extension_mode}."
+echo "Runtime integrity guard: ${runtime_integrity_guard_mode}, margin=${runtime_integrity_margin_m} m."
 echo "Segment goal tolerance: ${segment_goal_tolerance_m} m."
 echo "Post-dynamic static confirmation: ${post_dynamic_static_confirmation_s} s."
 echo "Reversible static TTL: ${reversible_static_ttl_s} s."

@@ -1,0 +1,26 @@
+/xq_p12_dynamic_map
+  Subscribers:
+    /clock: rosgraph_msgs/msg/Clock
+    /livox/lidar: sensor_msgs/msg/PointCloud2
+    /localization/odom: nav_msgs/msg/Odometry
+    /planning/p11/selected_bspline: traj_utils/msg/Bspline
+    /planning/p11/unconstrained_bspline: traj_utils/msg/Bspline
+  Publishers:
+    /mapping/p12/dynamic_voxels: sensor_msgs/msg/PointCloud2
+    /mapping/p12/occupancy: nav_msgs/msg/OccupancyGrid
+    /mapping/p12/static_voxels: sensor_msgs/msg/PointCloud2
+    /mapping/p12/status: std_msgs/msg/String
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+  Service Servers:
+    /xq_p12_dynamic_map/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /xq_p12_dynamic_map/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /xq_p12_dynamic_map/get_parameters: rcl_interfaces/srv/GetParameters
+    /xq_p12_dynamic_map/list_parameters: rcl_interfaces/srv/ListParameters
+    /xq_p12_dynamic_map/set_parameters: rcl_interfaces/srv/SetParameters
+    /xq_p12_dynamic_map/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:

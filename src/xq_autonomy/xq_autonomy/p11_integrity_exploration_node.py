@@ -23,6 +23,7 @@ from xq_sim_interfaces.msg import (
 )
 
 from .alert_limit import compute_alert_limit, sample_bspline
+from .candidate_metrics import compute_task_gains, pointwise_collision_probability
 from .integrity_exploration import (
     ExplorationForecast,
     select_integrity_constrained_exploration,
@@ -54,6 +55,10 @@ class P11IntegrityExplorationNode(Node):
             "latency_p99_s": 0.10,
             "maximum_acceleration_mps2": 1.0,
             "maximum_input_age_s": 0.75,
+            "task_progress_weight": 0.85,
+            "task_map_age_time_constant_s": 20.0,
+            "collision_tracking_sigma_multiplier": 3.0,
+            "utility_indifference_band": 0.0,
         }
         for name, value in defaults.items():
             self.declare_parameter(name, value)
@@ -248,7 +253,7 @@ class P11IntegrityExplorationNode(Node):
             return
 
         try:
-            forecasts = []
+            candidate_contexts = []
             alert_diagnostics = []
             for index, trajectory_id in enumerate(trajectory_ids):
                 message = self._candidate_messages[trajectory_id]
@@ -297,6 +302,74 @@ class P11IntegrityExplorationNode(Node):
                         "nearest_obstacle_xyz": alert.nearest_obstacle.tolist(),
                     }
                 )
+                candidate_contexts.append(
+                    {
+                        "index": index,
+                        "trajectory_id": trajectory_id,
+                        "samples": samples,
+                        "duration": duration,
+                        "alert": alert,
+                        "predicted_information": predicted_information,
+                    }
+                )
+
+            metric_source = str(metadata.metric_source or "metadata")
+            if metric_source not in {"metadata", "online_map"}:
+                raise ValueError(f"unsupported candidate metric source: {metric_source}")
+            if metric_source == "online_map":
+                task_components = compute_task_gains(
+                    [item["samples"] for item in candidate_contexts],
+                    positions,
+                    np.asarray(information_map.static_confidence),
+                    np.asarray(information_map.geometry_quality),
+                    np.asarray(information_map.last_seen_s),
+                    now_s=max(stamps),
+                    visibility_radius_m=self._float("visibility_radius_m"),
+                    age_time_constant_s=self._float(
+                        "task_map_age_time_constant_s"
+                    ),
+                    progress_weight=self._float("task_progress_weight"),
+                )
+                collision_probabilities = [
+                    pointwise_collision_probability(
+                        item["alert"].alert_limits,
+                        tracking_reserve_m=self._float("tracking_reserve_m"),
+                        tracking_sigma_multiplier=self._float(
+                            "collision_tracking_sigma_multiplier"
+                        ),
+                    )
+                    for item in candidate_contexts
+                ]
+            else:
+                task_components = None
+                collision_probabilities = list(metadata.collision_probabilities)
+
+            forecasts = []
+            progress_efficiencies = []
+            map_observation_gains = []
+            for context_index, item in enumerate(candidate_contexts):
+                index = int(item["index"])
+                samples = item["samples"]
+                duration = float(item["duration"])
+                alert = item["alert"]
+                predicted_information = item["predicted_information"]
+                if task_components is None:
+                    task_gain = float(metadata.information_gains[index])
+                    path_length = float(
+                        np.linalg.norm(np.diff(samples, axis=0), axis=1).sum()
+                    )
+                    progress_efficiency = float(
+                        np.linalg.norm(samples[-1] - samples[0])
+                        / max(path_length, 1.0e-12)
+                    )
+                    map_observation_gain = 0.0
+                else:
+                    component = task_components[context_index]
+                    task_gain = component.gain
+                    progress_efficiency = component.progress_efficiency
+                    map_observation_gain = component.map_observation_gain
+                progress_efficiencies.append(progress_efficiency)
+                map_observation_gains.append(map_observation_gain)
                 recovery = RecoveryCandidate(
                     name=str(metadata.candidate_names[index]),
                     positions=samples,
@@ -307,7 +380,7 @@ class P11IntegrityExplorationNode(Node):
                 )
                 forecasts.append(
                     ExplorationForecast(
-                        trajectory_id=trajectory_id,
+                        trajectory_id=int(item["trajectory_id"]),
                         frontier_id=str(metadata.frontier_ids[index]),
                         forecast=CandidateForecast(
                             candidate=recovery,
@@ -315,11 +388,13 @@ class P11IntegrityExplorationNode(Node):
                             obstacle_directions=alert.obstacle_directions,
                             information_profile=predicted_information,
                         ),
-                        information_gain=float(metadata.information_gains[index]),
+                        information_gain=task_gain,
                         travel_time_s=float(metadata.travel_times_s[index]),
                         energy_cost=float(metadata.energy_costs[index]),
                         return_energy_cost=float(metadata.return_energy_costs[index]),
-                        collision_probability=float(metadata.collision_probabilities[index]),
+                        collision_probability=float(
+                            collision_probabilities[context_index]
+                        ),
                     )
                 )
             selection = select_integrity_constrained_exploration(
@@ -332,6 +407,9 @@ class P11IntegrityExplorationNode(Node):
                 information_weight=self._float("information_weight"),
                 travel_time_weight=self._float("travel_time_weight"),
                 energy_weight=self._float("energy_weight"),
+                utility_indifference_band=self._float(
+                    "utility_indifference_band"
+                ),
                 minimum_prediction_variance=self._float("minimum_prediction_variance_m2"),
             )
         except (ValueError, IndexError, np.linalg.LinAlgError) as error:
@@ -347,8 +425,14 @@ class P11IntegrityExplorationNode(Node):
         output.candidate_names = [item.forecast.candidate.name for item in forecasts]
         output.frontier_ids = [item.frontier_id for item in forecasts]
         output.information_gains = [item.information_gain for item in forecasts]
+        output.progress_efficiencies = progress_efficiencies
+        output.map_observation_gains = map_observation_gains
+        output.localization_information_traces = [
+            item.integrity.information_trace for item in selection.predictions
+        ]
         output.travel_times_s = [item.travel_time_s for item in forecasts]
         output.energy_costs = [item.energy_cost for item in forecasts]
+        output.return_energy_costs = [item.return_energy_cost for item in forecasts]
         output.collision_probabilities = [item.collision_probability for item in forecasts]
         output.utilities = [item.utility for item in selection.predictions]
         output.predicted_minimum_margins = [
@@ -377,6 +461,14 @@ class P11IntegrityExplorationNode(Node):
         output.valid = True
         output.hard_constraint = True
         output.margin_in_utility = False
+        output.minimum_intervention_applied = (
+            selection.minimum_intervention_applied
+        )
+        output.utility_indifference_band = selection.utility_indifference_band
+        output.candidate_generation_mode = str(
+            metadata.candidate_generation_mode or "legacy"
+        )
+        output.metric_source = metric_source
         output.reason = (
             "INTEGRITY_CONSTRAINED_FRONTIER_SELECTED"
             if output.selected_index >= 0
@@ -399,7 +491,18 @@ class P11IntegrityExplorationNode(Node):
                 "phase": "P11_INTEGRITY_CONSTRAINED_EXPLORATION",
                 "batch_id": batch_id,
                 "candidate_names": list(output.candidate_names),
+                "candidate_generation_mode": output.candidate_generation_mode,
+                "metric_source": output.metric_source,
                 "utilities": list(output.utilities),
+                "task_information_gains": list(output.information_gains),
+                "progress_efficiencies": list(output.progress_efficiencies),
+                "map_observation_gains": list(output.map_observation_gains),
+                "localization_information_traces": list(
+                    output.localization_information_traces
+                ),
+                "collision_probabilities": list(output.collision_probabilities),
+                "energy_costs": list(output.energy_costs),
+                "return_energy_costs": list(output.return_energy_costs),
                 "predicted_minimum_margins": list(output.predicted_minimum_margins),
                 "alert_diagnostics": alert_diagnostics,
                 "feasible": list(output.feasible),
@@ -407,6 +510,10 @@ class P11IntegrityExplorationNode(Node):
                 "selected": output.selected_name,
                 "hard_constraint": True,
                 "margin_in_utility": False,
+                "minimum_intervention_applied": (
+                    output.minimum_intervention_applied
+                ),
+                "utility_indifference_band": output.utility_indifference_band,
                 "ground_truth_subscribed": False,
                 "calibration_sha256": self._calibration_sha,
             },
@@ -437,6 +544,9 @@ def main(args=None) -> None:
         rclpy.spin(node)
     except (KeyboardInterrupt, ExternalShutdownException):
         pass
+    except Exception:
+        if rclpy.ok():
+            raise
     finally:
         node.destroy_node()
         if rclpy.ok():

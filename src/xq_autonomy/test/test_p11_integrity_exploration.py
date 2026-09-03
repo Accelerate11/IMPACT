@@ -1,6 +1,8 @@
 import numpy as np
 import pytest
 
+from xq_autonomy.p11_flight_controller_node import interrupted_energy_total
+from xq_autonomy.p11_flight_evaluator_node import rolling_horizon_complete
 from xq_autonomy.integrity_exploration import (
     ExplorationForecast,
     rolling_horizon_distances,
@@ -50,7 +52,7 @@ def _candidate(
     )
 
 
-def _select(candidates):
+def _select(candidates, *, utility_indifference_band=0.0):
     return select_integrity_constrained_exploration(
         candidates,
         np.diag((1.0e-4, 1.0e-2, 1.0e-4)),
@@ -61,6 +63,7 @@ def _select(candidates):
         information_weight=1.0,
         travel_time_weight=0.01,
         energy_weight=0.005,
+        utility_indifference_band=utility_indifference_band,
         minimum_prediction_variance=1.0e-5,
     )
 
@@ -103,6 +106,63 @@ def test_margin_is_not_a_soft_reward_inside_the_feasible_set():
     assert all(item.feasible for item in by_name.values())
     assert by_name["higher_margin"].integrity.minimum_margin >= by_name["higher_utility"].integrity.minimum_margin
     assert selection.selected_name == "higher_utility"
+
+
+def test_near_equal_task_utility_prefers_minimum_intervention_energy():
+    higher_utility = _candidate(
+        "aggressive", 1112,
+        information_gain=0.85, predicted_information_y=1.0e8,
+        energy=8.0, return_energy=4.0,
+    )
+    lower_intervention = _candidate(
+        "minimum_intervention", 1113,
+        information_gain=0.82, predicted_information_y=1.0e8,
+        energy=7.5, return_energy=4.0,
+    )
+    strict = _select((higher_utility, lower_intervention))
+    robust = _select(
+        (higher_utility, lower_intervention), utility_indifference_band=0.05
+    )
+    assert strict.selected_name == "aggressive"
+    assert robust.selected_name == "minimum_intervention"
+    assert robust.minimum_intervention_applied
+    assert robust.utility_indifference_band == pytest.approx(0.05)
+
+
+def test_interrupted_window_accounts_only_executed_energy_fraction():
+    assert interrupted_energy_total(10.0, 30.0, 7.0, 28.0) == pytest.approx(15.0)
+    assert interrupted_energy_total(10.0, 30.0, 40.0, 28.0) == pytest.approx(30.0)
+
+
+def test_rolling_horizon_accepts_audited_safety_interruption_not_missing_window():
+    status = {
+        "rolling_horizon": True,
+        "segments_completed": 3,
+        "planning_windows_closed": 4,
+        "interrupted_decisions": 1,
+        "decisions_applied": 4,
+    }
+    assert rolling_horizon_complete(status, minimum_batches=4, accepted_batches=4)
+    status["planning_windows_closed"] = 3
+    assert not rolling_horizon_complete(status, minimum_batches=4, accepted_batches=4)
+
+
+def test_minimum_intervention_policy_records_zero_change_resolution():
+    efficient_maximum = _candidate(
+        "efficient_maximum", 1114,
+        information_gain=0.85, predicted_information_y=1.0e8,
+        energy=7.0, return_energy=4.0,
+    )
+    near_equal_costlier = _candidate(
+        "near_equal_costlier", 1115,
+        information_gain=0.83, predicted_information_y=1.0e8,
+        energy=8.0, return_energy=4.0,
+    )
+    selection = _select(
+        (efficient_maximum, near_equal_costlier), utility_indifference_band=0.05
+    )
+    assert selection.selected_name == "efficient_maximum"
+    assert selection.minimum_intervention_applied
 
 
 def test_collision_and_return_energy_are_independent_hard_constraints():
