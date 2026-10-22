@@ -1,0 +1,37 @@
+{
+  "scope": "Synthetic368640B ROS payload transport fixture, no algorithms/AP/Gazebo/SQLite",
+  "cases": {
+    "udp_only": {
+      "publisher": {
+        "role": "publisher",
+        "count": 10,
+        "payload_bytes": 368640,
+        "all_payload_sha_matched": true,
+        "subscriber_discovered": false
+      },
+      "subscriber": {
+        "role": "subscriber",
+        "count": 0,
+        "payload_bytes": 368640,
+        "all_payload_sha_matched": true,
+        "subscriber_discovered": false
+      }
+    },
+    "builtin_plus_udp": {
+      "publisher": {
+        "role": "publisher",
+        "count": 10,
+        "payload_bytes": 368640,
+        "all_payload_sha_matched": true,
+        "subscriber_discovered": false
+      },
+      "subscriber": {
+        "role": "subscriber",
+        "count": 0,
+        "payload_bytes": 368640,
+        "all_payload_sha_matched": true,
+        "subscriber_discovered": false
+      }
+    }
+  }
+}

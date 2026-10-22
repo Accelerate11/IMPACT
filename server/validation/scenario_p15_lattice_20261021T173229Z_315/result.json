@@ -1,0 +1,669 @@
+{
+  "schema_version": 1,
+  "status": "FAIL",
+  "acceptance_mode": "SMOKE",
+  "checks": {
+    "observer_PASS": false,
+    "no_runner_exception": false,
+    "inputs_unchanged": true,
+    "calibration_input_unchanged": true,
+    "actual_gazebo_seed_forwarded": true,
+    "all_owned_processes_stopped": true
+  },
+  "error": "TimeoutError: Advanced observation deadline",
+  "observer": {
+    "schema_version": 1,
+    "status": "FAIL",
+    "checks": {
+      "complete_wall_observation_window": false,
+      "all_native_and_advanced_topics_observed": false,
+      "native_odom_and_integrity_continue_during_window": false,
+      "lidar_and_IMU_observed_during_window": false,
+      "native_FAST_LIO_node_present": true,
+      "no_algorithm_truth_subscription": true,
+      "no_AP_or_MAVROS_nodes": true,
+      "all_package_prefixes_are_fresh_install": true
+    },
+    "wall_observation_s": 0.0,
+    "startup_wall_s": 94.27525193999963,
+    "startup_counts": {},
+    "streams": {
+      "clock": {
+        "count": 0,
+        "first_stamp_ns": null,
+        "last_stamp_ns": null,
+        "nonincreasing": 0
+      },
+      "lidar": {
+        "count": 0,
+        "first_stamp_ns": null,
+        "last_stamp_ns": null,
+        "nonincreasing": 0
+      },
+      "imu": {
+        "count": 0,
+        "first_stamp_ns": null,
+        "last_stamp_ns": null,
+        "nonincreasing": 0
+      },
+      "native_odom": {
+        "count": 0,
+        "first_stamp_ns": null,
+        "last_stamp_ns": null,
+        "nonincreasing": 0
+      },
+      "integrity": {
+        "count": 0,
+        "first_stamp_ns": null,
+        "last_stamp_ns": null,
+        "nonincreasing": 0
+      },
+      "static_map": {
+        "count": 0,
+        "first_stamp_ns": null,
+        "last_stamp_ns": null,
+        "nonincreasing": 0
+      },
+      "decision": {
+        "count": 0,
+        "first_stamp_ns": null,
+        "last_stamp_ns": null,
+        "nonincreasing": 0
+      },
+      "status": {
+        "count": 0,
+        "first_stamp_ns": null,
+        "last_stamp_ns": null,
+        "nonincreasing": 0
+      },
+      "fault": {
+        "count": 0,
+        "first_stamp_ns": null,
+        "last_stamp_ns": null,
+        "nonincreasing": 0
+      }
+    },
+    "total_received": {
+      "clock": 10500,
+      "lidar": 0,
+      "imu": 5306,
+      "status": 46,
+      "static_map": 135
+    },
+    "last_controller_status": {
+      "phase": "WAIT_INITIALIZATION",
+      "finished": false,
+      "current_position_x_m": null,
+      "decisions_applied": 0,
+      "latency_sample_count": 0,
+      "latency_p99_ms": null
+    },
+    "first_estimated_position_xyz": null,
+    "last_estimated_position_xyz": null,
+    "maximum_estimated_displacement_m": 0.0,
+    "fault_observation": "NOT_OBSERVED",
+    "truth_leaks": [],
+    "graph": [
+      {
+        "name": "impact_server_advanced_observer",
+        "namespace": "/",
+        "subscriptions": [
+          [
+            "/clock",
+            [
+              "rosgraph_msgs/msg/Clock"
+            ]
+          ],
+          [
+            "/impact/fault_event",
+            [
+              "xq_sim_interfaces/msg/FaultEvent"
+            ]
+          ],
+          [
+            "/integrity/directional",
+            [
+              "xq_sim_interfaces/msg/DirectionalIntegrity"
+            ]
+          ],
+          [
+            "/integrity/exploration_decision",
+            [
+              "xq_sim_interfaces/msg/IntegrityExplorationDecision"
+            ]
+          ],
+          [
+            "/livox/imu",
+            [
+              "sensor_msgs/msg/Imu"
+            ]
+          ],
+          [
+            "/livox/lidar",
+            [
+              "sensor_msgs/msg/PointCloud2"
+            ]
+          ],
+          [
+            "/localization/odom",
+            [
+              "nav_msgs/msg/Odometry"
+            ]
+          ],
+          [
+            "/mapping/p12/static_voxels",
+            [
+              "sensor_msgs/msg/PointCloud2"
+            ]
+          ],
+          [
+            "/xq/p13/flight_status",
+            [
+              "std_msgs/msg/String"
+            ]
+          ]
+        ]
+      },
+      {
+        "name": "xq_p13_base_to_livox",
+        "namespace": "/",
+        "subscriptions": [
+          [
+            "/clock",
+            [
+              "rosgraph_msgs/msg/Clock"
+            ]
+          ],
+          [
+            "/parameter_events",
+            [
+              "rcl_interfaces/msg/ParameterEvent"
+            ]
+          ]
+        ]
+      },
+      {
+        "name": "xq_p13_base_to_livox_imu",
+        "namespace": "/",
+        "subscriptions": [
+          [
+            "/clock",
+            [
+              "rosgraph_msgs/msg/Clock"
+            ]
+          ],
+          [
+            "/parameter_events",
+            [
+              "rcl_interfaces/msg/ParameterEvent"
+            ]
+          ]
+        ]
+      },
+      {
+        "name": "xq_gz_bridge_node",
+        "namespace": "/",
+        "subscriptions": [
+          [
+            "/clock",
+            [
+              "rosgraph_msgs/msg/Clock"
+            ]
+          ],
+          [
+            "/parameter_events",
+            [
+              "rcl_interfaces/msg/ParameterEvent"
+            ]
+          ],
+          [
+            "/xq/p3/cmd_vel",
+            [
+              "geometry_msgs/msg/Twist"
+            ]
+          ]
+        ]
+      },
+      {
+        "name": "xq_fast_lio",
+        "namespace": "/",
+        "subscriptions": [
+          [
+            "/clock",
+            [
+              "rosgraph_msgs/msg/Clock"
+            ]
+          ],
+          [
+            "/livox/imu",
+            [
+              "sensor_msgs/msg/Imu"
+            ]
+          ],
+          [
+            "/livox/lidar",
+            [
+              "sensor_msgs/msg/PointCloud2"
+            ]
+          ],
+          [
+            "/parameter_events",
+            [
+              "rcl_interfaces/msg/ParameterEvent"
+            ]
+          ]
+        ]
+      },
+      {
+        "name": "xq_p6_directional_integrity",
+        "namespace": "/",
+        "subscriptions": [
+          [
+            "/clock",
+            [
+              "rosgraph_msgs/msg/Clock"
+            ]
+          ],
+          [
+            "/localization/geometry",
+            [
+              "xq_sim_interfaces/msg/LocalizationGeometry"
+            ]
+          ],
+          [
+            "/localization/odom",
+            [
+              "nav_msgs/msg/Odometry"
+            ]
+          ]
+        ]
+      },
+      {
+        "name": "xq_p10_information_map",
+        "namespace": "/",
+        "subscriptions": [
+          [
+            "/clock",
+            [
+              "rosgraph_msgs/msg/Clock"
+            ]
+          ],
+          [
+            "/cloud_registered",
+            [
+              "sensor_msgs/msg/PointCloud2"
+            ]
+          ]
+        ]
+      },
+      {
+        "name": "xq_p11_integrity_exploration",
+        "namespace": "/",
+        "subscriptions": [
+          [
+            "/clock",
+            [
+              "rosgraph_msgs/msg/Clock"
+            ]
+          ],
+          [
+            "/integrity/directional",
+            [
+              "xq_sim_interfaces/msg/DirectionalIntegrity"
+            ]
+          ],
+          [
+            "/integrity/information_map",
+            [
+              "xq_sim_interfaces/msg/InformationMap"
+            ]
+          ],
+          [
+            "/mapping/p12/static_voxels",
+            [
+              "sensor_msgs/msg/PointCloud2"
+            ]
+          ],
+          [
+            "/planning/p11/frontier_candidate_set",
+            [
+              "xq_sim_interfaces/msg/ExplorationCandidateSet"
+            ]
+          ],
+          [
+            "/planning/p11/frontier_candidates",
+            [
+              "traj_utils/msg/Bspline"
+            ]
+          ]
+        ]
+      },
+      {
+        "name": "xq_p12_dynamic_map",
+        "namespace": "/",
+        "subscriptions": [
+          [
+            "/clock",
+            [
+              "rosgraph_msgs/msg/Clock"
+            ]
+          ],
+          [
+            "/livox/lidar",
+            [
+              "sensor_msgs/msg/PointCloud2"
+            ]
+          ],
+          [
+            "/localization/odom",
+            [
+              "nav_msgs/msg/Odometry"
+            ]
+          ],
+          [
+            "/planning/p11/selected_bspline",
+            [
+              "traj_utils/msg/Bspline"
+            ]
+          ],
+          [
+            "/planning/p11/unconstrained_bspline",
+            [
+              "traj_utils/msg/Bspline"
+            ]
+          ]
+        ]
+      },
+      {
+        "name": "xq_p12_obstacle_driver",
+        "namespace": "/",
+        "subscriptions": [
+          [
+            "/clock",
+            [
+              "rosgraph_msgs/msg/Clock"
+            ]
+          ]
+        ]
+      },
+      {
+        "name": "xq_p13_flight_controller",
+        "namespace": "/",
+        "subscriptions": [
+          [
+            "/clock",
+            [
+              "rosgraph_msgs/msg/Clock"
+            ]
+          ],
+          [
+            "/integrity/directional",
+            [
+              "xq_sim_interfaces/msg/DirectionalIntegrity"
+            ]
+          ],
+          [
+            "/integrity/exploration_decision",
+            [
+              "xq_sim_interfaces/msg/IntegrityExplorationDecision"
+            ]
+          ],
+          [
+            "/integrity/information_map",
+            [
+              "xq_sim_interfaces/msg/InformationMap"
+            ]
+          ],
+          [
+            "/livox/lidar",
+            [
+              "sensor_msgs/msg/PointCloud2"
+            ]
+          ],
+          [
+            "/localization/odom",
+            [
+              "nav_msgs/msg/Odometry"
+            ]
+          ],
+          [
+            "/mapping/p12/dynamic_voxels",
+            [
+              "sensor_msgs/msg/PointCloud2"
+            ]
+          ],
+          [
+            "/mapping/p12/static_voxels",
+            [
+              "sensor_msgs/msg/PointCloud2"
+            ]
+          ],
+          [
+            "/mapping/p12/status",
+            [
+              "std_msgs/msg/String"
+            ]
+          ],
+          [
+            "/planning/p11/selected_bspline",
+            [
+              "traj_utils/msg/Bspline"
+            ]
+          ],
+          [
+            "/planning/p11/unconstrained_bspline",
+            [
+              "traj_utils/msg/Bspline"
+            ]
+          ]
+        ]
+      },
+      {
+        "name": "xq_complex_p11_flight_evaluator",
+        "namespace": "/",
+        "subscriptions": [
+          [
+            "/clock",
+            [
+              "rosgraph_msgs/msg/Clock"
+            ]
+          ],
+          [
+            "/integrity/directional",
+            [
+              "xq_sim_interfaces/msg/DirectionalIntegrity"
+            ]
+          ],
+          [
+            "/integrity/exploration_decision",
+            [
+              "xq_sim_interfaces/msg/IntegrityExplorationDecision"
+            ]
+          ],
+          [
+            "/localization/odom",
+            [
+              "nav_msgs/msg/Odometry"
+            ]
+          ],
+          [
+            "/mapping/p12/static_voxels",
+            [
+              "sensor_msgs/msg/PointCloud2"
+            ]
+          ],
+          [
+            "/xq/eval/agent_01/ground_truth",
+            [
+              "nav_msgs/msg/Odometry"
+            ]
+          ],
+          [
+            "/xq/p12/flight_status",
+            [
+              "std_msgs/msg/String"
+            ]
+          ]
+        ]
+      },
+      {
+        "name": "xq_p12_flight_evaluator",
+        "namespace": "/",
+        "subscriptions": [
+          [
+            "/clock",
+            [
+              "rosgraph_msgs/msg/Clock"
+            ]
+          ],
+          [
+            "/localization/odom",
+            [
+              "nav_msgs/msg/Odometry"
+            ]
+          ],
+          [
+            "/mapping/p12/dynamic_voxels",
+            [
+              "sensor_msgs/msg/PointCloud2"
+            ]
+          ],
+          [
+            "/mapping/p12/status",
+            [
+              "std_msgs/msg/String"
+            ]
+          ],
+          [
+            "/planning/p12/replan_event",
+            [
+              "xq_sim_interfaces/msg/ReplanEvent"
+            ]
+          ],
+          [
+            "/xq/eval/agent_01/ground_truth",
+            [
+              "nav_msgs/msg/Odometry"
+            ]
+          ],
+          [
+            "/xq/eval/p12/obstacle_state",
+            [
+              "std_msgs/msg/String"
+            ]
+          ],
+          [
+            "/xq/p12/flight_status",
+            [
+              "std_msgs/msg/String"
+            ]
+          ]
+        ]
+      },
+      {
+        "name": "xq_p13_flight_evaluator",
+        "namespace": "/",
+        "subscriptions": [
+          [
+            "/clock",
+            [
+              "rosgraph_msgs/msg/Clock"
+            ]
+          ],
+          [
+            "/integrity/p13/latency_trace",
+            [
+              "std_msgs/msg/String"
+            ]
+          ],
+          [
+            "/localization/odom",
+            [
+              "nav_msgs/msg/Odometry"
+            ]
+          ],
+          [
+            "/xq/eval/agent_01/ground_truth",
+            [
+              "nav_msgs/msg/Odometry"
+            ]
+          ],
+          [
+            "/xq/p13/flight_status",
+            [
+              "std_msgs/msg/String"
+            ]
+          ]
+        ]
+      }
+    ],
+    "prefixes": {
+      "xq_fast_lio": "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/install",
+      "xq_autonomy": "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/install",
+      "xq_gz_bridge": "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/install",
+      "xq_gz_assets": "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/install",
+      "xq_sim_bringup": "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/install"
+    },
+    "scope": "Historical native FAST-LIO + integrity/candidate/dynamic-map/latency stack with a velocity-controlled algorithm carrier. No AP/MAVROS/ARM, new joint-flow estimator, camera/range fusion, EGO executable execution or hardware validation."
+  },
+  "shutdown": {
+    "observer": {
+      "returncode": -2,
+      "escalations": [],
+      "owned_remaining": [],
+      "scope": "Only tracked descendants with unchanged /proc start identities; no global pkill."
+    },
+    "launch": {
+      "returncode": -15,
+      "escalations": [
+        {
+          "signal": "SIGTERM",
+          "owned_pids": [
+            480,
+            482,
+            484,
+            486,
+            488,
+            490,
+            492,
+            494,
+            468,
+            470,
+            439,
+            472,
+            474,
+            476,
+            478
+          ]
+        },
+        {
+          "signal": "SIGKILL",
+          "owned_pids": [
+            480,
+            482,
+            484,
+            486,
+            488,
+            490,
+            492,
+            494,
+            468,
+            474,
+            476,
+            478
+          ]
+        }
+      ],
+      "owned_remaining": [],
+      "scope": "Only tracked descendants with unchanged /proc start identities; no global pkill."
+    }
+  },
+  "mission_status": "INCOMPLETE_OR_FAILED",
+  "original_mission_results": {},
+  "mission_completion_required": false,
+  "scope": "Historical native FAST-LIO + integrity/candidate/dynamic-map/latency stack with a velocity-controlled algorithm carrier. No AP/MAVROS/ARM, new joint-flow estimator, camera/range fusion, EGO executable execution or hardware validation.",
+  "new_joint_estimator_integrated": false,
+  "AP_flight_validated": false,
+  "script_sha256": "e6b020891cd65f4c05eb455e79e47a20a2ae543c1bbb755d87771c3942fc3c3e",
+  "shared_helper_sha256": "32638f8ff13ef6ccb1dfd0342523868d482804023477ce33ecc1f1e841108273"
+}

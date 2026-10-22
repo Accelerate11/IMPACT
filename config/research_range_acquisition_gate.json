@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "phase": "R2B3B1_RANGE_AND_NOISE_ACQUISITION",
+  "protocol_revision": 2,
+  "revision_reason": "Native development probe showed Gazebo count=1 zero-span angular-step fields are NaN (0/0). Only these undefined derived spacings may become ROS increment zero, with per-message original-value ledger; no distance/timestamp/statistical threshold changes.",
+  "scope": "New noisy and noise-free pencil range sensors acquired during a short ArduPilot SIL mission. Reference is evaluation-only. Not per-feature depth, actual optical-flow state fusion, nonlinear estimator validation, or a hardware calibration.",
+  "world": "xq_r2b3_range",
+  "model": "xq_iris_multisensor_range_ardupilot",
+  "topics": {
+    "range_noisy": "/impact/r2b3/down/range",
+    "range_reference": "/impact/r2b3/eval/range_reference",
+    "imu_covariance": "/impact/r2b3/imu",
+    "imu_raw": "/livox/imu",
+    "tf_static": "/tf_static",
+    "camera_images": ["/impact/r2/front/image_raw", "/impact/r2/down/image_raw"],
+    "camera_infos": ["/impact/r2/front/camera_info", "/impact/r2/down/camera_info"],
+    "camera_metadata": "/impact/r2/calibration_metadata",
+    "range_metadata": "/impact/r2b3/noise_metadata",
+    "range_status": "/impact/r2b3/range_bridge/status",
+    "range_source": "/impact/r2b3/native/range_source",
+    "raw_scan_noisy": "/impact/r2b3/native/noisy_scan",
+    "raw_scan_reference": "/impact/r2b3/eval/reference_scan"
+  },
+  "frames": {"range": "impact_down_range", "imu": "livox_imu"},
+  "range": {
+    "rate_hz": 50.0, "min_m": 0.05, "max_m": 10.0,
+    "field_of_view_rad": 0.0, "noise_std_m": 0.01, "noise_mean_m": 0.0,
+    "white_noise_independent": true,
+    "single_sample_angular_step_policy": "finite_zero_or_nan_only_for_one_by_one_zero_span_pencil; derived_ros_increment_zero; retain_original_fields_per_sample",
+    "measurement_semantics": "instantaneous distance along sensor +X; body boresight -Z, ideal single ray",
+    "not_all_feature_depths": true
+  },
+  "imu": {
+    "rate_hz": 200.0, "gyro_std_rad_s": 0.0002, "accel_std_m_s2": 0.002,
+    "orientation_unknown": true,
+    "noise_units": "per-sample standard deviation, not continuous-time density",
+    "bias_model": "zero static and dynamic bias in this simulation; not a physical bias estimate"
+  },
+  "minimums": {
+    "range_pairs": 1000, "imu_pairs": 1000, "source_span_s": 20.0,
+    "rate_fraction": 0.8, "pair_fraction": 0.99, "camera_count": 100
+  },
+  "noise_gates": {
+    "mean_abs_m": 0.0015, "std_ratio_min": 0.85, "std_ratio_max": 1.15,
+    "lag1_abs": 0.1, "coverage95_min": 0.92, "coverage95_max": 0.98
+  },
+  "transforms": {
+    "range": {
+      "parent": "xq_base_link", "child": "impact_down_range",
+      "translation_m": [0.0, 0.0, -0.03],
+      "rotation": [[0.0, 0.0, 1.0], [0.0, 1.0, 0.0], [-1.0, 0.0, 0.0]]
+    }
+  },
+  "metadata_required": {
+    "acquisition_clock_domain": "gazebo_simulation_acquisition",
+    "reference_evaluation_only": true,
+    "ground_truth_used_in_algorithm": false,
+    "feature_depth_from_single_beam": false,
+    "metric_flow_fusion_ready": false,
+    "hardware_calibration_validated": false
+  },
+  "predeclared_before_first_formal_acquisition": true,
+  "actual_flow_state_updates": 0,
+  "statistical_integrity_validated": false,
+  "hardware_readiness": "NOT_READY"
+}

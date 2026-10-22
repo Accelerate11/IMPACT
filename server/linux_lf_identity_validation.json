@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "fixture_path": "/home/accelerate/impact_server_validation_20261022/linux_lf_fixture_20261022T111451Z_319",
+  "packaged_evidence": "validation/linux_lf_fixture_20261022T111451Z_319",
+  "source_records": 597,
+  "prototype_records": 4,
+  "all_LF_export_static_verifier_PASS": true,
+  "single_byte_same_size_space_to_tab_tamper_rejected": true,
+  "tamper_target": "src/xq_autonomy/xq_autonomy/scale_uncertainty.py",
+  "tamper_offset": 10,
+  "accepted_source_LF_identities": 338,
+  "accepted_prototype_LF_identities": 0,
+  "original_601_source_identities_unchanged": true,
+  "fixture_after_test": "Intentionally tampered development fixture; prior PASS and subsequent FAIL retained separately. No original source was changed.",
+  "verifier_sha256": "c9554fc772feb4bbbc24159c029c83864e324b9227b5c48b8a60d4f611d8cbb0",
+  "coverage_manifest_sha256": "cc2a294460ad7e567e1e6dc891c8f0828bebe3173ea4acfb01916e515da38c29",
+  "rawdata_checked": false,
+  "scope": "Exact Git/Linux newline identity and static bundle coverage fixture only; no algorithms/ROS/AP/Gazebo/SQLite executed."
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "phase": "R2B3B0_JOINT_WINDOW_SOFTWARE",
+  "input_origin": "declared_linear_gaussian_and_rigid_geometry_fixtures_not_recorded_sensor_data",
+  "joint_study": {
+    "seeds": [14027, 39041, 81013],
+    "draws_per_seed": 12000,
+    "windows_ns": [60000000, 110000000, 80000000, 150000000],
+    "initial_timestamp_ns": 1700000000000000000,
+    "active_dimension": 19,
+    "nuisance_dimension": 1,
+    "clone_active_indices": [0, 1, 2, 3, 4, 5],
+    "nominal_depth_m": 2.0,
+    "nominal_velocity_xy_mps": [0.7, 0.2],
+    "initial_sigmas": [0.04, 0.04, 0.04, 0.08, 0.08, 0.08, 0.02, 0.25, 0.25, 0.25, 0.015, 0.015, 0.015, 0.02, 0.02, 0.02, 0.03, 0.03, 0.03, 0.3],
+    "initial_shared_latent_loadings": {"velocity_x": 0.35, "rotation_y": -0.2},
+    "process_sigmas_per_window": [0.002, 0.002, 0.002, 0.002, 0.002, 0.002, 0.0001, 0.02, 0.02, 0.02, 0.0005, 0.0005, 0.0005, 0.001, 0.001, 0.001, 0.0001, 0.0001, 0.0001],
+    "pose_like_noise_sigma_m": 0.04,
+    "range_like_noise_sigma_m": 0.12,
+    "two_pose_flow_like_noise_sigma": 0.004,
+    "methods": ["full_joint", "reset_shared_nuisance", "zero_clone_cross"],
+    "rng": "numpy PCG64 with SeedSequence([seed, 0])",
+    "primitive_dimension": 116,
+    "measurement_order_per_window": ["pose_like_xy", "range_like_scalar", "two_pose_flow_like_xy"],
+    "independent_process_noise": true,
+    "independent_new_measurement_white_noise": true,
+    "shared_image_noise_modelled": false,
+    "coverage_direction_velocity_xy": [1.0, 0.0],
+    "coverage_scope": "Marginal velocity_x normal interval at each window, not a 2D joint interval, trajectory-wide guarantee, task-derived direction or protection level",
+    "scope": "A declared small-angle linear two-pose observation with one persistent scale nuisance. The 19-component active vector is a linear fixture, not an SO(3) state estimator, LIVO extension, calibrated optical-flow sensor or live fusion.",
+    "checks": {
+      "maximum_batch_mean_absolute_error": 1e-10,
+      "maximum_batch_covariance_absolute_error": 1e-10,
+      "correct_directional_coverage_interval": [0.93, 0.97],
+      "maximum_correct_velocity_covariance_relative_error": 0.05,
+      "maximum_first_window_reset_control_difference": 1e-12,
+      "normal_quantile": 1.959963984540054,
+      "ablation_effect_sign_is_not_an_acceptance_gate": true
+    }
+  },
+  "geometry_study": {
+    "random_seed": 43091,
+    "two_view_cases": 128,
+    "profiles": ["constant_axis", "switched_axes", "varying_clipped_epoch"],
+    "midpoint_rule": "Piecewise-linear gyro samples evaluated at each clipped segment midpoint; bias explicitly subtracted; time-ordered body-to-world right multiplication",
+    "finite_difference_step": 0.000001,
+    "checks": {
+      "maximum_rotation_matrix_error": 2e-12,
+      "maximum_projection_error": 2e-12,
+      "maximum_jacobian_error": 1e-7,
+      "minimum_switched_axis_component_integral_disagreement_rad": 0.001
+    }
+  },
+  "actual_recorded_flow_state_updates": 0,
+  "full_common_state_flow_fusion_validated": false,
+  "hardware_readiness": "NOT_READY",
+  "new_ap_flight_tested": false,
+  "statistical_integrity_tested": false,
+  "research_boundary": "Standard joint Gaussian conditioning, pose cloning, marginalization and rigid-body geometry are software foundations, not a novel estimator or a protection-level guarantee. Monte Carlo trajectories are independent; windows within a trajectory are correlated. No recorded pixels, real range, LIVO state injection, AP control, Orin timing or hardware calibration is claimed."
+}

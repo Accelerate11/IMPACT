@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "error": null,
+  "original_source_files_set_bytes_sha256_unchanged": true,
+  "sqlite_open_mode": "mode=ro&immutable=1",
+  "truth_reference_exported_only_for_separate_evaluator": true,
+  "camera_decimation": false,
+  "sensor_index_sha256": "ce1d25f68d87673f250dfc4383735d54f45dec08d94ccbb1e29ab4f03617cb21",
+  "scope": "Prepare original five-sensor CDR references only; no ROS node or state update.",
+  "helper_sha256_before": "3b29b70e704f640cbf707317f6b0ee7c0c470d94ea9544adb6fefeb6290893d3",
+  "helper_sha256_after": "3b29b70e704f640cbf707317f6b0ee7c0c470d94ea9544adb6fefeb6290893d3",
+  "published_sensor_counts": {
+    "down": 1270,
+    "front": 1270,
+    "range": 4188,
+    "lidar": 830,
+    "imu": 16586
+  },
+  "exact_seed_opportunities": 127,
+  "valid_pairs": 127,
+  "maximum_seed_interval_s": 0.66,
+  "evaluator_exports": {
+    "truth.jsonl": {
+      "bytes": 1942783,
+      "sha256": "2279a170e7a0836fec3b77fc675be13a63e0482d6eadf50f8e28902d99f075f4"
+    },
+    "range-reference.jsonl": {
+      "bytes": 354636,
+      "sha256": "7173261d87281703dee37d548f9b957c3efe10d9020278075d3b6ee610b9b3c7"
+    }
+  }
+}

@@ -1,0 +1,699 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "generated_at_utc": "2026-10-22T11:07:03.203279+00:00",
+  "scope": "Actual fresh relocated Ubuntu22.04/x86_64 native build, immutable B1 preparation, all five actual-state replay modes and independent nonlinear/math/trajectory audit. Executed under WSL2 on the development host, not on an external physical server.",
+  "target": {
+    "os": "Ubuntu 22.04",
+    "architecture": "x86_64",
+    "execution_environment": "WSL2 Ubuntu22.04/x86_64",
+    "cpu_only_algorithm": true,
+    "active_GUI_calls_required": false,
+    "cuda_required": false,
+    "external_physical_server_validated": false
+  },
+  "paths": {
+    "source_package_root": "/home/accelerate/impact_server_staging_20261022",
+    "fresh_runtime_root": "/home/accelerate/impact_server_validation_20261022/livo_final",
+    "five_mode_run": "/home/accelerate/impact_server_validation_20261022/livo_five_modes",
+    "offline_evaluation": "/home/accelerate/impact_server_validation_20261022/livo_five_modes_evaluation",
+    "first_pre_final_wrapper_build_preserved_at": "/home/accelerate/impact_server_validation_20261022/livo"
+  },
+  "build": {
+    "status": "PASS",
+    "binary": {
+      "path": "/home/accelerate/impact_server_validation_20261022/livo_final/workspace/joint_livo_install/xq_fast_livo2/lib/xq_fast_livo2/xq_livo_mapping",
+      "bytes": 3634992,
+      "sha256": "ce60286b493851bad327491fb6d14a71211d481ab4c80b372eaa30ef175a5a52"
+    },
+    "native_manifest": {
+      "path": "/home/accelerate/impact_server_validation_20261022/livo_final/workspace/joint_livo_install/.impact-joint-build-manifest.json",
+      "bytes": 102162,
+      "sha256": "77ec366bea74f07babde7dd0f95f73a50795f0e725b1b24dce3c6f8b3b87f1f0"
+    },
+    "stage_manifest": {
+      "path": "/home/accelerate/impact_server_validation_20261022/livo_final/stage-manifest.json",
+      "bytes": 17859,
+      "sha256": "84a6aaf57a76ebbfc8a74426b956aad99736145897fd5a59742734449daa764e"
+    },
+    "dependency_manifest": {
+      "path": "/home/accelerate/impact_server_validation_20261022/livo_final/workspace/livo_deps/dependency-manifest.json",
+      "bytes": 11055,
+      "sha256": "cd3cf8386749c54c091b54a40a86daf7667ea9504e2c6b363f22d842d0e3703a"
+    },
+    "vendor_manifest": {
+      "path": "/home/accelerate/impact_server_staging_20261022/third_party/livo/vendor-manifest.json",
+      "bytes": 28233,
+      "sha256": "718daa9cf2f9d87f00273e3b1a5491dce5c3539945a3685c74144b94efb84b70"
+    },
+    "original_native_build_script_and_checker_unchanged_and_executed": true,
+    "old_build_manifest_not_reused": true,
+    "minimal_base_scope": "xq_livox_interfaces only; explicitly declared, not full Gazebo workspace",
+    "dependency_consumer_probes": [
+      "delayed:PASS",
+      "missing:PASS",
+      "wrong-type:PASS"
+    ],
+    "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+    "native_source_file_count": 34,
+    "dpkg_database_sha256": "47287fe6ec81433b4b1ad441cf4c4fec0f262ce2fbb63441d2488b1da482a825",
+    "nonfatal_fresh_build_warnings": [
+      "gmake: Warning: File 'Makefile' has modification time 0.6 s in the future",
+      "gmake[1]: Warning: File 'CMakeFiles/Makefile2' has modification time 0.58 s in the future",
+      "gmake[2]: Warning: File 'CMakeFiles/xq_livo_core.dir/flags.make' has modification time 0.56 s in the future",
+      "gmake[2]: warning:  Clock skew detected.  Your build may be incomplete.",
+      "gmake[2]: Warning: File 'CMakeFiles/xq_livo_core.dir/flags.make' has modification time 0.55 s in the future",
+      "gmake[2]: warning:  Clock skew detected.  Your build may be incomplete.",
+      "gmake[1]: warning:  Clock skew detected.  Your build may be incomplete.",
+      "gmake: warning:  Clock skew detected.  Your build may be incomplete.",
+      "gmake: Warning: File 'Makefile' has modification time 0.6 s in the future",
+      "gmake[1]: Warning: File 'CMakeFiles/Makefile2' has modification time 0.58 s in the future",
+      "gmake[2]: Warning: File 'CMakeFiles/xq_livo_core.dir/flags.make' has modification time 0.56 s in the future",
+      "gmake[2]: warning:  Clock skew detected.  Your build may be incomplete.",
+      "gmake[2]: Warning: File 'CMakeFiles/xq_livo_core.dir/flags.make' has modification time 0.55 s in the future",
+      "gmake[2]: warning:  Clock skew detected.  Your build may be incomplete.",
+      "gmake[1]: warning:  Clock skew detected.  Your build may be incomplete.",
+      "gmake: warning:  Clock skew detected.  Your build may be incomplete."
+    ]
+  },
+  "inputs": {
+    "preparation": "PASS",
+    "relocation_comparison": "Full index equality after changing only bag/database parent directories",
+    "index": {
+      "path": "/home/accelerate/impact_server_validation_20261022/livo_final/inputs/original/sensor-index.json",
+      "bytes": 11263199,
+      "sha256": "ce1d25f68d87673f250dfc4383735d54f45dec08d94ccbb1e29ab4f03617cb21"
+    },
+    "old_index_sha256": "5ef6eccb2d974793def075d2c5dcb2f86592a704317e25eb09ae94e173f1f518",
+    "source_family_bytes": 1503077896,
+    "entries": 24144,
+    "sensor_counts": {
+      "down": 1270,
+      "front": 1270,
+      "range": 4188,
+      "lidar": 830,
+      "imu": 16586
+    },
+    "valid_source_pairs": 127,
+    "truth_evaluator_only": {
+      "path": "/home/accelerate/impact_server_validation_20261022/livo_final/inputs/original/evaluator/truth.jsonl",
+      "bytes": 1942783,
+      "sha256": "2279a170e7a0836fec3b77fc675be13a63e0482d6eadf50f8e28902d99f075f4"
+    },
+    "range_reference_evaluator_only": {
+      "path": "/home/accelerate/impact_server_validation_20261022/livo_final/inputs/original/evaluator/range-reference.jsonl",
+      "bytes": 354636,
+      "sha256": "7173261d87281703dee37d548f9b957c3efe10d9020278075d3b6ee610b9b3c7"
+    },
+    "raw_source_family_set_bytes_sha256_unchanged_before_after_preparation_and_all_arms": true,
+    "original_payload_hashes_rowids_stamps_camera_models_and_pair_profile_unchanged": true
+  },
+  "execution_chain": {
+    "status": "PASS",
+    "steps": [
+      {
+        "step": "check",
+        "command": [
+          "bash",
+          "/home/accelerate/impact_server_staging_20261022/server/run_livo_server.sh",
+          "check",
+          "--root",
+          "/home/accelerate/impact_server_staging_20261022",
+          "--runtime-root",
+          "/home/accelerate/impact_server_validation_20261022/livo_final"
+        ],
+        "exit_code": 0,
+        "wall_s": 5.824514197999633,
+        "started_utc": "2026-10-21T17:15:27.908248+00:00"
+      },
+      {
+        "step": "replay",
+        "command": [
+          "bash",
+          "/home/accelerate/impact_server_staging_20261022/server/run_livo_server.sh",
+          "replay",
+          "--root",
+          "/home/accelerate/impact_server_staging_20261022",
+          "--runtime-root",
+          "/home/accelerate/impact_server_validation_20261022/livo_final",
+          "--output",
+          "/home/accelerate/impact_server_validation_20261022/livo_five_modes"
+        ],
+        "exit_code": 0,
+        "wall_s": 914.0348413690003,
+        "started_utc": "2026-10-21T17:15:33.732985+00:00"
+      },
+      {
+        "step": "evaluate",
+        "command": [
+          "bash",
+          "/home/accelerate/impact_server_staging_20261022/server/run_livo_server.sh",
+          "evaluate",
+          "--root",
+          "/home/accelerate/impact_server_staging_20261022",
+          "--runtime-root",
+          "/home/accelerate/impact_server_validation_20261022/livo_final",
+          "--run",
+          "/home/accelerate/impact_server_validation_20261022/livo_five_modes",
+          "--output",
+          "/home/accelerate/impact_server_validation_20261022/livo_five_modes_evaluation"
+        ],
+        "exit_code": 0,
+        "wall_s": 23.329447344999608,
+        "started_utc": "2026-10-21T17:30:14.802400+00:00"
+      }
+    ],
+    "BLAS_threads_for_offline_evaluation": 1,
+    "scope": "Relocated Ubuntu22.04/x86_64 staging validation under WSL2; not remote physical server, AP closed loop or hardware validation"
+  },
+  "five_mode_suite": {
+    "status": "PASS",
+    "modes": [
+      "native",
+      "joint_no_flow",
+      "full",
+      "zero_gyro",
+      "zero_plane"
+    ],
+    "original_protocol": {
+      "schema_version": 1,
+      "revision": 1,
+      "scope": "Original five-sensor B1 simulation replay into the actual native LIVO state; independent evaluator only receives truth. Not an AP4.7.1 flight or hardware result.",
+      "pair_profile": "exact_seed_next_original_camera_v1",
+      "modes": [
+        "native",
+        "joint_no_flow",
+        "full",
+        "zero_gyro",
+        "zero_plane"
+      ],
+      "primary_flow_control": "joint_no_flow",
+      "additional_legacy_baseline": "native",
+      "replay_rate": 0.5,
+      "pixel_sigma_px": 1.0,
+      "pixel_noise_status": "declared engineering covariance, not calibrated pixel uncertainty",
+      "range_sigma_m": 0.01,
+      "range_noise_origin": "B1 frozen Gaussian simulator noise, not hardware ToF calibration",
+      "local_slope_sigma": 0.05,
+      "maximum_pair_s": 0.3,
+      "maximum_mapper_drain_s": 60,
+      "maximum_arm_wall_s": 420,
+      "hypothesis": "Compare actual raw two-view updates with the same native reset and auxiliary-state handling; report trajectory accuracy, update availability, covariance diagnostics and all failures without requiring full to win every comparison.",
+      "limitations": [
+        "Fixed native map and independent native measurement approximation; historical map correlation is not restored.",
+        "Only exact acquisition-stamp range seeds are consumed; the remaining 50 Hz range samples are received and audited without being fused in this profile.",
+        "The original native baseline does not apply the new SO(3) reset; paired flow claims use joint_no_flow.",
+        "Single existing flight input is an integration experiment, not a multiseed degradation evaluation or publication-level superiority claim."
+      ]
+    },
+    "frozen_input_source_before_after_equal": true,
+    "results": {
+      "native": {
+        "status": "PASS",
+        "wall_s": 186.50477268900022,
+        "all_five_counts_and_tails_verified": true,
+        "matched_truth_samples": 1253,
+        "unmatched_truth_samples": 0,
+        "ate_rms_m": 0.0073687851071771735,
+        "ate_max_m": 0.12177901570896525,
+        "truth_pair_time_offset_max_s": 0.009000000000000341,
+        "alignment": "first_pair_SE3_no_scale",
+        "accepted_flow_updates": 0,
+        "actual_nonzero_state_and_covariance_updates": 0,
+        "attempted_frame_pairs": 0,
+        "range_seed_augmentations": 0,
+        "specified_cross_ablation_batches": 0,
+        "maximum_jacobian_frobenius_error": 0.0,
+        "median_nis_per_dof": null,
+        "unique_native_state_addresses": 0,
+        "flow_reasons": {}
+      },
+      "joint_no_flow": {
+        "status": "PASS",
+        "wall_s": 185.58145251799988,
+        "all_five_counts_and_tails_verified": true,
+        "matched_truth_samples": 1253,
+        "unmatched_truth_samples": 0,
+        "ate_rms_m": 0.007203131484536852,
+        "ate_max_m": 0.11743118512405643,
+        "truth_pair_time_offset_max_s": 0.009000000000000341,
+        "alignment": "first_pair_SE3_no_scale",
+        "accepted_flow_updates": 0,
+        "actual_nonzero_state_and_covariance_updates": 0,
+        "attempted_frame_pairs": 123,
+        "range_seed_augmentations": 123,
+        "specified_cross_ablation_batches": 0,
+        "maximum_jacobian_frobenius_error": 0.0,
+        "median_nis_per_dof": null,
+        "unique_native_state_addresses": 1,
+        "flow_reasons": {
+          "joint_no_flow_control": 123
+        }
+      },
+      "full": {
+        "status": "PASS",
+        "wall_s": 178.635399496,
+        "all_five_counts_and_tails_verified": true,
+        "matched_truth_samples": 1253,
+        "unmatched_truth_samples": 0,
+        "ate_rms_m": 0.006644720404153553,
+        "ate_max_m": 0.11614103276091195,
+        "truth_pair_time_offset_max_s": 0.009000000000000341,
+        "alignment": "first_pair_SE3_no_scale",
+        "accepted_flow_updates": 37,
+        "actual_nonzero_state_and_covariance_updates": 37,
+        "attempted_frame_pairs": 123,
+        "range_seed_augmentations": 123,
+        "specified_cross_ablation_batches": 0,
+        "maximum_jacobian_frobenius_error": 4.449478599865924e-07,
+        "median_nis_per_dof": 0.023555421381000117,
+        "unique_native_state_addresses": 1,
+        "flow_reasons": {
+          "insufficient_or_excessive_tracks": 39,
+          "joint_nonlinear_update_applied": 37,
+          "pure_rotation_or_insufficient_translation": 47
+        }
+      },
+      "zero_gyro": {
+        "status": "PASS",
+        "wall_s": 177.45405185400023,
+        "all_five_counts_and_tails_verified": true,
+        "matched_truth_samples": 1253,
+        "unmatched_truth_samples": 0,
+        "ate_rms_m": 0.0067684764947523015,
+        "ate_max_m": 0.11798123755036066,
+        "truth_pair_time_offset_max_s": 0.009000000000000341,
+        "alignment": "first_pair_SE3_no_scale",
+        "accepted_flow_updates": 37,
+        "actual_nonzero_state_and_covariance_updates": 37,
+        "attempted_frame_pairs": 123,
+        "range_seed_augmentations": 123,
+        "specified_cross_ablation_batches": 123,
+        "maximum_jacobian_frobenius_error": 4.3302942826290907e-07,
+        "median_nis_per_dof": 0.024873067861319906,
+        "unique_native_state_addresses": 1,
+        "flow_reasons": {
+          "insufficient_or_excessive_tracks": 39,
+          "joint_nonlinear_update_applied": 37,
+          "pure_rotation_or_insufficient_translation": 47
+        }
+      },
+      "zero_plane": {
+        "status": "PASS",
+        "wall_s": 179.19875657700004,
+        "all_five_counts_and_tails_verified": true,
+        "matched_truth_samples": 1253,
+        "unmatched_truth_samples": 0,
+        "ate_rms_m": 0.0067420319084604,
+        "ate_max_m": 0.11739554919151252,
+        "truth_pair_time_offset_max_s": 0.009000000000000341,
+        "alignment": "first_pair_SE3_no_scale",
+        "accepted_flow_updates": 37,
+        "actual_nonzero_state_and_covariance_updates": 37,
+        "attempted_frame_pairs": 123,
+        "range_seed_augmentations": 123,
+        "specified_cross_ablation_batches": 123,
+        "maximum_jacobian_frobenius_error": 4.826880111523661e-07,
+        "median_nis_per_dof": 0.02564548439997117,
+        "unique_native_state_addresses": 1,
+        "flow_reasons": {
+          "insufficient_or_excessive_tracks": 39,
+          "joint_nonlinear_update_applied": 37,
+          "pure_rotation_or_insufficient_translation": 47
+        }
+      }
+    }
+  },
+  "independent_audit": {
+    "status": "PASS",
+    "failures": {},
+    "report": {
+      "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes_evaluation/report.json",
+      "bytes": 14490,
+      "sha256": "35ca0b2248989801d7f78e3a91850aaf3978a5da0fa887c5ed320ad0a84d81e6"
+    },
+    "actual_native_state_and_covariance_corrections_reconstructed": {
+      "native": 0,
+      "joint_no_flow": 0,
+      "full": 37,
+      "zero_gyro": 37,
+      "zero_plane": 37
+    },
+    "reconstruction": [
+      "raw ray-plane two-view prediction",
+      "28D pixel Jacobian finite differences",
+      "two endpoint pixel covariance",
+      "innovation and gain",
+      "actual native nominal injection",
+      "Joseph covariance with both SO3 resets",
+      "gyro tagged covariance and specified cross ablations"
+    ],
+    "truth_is_read_only_after_estimator_exit": true,
+    "alignment": "first_pair_SE3_no_scale",
+    "matching_tolerance_s": 0.015,
+    "native_address_contract": "Native legacy baseline may have no new joint address tags (0); all four joint-state modes require exactly 1 actual native-state address."
+  },
+  "source_identities": {
+    "server/livo_server.py": {
+      "path": "/home/accelerate/impact_server_staging_20261022/server/livo_server.py",
+      "bytes": 21140,
+      "sha256": "9db5de3024722c4f4a53e6eb1dcdfde9694cd6b3aacc6257d481a76e00f439a5"
+    },
+    "server/build_livo_server.sh": {
+      "path": "/home/accelerate/impact_server_staging_20261022/server/build_livo_server.sh",
+      "bytes": 751,
+      "sha256": "52033175a3fe81ff36e65f18f2078730aaa35e8d38f4a0167e657ed53056b08c"
+    },
+    "server/run_livo_server.sh": {
+      "path": "/home/accelerate/impact_server_staging_20261022/server/run_livo_server.sh",
+      "bytes": 831,
+      "sha256": "9be514140281c204756c7ce971543e6c2127286c428a97c0b03a4afb8c041c67"
+    },
+    "scripts/build_joint_livo_isolated.sh": {
+      "path": "/home/accelerate/impact_server_staging_20261022/scripts/build_joint_livo_isolated.sh",
+      "bytes": 2349,
+      "sha256": "abc29294eb4d47698b8d14e192903fdd568f6a30bb848c98fd9040f90d96aab1"
+    },
+    "scripts/check_joint_livo_build_manifest.py": {
+      "path": "/home/accelerate/impact_server_staging_20261022/scripts/check_joint_livo_build_manifest.py",
+      "bytes": 8904,
+      "sha256": "78c0204f84c439db2f8e17a21692409bcbf04dd0842760737177e8d2a739962e"
+    },
+    "scripts/run_joint_livo_replay.sh": {
+      "path": "/home/accelerate/impact_server_staging_20261022/scripts/run_joint_livo_replay.sh",
+      "bytes": 980,
+      "sha256": "b60038c2ddb2fd331c794bf2616a2253f509bb94930ba91668f6b9e66c97cce5"
+    },
+    "scripts/run_joint_livo_replay.py": {
+      "path": "/home/accelerate/impact_server_staging_20261022/scripts/run_joint_livo_replay.py",
+      "bytes": 11251,
+      "sha256": "b7e6a8e4c56da977e4c183f2f4bec0085738fa4044193095ba847f159bcb3bfe"
+    },
+    "scripts/replay_joint_livo_inputs.py": {
+      "path": "/home/accelerate/impact_server_staging_20261022/scripts/replay_joint_livo_inputs.py",
+      "bytes": 29477,
+      "sha256": "3b29b70e704f640cbf707317f6b0ee7c0c470d94ea9544adb6fefeb6290893d3"
+    },
+    "scripts/analyze_joint_livo_replay.py": {
+      "path": "/home/accelerate/impact_server_staging_20261022/scripts/analyze_joint_livo_replay.py",
+      "bytes": 13348,
+      "sha256": "5691bb9cee40f619c5d7bc02177493f06fed3987aea614e85ee3b5b6e1029c71"
+    },
+    "scripts/analyze_livo_replay.py": {
+      "path": "/home/accelerate/impact_server_staging_20261022/scripts/analyze_livo_replay.py",
+      "bytes": 27019,
+      "sha256": "a176e11a7117138b6c22e760306eb1306673ba31423c8055c9303633461226c2"
+    },
+    "config/research_joint_livo_replay.json": {
+      "path": "/home/accelerate/impact_server_staging_20261022/config/research_joint_livo_replay.json",
+      "bytes": 1610,
+      "sha256": "4342010a397eaaf38cb9751985b81bc111ae9583e14747f79dbdb1ae01a2f625"
+    },
+    "src/xq_fast_livo2/include/research_joint_flow.h": {
+      "path": "/home/accelerate/impact_server_staging_20261022/src/xq_fast_livo2/include/research_joint_flow.h",
+      "bytes": 29286,
+      "sha256": "ef80e8471aea8f8cd35d4f8f93cb7cc71fe3d4a6fb6b02a64d65a0de99ef78ab"
+    },
+    "src/xq_fast_livo2/src/research_joint_integration.cpp": {
+      "path": "/home/accelerate/impact_server_staging_20261022/src/xq_fast_livo2/src/research_joint_integration.cpp",
+      "bytes": 17159,
+      "sha256": "13d33ce70a281239102e3a617bcde85abb4d93b968a376ead7956c050d626ada"
+    },
+    "src/xq_fast_livo2/src/IMU_Processing.cpp": {
+      "path": "/home/accelerate/impact_server_staging_20261022/src/xq_fast_livo2/src/IMU_Processing.cpp",
+      "bytes": 23935,
+      "sha256": "81e0113c82132a41334d0c59303f956e3bc5b883bdc4b64ff62bf33c3d1d6274"
+    }
+  },
+  "per_mode_small_artifact_identities": {
+    "native": {
+      "run-result.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/native/run-result.json",
+        "bytes": 1780,
+        "sha256": "aeeafada0e1dc97e6df621ba0b71023faa39cbb6c6bb4081650346e991324081"
+      },
+      "processing-result.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/native/processing-result.json",
+        "bytes": 1032,
+        "sha256": "eaec35b67f1f45248b74ba808a1c6e687d0c53738b9d23407e4b592c0d2e16b2"
+      },
+      "publisher-result.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/native/publisher-result.json",
+        "bytes": 1289,
+        "sha256": "9ca0284b6b6a7c903ae970cdaf2e2fc66fd808c30e499ba4034dd3c90a0d0d78"
+      },
+      "commands.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/native/commands.json",
+        "bytes": 2103,
+        "sha256": "d94c51c94f4f6692b6b89640092b5e6bdc91d96ea3d0c5e67bdd6415a739b74d"
+      },
+      "source-files.before.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/native/source-files.before.json",
+        "bytes": 910,
+        "sha256": "b2f648d127e73e5d71708a9fc16a15514127c123a930f1fa6ef715a936c0fc14"
+      },
+      "source-files.after.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/native/source-files.after.json",
+        "bytes": 910,
+        "sha256": "b2f648d127e73e5d71708a9fc16a15514127c123a930f1fa6ef715a936c0fc14"
+      }
+    },
+    "joint_no_flow": {
+      "run-result.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/joint_no_flow/run-result.json",
+        "bytes": 1787,
+        "sha256": "9176478a669abe1f7be7cb236b52490b3bbd104c8ffe9d37865583d0c3cf3adf"
+      },
+      "processing-result.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/joint_no_flow/processing-result.json",
+        "bytes": 1032,
+        "sha256": "eaec35b67f1f45248b74ba808a1c6e687d0c53738b9d23407e4b592c0d2e16b2"
+      },
+      "publisher-result.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/joint_no_flow/publisher-result.json",
+        "bytes": 1289,
+        "sha256": "66987a8e03c41db684f56aeb0ebec9e85d0f07f1b7c542a60b8f261b61e145a3"
+      },
+      "commands.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/joint_no_flow/commands.json",
+        "bytes": 2131,
+        "sha256": "1ef5c5a1b2268b0034884928894e61554eb1f5b6198a0e48ded79c839fa4c6bf"
+      },
+      "source-files.before.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/joint_no_flow/source-files.before.json",
+        "bytes": 910,
+        "sha256": "b2f648d127e73e5d71708a9fc16a15514127c123a930f1fa6ef715a936c0fc14"
+      },
+      "source-files.after.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/joint_no_flow/source-files.after.json",
+        "bytes": 910,
+        "sha256": "b2f648d127e73e5d71708a9fc16a15514127c123a930f1fa6ef715a936c0fc14"
+      }
+    },
+    "full": {
+      "run-result.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/full/run-result.json",
+        "bytes": 1773,
+        "sha256": "f67d4be9a1e79773573b215180476a38cdfdf6e41fc7112d7d01f019966e5ddd"
+      },
+      "processing-result.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/full/processing-result.json",
+        "bytes": 1032,
+        "sha256": "eaec35b67f1f45248b74ba808a1c6e687d0c53738b9d23407e4b592c0d2e16b2"
+      },
+      "publisher-result.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/full/publisher-result.json",
+        "bytes": 1289,
+        "sha256": "edc64e926a80942a5dc7e9e987e24acbeed3117bba040e8334ed5083666ec0de"
+      },
+      "commands.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/full/commands.json",
+        "bytes": 2095,
+        "sha256": "01126307205d0a9bed4e63bb3cad558ce3721c8c4653d5bb299cda85ec8293b1"
+      },
+      "source-files.before.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/full/source-files.before.json",
+        "bytes": 910,
+        "sha256": "b2f648d127e73e5d71708a9fc16a15514127c123a930f1fa6ef715a936c0fc14"
+      },
+      "source-files.after.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/full/source-files.after.json",
+        "bytes": 910,
+        "sha256": "b2f648d127e73e5d71708a9fc16a15514127c123a930f1fa6ef715a936c0fc14"
+      }
+    },
+    "zero_gyro": {
+      "run-result.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/zero_gyro/run-result.json",
+        "bytes": 1783,
+        "sha256": "278491cb9044aa457b9cf9731976712830b625a7d59b28a8dc57119149805384"
+      },
+      "processing-result.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/zero_gyro/processing-result.json",
+        "bytes": 1032,
+        "sha256": "eaec35b67f1f45248b74ba808a1c6e687d0c53738b9d23407e4b592c0d2e16b2"
+      },
+      "publisher-result.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/zero_gyro/publisher-result.json",
+        "bytes": 1288,
+        "sha256": "c333a8e30b826502f13de0fca1928db6f62b518297c70dcfde08f3262c750052"
+      },
+      "commands.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/zero_gyro/commands.json",
+        "bytes": 2115,
+        "sha256": "4c7b081d72ea0d35586a37e94d45c55461fc34d09911b16da8beb2795bce81fb"
+      },
+      "source-files.before.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/zero_gyro/source-files.before.json",
+        "bytes": 910,
+        "sha256": "b2f648d127e73e5d71708a9fc16a15514127c123a930f1fa6ef715a936c0fc14"
+      },
+      "source-files.after.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/zero_gyro/source-files.after.json",
+        "bytes": 910,
+        "sha256": "b2f648d127e73e5d71708a9fc16a15514127c123a930f1fa6ef715a936c0fc14"
+      }
+    },
+    "zero_plane": {
+      "run-result.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/zero_plane/run-result.json",
+        "bytes": 1784,
+        "sha256": "1ccf26728dd6c9da2182c6002c163834f68cd3af3500e69b08d75065c91848be"
+      },
+      "processing-result.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/zero_plane/processing-result.json",
+        "bytes": 1032,
+        "sha256": "eaec35b67f1f45248b74ba808a1c6e687d0c53738b9d23407e4b592c0d2e16b2"
+      },
+      "publisher-result.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/zero_plane/publisher-result.json",
+        "bytes": 1289,
+        "sha256": "e9d5fa820139a52f577e087c641727527b2227087e140b732c05817e97c5c768"
+      },
+      "commands.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/zero_plane/commands.json",
+        "bytes": 2119,
+        "sha256": "acf43d16356bbb053cfd72894d629736642e62c0d226f2e4b8a2b9fb2b1ef457"
+      },
+      "source-files.before.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/zero_plane/source-files.before.json",
+        "bytes": 910,
+        "sha256": "b2f648d127e73e5d71708a9fc16a15514127c123a930f1fa6ef715a936c0fc14"
+      },
+      "source-files.after.json": {
+        "path": "/home/accelerate/impact_server_validation_20261022/livo_five_modes/zero_plane/source-files.after.json",
+        "bytes": 910,
+        "sha256": "b2f648d127e73e5d71708a9fc16a15514127c123a930f1fa6ef715a936c0fc14"
+      }
+    }
+  },
+  "small_evidence_copies": {
+    "server-build-result.json": {
+      "path": "/mnt/d/CODEX/impact/packaging/server/livo_validation_evidence/server-build-result.json",
+      "bytes": 795,
+      "sha256": "e3b5c3cca7bc7ad8ce164d0ea0bc9079f949759542673130cbff9bbbf97a1540"
+    },
+    "native-build-manifest.json": {
+      "path": "/mnt/d/CODEX/impact/packaging/server/livo_validation_evidence/native-build-manifest.json",
+      "bytes": 102162,
+      "sha256": "77ec366bea74f07babde7dd0f95f73a50795f0e725b1b24dce3c6f8b3b87f1f0"
+    },
+    "stage-manifest.json": {
+      "path": "/mnt/d/CODEX/impact/packaging/server/livo_validation_evidence/stage-manifest.json",
+      "bytes": 17859,
+      "sha256": "84a6aaf57a76ebbfc8a74426b956aad99736145897fd5a59742734449daa764e"
+    },
+    "input-relocation-audit.json": {
+      "path": "/mnt/d/CODEX/impact/packaging/server/livo_validation_evidence/input-relocation-audit.json",
+      "bytes": 488,
+      "sha256": "6956e6a535bca5dec01b0dabeeea6ec373e4c306e80025d0f28b264519072123"
+    },
+    "prepare-result.json": {
+      "path": "/mnt/d/CODEX/impact/packaging/server/livo_validation_evidence/prepare-result.json",
+      "bytes": 1139,
+      "sha256": "627cbf95e88b08f542723221d078ad8a908a2e279cf73c5f1f4bdfd15f35e2bb"
+    },
+    "suite-result.json": {
+      "path": "/mnt/d/CODEX/impact/packaging/server/livo_validation_evidence/suite-result.json",
+      "bytes": 10348,
+      "sha256": "9ff13f2b691db83cf2c3f52041823a69885ba38da594d5211bb028d2fa6856d5"
+    },
+    "evaluation-report.json": {
+      "path": "/mnt/d/CODEX/impact/packaging/server/livo_validation_evidence/evaluation-report.json",
+      "bytes": 14490,
+      "sha256": "35ca0b2248989801d7f78e3a91850aaf3978a5da0fa887c5ed320ad0a84d81e6"
+    },
+    "chain-result.json": {
+      "path": "/mnt/d/CODEX/impact/packaging/server/livo_validation_evidence/chain-result.json",
+      "bytes": 1945,
+      "sha256": "2f94435f0c48f30277ed036377a1c9397b30a412427e69c89b7304296eef8df9"
+    },
+    "frozen-inputs.before.json": {
+      "path": "/mnt/d/CODEX/impact/packaging/server/livo_validation_evidence/frozen-inputs.before.json",
+      "bytes": 1998,
+      "sha256": "2bc044bae26890fc64ecc8a8ffd3af47b3600197847c986bc4748d3ff78f9934"
+    },
+    "frozen-inputs.after.json": {
+      "path": "/mnt/d/CODEX/impact/packaging/server/livo_validation_evidence/frozen-inputs.after.json",
+      "bytes": 1998,
+      "sha256": "2bc044bae26890fc64ecc8a8ffd3af47b3600197847c986bc4748d3ff78f9934"
+    },
+    "native-processing-result.json": {
+      "path": "/mnt/d/CODEX/impact/packaging/server/livo_validation_evidence/native-processing-result.json",
+      "bytes": 1032,
+      "sha256": "eaec35b67f1f45248b74ba808a1c6e687d0c53738b9d23407e4b592c0d2e16b2"
+    },
+    "joint_no_flow-processing-result.json": {
+      "path": "/mnt/d/CODEX/impact/packaging/server/livo_validation_evidence/joint_no_flow-processing-result.json",
+      "bytes": 1032,
+      "sha256": "eaec35b67f1f45248b74ba808a1c6e687d0c53738b9d23407e4b592c0d2e16b2"
+    },
+    "full-processing-result.json": {
+      "path": "/mnt/d/CODEX/impact/packaging/server/livo_validation_evidence/full-processing-result.json",
+      "bytes": 1032,
+      "sha256": "eaec35b67f1f45248b74ba808a1c6e687d0c53738b9d23407e4b592c0d2e16b2"
+    },
+    "zero_gyro-processing-result.json": {
+      "path": "/mnt/d/CODEX/impact/packaging/server/livo_validation_evidence/zero_gyro-processing-result.json",
+      "bytes": 1032,
+      "sha256": "eaec35b67f1f45248b74ba808a1c6e687d0c53738b9d23407e4b592c0d2e16b2"
+    },
+    "zero_plane-processing-result.json": {
+      "path": "/mnt/d/CODEX/impact/packaging/server/livo_validation_evidence/zero_plane-processing-result.json",
+      "bytes": 1032,
+      "sha256": "eaec35b67f1f45248b74ba808a1c6e687d0c53738b9d23407e4b592c0d2e16b2"
+    }
+  },
+  "deployment_wrapper_validation": {
+    "status": "PASS",
+    "scope": "deployment wrapper staging/vendor/tamper rejection only; no native replay or server timing result",
+    "checks": [
+      "Python syntax accepted",
+      "Bash wrapper syntax accepted",
+      "fresh stage with spaces preserves exact canonical source bytes and sets",
+      "changed staged algorithm is rejected for the correct identity reason",
+      "extra staged source file is rejected for the correct set reason",
+      "clean pinned Git archive export verifies despite patched upstream worktree",
+      "camera parameter service patch applies to clean non-Git vendor export",
+      "post-build stage check binds the actual vendored source tree to the recorded manifest",
+      "changed vendor source is rejected both directly and by post-build stage check",
+      "existing runtime attempt cannot be overwritten"
+    ],
+    "helper_sha256_before": "9db5de3024722c4f4a53e6eb1dcdfde9694cd6b3aacc6257d481a76e00f439a5",
+    "helper_sha256_after": "9db5de3024722c4f4a53e6eb1dcdfde9694cd6b3aacc6257d481a76e00f439a5",
+    "helper_unchanged": true,
+    "test_platform": "Ubuntu22.04/x86_64 under WSL2",
+    "long_experiments_started": false
+  },
+  "remaining_scope": {
+    "serial_baseline_is_standalone_prototype_not_sixth_native_mode": true,
+    "new_multiseed_or_degradation_experiments_performed": false,
+    "new_AP_4_7_1_estimator_closed_loop_flight_performed": false,
+    "hardware_or_Orin_timing_validated": false,
+    "global_consistency_integrity_calibration_or_superiority_claim": false
+  },
+  "environment_observations": [
+    "Fresh build logged subsecond generated-Makefile future-mtime/clock-skew warnings, but compiler, original build manifest, actual five-mode replay and independent audit all passed.",
+    "After the completed experiment and evaluation, old tool sessions and WSL became unavailable; ordinary WSL access later recovered and persisted PASS artifacts were read without rerunning any algorithm. No cause such as OOM was established."
+  ]
+}

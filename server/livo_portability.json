@@ -1,0 +1,336 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-10-22",
+  "target": {
+    "os": "Ubuntu 22.04",
+    "architecture": "x86_64",
+    "ros": "Humble",
+    "ros_prefix": "/opt/ros/humble",
+    "cpu_only": true,
+    "gui_required": false,
+    "cuda_required": false,
+    "gazebo_required_for_frozen_replay": false
+  },
+  "scope": "Rebuild and rerun actual native LIVO/joint five-mode frozen B1 simulation replay plus standalone joint core and serial prototype. Not an AP4.7.1 closed-loop or hardware acceptance report.",
+  "algorithms": {
+    "native_joint": {
+      "source": "src/xq_fast_livo2",
+      "native_state_dimension": 19,
+      "joint_state_dimension": 28,
+      "modes": [
+        "native",
+        "joint_no_flow",
+        "full",
+        "zero_gyro",
+        "zero_plane"
+      ],
+      "primary_flow_control": "joint_no_flow",
+      "entry": "scripts/run_joint_livo_replay.sh",
+      "native_core_header": "src/xq_fast_livo2/include/research_joint_flow.h",
+      "core_test": "src/xq_fast_livo2/test/test_research_joint_flow.cpp"
+    },
+    "serial": {
+      "source_in_repository": "runs/software_completion_serial_prototype",
+      "source_in_distribution": "prototypes/serial_position",
+      "validator": "validate_serial_prototype.py",
+      "dependencies": [
+        "C++17",
+        "Eigen3",
+        "Python3 standard library"
+      ],
+      "native_replay_integration": false,
+      "reported_mode": false
+    }
+  },
+  "dependency_pins": {
+    "Sophus": {
+      "url": "https://github.com/strasdat/Sophus.git",
+      "commit": "de0f8d3d92bf776271e16de56d1803940ebccab9",
+      "cmake_version": "1.22.10",
+      "clean_archive_files": 105,
+      "clean_archive_bytes": 599056
+    },
+    "rpg_vikit": {
+      "url": "https://github.com/Robotic-Developer-Road/rpg_vikit.git",
+      "commit": "4b7abc838f5d2ca9137f70f122eaaeff9eaf0f50",
+      "clean_archive_files": 63,
+      "clean_archive_bytes": 750030,
+      "patches": "config/livo_dependency_patches/*.patch",
+      "numerical_camera_models": "pinned upstream source"
+    }
+  },
+  "system_dependencies": [
+    "build-essential",
+    "cmake",
+    "git",
+    "pkg-config",
+    "iproute2",
+    "libeigen3-dev",
+    "libopencv-dev",
+    "libpcl-dev",
+    "libfmt-dev",
+    "libboost-thread-dev",
+    "python3-colcon-common-extensions",
+    "python3-numpy",
+    "python3-yaml",
+    "ros-humble-ros-base",
+    "ros-humble-rclcpp",
+    "ros-humble-rclpy",
+    "ros-humble-sensor-msgs",
+    "ros-humble-nav-msgs",
+    "ros-humble-geometry-msgs",
+    "ros-humble-visualization-msgs",
+    "ros-humble-std-msgs",
+    "ros-humble-rosgraph-msgs",
+    "ros-humble-tf2-ros",
+    "ros-humble-tf2-geometry-msgs",
+    "ros-humble-pcl-conversions",
+    "ros-humble-cv-bridge",
+    "ros-humble-image-transport",
+    "ros-humble-rosidl-default-generators",
+    "ros-humble-rosidl-runtime-py",
+    "ros-humble-rmw-fastrtps-cpp"
+  ],
+  "fixed_path_findings": [
+    {
+      "file": "scripts/prepare_livo_dependencies.sh",
+      "finding": "Default and explicit allowlist require /home/accelerate/impact_research_ws; do not execute on the server. Replaced only at deployment layer by server/livo_server.py dependency build."
+    },
+    {
+      "file": "scripts/build_isolated.sh",
+      "finding": "Checks microsoft /proc/version and builds full simulation stack; not used for minimal replay. New base prefix builds only xq_livox_interfaces and truthfully declares this scope."
+    },
+    {
+      "file": "scripts/check_joint_livo_build_manifest.py",
+      "finding": "Requires base xq_install manifest and existing protected livo_build/livo_install. New isolated workspace creates a real minimal interface build and genuinely empty protected old prefixes; executes original checker without bypass."
+    },
+    {
+      "file": "sensor-index.json",
+      "finding": "bag/raw_files/entry file fields are absolute old WSL paths. Preserve original as reference evidence; regenerate new index from the same immutable bag on the target."
+    },
+    {
+      "file": "scripts/prepare_livo_transport.py",
+      "finding": "Uses local ip route lookup to 1.1.1.1; this sends no packet, but requires an active nonloopback IPv4 route. Pure loopback network namespaces are outside the unchanged transport helper contract."
+    },
+    {
+      "file": "joint_livo_install/.impact-joint-build-manifest.json",
+      "finding": "Binds absolute build root, compiler and runtime libraries plus full dpkg database. Never move the old compiled install; rebuild after relocating package or upgrading dependencies."
+    }
+  ],
+  "windows_wsl_source_comparison": {
+    "canonical": "D:/CODEX/impact",
+    "wsl_workspace": "/home/accelerate/impact_research_ws",
+    "native_source_files_compared": 34,
+    "native_source_byte_mismatches": [],
+    "critical_script_names_compared": [
+      "build_joint_livo_isolated.sh",
+      "run_joint_livo_replay.sh",
+      "run_joint_livo_replay.py",
+      "check_joint_livo_build_manifest.py",
+      "replay_joint_livo_inputs.py",
+      "prepare_joint_livo_selection.py",
+      "prepare_livo_transport.py",
+      "analyze_joint_livo_replay.py",
+      "analyze_livo_replay.py"
+    ],
+    "scripts_absent_in_wsl": [
+      "scripts/analyze_joint_livo_replay.py",
+      "scripts/prepare_joint_livo_selection.py"
+    ],
+    "other_critical_scripts_byte_mismatches": [],
+    "packaging_policy": "Copy canonical Windows sources/scripts/config, not a stale partial WSL source snapshot."
+  },
+  "required_packaging_sources": [
+    {
+      "source": "src/xq_fast_livo2",
+      "target": "src/xq_fast_livo2",
+      "kind": "complete_tree",
+      "bytes": 427327,
+      "files": 34
+    },
+    {
+      "source": "src/xq_livox_interfaces",
+      "target": "src/xq_livox_interfaces",
+      "kind": "complete_tree",
+      "bytes": 1395,
+      "files": 4
+    },
+    {
+      "source": "config/livo_dependency_patches",
+      "target": "config/livo_dependency_patches",
+      "kind": "complete_tree"
+    },
+    {
+      "source": "config/research_joint_livo_replay.json",
+      "target": "config/research_joint_livo_replay.json",
+      "kind": "file"
+    },
+    {
+      "source": "runs/software_completion_joint_input_index_20261021T074341Z_324",
+      "target": "data/b1/reference",
+      "kind": "complete_reference_index_and_evaluator_tree"
+    },
+    {
+      "source": "runs/software_completion_serial_prototype",
+      "target": "prototypes/serial_position",
+      "kind": "complete_tree_preserve_source_bytes"
+    },
+    {
+      "source": "packaging/server",
+      "target": "server",
+      "kind": "deployment_wrappers_docs_and_audit"
+    },
+    {
+      "source": "scripts/build_joint_livo_isolated.sh",
+      "target": "scripts/build_joint_livo_isolated.sh",
+      "kind": "file",
+      "sha256": "abc29294eb4d47698b8d14e192903fdd568f6a30bb848c98fd9040f90d96aab1"
+    },
+    {
+      "source": "scripts/run_joint_livo_replay.sh",
+      "target": "scripts/run_joint_livo_replay.sh",
+      "kind": "file",
+      "sha256": "b60038c2ddb2fd331c794bf2616a2253f509bb94930ba91668f6b9e66c97cce5"
+    },
+    {
+      "source": "scripts/run_joint_livo_replay.py",
+      "target": "scripts/run_joint_livo_replay.py",
+      "kind": "file",
+      "sha256": "b7e6a8e4c56da977e4c183f2f4bec0085738fa4044193095ba847f159bcb3bfe"
+    },
+    {
+      "source": "scripts/check_joint_livo_build_manifest.py",
+      "target": "scripts/check_joint_livo_build_manifest.py",
+      "kind": "file",
+      "sha256": "78c0204f84c439db2f8e17a21692409bcbf04dd0842760737177e8d2a739962e"
+    },
+    {
+      "source": "scripts/replay_joint_livo_inputs.py",
+      "target": "scripts/replay_joint_livo_inputs.py",
+      "kind": "file",
+      "sha256": "3b29b70e704f640cbf707317f6b0ee7c0c470d94ea9544adb6fefeb6290893d3"
+    },
+    {
+      "source": "scripts/prepare_joint_livo_selection.py",
+      "target": "scripts/prepare_joint_livo_selection.py",
+      "kind": "file",
+      "sha256": "1ba5d7e1e6b49a2f52643f8f9bedf56383e383bba7e7f0d1f09868aeaf353d4a"
+    },
+    {
+      "source": "scripts/prepare_livo_transport.py",
+      "target": "scripts/prepare_livo_transport.py",
+      "kind": "file",
+      "sha256": "9d4d090518bbf38326bebcc50685cc91b5d2d2188bdae82230a260581c05caee"
+    },
+    {
+      "source": "scripts/analyze_joint_livo_replay.py",
+      "target": "scripts/analyze_joint_livo_replay.py",
+      "kind": "file",
+      "sha256": "5691bb9cee40f619c5d7bc02177493f06fed3987aea614e85ee3b5b6e1029c71"
+    },
+    {
+      "source": "scripts/analyze_livo_replay.py",
+      "target": "scripts/analyze_livo_replay.py",
+      "kind": "file",
+      "sha256": "a176e11a7117138b6c22e760306eb1306673ba31423c8055c9303633461226c2"
+    }
+  ],
+  "raw_dataset": {
+    "original_wsl_directory": "/home/accelerate/impact_research_ws/experiments/results/research_multisensor/r2b3b1_20261020T104238Z_8607/rosbag",
+    "distribution_directory": "data/b1/rosbag",
+    "bytes": 1503077896,
+    "files": {
+      "metadata.yaml": {
+        "bytes": 26120,
+        "sha256": "8f9fc3f3d927861aa4b89f713a09cbf883bcb4e2a77bf2a8b961cec7f1b77205"
+      },
+      "rosbag_0.db3": {
+        "bytes": 270364672,
+        "sha256": "c77d65032f18fa5d3eed1c77032e080d4528880b0cc000cfec033a9f6f25397f"
+      },
+      "rosbag_1.db3": {
+        "bytes": 270528512,
+        "sha256": "283282d9cc42ddd2695d71241e4d3e2b695f4f12024d31cc310f16be0cee44ad"
+      },
+      "rosbag_2.db3": {
+        "bytes": 269950976,
+        "sha256": "835b46881613635b47007af79dab5bb6cc555b32476437bfb67498983290684f"
+      },
+      "rosbag_3.db3": {
+        "bytes": 269053952,
+        "sha256": "bd4fb03c615491c6305151148af323cb0f1cb0aef0721b4da50ebb2caa3c8e04"
+      },
+      "rosbag_4.db3": {
+        "bytes": 269193216,
+        "sha256": "494b4ba314e1444718034ddf3dd588fd362634d5e9b50e0d3b36ecd049725249"
+      },
+      "rosbag_5.db3": {
+        "bytes": 153960448,
+        "sha256": "aef190eef8a3da5876b10ccf0ef50cdca4963f758f0a45dc73898ba35d368778"
+      }
+    },
+    "original_index_bytes": 12470749,
+    "original_index_sha256": "5ef6eccb2d974793def075d2c5dcb2f86592a704317e25eb09ae94e173f1f518",
+    "entry_count": 24144,
+    "published_sensor_counts": {
+      "down": 1270,
+      "front": 1270,
+      "range": 4188,
+      "lidar": 830,
+      "imu": 16586
+    },
+    "exact_seed_opportunities": 127,
+    "original_acquisition_stamps_preserved": true,
+    "read_mode": "SQLite mode=ro&immutable=1; reject sidecars; hash entire source family before and after",
+    "truth_scope": "Separate evaluator outputs only; never loaded by the sensor publisher."
+  },
+  "deployment": {
+    "source_wrapper_directory": "packaging/server",
+    "distribution_wrapper_directory": "server",
+    "build_entry": "bash server/build_livo_server.sh --root ROOT --runtime-root ROOT/server_runtime/livo --jobs 1",
+    "runner_entry": "bash server/run_livo_server.sh {check|prepare|replay|evaluate} --root ROOT --runtime-root ROOT/server_runtime/livo",
+    "workspace": "RUNTIME/workspace",
+    "vendor_directory": "ROOT/third_party/livo",
+    "new_index": "RUNTIME/inputs/original/sensor-index.json",
+    "truth": "RUNTIME/inputs/original/evaluator/truth.jsonl",
+    "original_algorithm_and_replay_scripts_modified": false,
+    "original_manifest_checker_bypassed": false,
+    "monkeypatches": false,
+    "existing_runtime_overwrite_allowed": false,
+    "new_server_build_and_replay_validation": "Performed separately by the root packaging integration; this static audit does not claim it has completed."
+  },
+  "resource_guidance": {
+    "build_jobs_default": 1,
+    "omp_threads": 2,
+    "recommended_memory_GiB_minimum": 8,
+    "suggested_free_runtime_storage_GiB": 10,
+    "guidance_is_estimate_not_measured_upper_bound": true,
+    "raw_bag_bytes": 1503077896,
+    "optional_historical_full_result_bytes": 232227743,
+    "optional_historical_four_control_results_bytes": 703723907,
+    "do_not_pack_as_runtime_dependencies": [
+      "old xq_install",
+      "old livo_deps binaries",
+      "old joint_livo_install",
+      "old build/log directories",
+      "whole 668MB third_party history"
+    ]
+  },
+  "acceptance_outputs": [
+    "server-build-result.json:PASS",
+    "dependency consumer delayed/missing/wrong-type probes pass",
+    "original native build-manifest checker passes",
+    "suite-result.json:PASS",
+    "all requested mode run-result.json:PASS",
+    "each processing-result.json:COMPLETE and all_five_counts_and_tails_verified",
+    "independent evaluation report.json:PASS",
+    "all failures and actual update counts retained"
+  ],
+  "limitations": [
+    "Single frozen B1 input is not a multiseed superiority test.",
+    "Engineering pixel/range covariances are not hardware calibrations.",
+    "Fixed-map/independent-native-observation approximation does not restore historical map correlation.",
+    "Serial baseline is standalone prototype only, not a native replay group.",
+    "CPU/headless portability does not establish Orin timing, AP fusion, new-estimator flight or hardware readiness."
+  ]
+}

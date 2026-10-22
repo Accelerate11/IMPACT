@@ -16,6 +16,7 @@ find_package(nav_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rosgraph_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
 find_package(gz-msgs10 REQUIRED)
 find_package(gz-sim8 REQUIRED)
 find_package(gz-transport13 REQUIRED)
@@ -61,11 +62,37 @@ target_link_libraries(xq_gz_bridge_node
   gz-transport13::gz-transport13
 )
 
+# R2 cameras are isolated from the established LiDAR/IMU/actuation bridge.
+add_library(xq_r2_camera_conversions src/camera_conversions.cpp)
+target_include_directories(xq_r2_camera_conversions PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
+ament_target_dependencies(xq_r2_camera_conversions builtin_interfaces sensor_msgs std_msgs)
+target_link_libraries(xq_r2_camera_conversions gz-msgs10::gz-msgs10)
+add_executable(impact_r2_camera_bridge src/r2_camera_bridge_node.cpp)
+ament_target_dependencies(impact_r2_camera_bridge rclcpp sensor_msgs std_msgs)
+target_link_libraries(impact_r2_camera_bridge xq_r2_camera_conversions gz-transport13::gz-transport13)
+
+# New range/known-white-noise IMU topics do not alter the established /livox/imu path.
+add_library(xq_r2_range_conversions src/range_conversions.cpp)
+target_include_directories(xq_r2_range_conversions PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
+ament_target_dependencies(xq_r2_range_conversions builtin_interfaces sensor_msgs std_msgs)
+target_link_libraries(xq_r2_range_conversions gz-msgs10::gz-msgs10)
+add_executable(impact_r2_range_bridge src/r2_range_bridge_node.cpp)
+ament_target_dependencies(impact_r2_range_bridge rclcpp sensor_msgs std_msgs)
+target_link_libraries(impact_r2_range_bridge xq_r2_range_conversions gz-transport13::gz-transport13)
+
 install(
   TARGETS
     xq_gz_bridge_conversions
     xq_gz_bridge_node
     xq_p12_obstacle_motion_system
+    xq_r2_camera_conversions
+    impact_r2_camera_bridge
+    xq_r2_range_conversions
+    impact_r2_range_bridge
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION lib/${PROJECT_NAME}
@@ -88,6 +115,18 @@ if(BUILD_TESTING)
       xq_gz_bridge_conversions
       gz-msgs10::gz-msgs10
     )
+  endif()
+
+  ament_add_gtest(test_range_conversions test/test_range_conversions.cpp)
+  if(TARGET test_range_conversions)
+    ament_target_dependencies(test_range_conversions builtin_interfaces sensor_msgs std_msgs)
+    target_link_libraries(test_range_conversions xq_r2_range_conversions)
+  endif()
+
+  ament_add_gtest(test_camera_conversions test/test_camera_conversions.cpp)
+  if(TARGET test_camera_conversions)
+    ament_target_dependencies(test_camera_conversions builtin_interfaces sensor_msgs std_msgs)
+    target_link_libraries(test_camera_conversions xq_r2_camera_conversions)
   endif()
 
   add_test(

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "baseline_name": "serial_robust_two_view_position_then_native_EKF",
+  "status": "PROTOTYPE_NOT_NATIVE_REPLAY_ACCEPTANCE",
+  "ground_truth_consumed_by_estimator": false,
+  "stage_one": {
+    "optimized_variables": "current_world_position_3",
+    "fixed_means_with_propagated_uncertainty": "native_attitude3_clone_pose6_local_plane3",
+    "geometry": "same_raw_two_view_ray_plane_camera_lever_arm_model_as_joint_method",
+    "objective": "Huber_on_pixel_covariance_whitened_raw_endpoint_residuals",
+    "huber_sigma": 2.5,
+    "maximum_iterations_including_refit": 12,
+    "maximum_line_search_trials_per_iteration": 8,
+    "step_tolerance_m": 0.000001,
+    "relative_objective_tolerance": 0.00000001,
+    "maximum_position_offset_from_initial_guess_m": 0.5,
+    "minimum_information_eigenvalue": 0.00000001,
+    "maximum_information_condition": 100000000.0,
+    "outlier_trim_passes": 1,
+    "outlier_trim_nis_cutoff": 9.210340371976184,
+    "outlier_trim_covariance": "pixel_R_plus_Hn_Pnn_Hn_transpose",
+    "outlier_trim_scope": "conservative_engineering_marginal_gate_after_fitting_not_independent_calibrated_chi_square_residuals",
+    "shared_input_budget": "same_80_raw_LK_feature_cap_minimum_8_depth_footprint_and_spatial_support_as_joint_method",
+    "iteration_budget_comparison": "serial_has_up_to_12_fit_iterations_joint_has_one_linearized_update_report_runtime_separately"
+  },
+  "measurement_covariance": {
+    "pixel_noise": "same_explicit_endpoint_covariances_as_joint_method",
+    "influence": "A=(Jp_transpose_W_Jp)^-1_Jp_transpose_W",
+    "nuisance_influence": "B=-A_Hn",
+    "covariance": "A_Rpixel_A_transpose_plus_B_Pnn_B_transpose",
+    "nuisance_order": "active_attitude3_clone_rotation3_clone_position3_plane3",
+    "all_nuisance_mutual_cross_covariance_retained": true,
+    "initial_range_and_attitude_treated_as_truth": false,
+    "scope": "first_order_covariance_at_final_fit_conditioned_on_robust_selection_weights_and_geometry_no_empirical_calibration_claim"
+  },
+  "stage_two": {
+    "measurement": "fitted_world_position3",
+    "native_state_dimension": 19,
+    "native_position_nis_limit": 11.344866730144373,
+    "native_update": "Joseph_position_measurement_then_same_auxiliary_conditional_update_and_right_SO3_reset",
+    "shared_measurement_native_state_correlation": "deliberately_ignored_serial_independence_approximation",
+    "failure_behavior": "reject_frame_without_modifying_native_nominal_or_covariance"
+  },
+  "known_limits": [
+    "local_plane_and_native_fixed_map_approximation_shared_with_joint_method",
+    "conditional_position_fit_does_not_refine_attitude_or_plane_means",
+    "data_dependent_robust_selection_covariance_is_first_order_approximation",
+    "serial_independence_may_double_count_shared_state_information",
+    "standalone_tests_do_not_establish_native_replay_AP_closed_loop_hardware_or_superiority"
+  ]
+}

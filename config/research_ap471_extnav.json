@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "protocol_revision": 1,
+  "stage": "AP471_MAPPED_TRANSPORT_EXACT_STARTUP_AND_CURRENT_RECEIPT_UNARMED",
+  "predeclared_before_first_live_run": true,
+  "firmware_commit": "dbe792162d06cab66c3475fd5556bf7a120f119e",
+  "duration_wall_s": 60,
+  "monitor_extra_s": 8,
+  "source_pause_after_s": 20,
+  "source_pause_duration_s": 2,
+  "minimum_wire_odometry_messages": 150,
+  "minimum_clock_ledger_forwarded": 150,
+  "no_arm": true,
+  "flight_commands_allowed": false,
+  "mission_nodes_started": false,
+  "actual_flow_state_updates": 0,
+  "live_readiness": {
+    "expected_system_id": 1,
+    "expected_component_id": 1,
+    "required_parameters": {
+      "GPS1_TYPE": 0, "GPS2_TYPE": 0, "SIM_GPS1_ENABLE": 0, "SIM_GPS2_ENABLE": 0,
+      "VISO_TYPE": 1, "VISO_QUAL_MIN": 0, "PLND_ENABLED": 0,
+      "LOG_DISARMED": 1, "LOG_BACKEND_TYPE": 1,
+      "AHRS_EKF_TYPE": 3, "EK3_ENABLE": 1,
+      "EK3_SRC1_POSXY": 6, "EK3_SRC1_VELXY": 6, "EK3_SRC1_POSZ": 6,
+      "EK3_SRC1_VELZ": 6, "EK3_SRC1_YAW": 6, "ARMING_SKIPCHK": 0
+    }
+  },
+  "adapter": {
+    "transport_clock_mode": "epoch_anchor_plus_monotonic",
+    "require_exact_mavros_startup_gate": true,
+    "require_acquisition_clock_freshness": true,
+    "use_sim_time": false
+  },
+  "scope": "Unarmed real MAVROS/Gazebo/AP 4.7.1 transport/startup/receipt experiment. Synthetic source has zero pose/velocity and advancing Gazebo /clock acquisition stamps; it is not estimator evidence. No actual multi-source state update or flight validation.",
+  "source_acquisition_timestamps_unchanged": true,
+  "mapped_clock_is_UTC_or_FCU_calibration": false,
+  "graph_identity_is_TF_or_per_frame_ACK": false
+}

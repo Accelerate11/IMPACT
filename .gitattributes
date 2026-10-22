@@ -1,1 +1,10 @@
 *.sh text eol=lf
+*.pdf binary
+*.zip binary
+*.png binary
+*.ttf binary
+*.otf binary
+server/validation/** -text
+server/calibration/** -text
+prototypes/** -text
+*.rar binary

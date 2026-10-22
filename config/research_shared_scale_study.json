@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "phase": "R2B1_SHARED_SCALE_MODEL_VERIFICATION",
+  "input_origin": "synthetic_joint_gaussian_not_hardware_or_gazebo",
+  "seeds": [17019, 31183, 92401],
+  "draws_per_seed_and_case": 40000,
+  "frames_per_window": [1, 10, 40],
+  "true_distance_m": 1.5,
+  "true_velocity_xy_mps": [1.0, 0.6],
+  "single_frame_rate_sigma_per_s": [0.02, 0.02],
+  "cases": [
+    {"name": "known_range_control", "shared_range_sigma_m": 0.0},
+    {"name": "shared_range_stress", "shared_range_sigma_m": 0.12}
+  ],
+  "noise_values_are_measured_sensor_specifications": false,
+  "shared_scale_model": "Within each independent trial/window a single range error is shared by all N rate samples. Windows and rate noises are independent. Draw the Gaussian sample-mean rate directly with sigma/sqrt(N).",
+  "correct_model": "Exact v=d*q product moments with rate variance / N, unchanged shared range variance and zero rate-range covariance in this experiment",
+  "ablation": "Same point estimates; full exact single-frame velocity covariance / N, incorrectly treating the shared range error as independent each frame; preserves x-y covariance",
+  "coverage": {
+    "kind": "empirical_directional_normal_interval_not_protection_level",
+    "nominal": 0.95,
+    "normal_quantile": 1.959963984540054,
+    "direction": "unit vector along true velocity",
+    "confidence_interval": "Wilson binomial interval, 95%; applies only to independent synthetic trials"
+  },
+  "predeclared_checks": {
+    "maximum_relative_covariance_frobenius_error": 0.04,
+    "correct_directional_coverage_interval": [0.93, 0.97],
+    "minimum_coverage_gap_at_largest_window": 0.30,
+    "control_covariance_absolute_tolerance": 1e-12,
+    "no_negative_sampled_range": true
+  },
+  "scope": "Offline verification of a specific shared-scale error mechanism under declared noise assumptions. No LiDAR/camera state fusion, AP injection, real sensor accuracy, Orin runtime, integrity guarantee or real flight claim."
+}

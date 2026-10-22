@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "gate": "P10_MINIMUM_EXCITATION_ACTIVE_PERCEPTION",
+  "status": "PASS",
+  "scenario": "xq_p10_long_corridor",
+  "variants": [
+    "baseline",
+    "yaw_only",
+    "minimum_excitation"
+  ],
+  "predicted_minimum_margins_m": {
+    "baseline": 0.04508279187225828,
+    "yaw_only": 0.04508279187225828,
+    "minimum_excitation": 0.41963051978925703
+  },
+  "actual_minimum_integrity_margins_m": {
+    "baseline": -0.3206299559867214,
+    "yaw_only": -0.44815823645953046,
+    "minimum_excitation": 0.10463322217697402
+  },
+  "ate_rms_m": {
+    "baseline": 0.12117580461839307,
+    "yaw_only": 0.08515400685977102,
+    "minimum_excitation": 0.11757802854610615
+  },
+  "weak_direction_error_rms_m": {
+    "baseline": 0.11640825864637774,
+    "yaw_only": 0.07418603420536121,
+    "minimum_excitation": 0.11345896792287427
+  },
+  "ground_truth_path_length_m": {
+    "baseline": 7.506819206011394,
+    "yaw_only": 7.704924136148379,
+    "minimum_excitation": 7.572734151149037
+  },
+  "mission_time_s": {
+    "baseline": 43.00000000000001,
+    "yaw_only": 43.00000000000001,
+    "minimum_excitation": 43.00000000000001
+  },
+  "minimum_excitation_extra_path_m": 0.06591494513764307,
+  "minimum_excitation_time_overhead_s": 0.0,
+  "selected_recovery": "right_lateral",
+  "prediction_comparison_source": "minimum_excitation_common_decision_snapshot",
+  "checks": {
+    "all_flight_arms_pass": true,
+    "baseline_predicted_insufficient": true,
+    "yaw_only_predicted_insufficient": true,
+    "minimum_excitation_predicted_reserved": true,
+    "required_recovery_selected": true,
+    "minimum_excitation_actually_reserved": true,
+    "baseline_actually_insufficient": true,
+    "yaw_only_actually_insufficient": true,
+    "yaw_only_does_not_restore_margin": true,
+    "actual_margin_gain": true,
+    "bounded_extra_path": true,
+    "bounded_mission_time": true,
+    "ate_not_materially_degraded": true,
+    "weak_error_not_materially_degraded": true,
+    "same_frozen_calibration": true,
+    "finite_comparison_metrics": true
+  },
+  "thresholds": {
+    "schema_version": 1,
+    "frozen_before_formal_gate": true,
+    "world": "xq_p10_long_corridor.sdf",
+    "random_seed": 20260822,
+    "margin_reserve_m": 0.1,
+    "visibility_radius_m": 2.8,
+    "information_scale_m_inv2": 2500.0,
+    "minimum_prediction_variance_m2": 1e-05,
+    "lateral_offset_m": 0.4,
+    "vertical_offset_m": 0.25,
+    "slow_scale": 0.5,
+    "hover_time_s": 1.0,
+    "minimum_matched_samples": 100,
+    "minimum_integrity_samples": 20,
+    "maximum_yaw_only_margin_gain_m": 0.05,
+    "minimum_recovery_margin_gain_m": 0.1,
+    "maximum_extra_path_m": 1.0,
+    "maximum_mission_time_overhead_s": 1.0,
+    "maximum_ate_degradation_m": 0.05,
+    "maximum_weak_error_degradation_m": 0.05,
+    "required_recovery_candidate": "right_lateral"
+  },
+  "ground_truth_policy": "evaluation_and_logging_only",
+  "generated_at_utc": "2026-08-23T15:48:47.815422+00:00"
+}

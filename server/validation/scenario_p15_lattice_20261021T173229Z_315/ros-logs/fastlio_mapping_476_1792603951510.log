@@ -1,0 +1,3 @@
+[INFO] [1792603955.026030049] [xq_fast_lio]: p_pre->lidar_type 5
+[INFO] [1792603955.075519571] [xq_fast_lio]: Node init finished.
+[INFO] [1792604234.332308789] [rclcpp]: signal_handler(SIGINT/SIGTERM)

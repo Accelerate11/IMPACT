@@ -1,0 +1,118 @@
+{
+  "share/xq_gz_assets/models/xq_iris_mid360/model.config": {
+    "source_sha256": "fea9ac3e6a45787118217f2a7d15469d7b2d436949e70906308a542a07f1af4d",
+    "installed_sha256": "fea9ac3e6a45787118217f2a7d15469d7b2d436949e70906308a542a07f1af4d"
+  },
+  "share/xq_gz_assets/models/xq_iris_mid360/model.sdf": {
+    "source_sha256": "9ea0b5b66e864fa2a68397e2eefb6d6de8f6c3182945312c8d78d36cf1bddcb1",
+    "installed_sha256": "9ea0b5b66e864fa2a68397e2eefb6d6de8f6c3182945312c8d78d36cf1bddcb1"
+  },
+  "share/xq_gz_assets/models/xq_iris_mid360_ardupilot/model.config": {
+    "source_sha256": "58962854458bab03966dc2f291b1d3cec4d26c93ecc2730ec922f32d88607611",
+    "installed_sha256": "58962854458bab03966dc2f291b1d3cec4d26c93ecc2730ec922f32d88607611"
+  },
+  "share/xq_gz_assets/models/xq_iris_mid360_ardupilot/model.sdf": {
+    "source_sha256": "e310328e2df1557439d353ac4fac1ba641eafb4dfeb4e80b6e796e5b33d19178",
+    "installed_sha256": "e310328e2df1557439d353ac4fac1ba641eafb4dfeb4e80b6e796e5b33d19178"
+  },
+  "share/xq_gz_assets/models/xq_iris_multisensor_ardupilot/model.config": {
+    "source_sha256": "20f55cbb9660915877f81e7fbef8f170f69f43eb776401461e99466daeb4277a",
+    "installed_sha256": "20f55cbb9660915877f81e7fbef8f170f69f43eb776401461e99466daeb4277a"
+  },
+  "share/xq_gz_assets/models/xq_iris_multisensor_ardupilot/model.sdf": {
+    "source_sha256": "6a344ac0f23f6bbc3a584d191215f7c00f202927e4a0512b97fa7bebbe019cda",
+    "installed_sha256": "6a344ac0f23f6bbc3a584d191215f7c00f202927e4a0512b97fa7bebbe019cda"
+  },
+  "share/xq_gz_assets/models/xq_iris_multisensor_range_ardupilot/model.config": {
+    "source_sha256": "fa12b5c3568b6b270a0d3677e9044db3fec26ebdb446977ec7a034bfc0be7084",
+    "installed_sha256": "fa12b5c3568b6b270a0d3677e9044db3fec26ebdb446977ec7a034bfc0be7084"
+  },
+  "share/xq_gz_assets/models/xq_iris_multisensor_range_ardupilot/model.sdf": {
+    "source_sha256": "1c3e80f7c8a927ad107d275932de88cf07304cf35732ded63a30f0839f21fbdc",
+    "installed_sha256": "1c3e80f7c8a927ad107d275932de88cf07304cf35732ded63a30f0839f21fbdc"
+  },
+  "share/xq_gz_assets/models/xq_p5_replay_shell/model.config": {
+    "source_sha256": "89092767c7cb3de29dff8cdeb6a69d0defd3a463e6ba6e733ddf2866a33ce17b",
+    "installed_sha256": "89092767c7cb3de29dff8cdeb6a69d0defd3a463e6ba6e733ddf2866a33ce17b"
+  },
+  "share/xq_gz_assets/models/xq_p5_replay_shell/model.sdf": {
+    "source_sha256": "7a09ced78136cc0001b3fd3bd37e97f0afe35d78ed26c447297498b5c31d5329",
+    "installed_sha256": "7a09ced78136cc0001b3fd3bd37e97f0afe35d78ed26c447297498b5c31d5329"
+  },
+  "share/xq_gz_assets/worlds/xq_complex_3d_warehouse.sdf": {
+    "source_sha256": "aca24f90a2f04fd6cd126ee1985faf33fb5a7d4db332adbd229e60398cb75feb",
+    "installed_sha256": "aca24f90a2f04fd6cd126ee1985faf33fb5a7d4db332adbd229e60398cb75feb"
+  },
+  "share/xq_gz_assets/worlds/xq_complex_bidirectional_warehouse.sdf": {
+    "source_sha256": "052d926e41ae5251589f2a372545be18ffa7482837dc2afc282d26a00fd62ffe",
+    "installed_sha256": "052d926e41ae5251589f2a372545be18ffa7482837dc2afc282d26a00fd62ffe"
+  },
+  "share/xq_gz_assets/worlds/xq_complex_compositional_warehouse.sdf": {
+    "source_sha256": "8969a5e489c07a89783e7b3fa3f3fce92f98fc5b5421c62f249411562ccfddf9",
+    "installed_sha256": "8969a5e489c07a89783e7b3fa3f3fce92f98fc5b5421c62f249411562ccfddf9"
+  },
+  "share/xq_gz_assets/worlds/xq_complex_warehouse.sdf": {
+    "source_sha256": "b5d351c3c8f2f64338582e189d753274d387eb30ab8242d3134789e10279f64d",
+    "installed_sha256": "b5d351c3c8f2f64338582e189d753274d387eb30ab8242d3134789e10279f64d"
+  },
+  "share/xq_gz_assets/worlds/xq_indoor_office.sdf": {
+    "source_sha256": "578481b6fb5fef8fa48ca9ee3e919323cd1956f25e6f0a7c47778fc7823463cb",
+    "installed_sha256": "578481b6fb5fef8fa48ca9ee3e919323cd1956f25e6f0a7c47778fc7823463cb"
+  },
+  "share/xq_gz_assets/worlds/xq_p10_long_corridor.sdf": {
+    "source_sha256": "9e53a89490fe3a709a27dbd1cfc73cf2078801fece3f86cc8e2e5ae63fe6470a",
+    "installed_sha256": "9e53a89490fe3a709a27dbd1cfc73cf2078801fece3f86cc8e2e5ae63fe6470a"
+  },
+  "share/xq_gz_assets/worlds/xq_p11_integrity_exploration.sdf": {
+    "source_sha256": "16d7005f9cb8f111b08ee94e356a421c03b43ac9f055a68ac4e34f9de17978a6",
+    "installed_sha256": "16d7005f9cb8f111b08ee94e356a421c03b43ac9f055a68ac4e34f9de17978a6"
+  },
+  "share/xq_gz_assets/worlds/xq_p12_dynamic_obstacle.sdf": {
+    "source_sha256": "093322560e1818eb5f4f1cb8757053c845c09dd605bb68cc377c29082b4ec7d0",
+    "installed_sha256": "093322560e1818eb5f4f1cb8757053c845c09dd605bb68cc377c29082b4ec7d0"
+  },
+  "share/xq_gz_assets/worlds/xq_p1_ardupilot_empty.sdf": {
+    "source_sha256": "40135785163a2b959d469fd6090a58b8d6fcb4c9bb182429f8a859e0cfd3a7a1",
+    "installed_sha256": "40135785163a2b959d469fd6090a58b8d6fcb4c9bb182429f8a859e0cfd3a7a1"
+  },
+  "share/xq_gz_assets/worlds/xq_p3_long_corridor.sdf": {
+    "source_sha256": "26110a628919d82b3c6d71aa94d01d8c35fd269b35be8a6fa00adaebf0d0fee3",
+    "installed_sha256": "26110a628919d82b3c6d71aa94d01d8c35fd269b35be8a6fa00adaebf0d0fee3"
+  },
+  "share/xq_gz_assets/worlds/xq_p3_structured_room.sdf": {
+    "source_sha256": "4cb7d8e34d147d06c78040de44163685a2e9c9e952fdf5e514278d4bc8431d0d",
+    "installed_sha256": "4cb7d8e34d147d06c78040de44163685a2e9c9e952fdf5e514278d4bc8431d0d"
+  },
+  "share/xq_gz_assets/worlds/xq_p4_external_nav.sdf": {
+    "source_sha256": "b151b9616334eccf0ca897002432f99310f03f287ce720c94e8f72df856fed36",
+    "installed_sha256": "b151b9616334eccf0ca897002432f99310f03f287ce720c94e8f72df856fed36"
+  },
+  "share/xq_gz_assets/worlds/xq_p5_structured_room.sdf": {
+    "source_sha256": "17092daf6492e022daad64117ab6cca7e7af8a13e2294b1916d9eddf4e01dadf",
+    "installed_sha256": "17092daf6492e022daad64117ab6cca7e7af8a13e2294b1916d9eddf4e01dadf"
+  },
+  "share/xq_gz_assets/worlds/xq_p9_integrity_gate.sdf": {
+    "source_sha256": "fbc92f7e0af6ad5fc643c860a788d63153282af2ed422b3a5f141e2fe1f3a180",
+    "installed_sha256": "fbc92f7e0af6ad5fc643c860a788d63153282af2ed422b3a5f141e2fe1f3a180"
+  },
+  "share/xq_gz_assets/worlds/xq_r2_multisensor.sdf": {
+    "source_sha256": "f2b71016bcbb0c1aabe7205b7cce7d771d00372935d33eb2ceccd904368a3224",
+    "installed_sha256": "f2b71016bcbb0c1aabe7205b7cce7d771d00372935d33eb2ceccd904368a3224"
+  },
+  "share/xq_gz_assets/worlds/xq_r2b3_range.sdf": {
+    "source_sha256": "1fd5dc07fe5d9fa656b01038bcd01bbee710ddc9519b00a04567bea4a3d9b67d",
+    "installed_sha256": "1fd5dc07fe5d9fa656b01038bcd01bbee710ddc9519b00a04567bea4a3d9b67d"
+  },
+  "share/xq_sim_bringup/launch/xq_sil.launch.py": {
+    "source_sha256": "cb0b3a8b44ae0547330837e9b36d2a95f6d2c0eea8641f36f03a38046ad8cac5",
+    "installed_sha256": "cb0b3a8b44ae0547330837e9b36d2a95f6d2c0eea8641f36f03a38046ad8cac5"
+  },
+  "share/xq_gz_bridge/config/bridge.yaml": {
+    "source_sha256": "66820cf32f74bfacd34ca15e32e751fd8d4716f239dd427b133a4fc1dda92ec7",
+    "installed_sha256": "66820cf32f74bfacd34ca15e32e751fd8d4716f239dd427b133a4fc1dda92ec7"
+  },
+  "lib/python3.10/site-packages/xq_autonomy/stack_node.py": {
+    "source_sha256": "00875fd248ba4654f48271f919c55c97105f88e566d8e28052cfff06fd95663f",
+    "installed_sha256": "00875fd248ba4654f48271f919c55c97105f88e566d8e28052cfff06fd95663f"
+  }
+}

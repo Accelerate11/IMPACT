@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "kind": "SERVER_BASE_BUILD_AND_NO_AP_HEADLESS_VALIDATION",
+  "scope": "Fresh source build and no-AP LiDAR/IMU with historical algorithm-level 2D proxies only; not new joint-flow flight, FAST-LIO/LIVO runtime, camera/range or hardware validation.",
+  "bundle_root_original": "/home/accelerate/impact_server_staging_20261022",
+  "runtime_root_original": "/home/accelerate/impact_server_validation_20261022/base",
+  "packaged_evidence": "validation/base_20261021T165352Z_426",
+  "prebuild_attempt": {
+    "path": "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165322Z_417",
+    "status": "INCOMPLETE",
+    "normal_result_file_present": false,
+    "compiler_started": false,
+    "reason": "colcon list inherited cwd=/ and attempted log creation there; permission rejected. Original failed log retained. New deployment helper explicitly sets cwd and log-base; no algorithm change."
+  },
+  "build": {
+    "path": "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426",
+    "status": "PASS",
+    "packages": 14,
+    "excluded": [
+      "xq_fast_livo2"
+    ],
+    "colcon_wall_s": 1275,
+    "source_file_set_and_SHA_before_after_equal": true,
+    "old_install_overlay_used": false
+  },
+  "tests": {
+    "status": "PASS",
+    "runner": "colcon test --python-testing pytest --return-code-on-test-failure",
+    "packages": {
+      "xq_autonomy": 769,
+      "impact_fault_injection": 4
+    },
+    "total": 773,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "CXX_unit_tests_built": false,
+    "scope": "Two Python package test suites with freshly built interfaces/install. Existing isolated ROS execution-wrapper tests have commands disabled; no AP process is started."
+  },
+  "headless": {
+    "path": "/home/accelerate/impact_server_validation_20261022/base/sim_20261021T171655Z_758",
+    "status": "PASS",
+    "wall_observation_s": 30.004970523999873,
+    "startup_wall_s": 4.742006417000084,
+    "renderer": "EGL surfaceless Mesa llvmpipe",
+    "counts": {
+      "clock": 11906,
+      "lidar": 189,
+      "imu": 5953,
+      "proxy_odom": 588,
+      "map": 298,
+      "health": 472
+    },
+    "sampled_finite_nonzero_XYZ": 12096,
+    "lidar_observed_hz": 6.298956362874139,
+    "lidar_IMU_nonincreasing_count": 0,
+    "lidar_IMU_invalid_payload_count": 0,
+    "source_asset_files_preserved": 438,
+    "installed_resource_identities": 29,
+    "truth_subscriptions_in_proxy": 0,
+    "AP_MAVROS_started": false,
+    "arming_or_takeoff_commands_sent": false,
+    "graceful_SIGINT_exit": true,
+    "SIGTERM_or_SIGKILL_escalations": 0,
+    "owned_processes_remaining": 0,
+    "result_sha256": "2d39608a87f60bfd504e56a2a0b0012dde4c0d97556dd936098ddb70317dacdc",
+    "runner_sha256": "32638f8ff13ef6ccb1dfd0342523868d482804023477ce33ecc1f1e841108273"
+  },
+  "limitations": [
+    "Observed LiDAR ~6.3Hz is not a 10Hz throughput guarantee or proof of zero transport/source drops.",
+    "Default xq_sil starts old 2D algorithm proxies, not the freshly built FAST-LIO/EGO executable runtimes or the new LIVO joint estimator.",
+    "No camera/range/AP physical model is loaded in this no-AP self-contained world.",
+    "Health messages represent multiple modules and can share stamps; strict stamp monotonicity is checked only on physical LiDAR/IMU sensor streams.",
+    "Source and third-party models/worlds are unchanged; system package database/dependencies were not modified."
+  ],
+  "source_files": [
+    {
+      "path": "source_snapshot/build_workspace.sh",
+      "bytes": 5344,
+      "sha256": "db20ef619aafad04f20ecc92331246d329c5fae904442afd3e5b7aec0a02d2cc"
+    },
+    {
+      "path": "source_snapshot/run_headless_sim.py",
+      "bytes": 20914,
+      "sha256": "32638f8ff13ef6ccb1dfd0342523868d482804023477ce33ecc1f1e841108273"
+    }
+  ]
+}

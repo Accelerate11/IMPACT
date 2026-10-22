@@ -1,0 +1,331 @@
+{
+  "status": "FAIL_ARCHIVE_EXECUTABLE_MODE_MISMATCH",
+  "scope": "v1 local archive install passed content fingerprints but did not preserve tracked Git modes; ordinary git status also refreshed extracted Git index caches",
+  "install_root": "/home/accelerate/impact_server_validation_20261022/resource_extract",
+  "git_repositories": 22,
+  "mode_difference_count": 58,
+  "per_repository_mode_difference_count": {
+    ".": 2,
+    "modules/ChibiOS": 44,
+    "modules/CrashDebug": 0,
+    "modules/CrashDebug/CrashCatcher": 0,
+    "modules/CrashDebug/CrashCatcher/CppUTest": 1,
+    "modules/CrashDebug/mri": 0,
+    "modules/CrashDebug/mri/CppUTest": 1,
+    "modules/DroneCAN/DSDL": 0,
+    "modules/DroneCAN/dronecan_dsdlc": 0,
+    "modules/DroneCAN/libcanard": 0,
+    "modules/DroneCAN/libcanard/drivers/avr/avr-can-lib": 0,
+    "modules/DroneCAN/pydronecan": 0,
+    "modules/Micro-CDR": 0,
+    "modules/Micro-XRCE-DDS-Client": 0,
+    "modules/gbenchmark": 1,
+    "modules/gsoap": 3,
+    "modules/gtest": 2,
+    "modules/littlefs": 0,
+    "modules/lwip": 3,
+    "modules/mavlink": 0,
+    "modules/mavlink/pymavlink": 0,
+    "modules/waf": 1
+  },
+  "mode_differences": [
+    {
+      "path": "Tools/vagrant/shellinit.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "docs/setup.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/doc/build/ex/makehtml.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/doc/build/full_rm/makehtml.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/os/hal/boards/genboard.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/os/hal/boards/genboards.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/test/rt/testbuild/go.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/style/style_ex.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/style/style_hal.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/style/style_nil.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/style/style_rt.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_chconf_nil.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_chconf_rt.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_halconf.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32f303xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32f401xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32f407xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32f410xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32f411xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32f412xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32f413xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32f427xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32f446xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32f469xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32f72xxx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32f746xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32f76xxx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32g031xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32g071xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32g0b1xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32g4x1xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32g4x4xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32h723xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32h743xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32h7a3xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32l05xxx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32l07xxx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32l422xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32l432xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32l452xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32l476xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32l496xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32l4rxxx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32l5x2xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32wb55xx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/ChibiOS/tools/updater/update_mcuconf_stm32wlxx.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/CrashDebug/CrashCatcher/CppUTest/scripts/NewProject.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/CrashDebug/mri/CppUTest/scripts/NewProject.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/gbenchmark/.github/install_bazel.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/gsoap/gsoap/mod_gsoap/mod_gsoap-0.9/apache_13/ltmain.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/gsoap/gsoap/samples/ssl/cert.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/gsoap/gsoap/samples/ssl/root.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/gtest/ci/build-platformio.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/gtest/ci/install-platformio.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/lwip/codespell_changed_files.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/lwip/contrib/apps/LwipMibCompiler/example/compile_udp_mib.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/lwip/test/fuzz/output_to_pcap.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    },
+    {
+      "path": "modules/waf/playground/clang_cross/msvc/example_environment_linux.sh",
+      "git_mode": "100644",
+      "installed_mode": "0o755"
+    }
+  ],
+  "content_status_ignoring_mode": "",
+  "source_archive_unchanged": true,
+  "fetch_source_not_modified_by_this_agent": true,
+  "original_install_and_verify_logs": [
+    "/home/accelerate/impact_server_validation_20261022/resource_install_logs/install.log",
+    "/home/accelerate/impact_server_validation_20261022/resource_install_logs/verify_only.log"
+  ],
+  "index_cache_observation": "Read-write default git status can rewrite .git/index even without source content edits. Further diagnostics use GIT_OPTIONAL_LOCKS=0."
+}

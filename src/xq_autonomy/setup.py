@@ -24,6 +24,11 @@ setup(
     license="Apache-2.0",
     entry_points={
         "console_scripts": [
+            "impact_downward_flow = xq_autonomy.downward_flow_node:main",
+            "impact_multisensor_monitor = xq_autonomy.multisensor_monitor_node:main",
+            "impact_ap_execution = xq_autonomy.ap_execution_node:main",
+            "impact_ap_research_mission = xq_autonomy.ap_research_mission_node:main",
+            "impact_ap_research_evaluator = xq_autonomy.ap_research_evaluator_node:main",
             "xq_stack_node = xq_autonomy.stack_node:main",
             "xq_metrics_node = xq_autonomy.metrics_node:main",
             "xq_fault_injector = xq_autonomy.fault_injector_node:main",

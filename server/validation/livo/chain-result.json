@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "steps": [
+    {
+      "step": "check",
+      "command": [
+        "bash",
+        "/home/accelerate/impact_server_staging_20261022/server/run_livo_server.sh",
+        "check",
+        "--root",
+        "/home/accelerate/impact_server_staging_20261022",
+        "--runtime-root",
+        "/home/accelerate/impact_server_validation_20261022/livo_final"
+      ],
+      "exit_code": 0,
+      "wall_s": 5.824514197999633,
+      "started_utc": "2026-10-21T17:15:27.908248+00:00"
+    },
+    {
+      "step": "replay",
+      "command": [
+        "bash",
+        "/home/accelerate/impact_server_staging_20261022/server/run_livo_server.sh",
+        "replay",
+        "--root",
+        "/home/accelerate/impact_server_staging_20261022",
+        "--runtime-root",
+        "/home/accelerate/impact_server_validation_20261022/livo_final",
+        "--output",
+        "/home/accelerate/impact_server_validation_20261022/livo_five_modes"
+      ],
+      "exit_code": 0,
+      "wall_s": 914.0348413690003,
+      "started_utc": "2026-10-21T17:15:33.732985+00:00"
+    },
+    {
+      "step": "evaluate",
+      "command": [
+        "bash",
+        "/home/accelerate/impact_server_staging_20261022/server/run_livo_server.sh",
+        "evaluate",
+        "--root",
+        "/home/accelerate/impact_server_staging_20261022",
+        "--runtime-root",
+        "/home/accelerate/impact_server_validation_20261022/livo_final",
+        "--run",
+        "/home/accelerate/impact_server_validation_20261022/livo_five_modes",
+        "--output",
+        "/home/accelerate/impact_server_validation_20261022/livo_five_modes_evaluation"
+      ],
+      "exit_code": 0,
+      "wall_s": 23.329447344999608,
+      "started_utc": "2026-10-21T17:30:14.802400+00:00"
+    }
+  ],
+  "BLAS_threads_for_offline_evaluation": 1,
+  "scope": "Relocated Ubuntu22.04/x86_64 staging validation under WSL2; not remote physical server, AP closed loop or hardware validation"
+}

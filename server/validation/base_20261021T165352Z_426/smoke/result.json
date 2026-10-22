@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "checks": {
+    "observer_PASS": true,
+    "no_runner_exception": true,
+    "installed_resources_match_bundled_canonical_sources": true,
+    "input_file_sets_and_SHA_unchanged": true,
+    "all_owned_processes_stopped": true
+  },
+  "error": null,
+  "observer": {
+    "schema_version": 1,
+    "status": "PASS",
+    "checks": {
+      "complete_wall_observation_window": true,
+      "clock_observed": true,
+      "lidar_observed": true,
+      "imu_observed": true,
+      "proxy_odometry_observed": true,
+      "proxy_map_and_health_observed": true,
+      "sensor_headers_strictly_increasing": true,
+      "sensor_payloads_valid": true,
+      "simulation_clock_advances": true,
+      "algorithm_node_present_and_truth_isolated": true,
+      "no_mavros_or_AP_mission_nodes": true,
+      "only_fresh_build_prefixes": true
+    },
+    "duration_wall_s": 30.004970523999873,
+    "startup_wall_s": 4.742006417000084,
+    "streams": {
+      "clock": {
+        "count": 11906,
+        "first_stamp_ns": 152500000,
+        "last_stamp_ns": 29915000000,
+        "nonincreasing": 0,
+        "invalid_payloads": 0,
+        "sampled_finite_nonzero_xyz": 0
+      },
+      "lidar": {
+        "count": 189,
+        "first_stamp_ns": 300000000,
+        "last_stamp_ns": 29800000000,
+        "nonincreasing": 0,
+        "invalid_payloads": 0,
+        "sampled_finite_nonzero_xyz": 12096
+      },
+      "imu": {
+        "count": 5953,
+        "first_stamp_ns": 150000000,
+        "last_stamp_ns": 29910000000,
+        "nonincreasing": 0,
+        "invalid_payloads": 0,
+        "sampled_finite_nonzero_xyz": 0
+      },
+      "odom": {
+        "count": 588,
+        "first_stamp_ns": 200000000,
+        "last_stamp_ns": 29900000000,
+        "nonincreasing": 0,
+        "invalid_payloads": 0,
+        "sampled_finite_nonzero_xyz": 0
+      },
+      "map": {
+        "count": 298,
+        "first_stamp_ns": 100000000,
+        "last_stamp_ns": 29800000000,
+        "nonincreasing": 0,
+        "invalid_payloads": 0,
+        "sampled_finite_nonzero_xyz": 0
+      },
+      "health": {
+        "count": 472,
+        "first_stamp_ns": 557500000,
+        "last_stamp_ns": 29700000000,
+        "nonincreasing": 413,
+        "invalid_payloads": 0,
+        "sampled_finite_nonzero_xyz": 0
+      }
+    },
+    "startup_counts": {
+      "clock": 59,
+      "imu": 30,
+      "lidar": 1,
+      "map": 1,
+      "health": 8,
+      "odom": 3
+    },
+    "total_received_counts": {
+      "clock": 11965,
+      "imu": 5983,
+      "lidar": 190,
+      "map": 299,
+      "health": 480,
+      "odom": 591
+    },
+    "prefixes": {
+      "xq_autonomy": "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/install",
+      "xq_gz_bridge": "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/install",
+      "xq_gz_assets": "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/install",
+      "xq_sim_bringup": "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/install",
+      "xq_sim_interfaces": "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/install"
+    },
+    "graph": [
+      {
+        "name": "xq_base_to_mid360_tf",
+        "namespace": "/",
+        "subscriptions": [
+          [
+            "/clock",
+            [
+              "rosgraph_msgs/msg/Clock"
+            ]
+          ],
+          [
+            "/parameter_events",
+            [
+              "rcl_interfaces/msg/ParameterEvent"
+            ]
+          ]
+        ]
+      },
+      {
+        "name": "xq_base_to_imu_tf",
+        "namespace": "/",
+        "subscriptions": [
+          [
+            "/clock",
+            [
+              "rosgraph_msgs/msg/Clock"
+            ]
+          ],
+          [
+            "/parameter_events",
+            [
+              "rcl_interfaces/msg/ParameterEvent"
+            ]
+          ]
+        ]
+      },
+      {
+        "name": "xq_gz_bridge_node",
+        "namespace": "/",
+        "subscriptions": [
+          [
+            "/clock",
+            [
+              "rosgraph_msgs/msg/Clock"
+            ]
+          ],
+          [
+            "/parameter_events",
+            [
+              "rcl_interfaces/msg/ParameterEvent"
+            ]
+          ],
+          [
+            "/xq/agent_01/cmd_vel",
+            [
+              "geometry_msgs/msg/Twist"
+            ]
+          ]
+        ]
+      },
+      {
+        "name": "xq_stack_node",
+        "namespace": "/",
+        "subscriptions": [
+          [
+            "/clock",
+            [
+              "rosgraph_msgs/msg/Clock"
+            ]
+          ],
+          [
+            "/xq/agent_01/sensors/imu",
+            [
+              "sensor_msgs/msg/Imu"
+            ]
+          ],
+          [
+            "/xq/agent_01/sensors/lidar/points",
+            [
+              "sensor_msgs/msg/PointCloud2"
+            ]
+          ],
+          [
+            "/xq/test/fault_event",
+            [
+              "xq_sim_interfaces/msg/FaultEvent"
+            ]
+          ]
+        ]
+      },
+      {
+        "name": "impact_server_sensor_observer",
+        "namespace": "/",
+        "subscriptions": [
+          [
+            "/clock",
+            [
+              "rosgraph_msgs/msg/Clock"
+            ]
+          ],
+          [
+            "/xq/agent_01/health",
+            [
+              "xq_sim_interfaces/msg/HealthStatus"
+            ]
+          ],
+          [
+            "/xq/agent_01/localization/odom",
+            [
+              "nav_msgs/msg/Odometry"
+            ]
+          ],
+          [
+            "/xq/agent_01/map/nav",
+            [
+              "nav_msgs/msg/OccupancyGrid"
+            ]
+          ],
+          [
+            "/xq/agent_01/sensors/imu",
+            [
+              "sensor_msgs/msg/Imu"
+            ]
+          ],
+          [
+            "/xq/agent_01/sensors/lidar/points",
+            [
+              "sensor_msgs/msg/PointCloud2"
+            ]
+          ]
+        ]
+      }
+    ],
+    "scope": "LiDAR/IMU and legacy 2D algorithm proxies in no-AP VelocityControl scene. Not FAST-LIO/LIVO execution, camera/range, joint-flow fusion, flight dynamics or mission validation."
+  },
+  "shutdown": {
+    "observer": {
+      "returncode": 0,
+      "escalations": [],
+      "owned_remaining": [],
+      "scope": "Only tracked descendants with unchanged /proc start identities; no global pkill."
+    },
+    "launch": {
+      "returncode": 0,
+      "escalations": [],
+      "owned_remaining": [],
+      "scope": "Only tracked descendants with unchanged /proc start identities; no global pkill."
+    }
+  },
+  "run_dir": "/home/accelerate/impact_server_validation_20261022/base/sim_20261021T171655Z_758",
+  "build_attempt": "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426",
+  "script_sha256": "32638f8ff13ef6ccb1dfd0342523868d482804023477ce33ecc1f1e841108273",
+  "scope": "Fresh portable no-AP Gazebo LiDAR/IMU + legacy 2D algorithm-proxy smoke only. No armed command, MAVROS, physical AP flight, camera/range or new joint estimator validation."
+}

@@ -1,0 +1,9 @@
+{
+  "role": "subscriber",
+  "count": 0,
+  "bad_payloads": 0,
+  "payload_bytes": 368640,
+  "payload_sha256": "4b6885eb057745011b18a64483b03a1d2723b29e9b461251b29c07e704b33559",
+  "peer_discovered": false,
+  "timeline": []
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "artifact": "UNMODIFIED_HISTORICAL_FAST_LIO_P7_CALIBRATION_COPY",
+  "original_path": "evidence/P7/p7-calibration.json",
+  "bytes": 3776,
+  "sha256": "68828bf98a0b171350e5afb2f4f4f42b4b73369199f61314a0f174da8b0b740f",
+  "scope": "Train-only historical FAST-LIO task-layer artifact, preserved exactly for historical scenario reproduction. Not calibrated for the new 28D raw-flow estimator or arbitrary environments.",
+  "linux_lf_bytes": 3655,
+  "linux_lf_sha256": "771bdffcf3d4422d4641424dab326a08aa5be2b0dffd7f9d2f2f9ff82ea9f038"
+}

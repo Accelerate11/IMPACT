@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "checks": {
+    "all_existing_evidence_sha_and_size_unchanged": true,
+    "old_evidence_file_set_unchanged_except_explicit_new_directories": true,
+    "frozen_source_file_set_and_all_sha": true,
+    "six_bounded_claims_and_source_refs": true,
+    "no_unestablished_global_claim": true,
+    "sealed_manifest_file_set_and_all_sha": true
+  },
+  "baseline": "/mnt/d/CODEX/impact/evidence/PAPER_PRESERVATION/paper_baseline_20261020T092036Z",
+  "existing_evidence_files": 1979,
+  "existing_evidence_bytes": 42618537,
+  "source_files": 548,
+  "claim_count": 6,
+  "claim_source_references": 16,
+  "explicit_new_directory_exclusions": [
+    "evidence/RESEARCH_R2B3B0"
+  ],
+  "excluded_new_files": 94,
+  "old_evidence_mismatches": [],
+  "unexpected_new_evidence_files": [],
+  "source_snapshot_mismatches": [],
+  "manifest_mismatches": [],
+  "errors": [],
+  "scope": "Read-only bytes/file-set and bounded-claim preservation audit; no new experiment, original novelty audit, external raw-bag revalidation, generalization or hardware validation."
+}

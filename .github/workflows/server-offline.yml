@@ -1,0 +1,27 @@
+name: Server offline algorithms
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install CPU study dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++ libeigen3-dev python3-numpy python3-matplotlib
+      - name: Validate all independent algorithm studies
+        run: |
+          /usr/bin/python3 server/offline_studies.py --root "$GITHUB_WORKSPACE" --output "$RUNNER_TEMP/impact-offline"
+      - name: Upload study logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: offline-study-results
+          path: ${{ runner.temp }}/impact-offline

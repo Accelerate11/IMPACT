@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "stage": "R2B3B4_OFFLINE_TRANSPORT_CLOCK_AND_STARTUP_CONTRACT",
+  "scope_revision": 2,
+  "initial_protocol_predeclared_before_study_execution": true,
+  "scope_revision_reason": "Clarify that dedicated offline studies start no ROS nodes; the separate full regression includes an existing disabled execution-wrapper ROS unit test in isolated domain 211. Original bound protocol copies and regression metadata are retained with an explicit erratum.",
+  "execution_scope": "Dedicated clock/graph/C++ studies are pure offline and start no ROS nodes. The separate full regression includes an isolated ROS unit node, commands disabled. No MAVROS, AP, Gazebo, SQLite connections, candidate-to-FCU emission or host clock changes occur.",
+  "candidate_mapping": "First trusted bracket fixes epoch=raw_wall and origin=monotonic midpoint; mapped=epoch+(midpoint-origin). Subsequent raw wall observations are retained without changing the epoch.",
+  "maximum_sampling_span_ns": 5000000,
+  "raw_wall_anomaly_budget_ns": 50000000,
+  "wire_time_resolution_ns": 1000,
+  "minimum_endpoint_continuous_visibility_ns": 1000000000,
+  "required_endpoint": {"node_name": "odometry", "node_namespace": "/uav1/mavros", "topic_type": "nav_msgs/msg/Odometry", "reliability": "RELIABLE", "durability": "VOLATILE"},
+  "recorded_clock_scope": "Deduplicated observed node sampling brackets only; cannot fill missing observations or reconstruct original source acquisition age. Synthetic ordinal source tokens are labeled explicitly.",
+  "recorded_graph_scope": "Two original B3 graph snapshots do not prove continuous endpoint visibility between them or establish the cause/repair of the seven initial missing wire messages.",
+  "ap_corrector_study": {
+    "original_cpp": "/home/accelerate/ardupilot/libraries/AP_RTC/JitterCorrection.cpp",
+    "original_header": "/home/accelerate/ardupilot/libraries/AP_RTC/JitterCorrection.h",
+    "initialization": "Static-storage zero initialization, one fresh process per synthetic case",
+    "hal_stub_scope": "Header supplies cstdint only; unchanged copied algorithm has no HAL runtime calls",
+    "cases": ["nominal_jitter", "wall_backstep_400ms", "wall_forwardstep_400ms", "host_fcu_rate_mismatch", "constant_unobservable_80ms_delay", "stale_origin_with_fresh_transport_stamp"],
+    "rows_per_case": 240,
+    "max_lag_ms": 500,
+    "convergence_loops": 100,
+    "interpretation": "Exact agreement of isolated original C++ and independent integer reference is software evidence. Range-bounded corrected timestamps do not calibrate acquisition delay, prove backend health, or prove EKF fusion."
+  },
+  "deployment": "Candidate clock and startup gate remain unintegrated; original P4 adapter and B3 raw-wall guard defaults unchanged",
+  "candidate_sent_to_AP": false,
+  "prior_seven_message_gap_repaired": false,
+  "actual_flow_state_updates": 0,
+  "flight_regression_repaired": false,
+  "hardware_readiness": "NOT_READY"
+}

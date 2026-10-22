@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "stage": "R2B3B4_OFFLINE_STARTUP_GATE",
+  "protocol_revision": 2,
+  "declared_before_corrected_replay_and_final_regression": true,
+  "continuous_visibility_ns": 1000000000,
+  "maximum_observation_gap_ns": 250000000,
+  "maximum_permitted_policy_gap_ns": 350000000,
+  "revision_reason": "Review found that two arbitrarily separated graph queries could satisfy revision1 elapsed-time warmup. A gap above budget must reset the window even for the same endpoint GID.",
+  "earlier_results": "The original 54-test and 11-check artifacts remain unchanged. Their passing assertions did not establish bounded-gap sampled visibility; do not treat them as validation of the stronger revised contract.",
+  "observation_scope": "Bounded-gap sampled endpoint visibility only; does not prove existence between samples, callback execution, MAVROS routing or FCU receipt.",
+  "real_snapshot_scope": "Each B3 snapshot is evaluated by a new gate. Two snapshots are never interpolated or combined into a one-second dwell claim.",
+  "deployment": "Unintegrated offline gate; original P4 adapter and AP behavior unchanged",
+  "prior_seven_message_gap_repaired": false,
+  "candidate_sent_to_AP": false,
+  "actual_flow_state_updates": 0,
+  "flight_regression_repaired": false
+}

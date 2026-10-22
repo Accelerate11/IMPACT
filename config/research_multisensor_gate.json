@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "gate": "R2A_RENDERED_MULTISENSOR_SHADOW_CONTRACT",
+  "minimum_source_span_s": 30.0,
+  "maximum_future_skew_s": 0.03,
+  "minimum_counts": {"lidar": 300, "imu": 5000, "front_camera": 300, "down_camera": 300, "flow": 300},
+  "minimum_rates_hz": {"lidar": 8.0, "imu": 100.0, "front_camera": 12.0, "down_camera": 12.0, "flow": 10.0},
+  "maximum_age_p99_s": {"lidar": 0.25, "imu": 0.10, "front_camera": 0.20, "down_camera": 0.20, "flow": 0.25},
+  "minimum_valid_flow_samples": 200,
+  "minimum_valid_flow_fraction": 0.5,
+  "maximum_unverified_flow_windows": 2,
+  "minimum_compensated_motion_rad": 0.0005,
+  "minimum_image_std": 5.0,
+  "minimum_image_distinct_values": 16,
+  "minimum_camera_info_match_fraction": 0.995,
+  "fault_cases": ["baseline", "duplicate_acquisition_stamp", "stale_source_fresh_receipt", "future_source_stamp", "optical_axis_reflection", "declared_inverse_extrinsic", "zero_focal_length", "missing_gyro_window", "unknown_range_scale", "shared_imu_independence_claim"],
+  "scope": "One AP dynamics trial with rendered front/down images and image-derived angular optical flow; metadata fault replay checks interfaces, not fused accuracy or statistical integrity."
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "repository": "Accelerate11/IMPACT",
+  "release_tag": "server-sim-2026.10.22",
+  "asset": "IMPACT_Server_Resources_20261022_v2.tar.gz",
+  "bytes": 1188223315,
+  "sha256": "e12ed7706e7bb8cdb70b449d21c038789937ef48fac0d16f7752403f4c8e9869",
+  "top_level_directories": [
+    "data",
+    "third_party"
+  ],
+  "regular_file_bytes": 2943013858,
+  "file_count": 25503,
+  "ardupilot_commit": "dbe792162d06cab66c3475fd5556bf7a120f119e",
+  "scope": "Original complete B1 recording, pinned clean Sophus/vikit sources, standalone AP4.7.1 Git source and recursive submodules, original Gazebo plugin/model snapshot. No installed binaries or runtime prefixes.",
+  "manifest_sha256": "2d7ec5ac77ac0b13b3fa527bdbff0d6397ed6214f12ad0e68467e8e2b5f5b9c6",
+  "delivery": "Published as SHA-256 checked parts; the whole archive filename is also accepted for local transfer.",
+  "parts": [
+    {
+      "url": "https://github.com/Accelerate11/IMPACT/releases/download/server-sim-2026.10.22/IMPACT_Server_Resources_20261022_v2.tar.gz.part-001",
+      "bytes": 67108864,
+      "asset": "IMPACT_Server_Resources_20261022_v2.tar.gz.part-001",
+      "sha256": "dd1239d0e92bdad4ad3e4d0fbb8392f95659dce6577daf6d9d3e89e277c1f350"
+    },
+    {
+      "url": "https://github.com/Accelerate11/IMPACT/releases/download/server-sim-2026.10.22/IMPACT_Server_Resources_20261022_v2.tar.gz.part-002",
+      "bytes": 67108864,
+      "asset": "IMPACT_Server_Resources_20261022_v2.tar.gz.part-002",
+      "sha256": "e2b6ae5c23babf5801b48fbfc136d874a8cce652fb09b1b120c80d288a239992"
+    },
+    {
+      "url": "https://github.com/Accelerate11/IMPACT/releases/download/server-sim-2026.10.22/IMPACT_Server_Resources_20261022_v2.tar.gz.part-003",
+      "bytes": 67108864,
+      "asset": "IMPACT_Server_Resources_20261022_v2.tar.gz.part-003",
+      "sha256": "aeba77584357d389def07b8ccb1299a249bcaf2c932fcde8addacab9266e1653"
+    },
+    {
+      "url": "https://github.com/Accelerate11/IMPACT/releases/download/server-sim-2026.10.22/IMPACT_Server_Resources_20261022_v2.tar.gz.part-004",
+      "bytes": 67108864,
+      "asset": "IMPACT_Server_Resources_20261022_v2.tar.gz.part-004",
+      "sha256": "a97690572ed283c4a17210a376bc9feda12848920154b893c5777b5e44c3a58b"
+    },
+    {
+      "url": "https://github.com/Accelerate11/IMPACT/releases/download/server-sim-2026.10.22/IMPACT_Server_Resources_20261022_v2.tar.gz.part-005",
+      "bytes": 67108864,
+      "asset": "IMPACT_Server_Resources_20261022_v2.tar.gz.part-005",
+      "sha256": "44717fce781e043df63df9fa1b3bb334ed1fba466a30b49d6071b30c6c85157d"
+    },
+    {
+      "url": "https://github.com/Accelerate11/IMPACT/releases/download/server-sim-2026.10.22/IMPACT_Server_Resources_20261022_v2.tar.gz.part-006",
+      "bytes": 67108864,
+      "asset": "IMPACT_Server_Resources_20261022_v2.tar.gz.part-006",
+      "sha256": "af45a2ddadc1a6929907d1bb0e169735e0a94eabcb850cd5800d8a061e52c690"
+    },
+    {
+      "url": "https://github.com/Accelerate11/IMPACT/releases/download/server-sim-2026.10.22/IMPACT_Server_Resources_20261022_v2.tar.gz.part-007",
+      "bytes": 67108864,
+      "asset": "IMPACT_Server_Resources_20261022_v2.tar.gz.part-007",
+      "sha256": "57fb3b7531ab966bef5e1a949f3d740ab4ee1da04d14b43c9f5c39fe14679bb1"
+    },
+    {
+      "url": "https://github.com/Accelerate11/IMPACT/releases/download/server-sim-2026.10.22/IMPACT_Server_Resources_20261022_v2.tar.gz.part-008",
+      "bytes": 67108864,
+      "asset": "IMPACT_Server_Resources_20261022_v2.tar.gz.part-008",
+      "sha256": "02515b3406497dc681d81084920d3b34d8bf2bd5aeafd1a7a84252eead1aeef7"
+    },
+    {
+      "url": "https://github.com/Accelerate11/IMPACT/releases/download/server-sim-2026.10.22/IMPACT_Server_Resources_20261022_v2.tar.gz.part-009",
+      "bytes": 67108864,
+      "asset": "IMPACT_Server_Resources_20261022_v2.tar.gz.part-009",
+      "sha256": "179ed45653d017205fe55508e2fda37d8061e72ada42f62fdbe422268c4fdaf0"
+    },
+    {
+      "url": "https://github.com/Accelerate11/IMPACT/releases/download/server-sim-2026.10.22/IMPACT_Server_Resources_20261022_v2.tar.gz.part-010",
+      "bytes": 67108864,
+      "asset": "IMPACT_Server_Resources_20261022_v2.tar.gz.part-010",
+      "sha256": "38fec3fafd57e719e58bc5c1b89c42b8fa6d775d47cce030c7cd746380ec5403"
+    },
+    {
+      "url": "https://github.com/Accelerate11/IMPACT/releases/download/server-sim-2026.10.22/IMPACT_Server_Resources_20261022_v2.tar.gz.part-011",
+      "bytes": 67108864,
+      "asset": "IMPACT_Server_Resources_20261022_v2.tar.gz.part-011",
+      "sha256": "2128e27a42425682287613105c2c10a0826b6bd9f41a2912c9c6e66c184b4338"
+    },
+    {
+      "url": "https://github.com/Accelerate11/IMPACT/releases/download/server-sim-2026.10.22/IMPACT_Server_Resources_20261022_v2.tar.gz.part-012",
+      "bytes": 67108864,
+      "asset": "IMPACT_Server_Resources_20261022_v2.tar.gz.part-012",
+      "sha256": "921d0dd5e88f176281161e56d0e83297525c6c36f1cb304fb1ae182192858bc8"
+    },
+    {
+      "url": "https://github.com/Accelerate11/IMPACT/releases/download/server-sim-2026.10.22/IMPACT_Server_Resources_20261022_v2.tar.gz.part-013",
+      "bytes": 67108864,
+      "asset": "IMPACT_Server_Resources_20261022_v2.tar.gz.part-013",
+      "sha256": "894bd617f549af4388007ce32a4fb455c90197a4b733ac93a9d5a2ac41a55638"
+    },
+    {
+      "url": "https://github.com/Accelerate11/IMPACT/releases/download/server-sim-2026.10.22/IMPACT_Server_Resources_20261022_v2.tar.gz.part-014",
+      "bytes": 67108864,
+      "asset": "IMPACT_Server_Resources_20261022_v2.tar.gz.part-014",
+      "sha256": "7077700e9520671ce3779dc512035b5c639f817bbb777de14398912af9d56d84"
+    },
+    {
+      "url": "https://github.com/Accelerate11/IMPACT/releases/download/server-sim-2026.10.22/IMPACT_Server_Resources_20261022_v2.tar.gz.part-015",
+      "bytes": 67108864,
+      "asset": "IMPACT_Server_Resources_20261022_v2.tar.gz.part-015",
+      "sha256": "abfba169b4dc15e2862015071abace77924cf24adec4044e16495cd80105d6cf"
+    },
+    {
+      "url": "https://github.com/Accelerate11/IMPACT/releases/download/server-sim-2026.10.22/IMPACT_Server_Resources_20261022_v2.tar.gz.part-016",
+      "bytes": 67108864,
+      "asset": "IMPACT_Server_Resources_20261022_v2.tar.gz.part-016",
+      "sha256": "9223bdbfe1b56545b1d879af5f557018af4a5b5256d22c6282e8c2f46c2527f7"
+    },
+    {
+      "url": "https://github.com/Accelerate11/IMPACT/releases/download/server-sim-2026.10.22/IMPACT_Server_Resources_20261022_v2.tar.gz.part-017",
+      "bytes": 67108864,
+      "asset": "IMPACT_Server_Resources_20261022_v2.tar.gz.part-017",
+      "sha256": "79defed6f60188a9652d585a0ccdc32b38b36c2e8fe176ea72a85d94d36e8314"
+    },
+    {
+      "url": "https://github.com/Accelerate11/IMPACT/releases/download/server-sim-2026.10.22/IMPACT_Server_Resources_20261022_v2.tar.gz.part-018",
+      "bytes": 47372627,
+      "asset": "IMPACT_Server_Resources_20261022_v2.tar.gz.part-018",
+      "sha256": "a382a8e55f62185042a95728f3bd5d9e869ee183bd879b5c629319b108aaaada"
+    }
+  ]
+}

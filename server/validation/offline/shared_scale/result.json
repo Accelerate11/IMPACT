@@ -1,0 +1,488 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "phase": "R2B1_SHARED_SCALE_MODEL_VERIFICATION",
+  "input_origin": "synthetic_joint_gaussian_not_hardware_or_gazebo",
+  "configuration_sha256": "e352e44280e09cbc3f242e2708400b616072e895caf89079e441a76c561257f6",
+  "numpy_version": "1.21.5",
+  "checks": {
+    "known_range_control.n1.covariance_matches_samples": true,
+    "known_range_control.n1.correct_empirical_coverage": true,
+    "known_range_control.n1.positive_sampled_ranges": true,
+    "known_range_control.n1.models_equal_control": true,
+    "known_range_control.n10.covariance_matches_samples": true,
+    "known_range_control.n10.correct_empirical_coverage": true,
+    "known_range_control.n10.positive_sampled_ranges": true,
+    "known_range_control.n10.models_equal_control": true,
+    "known_range_control.n40.covariance_matches_samples": true,
+    "known_range_control.n40.correct_empirical_coverage": true,
+    "known_range_control.n40.positive_sampled_ranges": true,
+    "known_range_control.n40.models_equal_control": true,
+    "shared_range_stress.n1.covariance_matches_samples": true,
+    "shared_range_stress.n1.correct_empirical_coverage": true,
+    "shared_range_stress.n1.positive_sampled_ranges": true,
+    "shared_range_stress.n1.models_equal_control": true,
+    "shared_range_stress.n10.covariance_matches_samples": true,
+    "shared_range_stress.n10.correct_empirical_coverage": true,
+    "shared_range_stress.n10.positive_sampled_ranges": true,
+    "shared_range_stress.n40.covariance_matches_samples": true,
+    "shared_range_stress.n40.correct_empirical_coverage": true,
+    "shared_range_stress.n40.positive_sampled_ranges": true,
+    "shared_range_stress.n40.independence_failure_exposed": true
+  },
+  "results": [
+    {
+      "case": "known_range_control",
+      "frames_per_window": 1,
+      "independent_trials": 120000,
+      "range_sigma_m": 0.0,
+      "per_seed": [
+        {
+          "seed": 17019,
+          "draws": 40000,
+          "correct_hits": 38037,
+          "independent_frame_hits": 38037
+        },
+        {
+          "seed": 31183,
+          "draws": 40000,
+          "correct_hits": 38021,
+          "independent_frame_hits": 38021
+        },
+        {
+          "seed": 92401,
+          "draws": 40000,
+          "correct_hits": 37985,
+          "independent_frame_hits": 37985
+        }
+      ],
+      "point_estimate_equal_between_methods": true,
+      "bias_xy_mps": [
+        -2.9116017335540115e-05,
+        -4.434216007128308e-06
+      ],
+      "rmse_vector_mps": 0.04239765090212431,
+      "predicted_covariance_mps2": [
+        [
+          0.0009000000000000001,
+          0.0
+        ],
+        [
+          0.0,
+          0.0009000000000000001
+        ]
+      ],
+      "independent_frame_covariance_mps2": [
+        [
+          0.0009000000000000001,
+          0.0
+        ],
+        [
+          0.0,
+          0.0009000000000000001
+        ]
+      ],
+      "empirical_covariance_mps2": [
+        [
+          0.0008994865111104181,
+          -5.237199031736464e-07
+        ],
+        [
+          -5.237199031736464e-07,
+          0.000898088403294205
+        ]
+      ],
+      "relative_covariance_frobenius_error": 0.0016604398270685745,
+      "correct_directional_coverage": 0.9503583333333333,
+      "independent_frame_directional_coverage": 0.9503583333333333,
+      "correct_coverage_wilson_95": [
+        0.9491149299090688,
+        0.9515729037974022
+      ],
+      "independent_frame_coverage_wilson_95": [
+        0.9491149299090688,
+        0.9515729037974022
+      ],
+      "negative_sampled_ranges": 0
+    },
+    {
+      "case": "known_range_control",
+      "frames_per_window": 10,
+      "independent_trials": 120000,
+      "range_sigma_m": 0.0,
+      "per_seed": [
+        {
+          "seed": 17019,
+          "draws": 40000,
+          "correct_hits": 37996,
+          "independent_frame_hits": 37996
+        },
+        {
+          "seed": 31183,
+          "draws": 40000,
+          "correct_hits": 38000,
+          "independent_frame_hits": 38000
+        },
+        {
+          "seed": 92401,
+          "draws": 40000,
+          "correct_hits": 37969,
+          "independent_frame_hits": 37969
+        }
+      ],
+      "point_estimate_equal_between_methods": true,
+      "bias_xy_mps": [
+        -7.511843955466783e-06,
+        -2.318375400570693e-05
+      ],
+      "rmse_vector_mps": 0.013416428390190794,
+      "predicted_covariance_mps2": [
+        [
+          9.000000000000002e-05,
+          0.0
+        ],
+        [
+          0.0,
+          9.000000000000002e-05
+        ]
+      ],
+      "independent_frame_covariance_mps2": [
+        [
+          9e-05,
+          0.0
+        ],
+        [
+          0.0,
+          9e-05
+        ]
+      ],
+      "empirical_covariance_mps2": [
+        [
+          9.016321079515128e-05,
+          -2.31256999069632e-07
+        ],
+        [
+          -2.31256999069632e-07,
+          8.983824605186088e-05
+        ]
+      ],
+      "relative_covariance_frobenius_error": 0.0031403556320379103,
+      "correct_directional_coverage": 0.9497083333333334,
+      "independent_frame_directional_coverage": 0.9497083333333334,
+      "correct_coverage_wilson_95": [
+        0.9484573551889577,
+        0.9509305201319851
+      ],
+      "independent_frame_coverage_wilson_95": [
+        0.9484573551889577,
+        0.9509305201319851
+      ],
+      "negative_sampled_ranges": 0
+    },
+    {
+      "case": "known_range_control",
+      "frames_per_window": 40,
+      "independent_trials": 120000,
+      "range_sigma_m": 0.0,
+      "per_seed": [
+        {
+          "seed": 17019,
+          "draws": 40000,
+          "correct_hits": 38024,
+          "independent_frame_hits": 38024
+        },
+        {
+          "seed": 31183,
+          "draws": 40000,
+          "correct_hits": 37991,
+          "independent_frame_hits": 37991
+        },
+        {
+          "seed": 92401,
+          "draws": 40000,
+          "correct_hits": 38040,
+          "independent_frame_hits": 38040
+        }
+      ],
+      "point_estimate_equal_between_methods": true,
+      "bias_xy_mps": [
+        -6.814895319087815e-06,
+        5.104387603996214e-06
+      ],
+      "rmse_vector_mps": 0.006714750403937951,
+      "predicted_covariance_mps2": [
+        [
+          2.2500000000000005e-05,
+          0.0
+        ],
+        [
+          0.0,
+          2.2500000000000005e-05
+        ]
+      ],
+      "independent_frame_covariance_mps2": [
+        [
+          2.25e-05,
+          0.0
+        ],
+        [
+          0.0,
+          2.25e-05
+        ]
+      ],
+      "empirical_covariance_mps2": [
+        [
+          2.2599615811520458e-05,
+          -1.0216814270953093e-07
+        ],
+        [
+          -1.0216814270953093e-07,
+          2.248856041289548e-05
+        ]
+      ],
+      "relative_covariance_frobenius_error": 0.005527112328672055,
+      "correct_directional_coverage": 0.9504583333333333,
+      "independent_frame_directional_coverage": 0.9504583333333333,
+      "correct_coverage_wilson_95": [
+        0.9492161003987692,
+        0.9516717269054752
+      ],
+      "independent_frame_coverage_wilson_95": [
+        0.9492161003987692,
+        0.9516717269054752
+      ],
+      "negative_sampled_ranges": 0
+    },
+    {
+      "case": "shared_range_stress",
+      "frames_per_window": 1,
+      "independent_trials": 120000,
+      "range_sigma_m": 0.12,
+      "per_seed": [
+        {
+          "seed": 17019,
+          "draws": 40000,
+          "correct_hits": 38006,
+          "independent_frame_hits": 38006
+        },
+        {
+          "seed": 31183,
+          "draws": 40000,
+          "correct_hits": 37970,
+          "independent_frame_hits": 37970
+        },
+        {
+          "seed": 92401,
+          "draws": 40000,
+          "correct_hits": 37940,
+          "independent_frame_hits": 37940
+        }
+      ],
+      "point_estimate_equal_between_methods": true,
+      "bias_xy_mps": [
+        0.0001112324339116604,
+        0.00021037202578737008
+      ],
+      "rmse_vector_mps": 0.10273541607220882,
+      "predicted_covariance_mps2": [
+        [
+          0.007305759999999999,
+          0.0038399999999999997
+        ],
+        [
+          0.0038399999999999997,
+          0.00320976
+        ]
+      ],
+      "independent_frame_covariance_mps2": [
+        [
+          0.007305759999999999,
+          0.0038399999999999997
+        ],
+        [
+          0.0038399999999999997,
+          0.00320976
+        ]
+      ],
+      "empirical_covariance_mps2": [
+        [
+          0.007342810385065897,
+          0.0038495935052676377
+        ],
+        [
+          0.0038495935052676377,
+          0.0032117866563957332
+        ]
+      ],
+      "relative_covariance_frobenius_error": 0.00409313127745929,
+      "correct_directional_coverage": 0.9493,
+      "independent_frame_directional_coverage": 0.9493,
+      "correct_coverage_wilson_95": [
+        0.9480442927182415,
+        0.950526942078459
+      ],
+      "independent_frame_coverage_wilson_95": [
+        0.9480442927182415,
+        0.950526942078459
+      ],
+      "negative_sampled_ranges": 0
+    },
+    {
+      "case": "shared_range_stress",
+      "frames_per_window": 10,
+      "independent_trials": 120000,
+      "range_sigma_m": 0.12,
+      "per_seed": [
+        {
+          "seed": 17019,
+          "draws": 40000,
+          "correct_hits": 37986,
+          "independent_frame_hits": 19262
+        },
+        {
+          "seed": 31183,
+          "draws": 40000,
+          "correct_hits": 37995,
+          "independent_frame_hits": 19349
+        },
+        {
+          "seed": 92401,
+          "draws": 40000,
+          "correct_hits": 38027,
+          "independent_frame_hits": 19336
+        }
+      ],
+      "point_estimate_equal_between_methods": true,
+      "bias_xy_mps": [
+        0.00018245699283573878,
+        5.082146159749799e-05
+      ],
+      "rmse_vector_mps": 0.09421124648520264,
+      "predicted_covariance_mps2": [
+        [
+          0.006490576,
+          0.0038399999999999997
+        ],
+        [
+          0.0038399999999999997,
+          0.0023945759999999994
+        ]
+      ],
+      "independent_frame_covariance_mps2": [
+        [
+          0.0007305759999999999,
+          0.00038399999999999996
+        ],
+        [
+          0.00038399999999999996,
+          0.000320976
+        ]
+      ],
+      "empirical_covariance_mps2": [
+        [
+          0.006483007218683182,
+          0.0038359938581775726
+        ],
+        [
+          0.0038359938581775726,
+          0.0023927898372126727
+        ]
+      ],
+      "relative_covariance_frobenius_error": 0.0010939798616408718,
+      "correct_directional_coverage": 0.9500666666666666,
+      "independent_frame_directional_coverage": 0.48289166666666666,
+      "correct_coverage_wilson_95": [
+        0.9488198571821744,
+        0.9512846618641235
+      ],
+      "independent_frame_coverage_wilson_95": [
+        0.4800649517214023,
+        0.48571947692616746
+      ],
+      "negative_sampled_ranges": 0
+    },
+    {
+      "case": "shared_range_stress",
+      "frames_per_window": 40,
+      "independent_trials": 120000,
+      "range_sigma_m": 0.12,
+      "per_seed": [
+        {
+          "seed": 17019,
+          "draws": 40000,
+          "correct_hits": 37980,
+          "independent_frame_hits": 10109
+        },
+        {
+          "seed": 31183,
+          "draws": 40000,
+          "correct_hits": 37977,
+          "independent_frame_hits": 10121
+        },
+        {
+          "seed": 92401,
+          "draws": 40000,
+          "correct_hits": 37937,
+          "independent_frame_hits": 10169
+        }
+      ],
+      "point_estimate_equal_between_methods": true,
+      "bias_xy_mps": [
+        0.00015488357348740302,
+        7.503295551823628e-05
+      ],
+      "rmse_vector_mps": 0.09384046280256667,
+      "predicted_covariance_mps2": [
+        [
+          0.006422643999999999,
+          0.0038399999999999997
+        ],
+        [
+          0.0038399999999999997,
+          0.0023266439999999997
+        ]
+      ],
+      "independent_frame_covariance_mps2": [
+        [
+          0.00018264399999999998,
+          9.599999999999999e-05
+        ],
+        [
+          9.599999999999999e-05,
+          8.0244e-05
+        ]
+      ],
+      "empirical_covariance_mps2": [
+        [
+          0.006463465799453187,
+          0.003865358368737066
+        ],
+        [
+          0.003865358368737066,
+          0.0023426104246495323
+        ]
+      ],
+      "relative_covariance_frobenius_error": 0.006489788335435764,
+      "correct_directional_coverage": 0.9491166666666667,
+      "independent_frame_directional_coverage": 0.253325,
+      "correct_coverage_wilson_95": [
+        0.9478588433778397,
+        0.9503457364896095
+      ],
+      "independent_frame_coverage_wilson_95": [
+        0.25087220249591546,
+        0.25579359019610304
+      ],
+      "negative_sampled_ranges": 0
+    }
+  ],
+  "samples": {
+    "file": "samples.npz",
+    "size_bytes": 17291302,
+    "sha256": "2f0eae6c44b26c66add2dbe9b295ebc96032c27dbb98cd6d7278eca6e1df9041"
+  },
+  "hardware_readiness": "NOT_READY",
+  "multisensor_state_fusion_tested": false,
+  "statistical_integrity_tested": false,
+  "scope": "Offline verification of a specific shared-scale error mechanism under declared noise assumptions. No LiDAR/camera state fusion, AP injection, real sensor accuracy, Orin runtime, integrity guarantee or real flight claim."
+}

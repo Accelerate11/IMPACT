@@ -1,0 +1,638 @@
+{
+  "schema_version": 1,
+  "audited_at_utc": "2026-10-21/22",
+  "target": {
+    "os": "Ubuntu 22.04",
+    "architecture": "x86_64",
+    "python": "3.10",
+    "ros": "Humble",
+    "gazebo_family": "Harmonic (gz-sim8)"
+  },
+  "scope": {
+    "portable_implemented": [
+      "read-only audit",
+      "isolated AP471 build",
+      "unarmed internal-quad firmware smoke",
+      "isolated xq_autonomy build and tests",
+      "Gazebo plugin build",
+      "headless resource environment",
+      "nonexecuting guarded JSON/MAVROS/Gazebo launch plan"
+    ],
+    "not_validated": [
+      "new Ubuntu server live Gazebo/EGL execution",
+      "portable equivalent of historical full extnav probe",
+      "AP471 armed mission",
+      "new raw-flow/AP471 closed loop",
+      "full-load startup-gap or long-outage repair",
+      "hardware and Orin NX performance"
+    ],
+    "hardware_accessed": false,
+    "flight_commands_available": false
+  },
+  "firmware": {
+    "repository": "https://github.com/ArduPilot/ardupilot.git",
+    "tag": "Copter-4.7.1",
+    "commit": "dbe792162d06cab66c3475fd5556bf7a120f119e",
+    "vendored_path": "third_party/ardupilot",
+    "license": "COPYING.txt (GPLv3; retain individual file notices and submodule licenses)",
+    "export_tool": "server/ap471_export_source.py",
+    "standalone_git_required": true,
+    "recursive_submodules_required": true,
+    "historical_binary_sha256": "8d63fdc8ef46feedbe474de08a78bcf2716f6f1afdc64e3beea440bb5a847741",
+    "historical_binary_sha_is_not_new_server_build_expectation": true
+  },
+  "historical_observed_versions": {
+    "mavros": "2.14.0-1jammy.20260422.083708",
+    "mavros_extras": "2.14.0-1jammy.20260422.090514",
+    "mavros_msgs": "2.14.0-1jammy.20260414.125626",
+    "gz_sim8": "8.13.0-1~jammy",
+    "gz_msgs10": "10.3.2-1~jammy",
+    "gz_transport13": "13.5.0-1~jammy",
+    "geographiclib_tools": "1.52-1",
+    "different_revision_requires_new_validation": true
+  },
+  "ap_python_direct_requirements": [
+    "pexpect==4.9.0",
+    "ptyprocess==0.7.0",
+    "empy==3.3.4",
+    "future==1.0.0",
+    "lxml==6.1.1",
+    "pymavlink==2.4.49",
+    "fastcrc==0.3.6",
+    "pyserial==3.5"
+  ],
+  "required_parameters": {
+    "GPS1_TYPE": 0,
+    "GPS2_TYPE": 0,
+    "SIM_GPS1_ENABLE": 0,
+    "SIM_GPS2_ENABLE": 0,
+    "VISO_TYPE": 1,
+    "VISO_QUAL_MIN": 0,
+    "PLND_ENABLED": 0,
+    "LOG_DISARMED": 1,
+    "LOG_BACKEND_TYPE": 1,
+    "AHRS_EKF_TYPE": 3,
+    "EK3_ENABLE": 1,
+    "EK3_SRC1_POSXY": 6,
+    "EK3_SRC1_VELXY": 6,
+    "EK3_SRC1_POSZ": 6,
+    "EK3_SRC1_VELZ": 6,
+    "EK3_SRC1_YAW": 6,
+    "ARMING_SKIPCHK": 0
+  },
+  "gazebo_plugin": {
+    "upstream": "https://github.com/ArduPilot/ardupilot_gazebo",
+    "audited_source_path": "/home/accelerate/ardupilot_gazebo",
+    "vendored_path": "third_party/ardupilot_gazebo",
+    "git_commit": null,
+    "revision_status": "UNKNOWN_SOURCE_SNAPSHOT",
+    "reason": "No .git directory in historical actual source; never substitute current main commit",
+    "license_file": "LICENSE.md",
+    "license_text": "GNU Lesser General Public License version 3",
+    "exclude_from_vendor": [
+      "build/",
+      ".git/",
+      "__pycache__/",
+      ".pytest_cache/",
+      "*.pyc"
+    ],
+    "expected_file_count": 94,
+    "expected_bytes": 85926135,
+    "expected_files": {
+      ".github/CONTRIBUTING.md": {
+        "bytes": 2145,
+        "sha256": "69d1830a45b0d1df9355677ab6d69bd085e88392fe2693339d49d2d5c0293a36"
+      },
+      ".github/ISSUE_TEMPLATE/bug_report.md": {
+        "bytes": 889,
+        "sha256": "7cec034219628e1b6143cfbaafc176f7933f25ea8e6dceb8626995a9417634e7"
+      },
+      ".github/ISSUE_TEMPLATE/config.yml": {
+        "bytes": 184,
+        "sha256": "e3a89ca0ff569010b36d441881e3d2afa183e5f34d28b4fb0480c566f9ff7f72"
+      },
+      ".github/ISSUE_TEMPLATE/feature_request.md": {
+        "bytes": 1044,
+        "sha256": "83b7dd9b988d5ddffca23ed94f9fd2422810bfb12b107dd2fc56a1811b85a45d"
+      },
+      ".github/SUPPORT.md": {
+        "bytes": 608,
+        "sha256": "d052cfa47dde8d9448fcdedae84528d8261096746b9ec81e83f0964fb97575fb"
+      },
+      ".github/workflows/ccache.env": {
+        "bytes": 330,
+        "sha256": "25cc04ef8760dae49d58da0f59ecbed7258f15d6110328d318ee67e033344625"
+      },
+      ".github/workflows/ccpcheck.yml": {
+        "bytes": 453,
+        "sha256": "8f2dcfb59ac0bfb0654395ed4b52ea407637697fe33788c4f56d1a9fcd33e33e"
+      },
+      ".github/workflows/ccplint.yml": {
+        "bytes": 547,
+        "sha256": "beb0819a6ea88985607337b68471e8326c3d11dcc4de0bf62c359b4d9872c8aa"
+      },
+      ".github/workflows/ubuntu-build.yml": {
+        "bytes": 1945,
+        "sha256": "ac676a0cde1243e4be0924d01b8f10ef9629677b457ea6900840d3bf0ae38283"
+      },
+      ".gitignore": {
+        "bytes": 1553,
+        "sha256": "720a153e657f3f8db4196127e749ed8bf0db4369d192306c689d9cb4c4289e0d"
+      },
+      "CMakeLists.txt": {
+        "bytes": 4838,
+        "sha256": "8362907b82bb36adf8d22f4ba0a1defa31cabcbdf2168a955f3f932eeed41875"
+      },
+      "CPPLINT.cfg": {
+        "bytes": 1650,
+        "sha256": "657c31019dde402c9038600b9e89f221e41af0fea59c16d9dfa8293896a103ff"
+      },
+      "LICENSE.md": {
+        "bytes": 7653,
+        "sha256": "1a45b1d0a8603dfe2cfc644f9dab970b1762f92babe2aac6eb2f5d4572c4a680"
+      },
+      "README.md": {
+        "bytes": 11432,
+        "sha256": "dcc9ebbcc61d2315e2c07fb7780ebc8ccb546bdeffe3a647036c0dd4dfc12f1f"
+      },
+      "cmake/cmake_uninstall.cmake.in": {
+        "bytes": 953,
+        "sha256": "2dcd15c4faec6be54ca5511097728ef705028dca18925c67c9c729c91f722944"
+      },
+      "config/gazebo-iris-gimbal.parm": {
+        "bytes": 664,
+        "sha256": "abd1023d9162d31e4e852b0bf68673fd1576deb136be5b35ff52745e603a8be6"
+      },
+      "hooks/ardupilot_gazebo.dsv.in": {
+        "bytes": 329,
+        "sha256": "ecff44d1538e7a36bf878258bd3a5f0228897aae7ea6b2fc582a3f64f1608818"
+      },
+      "hooks/ardupilot_gazebo.sh.in": {
+        "bytes": 466,
+        "sha256": "1ac892274376e16e64fe947c09a48eb0f3437f01679227ad0f6b21f22a102773"
+      },
+      "include/ArduPilotPlugin.hh": {
+        "bytes": 6497,
+        "sha256": "a8308c6212ab5d214822681ef457eef68e623c23d723328730ca8637d0cabfe7"
+      },
+      "include/CameraZoomPlugin.hh": {
+        "bytes": 1985,
+        "sha256": "5416c1985b9e50ca649c3eea4bc4ed03be3949a16750ed83f9e05448b1fa6264"
+      },
+      "include/GstCameraPlugin.hh": {
+        "bytes": 2867,
+        "sha256": "ae2cda10b6d02f6481f178163c9f5262cdefb7a0e994dc547ef8b916b264037e"
+      },
+      "include/ParachutePlugin.hh": {
+        "bytes": 2264,
+        "sha256": "aa9f860a73f5c7547aa7ea5cdeea7e4729436e35450eaf1dea9a3aeb591a8b20"
+      },
+      "include/SelectionBuffer.hh": {
+        "bytes": 2291,
+        "sha256": "07b4d9a5a98488d26e59daf8d9181f5e002dc2d5ed1f5942623768747071ff2b"
+      },
+      "include/SocketUDP.hh": {
+        "bytes": 2293,
+        "sha256": "3f135a3dae3fa8834f3da67cea677a8f5a13707fa216d32c166144ac088db650"
+      },
+      "include/Util.hh": {
+        "bytes": 2019,
+        "sha256": "8da64c882ccb4922ff7113441b43186466339db7b240c77ee4d06a8f339b1ee7"
+      },
+      "models/gimbal_small_1d/meshes/base_arm.dae": {
+        "bytes": 3462061,
+        "sha256": "dc453d821ac918633010099af657b829a5027bd35707e70f0fc57a4ec2840cf0"
+      },
+      "models/gimbal_small_1d/meshes/base_main.dae": {
+        "bytes": 5953937,
+        "sha256": "a6ad376e8e049dfcc86249614bb14c8b092f59d761d9956dcc7fa8cf817f63ea"
+      },
+      "models/gimbal_small_1d/meshes/tilt.dae": {
+        "bytes": 3169020,
+        "sha256": "4403f6e472667b5065b28199f1e8a186b855d45598a7aa88b9079b891725654f"
+      },
+      "models/gimbal_small_1d/model.config": {
+        "bytes": 607,
+        "sha256": "b946648c1ca2f0ca914fe8e335f1795a73ccee8ac7bc54eda07aac40549b2860"
+      },
+      "models/gimbal_small_1d/model.sdf": {
+        "bytes": 4284,
+        "sha256": "504cc3a7ea5720e72f300ede9533d219e897b8c0d904dbe77a2774ade73a0f1c"
+      },
+      "models/gimbal_small_2d/meshes/base_arm.dae": {
+        "bytes": 3462061,
+        "sha256": "dc453d821ac918633010099af657b829a5027bd35707e70f0fc57a4ec2840cf0"
+      },
+      "models/gimbal_small_2d/meshes/base_main.dae": {
+        "bytes": 5953937,
+        "sha256": "a6ad376e8e049dfcc86249614bb14c8b092f59d761d9956dcc7fa8cf817f63ea"
+      },
+      "models/gimbal_small_2d/meshes/tilt.dae": {
+        "bytes": 3169020,
+        "sha256": "4403f6e472667b5065b28199f1e8a186b855d45598a7aa88b9079b891725654f"
+      },
+      "models/gimbal_small_2d/model.config": {
+        "bytes": 606,
+        "sha256": "817678f9c5dded619989bc295b425c6f4814725d458aed2b4555cac897cf5888"
+      },
+      "models/gimbal_small_2d/model.sdf": {
+        "bytes": 5203,
+        "sha256": "df5fb4d2ca9d67ac327f3770f35b0b2a92ae69a4c90a6b506006a87004ed56e1"
+      },
+      "models/gimbal_small_3d/meshes/base_plate.dae": {
+        "bytes": 3884412,
+        "sha256": "a657c60d7a35202d67c450a11211d757d423fbce4e03df8e14d03e69702a2b5b"
+      },
+      "models/gimbal_small_3d/meshes/camera_enclosure.dae": {
+        "bytes": 959012,
+        "sha256": "0ca4024657bd4308f741b5200db75c04c6d4b8eb5dc213fcb718bc1ae0185809"
+      },
+      "models/gimbal_small_3d/meshes/roll_arm.dae": {
+        "bytes": 1478842,
+        "sha256": "66cd656cf30ef7f8cfae383433c2524269a6da55067116f5df980327510b3721"
+      },
+      "models/gimbal_small_3d/meshes/yaw_arm.dae": {
+        "bytes": 1591993,
+        "sha256": "139726d4d8e43bcd1778538d684e2edcab6812f262fdd0835c2a7c7947006ed5"
+      },
+      "models/gimbal_small_3d/model.config": {
+        "bytes": 583,
+        "sha256": "2bd4eb64a7784dcd16373c01107d9b38d65624592dd41c9c7a3f0365c274e5b7"
+      },
+      "models/gimbal_small_3d/model.sdf": {
+        "bytes": 6476,
+        "sha256": "fe3ce1c87d28ea1136dc86df9a0f0606cb2e63e8d57e8e32e6db456ab8acb06c"
+      },
+      "models/iris_with_ardupilot/model.config": {
+        "bytes": 762,
+        "sha256": "57def1cd520ad4065ba7b2dece876e4faf2ea9e816d69dadef409efe9bf5873b"
+      },
+      "models/iris_with_ardupilot/model.sdf": {
+        "bytes": 25080,
+        "sha256": "513bf6f142ab257cbd85f89e8ee9739555b188591ada83082abb27abd5ccda66"
+      },
+      "models/iris_with_gimbal/model.config": {
+        "bytes": 868,
+        "sha256": "4adab40661c01797fc66d6a30249c979968558679e35bf2b1424f3630ba75982"
+      },
+      "models/iris_with_gimbal/model.sdf": {
+        "bytes": 10958,
+        "sha256": "9071f778f924de31f754abc2b701fc66d3e8c98fb8fa2958430083d9c1f160ee"
+      },
+      "models/iris_with_standoffs/meshes/iris.dae": {
+        "bytes": 21644731,
+        "sha256": "697956cfc0fe608afc52a0f688de50354b89e5201056451cf6bb767de8f46323"
+      },
+      "models/iris_with_standoffs/meshes/iris_collision.stl": {
+        "bytes": 144284,
+        "sha256": "66b85caa021497ea73dbaed08c72da381a6157116244ea3860a1ba445f50102c"
+      },
+      "models/iris_with_standoffs/meshes/iris_prop_ccw.dae": {
+        "bytes": 308284,
+        "sha256": "5f8b01668ee24a5b663ca8c4dd56e294fd6480db7eec1e5a7c11e45ba9004e99"
+      },
+      "models/iris_with_standoffs/meshes/iris_prop_cw.dae": {
+        "bytes": 354209,
+        "sha256": "6cbc686772dccd46253fb65ece000e7ffa6a74b9c097bda349884bd1e78cd879"
+      },
+      "models/iris_with_standoffs/model.config": {
+        "bytes": 741,
+        "sha256": "e419cc7681f730edf14398baa577a4f05cd34e2cebaa764c508119c4465b34b7"
+      },
+      "models/iris_with_standoffs/model.sdf": {
+        "bytes": 13490,
+        "sha256": "2c4e8ccf4385f329af905cce1cbceff96656da4ace9353c0ec6ca09df3c442d0"
+      },
+      "models/parachute_small/meshes/parachute_small.dae": {
+        "bytes": 200273,
+        "sha256": "3872d3dfc144edc50edf1cf58430fbb3ad8e85f47311dec74a79629cb200ce73"
+      },
+      "models/parachute_small/model.config": {
+        "bytes": 463,
+        "sha256": "08dfe8fb369a64705e26f5ef48d8f9fe360d0a3b09fecbf2283df70dbfe943f2"
+      },
+      "models/parachute_small/model.sdf": {
+        "bytes": 1994,
+        "sha256": "3b82b64269211465140b952940a083cc0cf979605a6276963c851166dd6ae3be"
+      },
+      "models/runway/materials/textures/Grass004_2K_AmbientOcclusion.jpg": {
+        "bytes": 3658814,
+        "sha256": "9cd00f7baa3eb8eca0ef9928bb8bec4814510e36c131f490d516b647e5684b83"
+      },
+      "models/runway/materials/textures/Grass004_2K_Color copy.jpg": {
+        "bytes": 7643335,
+        "sha256": "1f2b30a045fb2e4ba2c713ff6ec156c45f2ae066572e0830052d4338a6cab1eb"
+      },
+      "models/runway/materials/textures/Grass004_2K_Color.jpg": {
+        "bytes": 1012856,
+        "sha256": "3bd1958e4033f55bdf85cf9a74c59dde0c3e46056bbc41664840d02f7ab02b60"
+      },
+      "models/runway/materials/textures/Grass004_2K_Displacement.jpg": {
+        "bytes": 3490095,
+        "sha256": "3c5b6c27174bb082240b259c20edca8aca9a35f1fe4a0d604ad3c3b422b2d2c0"
+      },
+      "models/runway/materials/textures/Grass004_2K_NormalGL.jpg": {
+        "bytes": 10018647,
+        "sha256": "6359280270c01faa705e8e798f52ed5ffecf6876cb23574ce0965ff6ea81f234"
+      },
+      "models/runway/materials/textures/Grass004_2K_Roughness.jpg": {
+        "bytes": 3412688,
+        "sha256": "fe1aa874a018622d771c0c259f65388bd289a535687f7708849cd6c3cbc8346b"
+      },
+      "models/runway/materials/textures/runway.png": {
+        "bytes": 18296,
+        "sha256": "b538ae4bc95666eedcce0018734e46f08d8379fd354aefc3ae64ac7c66df59e0"
+      },
+      "models/runway/meshes/airfield.dae": {
+        "bytes": 7961,
+        "sha256": "161b0ff4221b4c65386baad00df06f4c92e7f64de0c97f54526159d3dd8c99b6"
+      },
+      "models/runway/model.config": {
+        "bytes": 267,
+        "sha256": "6ede1bb27e2f603454a37df13af751f9bc40a2579115c6cf1507762440811569"
+      },
+      "models/runway/model.sdf": {
+        "bytes": 1934,
+        "sha256": "876a1fe858842f615cf75f1386474db8aaafde76cec7b5d63114a68be692249d"
+      },
+      "models/zephyr/materials/textures/wing.png": {
+        "bytes": 237554,
+        "sha256": "c8edac9caac9ce00cdc86f8f69d6fc3a16769f0615d348b605687f556d011b0d"
+      },
+      "models/zephyr/meshes/parachute_small.dae": {
+        "bytes": 200273,
+        "sha256": "3872d3dfc144edc50edf1cf58430fbb3ad8e85f47311dec74a79629cb200ce73"
+      },
+      "models/zephyr/meshes/wing.dae": {
+        "bytes": 90376,
+        "sha256": "3ba02185bd4792a3115b95e6e9c459f2228b1b34432373073f32f3f2b57b7361"
+      },
+      "models/zephyr/model.config": {
+        "bytes": 434,
+        "sha256": "f40c413cf55fc2d5c02a91fca3df1400a9f02b6e73c363768a1c30cd4946b51e"
+      },
+      "models/zephyr/model.sdf": {
+        "bytes": 7509,
+        "sha256": "f78b71771890b208def6aa384dcb4cb2f6a6d5900f4fe0c94a6e0d375db2e7d6"
+      },
+      "models/zephyr/thumbnails/1.png": {
+        "bytes": 12720,
+        "sha256": "4e6d16802e05dbca1498fc05f5e6a8ac52d198a0e7f0c890e7ce8cb44a1320b3"
+      },
+      "models/zephyr/thumbnails/2.png": {
+        "bytes": 26827,
+        "sha256": "212064ec8c183c565fd300e632c380b21040016d7fe972ec7bdddb261de6f51a"
+      },
+      "models/zephyr/thumbnails/3.png": {
+        "bytes": 3930,
+        "sha256": "25639bd2f137baa7f2b82e692fd77d2e4414fa9c09b6563a3d986aa377e26e06"
+      },
+      "models/zephyr/thumbnails/4.png": {
+        "bytes": 5843,
+        "sha256": "b9e25f76ad479714e62c15374387d56098608679bf43a27e71c0fc5c3d55bc5f"
+      },
+      "models/zephyr/thumbnails/5.png": {
+        "bytes": 3904,
+        "sha256": "1195b08819500aca024988264f3964bd5b371270bb37c20b33ddf1d26c29b728"
+      },
+      "models/zephyr_with_ardupilot/model.config": {
+        "bytes": 437,
+        "sha256": "41b5f007627fe8555c272031b61650420502dde14c6d127fecc563ad804e8be2"
+      },
+      "models/zephyr_with_ardupilot/model.sdf": {
+        "bytes": 8486,
+        "sha256": "a4ad400ee109bef8004a4197186eb7f1d41fd76b20649f447b4080ab5e1cf084"
+      },
+      "models/zephyr_with_parachute/model.config": {
+        "bytes": 546,
+        "sha256": "9f921de18f887007de4a30da48d897058108fb29863f156f0363e08c405e1aeb"
+      },
+      "models/zephyr_with_parachute/model.sdf": {
+        "bytes": 9838,
+        "sha256": "8f9a68466a89295d4b40977ee8464a59a62de16e9474dad3c1ef55d91040dc40"
+      },
+      "package.xml": {
+        "bytes": 1719,
+        "sha256": "181dfbe8620e88d3d75d93be812f1000ff14c749985fdb1473d400c6b2fbdba9"
+      },
+      "src/ArduPilotPlugin.cc": {
+        "bytes": 67047,
+        "sha256": "e00c3fc98e2ef8e37c9fb6a537c4f6fb599b1e8e3f90885d4916eaa04baac868"
+      },
+      "src/CameraZoomPlugin.cc": {
+        "bytes": 15734,
+        "sha256": "6370328e13223e6cde998923a79b1ff77910f8d04a2cad7308eec9f022f5642f"
+      },
+      "src/GstCameraPlugin.cc": {
+        "bytes": 17410,
+        "sha256": "4ffdea690e2f3133865269b0f1b7788d135d7dde41e3877af0c6b78058dc4cd3"
+      },
+      "src/ParachutePlugin.cc": {
+        "bytes": 11676,
+        "sha256": "505f2159c8a472a64d99a00ed9cd10ff53eca80d065ad2c23b500f2a026d6ff5"
+      },
+      "src/SocketUDP.cc": {
+        "bytes": 3771,
+        "sha256": "381a7d6b90fd54f918e10f1c3be434daa7813a2d963eb97859f335f923edd315"
+      },
+      "src/Util.cc": {
+        "bytes": 3239,
+        "sha256": "5509e20ded559a91aec9f51d77c39592f5f2f2c4979ae79d6f764c09a4b59825"
+      },
+      "tests/worlds/test_anemometer.sdf": {
+        "bytes": 8547,
+        "sha256": "39fa0db60413db0cf3efa85688eb47f63c48a4e098b8b3ba877fd2fdbf4b2639"
+      },
+      "tests/worlds/test_gimbal.sdf": {
+        "bytes": 4828,
+        "sha256": "114ded871962117218ac83612658769b9ee6e62e42ddbb64cffb09bc40dadfe1"
+      },
+      "tests/worlds/test_nested_model.sdf": {
+        "bytes": 10096,
+        "sha256": "d1e4babac5b748c90e0753e001e9ef2bb1267d4ff9353c5ef2b99599e929a73b"
+      },
+      "tests/worlds/test_parachute.sdf": {
+        "bytes": 3862,
+        "sha256": "1a0a97ea1a16abaa2da402b8b507e15ffba31cbfd6d4ddd1f7d70b9d82f3955a"
+      },
+      "worlds/gimbal.sdf": {
+        "bytes": 8514,
+        "sha256": "e732bc5d7776439116ef64057f0a1093edcd4efabf1d107fd095251e3bc4642a"
+      },
+      "worlds/iris_runway.sdf": {
+        "bytes": 3576,
+        "sha256": "acd62a43f530b03f4d220cf91042e6038323c8f464957decf09104e7304ac766"
+      },
+      "worlds/iris_warehouse.sdf": {
+        "bytes": 17038,
+        "sha256": "2c60cedb439f21a427c8d58733d9f37aa2f9a5f15b2a0d12b5180e3c5cf9dec3"
+      },
+      "worlds/zephyr_parachute.sdf": {
+        "bytes": 5983,
+        "sha256": "76e10f25b08c1e2790ffc20197555dbd7b3171ec75787fad48323255061ca300"
+      },
+      "worlds/zephyr_runway.sdf": {
+        "bytes": 3435,
+        "sha256": "958a128156e0496be1ce4ae2bcd7ea2365f6b7d2b1b8e185d3420e09ec2b9ce3"
+      }
+    }
+  },
+  "model_resources": {
+    "world": "src/xq_gz_assets/worlds/xq_r2b3_range.sdf",
+    "chain": [
+      "xq_iris_multisensor_range_ardupilot",
+      "iris_with_ardupilot",
+      "iris_with_standoffs"
+    ],
+    "plugin_model_meshes_required": true,
+    "model_attribution": "iris_with_standoffs/model.config preserves original authors and PX4 sitl_gazebo provenance",
+    "runtime_cuadc_or_xuanqiong_path_required": false
+  },
+  "legacy_provenance_only": {
+    "cuadc_path": "/home/accelerate/cuadc_ws/src/uav_slam_sim",
+    "license_in_package_xml": "LGPL-3.0-only",
+    "standalone_license_file_found": false,
+    "whole_tree_required_for_current_range_world": false,
+    "xuanqiong_workspace": "/home/accelerate/xuanqiong_x1_sim_ws"
+  },
+  "headless": {
+    "command": [
+      "gz",
+      "sim",
+      "-s",
+      "-r",
+      "--headless-rendering",
+      "WORLD.sdf"
+    ],
+    "engine": "ogre2",
+    "requires_working_EGL_for_render_sensors": true,
+    "WSL_D3D12_renderer_requirement_removed_only_in_new_wrapper": true,
+    "software_rendering_not_performance_evidence": true,
+    "geoid_dataset": "/usr/share/GeographicLib/geoids/egm96-5.pgm"
+  },
+  "ports": {
+    "json_plugin_udp_in": 9002,
+    "sitl_json_in": 9003,
+    "sitl_json_out": 9002,
+    "json_plan_tcp": [
+      6760,
+      6761,
+      6762,
+      6763
+    ],
+    "quad_smoke_tcp_formula": "Explicit --base-port is the absolute telemetry base; do not add 10*instance again",
+    "GZ_PARTITION_and_ROS_DOMAIN_ID_do_not_isolate_UDP9002": true
+  },
+  "original_scripts_read_only_sha256": {
+    "scripts/prepare_ap471_research.sh": "308141cde7d5a3ebd1d31b037abd7f840234dde42ef276651d9c41ca769d4d94",
+    "scripts/build_ap471_autonomy.sh": "1b5337d538b29958bc450d75441bde4efdc5b2aa1b0b69ae83250502e43efd21",
+    "scripts/run_ap471_research_gate.sh": "236ea1c73af852f4bbc58c2d798c214a5ac63e0cc7940bb25f2ea9099ba2198d",
+    "scripts/run_ap471_research_gate.py": "b2fc0bdbd9971e343dee15af8ce2813a41bc6964e0915d26a24ef209ca50e6b3",
+    "scripts/run_ap471_extnav_probe.sh": "9fdba03918b5ab343c14337c6583ac29837e9cbf5aa3175cf82e7297eeaf5c38",
+    "scripts/run_ap471_extnav_probe.py": "3ae633b43c53f11e0ceb5315d158528499d284c18d6a3c3a161e145666ade272",
+    "scripts/run_extnav_link_probe.py": "f216e5cbaec6b440cf641dccfcbce80437fc5af88b7e814fd01afe513234bbb1",
+    "config/research_ap471_gate.json": "de74b69f32c88ab5620597ac42db49c2796deb82e4fb5d42c64548cdc63adaf3",
+    "config/research_ap471_extnav.json": "dd3917d6514af5fb8d3965886dcd03ca99cbab6a9bdc6276a2d100850c398f46",
+    "scripts/probe_mavlink_tcp.py": "4fd6583af37e017cf7d4c3031e23640eb51cd81444f23f0451ed09b81ead27f9"
+  },
+  "known_nonportable_bindings": [
+    {
+      "files": [
+        "prepare_ap471_research.sh",
+        "build_ap471_autonomy.sh"
+      ],
+      "bindings": [
+        "/home/accelerate/impact_research_ws",
+        "/mnt/d/CODEX/impact",
+        "historical xq_install"
+      ]
+    },
+    {
+      "files": [
+        "run_ap471_research_gate.py"
+      ],
+      "bindings": [
+        "WORKSPACE containment checks on old machine"
+      ],
+      "reused_component": "Original observe/validate_config via its existing private --_observe-run branch; no path protection is patched"
+    },
+    {
+      "files": [
+        "run_ap471_extnav_probe.py",
+        "run_extnav_link_probe.py"
+      ],
+      "bindings": [
+        "old canonical/workspace paths",
+        "old external plugin path",
+        "433-file protected evidence audit",
+        "MESA_D3D12_DEFAULT_ADAPTER_NAME=NVIDIA",
+        "glxinfo D3D12 (NVIDIA substring"
+      ],
+      "portable_live_runner_status": "NOT_IMPLEMENTED; new plan only, must perform new live verification"
+    },
+    {
+      "files": [
+        "probe_mavlink_tcp.py"
+      ],
+      "bindings": [
+        "historical absolute default pymavlink site"
+      ],
+      "new_plan_override": "Explicit --pymavlink-site points to the newly prepared private AP venv; no original helper edits"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://gazebosim.org/docs/harmonic/install_ubuntu/",
+      "supports": "Harmonic Ubuntu Jammy binaries and OSRF repository"
+    },
+    {
+      "url": "https://gazebosim.org/api/sim/8/headless_rendering.html",
+      "supports": "OGRE2 EGL and --headless-rendering"
+    },
+    {
+      "url": "https://github.com/ArduPilot/ardupilot_gazebo/blob/main/README.md",
+      "supports": "Plugin dependency/build interface only; does not identify historical snapshot"
+    },
+    {
+      "url": "https://github.com/mavlink/mavros/blob/ros2/docs/installation.md",
+      "supports": "ROS2 MAVROS installation and mandatory geoid dataset"
+    }
+  ],
+  "packaging_validation": {
+    "environment": "Existing Ubuntu22.04 WSL x86_64, not a new remote server",
+    "syntax_and_cli_help": "PASS",
+    "read_only_package_audit": "PASS",
+    "standalone_git_export_fixture_checks": 7,
+    "standalone_git_export_fixture_status": "PASS",
+    "symlink_export_fixture_checks": 3,
+    "symlink_export_fixture_status": "PASS",
+    "actual_ap_export": {
+      "status": "PASS",
+      "source_root": "/home/accelerate/impact_server_staging_20261022/third_party/ardupilot",
+      "manifest": "/home/accelerate/impact_server_staging_20261022/third_party/ap471_export_manifest.json",
+      "repositories": 22,
+      "tracked_objects": 24682,
+      "relative_directory_symlinks": 2
+    },
+    "target_server_live_simulation_run_by_this_agent": false,
+    "nested_tracked_build_directory_fixture_checks": 3,
+    "nested_tracked_build_directory_fixture_status": "PASS",
+    "actual_fresh_relocated_validation": {
+      "status": "PASS_WITH_EXPLICIT_SCOPE_LIMITS",
+      "details": "server/AP471_SERVER_VALIDATION.json",
+      "fresh_sitl": "PASS",
+      "two_unarmed_smokes": "PASS",
+      "complete_parameters": 1347,
+      "required_parameters": 17,
+      "disarmed_heartbeats_per_success": 27,
+      "fresh_plugin": "PASS",
+      "evidence": "provenance/ap471_server_validation_20261022",
+      "autonomy_wrapper_branch_run": false,
+      "live_Gazebo_EGL_MAVROS_run": false
+    }
+  },
+  "new_server_wrapper_sha256": {
+    "ap471_server.py": "e4846a4cb42c9da4c6b914028fcba24e14309ea6841965ed05cc0ad7582eb9eb",
+    "ap471_export_source.py": "cc5e2050f007154f9d60bd352a881f129751354c1a3771616835157f49c6b052"
+  }
+}

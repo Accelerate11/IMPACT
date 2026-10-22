@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "protocol_revision": 1,
+  "stage": "R2B3B3_CLOCK_GUARD_AND_SAMPLED_FCU_READINESS",
+  "predeclared_before_first_live_run": true,
+  "duration_wall_s": 90.0,
+  "readiness_extra_duration_s": 12.0,
+  "cases": [
+    {"source": "synthetic", "load": "lean", "source_pause_after_s": 20.0, "source_pause_duration_s": 2.0},
+    {"source": "lio", "load": "full", "source_pause_after_s": 0.0, "source_pause_duration_s": 0.0}
+  ],
+  "clock_guard": {
+    "warmup_ns": 5000000000,
+    "max_source_age_ns": 350000000,
+    "min_rate_hz": 4.0,
+    "max_step_residual_ns": 50000000,
+    "max_anchor_drift_ns": 50000000,
+    "rate_window_ns": 1000000000,
+    "maximum_clock_sampling_span_ns": 5000000,
+    "fault_recovery": "Only construction of a new guard instance; no automatic reset",
+    "threshold_scope": "Predeclared engineering consistency budgets, not physical calibration or a bound on sensor-to-FCU timestamp error"
+  },
+  "live_readiness": {
+    "schema_version": 1,
+    "expected_system_id": 1,
+    "expected_component_id": 1,
+    "vision_position_mask": 128,
+    "local_status_max_age_s": 0.35,
+    "sys_status_max_age_s": 0.35,
+    "state_max_age_s": 2.0,
+    "fcu_healthy_dwell_s": 5.0,
+    "maximum_sys_status_gap_s": 0.35,
+    "check_rate_hz": 10.0,
+    "required_parameters": {
+      "VISO_TYPE": 2, "PLND_ENABLED": 0, "LOG_DISARMED": 1,
+      "EK3_SRC1_POSXY": 6, "EK3_SRC1_VELXY": 6,
+      "EK3_SRC1_POSZ": 6, "EK3_SRC1_VELZ": 6,
+      "EK3_SRC1_YAW": 6, "GPS_TYPE": 0, "SIM_GPS_DISABLE": 1
+    }
+  },
+  "read_only_telemetry_request": {"service": "/uav1/mavros/set_stream_rate", "stream_id": 0, "message_rate": 20, "on_off": true},
+  "allowed_command_long_int_ids": [410, 511, 512, 519, 520],
+  "fcu_required_frame_id": 20,
+  "fcu_required_child_frame_id": 12,
+  "fcu_maximum_gap_s_exclusive": 0.3,
+  "no_flight_commands": true,
+  "no_arm": true,
+  "startup_ascii_policy": "Preserve the old pre-first-frame option; additionally allow the exact single AP_IRLock_SITL::init() LF line once within 10 seconds of the first valid from-FCU frame, with original bytes and assembly ledger",
+  "fault_response_policy": "Do not forward a clock-rejected source or clamp its timestamp. Revoke local readiness; report FCU sampled health independently. Natural host clock faults may preempt the source-pause control; retain and label that outcome.",
+  "epoch_monotonic_candidate": "Offline arithmetic comparison only; not deployed to MAVROS/AP in this phase",
+  "mission_integration": "Readiness is observed only; no new armed trial or claim of fixing the mission arm/takeoff recheck race",
+  "actual_flow_state_updates": 0,
+  "closed_loop_validation": false,
+  "scope": "Unarmed clock-guard and sampled-FCU-health diagnostic only. SYS_STATUS vision health is not a per-frame ACK or EKF fusion proof. Both original B2 FAIL runs and B1 INCOMPLETE remain unchanged."
+}

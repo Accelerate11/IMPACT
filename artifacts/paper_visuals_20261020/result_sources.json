@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "sources": [
+    {
+      "path": "evidence/P15/comparison-result.json",
+      "sha256": "eeb3cfff5dafc4606fb662ade917d83118dd6854f52b1b40fc9192c7cd246cf5",
+      "bytes": 11004,
+      "snapshot": "sources/evidence/P15/comparison-result.json"
+    },
+    {
+      "path": "evidence/RESEARCH_R2B3B0/r2b3b0_suite_20261020T094534Z/summary.json",
+      "sha256": "4cf64fd8ef4d289dbe0a9f8ac0e32533cdc3219e596cb9f67d029e4fe445ff14",
+      "bytes": 438634,
+      "snapshot": "sources/evidence/RESEARCH_R2B3B0/r2b3b0_suite_20261020T094534Z/summary.json"
+    },
+    {
+      "path": "evidence/RESEARCH_R2B2/r2b2_suite_20261019T141249Z/summary.json",
+      "sha256": "75cd8dbbf81bd2fdbd7ab77d18f5cadc4ddfc70a34b916b46128c42f18630397",
+      "bytes": 539689,
+      "snapshot": "sources/evidence/RESEARCH_R2B2/r2b2_suite_20261019T141249Z/summary.json"
+    },
+    {
+      "path": "evidence/RESEARCH_R2B2/r2b2_suite_20261019T141249Z/arm_livo-aligned-trajectory.json",
+      "sha256": "7f84edc0660bfe0349f8cea5e964088947f85a6eab12575d12eefcc7d53e88f1",
+      "bytes": 57869,
+      "snapshot": "sources/evidence/RESEARCH_R2B2/r2b2_suite_20261019T141249Z/arm_livo-aligned-trajectory.json"
+    },
+    {
+      "path": "evidence/RESEARCH_R2B2/r2b2_suite_20261019T141249Z/arm_no_visual-aligned-trajectory.json",
+      "sha256": "e55a8ba3b0f77d6e6728b17e10fea60d4e5eb0205b898135939e4fbdea3777f0",
+      "bytes": 57862,
+      "snapshot": "sources/evidence/RESEARCH_R2B2/r2b2_suite_20261019T141249Z/arm_no_visual-aligned-trajectory.json"
+    },
+    {
+      "path": "/home/accelerate/impact_research_ws/experiments/results/research_multisensor/r2b2_replay_20261019T140630Z_1564/truth.jsonl",
+      "sha256": "dec1f887accd1e461c97dc6a0d23f59769e6f36faf7f0b11b067b1fb993ca918",
+      "bytes": 1487411,
+      "snapshot": "sources/r2b2-truth.jsonl"
+    }
+  ],
+  "livo_independent_recalculation": [
+    {
+      "arm": "arm_no_visual",
+      "recomputed_ate_rms_m": 0.004963915510443626,
+      "pairs": 424,
+      "maximum_truth_time_offset_s": 0.009000000000000341
+    },
+    {
+      "arm": "arm_livo",
+      "recomputed_ate_rms_m": 0.004881756945045133,
+      "pairs": 424,
+      "maximum_truth_time_offset_s": 0.009000000000000341
+    }
+  ]
+}

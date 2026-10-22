@@ -34,7 +34,9 @@ inside_workspace() {
     [[ "${candidate}" == "${workspace_root}"/experiments/results/impact_p12/* ]] ||
     [[ "${candidate}" == "${workspace_root}"/experiments/results/impact_p13/* ]] ||
     [[ "${candidate}" == "${workspace_root}"/experiments/results/impact_p14/* ]] ||
-    [[ "${candidate}" == "${workspace_root}"/experiments/results/impact_complex_comparison/* ]]
+    [[ "${candidate}" == "${workspace_root}"/experiments/results/impact_complex_comparison/* ]] ||
+    [[ "${candidate}" == "${workspace_root}"/experiments/results/research_ap/* ]] ||
+    [[ "${candidate}" == "${workspace_root}"/experiments/results/research_multisensor/* ]]
 }
 
 snapshot() {

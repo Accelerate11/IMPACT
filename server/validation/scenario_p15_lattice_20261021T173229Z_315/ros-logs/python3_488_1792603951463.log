@@ -1,0 +1,18 @@
+[INFO] [1792603954.925507392] [xq_p13_flight_controller]: P11 flight variant=integrity_constrained; candidates=lattice; metrics=online_map; no Ground Truth
+[INFO] [1792603954.932858891] [xq_p13_flight_controller]: P12 controller extends P11; only dynamic voxel map may trigger replanning
+[INFO] [1792603954.942392666] [xq_p13_flight_controller]: P13 latency-aware safety: measured nearest-rank p99 drives AL and speed; Ground Truth forbidden
+[INFO] [1792603961.774775661] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=0 cloud_age=infs points=0
+[INFO] [1792603961.776962936] [xq_p13_flight_controller]: P12 flight phase=WAIT_INITIALIZATION t=0.00s
+[INFO] [1792603963.873814480] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=10 cloud_age=0.055s points=0
+[INFO] [1792603965.966189435] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=20 cloud_age=0.055s points=0
+[INFO] [1792603968.123489707] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=30 cloud_age=0.100s points=0
+[INFO] [1792603970.066378020] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=40 cloud_age=0.103s points=0
+[INFO] [1792603972.318804798] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=51 cloud_age=0.000s points=0
+[INFO] [1792603974.414177520] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=61 cloud_age=0.058s points=0
+[INFO] [1792603977.033497936] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=71 cloud_age=0.090s points=0
+[INFO] [1792603978.617232496] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=81 cloud_age=0.103s points=0
+[INFO] [1792603980.559893883] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=91 cloud_age=0.113s points=0
+[INFO] [1792603983.505101304] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=101 cloud_age=0.175s points=0
+[INFO] [1792603985.757867310] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=111 cloud_age=0.205s points=0
+[INFO] [1792603989.868330573] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=122 cloud_age=0.060s points=0
+[INFO] [1792604008.216602298] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=131 cloud_age=0.225s points=0

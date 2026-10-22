@@ -1,0 +1,6 @@
+#!/usr/bin/python3
+import os,sys,json
+a=sys.argv[1:]
+if a and a[0]=='sim': a=a[:1]+['--seed','501']+a[1:]
+with open('/home/accelerate/impact_server_validation_20261022/base/scenario_p15_lattice_20261022T112953Z_495/gz-command.jsonl','a') as f:f.write(json.dumps(a)+'\n')
+os.execv('/usr/bin/gz',['/usr/bin/gz']+a)

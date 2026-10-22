@@ -1,0 +1,115 @@
+{
+  "status": "PASS",
+  "root": "/home/accelerate/impact_server_staging_20261022",
+  "studies": [
+    {
+      "study": "shared_scale",
+      "status": "PASS",
+      "returncode": 0,
+      "timed_out": false,
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_shared_scale_study.py",
+        "--config",
+        "config/research_shared_scale_study.json",
+        "--output",
+        "/home/accelerate/impact_server_validation_20261022/offline_all/shared_scale"
+      ],
+      "started_at_utc": "2026-10-21T16:53:58.640438+00:00",
+      "finished_at_utc": "2026-10-21T16:53:59.477552+00:00",
+      "log": "/home/accelerate/impact_server_validation_20261022/offline_all/shared_scale.log",
+      "artifacts": "/home/accelerate/impact_server_validation_20261022/offline_all/shared_scale"
+    },
+    {
+      "study": "correlated_flow",
+      "status": "PASS",
+      "returncode": 0,
+      "timed_out": false,
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_correlated_flow_study.py",
+        "--protocol",
+        "config/research_flow_precondition_gate.json",
+        "--output",
+        "/home/accelerate/impact_server_validation_20261022/offline_all/correlated_flow"
+      ],
+      "started_at_utc": "2026-10-21T16:53:59.477707+00:00",
+      "finished_at_utc": "2026-10-21T16:54:01.237214+00:00",
+      "log": "/home/accelerate/impact_server_validation_20261022/offline_all/correlated_flow.log",
+      "artifacts": "/home/accelerate/impact_server_validation_20261022/offline_all/correlated_flow"
+    },
+    {
+      "study": "two_view",
+      "status": "PASS",
+      "returncode": 0,
+      "timed_out": false,
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_two_view_geometry_study.py",
+        "--protocol",
+        "config/research_joint_window_gate.json",
+        "--output",
+        "/home/accelerate/impact_server_validation_20261022/offline_all/two_view"
+      ],
+      "started_at_utc": "2026-10-21T16:54:01.237364+00:00",
+      "finished_at_utc": "2026-10-21T16:54:02.325998+00:00",
+      "log": "/home/accelerate/impact_server_validation_20261022/offline_all/two_view.log",
+      "artifacts": "/home/accelerate/impact_server_validation_20261022/offline_all/two_view"
+    },
+    {
+      "study": "joint_window",
+      "status": "PASS",
+      "returncode": 0,
+      "timed_out": false,
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_joint_window_study.py",
+        "--protocol",
+        "config/research_joint_window_gate.json",
+        "--output",
+        "/home/accelerate/impact_server_validation_20261022/offline_all/joint_window"
+      ],
+      "started_at_utc": "2026-10-21T16:54:02.326148+00:00",
+      "finished_at_utc": "2026-10-21T16:54:05.400313+00:00",
+      "log": "/home/accelerate/impact_server_validation_20261022/offline_all/joint_window.log",
+      "artifacts": "/home/accelerate/impact_server_validation_20261022/offline_all/joint_window"
+    },
+    {
+      "study": "joint_core",
+      "status": "PASS",
+      "returncode": 0,
+      "timed_out": false,
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_joint_flow_core_validation.py",
+        "--workspace-root",
+        "/home/accelerate/impact_server_staging_20261022",
+        "--output-dir",
+        "/home/accelerate/impact_server_validation_20261022/offline_all/joint_core"
+      ],
+      "started_at_utc": "2026-10-21T16:54:05.400418+00:00",
+      "finished_at_utc": "2026-10-21T16:56:41.560044+00:00",
+      "log": "/home/accelerate/impact_server_validation_20261022/offline_all/joint_core.log",
+      "artifacts": "/home/accelerate/impact_server_validation_20261022/offline_all/joint_core"
+    },
+    {
+      "study": "serial_core",
+      "status": "PASS",
+      "returncode": 0,
+      "timed_out": false,
+      "command": [
+        "/usr/bin/python3",
+        "prototypes/serial_position/validate_serial_prototype.py",
+        "--joint-header",
+        "/home/accelerate/impact_server_staging_20261022/src/xq_fast_livo2/include/research_joint_flow.h",
+        "--output-dir",
+        "/home/accelerate/impact_server_validation_20261022/offline_all/serial_core"
+      ],
+      "started_at_utc": "2026-10-21T16:56:41.566453+00:00",
+      "finished_at_utc": "2026-10-21T16:59:38.954186+00:00",
+      "log": "/home/accelerate/impact_server_validation_20261022/offline_all/serial_core.log",
+      "artifacts": "/home/accelerate/impact_server_validation_20261022/offline_all/serial_core"
+    }
+  ],
+  "scope": "Standalone synthetic mechanisms, two-view geometry and C++ core checks. Not the recorded five-mode LIVO experiment, AP flight, calibrated integrity or hardware validation."
+}

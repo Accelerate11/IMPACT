@@ -1,0 +1,4 @@
+[INFO] [1792668597.130217779] [xq_p12_obstacle_driver]: P12 obstacle driver is evaluation/scenario-only
+[INFO] [1792668599.951316700] [xq_p12_obstacle_driver]: P12 obstacle state=PARKED y=6.60
+[INFO] [1792668631.734873923] [xq_p12_obstacle_driver]: P12 obstacle state=ENTERING y=6.60
+[INFO] [1792668635.784241703] [xq_p12_obstacle_driver]: P12 obstacle state=BLOCKING y=0.00

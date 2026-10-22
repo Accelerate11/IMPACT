@@ -16,6 +16,7 @@
   <depend>rclcpp</depend>
   <depend>rosgraph_msgs</depend>
   <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
   <depend>gz_msgs_vendor</depend>
   <depend>gz_sim_vendor</depend>
   <depend>gz_transport_vendor</depend>

@@ -4,10 +4,11 @@ from __future__ import annotations
 
 import json
 import math
+from copy import deepcopy
 
 import numpy as np
 import rclpy
-from geometry_msgs.msg import Point, Twist
+from geometry_msgs.msg import Point, Twist, TwistStamped
 from nav_msgs.msg import Odometry
 from rclpy.executors import ExternalShutdownException
 from rclpy.node import Node
@@ -24,6 +25,60 @@ from xq_sim_interfaces.msg import (
 from .alert_limit import sample_bspline
 from .candidate_metrics import motion_energy_proxy, return_energy_proxy
 from .integrity_exploration import rolling_horizon_distances
+
+
+class _ProvenanceCommandPublisher:
+    """Preserve legacy Twist output and publish one atomic research command.
+
+    The JSON contains the velocity and both source timestamps so an execution
+    adapter never has to pair independently delivered ROS topics. Simulation
+    time can repeat between clock updates; sequence IDs distinguish those
+    publications without manufacturing a future generation timestamp.
+    """
+
+    def __init__(self, node, legacy_publisher, stamped_publisher, provenance_publisher):
+        self._node = node
+        self._legacy_publisher = legacy_publisher
+        self._stamped_publisher = stamped_publisher
+        self._provenance_publisher = provenance_publisher
+        self._sequence_id = 0
+
+    def publish(self, command: Twist) -> None:
+        generated = self._node.get_clock().now()
+        odometry = self._node._odom
+        odometry_stamp_ns = (
+            int(odometry.header.stamp.sec) * 1_000_000_000
+            + int(odometry.header.stamp.nanosec)
+            if odometry is not None
+            else 0
+        )
+        self._sequence_id += 1
+        stamped = TwistStamped()
+        stamped.header.stamp = generated.to_msg()
+        stamped.header.frame_id = "xq_lio_map"
+        stamped.twist = deepcopy(command)
+        provenance = String()
+        provenance.data = json.dumps(
+            {
+                "schema_version": 1,
+                "generation_stamp_ns": int(generated.nanoseconds),
+                "odometry_stamp_ns": odometry_stamp_ns,
+                "sequence_id": self._sequence_id,
+                "frame_id": stamped.header.frame_id,
+                "linear": {
+                    axis: float(getattr(stamped.twist.linear, axis))
+                    for axis in ("x", "y", "z")
+                },
+                "angular": {
+                    axis: float(getattr(stamped.twist.angular, axis))
+                    for axis in ("x", "y", "z")
+                },
+            },
+            separators=(",", ":"),
+        )
+        self._legacy_publisher.publish(command)
+        self._provenance_publisher.publish(provenance)
+        self._stamped_publisher.publish(stamped)
 
 
 def interrupted_energy_total(
@@ -243,7 +298,12 @@ class P11FlightControllerNode(Node):
             reliability=ReliabilityPolicy.RELIABLE,
             durability=DurabilityPolicy.TRANSIENT_LOCAL,
         )
-        self.command_publisher = self.create_publisher(Twist, "/xq/p3/cmd_vel", 20)
+        self.command_publisher = _ProvenanceCommandPublisher(
+            self,
+            self.create_publisher(Twist, "/xq/p3/cmd_vel", 20),
+            self.create_publisher(TwistStamped, "/impact/research/velocity_cmd", 20),
+            self.create_publisher(String, "/impact/research/command_provenance", 20),
+        )
         self.candidate_publisher = self.create_publisher(
             Bspline, "/planning/p11/frontier_candidates", state_qos
         )

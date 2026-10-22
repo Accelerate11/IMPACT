@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "revision": 1,
+  "scope": "Original five-sensor B1 simulation replay into the actual native LIVO state; independent evaluator only receives truth. Not an AP4.7.1 flight or hardware result.",
+  "pair_profile": "exact_seed_next_original_camera_v1",
+  "modes": ["native", "joint_no_flow", "full", "zero_gyro", "zero_plane"],
+  "primary_flow_control": "joint_no_flow",
+  "additional_legacy_baseline": "native",
+  "replay_rate": 0.5,
+  "pixel_sigma_px": 1.0,
+  "pixel_noise_status": "declared engineering covariance, not calibrated pixel uncertainty",
+  "range_sigma_m": 0.01,
+  "range_noise_origin": "B1 frozen Gaussian simulator noise, not hardware ToF calibration",
+  "local_slope_sigma": 0.05,
+  "maximum_pair_s": 0.3,
+  "maximum_mapper_drain_s": 60,
+  "maximum_arm_wall_s": 420,
+  "hypothesis": "Compare actual raw two-view updates with the same native reset and auxiliary-state handling; report trajectory accuracy, update availability, covariance diagnostics and all failures without requiring full to win every comparison.",
+  "limitations": [
+    "Fixed native map and independent native measurement approximation; historical map correlation is not restored.",
+    "Only exact acquisition-stamp range seeds are consumed; the remaining 50 Hz range samples are received and audited without being fused in this profile.",
+    "The original native baseline does not apply the new SO(3) reset; paired flow claims use joint_no_flow.",
+    "Single existing flight input is an integration experiment, not a multiseed degradation evaluation or publication-level superiority claim."
+  ]
+}

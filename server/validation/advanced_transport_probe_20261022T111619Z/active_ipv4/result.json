@@ -1,0 +1,20 @@
+{
+  "interface": "eth1",
+  "ipv4": "10.68.52.180",
+  "cases": {
+    "publisher": {
+      "role": "publisher",
+      "count": 10,
+      "payload_bytes": 368640,
+      "all_payload_sha_matched": true,
+      "subscriber_discovered": true
+    },
+    "subscriber": {
+      "role": "subscriber",
+      "count": 0,
+      "payload_bytes": 368640,
+      "all_payload_sha_matched": true,
+      "subscriber_discovered": false
+    }
+  }
+}

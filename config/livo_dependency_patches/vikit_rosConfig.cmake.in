@@ -1,0 +1,12 @@
+@PACKAGE_INIT@
+set(_impact_vikit_ros_prefix "${PACKAGE_PREFIX_DIR}")
+include(CMakeFindDependencyMacro)
+find_dependency(vikit_common CONFIG)
+foreach(dependency rclcpp geometry_msgs nav_msgs sensor_msgs visualization_msgs tf2 tf2_ros tf2_geometry_msgs)
+  find_dependency(${dependency})
+endforeach()
+include("${CMAKE_CURRENT_LIST_DIR}/vikitRosTargets.cmake")
+set(vikit_ros_INCLUDE_DIRS "${_impact_vikit_ros_prefix}/include")
+set(vikit_ros_INCLUDE_DIR "${vikit_ros_INCLUDE_DIRS}")
+set(vikit_ros_LIBRARIES vikit_ros::vikit_ros)
+set(vikit_ros_LIBRARY vikit_ros::vikit_ros)

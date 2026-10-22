@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "protocol_revision": 3,
+  "firmware": {
+    "vehicle": "ArduCopter",
+    "tag": "Copter-4.7.1",
+    "commit": "dbe792162d06cab66c3475fd5556bf7a120f119e",
+    "version": [4, 7, 1],
+    "official_version_type": 255
+  },
+  "scope": "Unarmed firmware startup, identity, complete parameter readback, and reproducible launch preparation only",
+  "hardware_access": false,
+  "flight_commands_allowed": false,
+  "ground_truth_used_for_estimation": false,
+  "startup_timeout_s": 35,
+  "startup_parameter_settle_s": 8,
+  "parameter_timeout_s": 90,
+  "observation_s": 15,
+  "target_system_id": 1,
+  "target_component_id": 1,
+  "required_parameters": {
+    "GPS1_TYPE": 0,
+    "GPS2_TYPE": 0,
+    "SIM_GPS1_ENABLE": 0,
+    "SIM_GPS2_ENABLE": 0,
+    "VISO_TYPE": 1,
+    "VISO_QUAL_MIN": 0,
+    "PLND_ENABLED": 0,
+    "LOG_DISARMED": 1,
+    "LOG_BACKEND_TYPE": 1,
+    "AHRS_EKF_TYPE": 3,
+    "EK3_ENABLE": 1,
+    "EK3_SRC1_POSXY": 6,
+    "EK3_SRC1_VELXY": 6,
+    "EK3_SRC1_POSZ": 6,
+    "EK3_SRC1_VELZ": 6,
+    "EK3_SRC1_YAW": 6,
+    "ARMING_SKIPCHK": 0
+  },
+  "limits": [
+    "A smoke PASS does not validate ExternalNav delivery, actual multi-sensor fusion, EKF fusion, flight readiness, or closed-loop flight.",
+    "The default quad smoke uses ArduPilot internal dynamics; a JSON/Gazebo launch plan requires its own live Gazebo and full-chain experiments.",
+    "VISO_QUAL_MIN=0 allows unknown quality; receipt health remains distinct from measurement validity.",
+    "Historical 4.5.7 evidence remains bound to 4.5.7 and is never relabelled as 4.7.1."
+  ]
+}

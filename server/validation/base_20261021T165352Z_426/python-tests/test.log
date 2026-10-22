@@ -1,0 +1,69 @@
+Starting >>> xq_autonomy
+============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+cachedir: /home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/build/xq_autonomy/.pytest_cache
+rootdir: /home/accelerate/impact_server_staging_20261022/src/xq_autonomy
+plugins: launch-testing-1.0.14, ament-flake8-0.12.15, ament-lint-0.12.15, ament-pep257-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, launch-testing-ros-0.19.13, colcon-core-0.20.1, cov-3.0.0
+collected 769 items
+
+test/test_algorithms.py .............................                    [  3%]
+test/test_ap471_mission_readiness.py ....................                [  6%]
+test/test_ap_command_provenance.py ....                                  [  6%]
+test/test_ap_execution.py ...........                                    [  8%]
+test/test_ap_execution_node.py ....                                      [  8%]
+test/test_ap_research_mission.py ....................                    [ 11%]
+test/test_candidate_metrics.py ......                                    [ 12%]
+test/test_correlated_update.py ...........................               [ 15%]
+test/test_downward_flow.py ....................                          [ 18%]
+test/test_extnav_clock_guard.py ........................................ [ 23%]
+.........................................                                [ 28%]
+test/test_extnav_runtime_graph.py ..                                     [ 29%]
+test/test_extnav_startup_gate.py ....................................... [ 34%]
+................................                                         [ 38%]
+test/test_extnav_transport_clock.py .................................... [ 43%]
+..........................                                               [ 46%]
+test/test_fcu_extnav_gate.py ..................                          [ 48%]
+test/test_flow_geometry.py ...............................               [ 52%]
+test/test_integrity_evaluation.py ...                                    [ 53%]
+test/test_joint_state.py ............................................... [ 59%]
+                                                                         [ 59%]
+test/test_livo_processing_audit.py ................                      [ 61%]
+test/test_livo_replay_evaluator.py ................                      [ 63%]
+test/test_metrics_contract.py ..............                             [ 65%]
+test/test_micolink.py .................................................. [ 71%]
+............................................                             [ 77%]
+test/test_multisensor_contract.py ...........                            [ 78%]
+test/test_multisensor_monitor.py ..                                      [ 79%]
+test/test_p10_flight_controller.py ..                                    [ 79%]
+test/test_p10_minimum_excitation.py .......                              [ 80%]
+test/test_p10_surfel_map.py ...                                          [ 80%]
+test/test_p11_integrity_exploration.py ..........                        [ 82%]
+test/test_p12_dynamic_voxel_map.py .......................               [ 85%]
+test/test_p13_latency_safety.py ...............                          [ 86%]
+test/test_p2_sensor_validator.py ...                                     [ 87%]
+test/test_p4_external_nav.py ......................                      [ 90%]
+test/test_p4_research_transport.py .......                               [ 91%]
+test/test_p6_directional_integrity.py ......                             [ 91%]
+test/test_p8_alert_limit.py .....                                        [ 92%]
+test/test_p9_integrity_margin.py ....                                    [ 93%]
+test/test_scale_uncertainty.py ...............                           [ 95%]
+test/test_two_view_geometry.py ......................................    [100%]
+
+- generated xml file: /home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/python-package-tests/results/xq_autonomy/pytest.xml -
+============================= 769 passed in 4.39s ==============================
+Finished <<< xq_autonomy [7.26s]
+Starting >>> impact_fault_injection
+============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+cachedir: /home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/build/impact_fault_injection/.pytest_cache
+rootdir: /home/accelerate/impact_server_staging_20261022/src/impact_fault_injection
+plugins: launch-testing-1.0.14, ament-flake8-0.12.15, ament-lint-0.12.15, ament-pep257-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, launch-testing-ros-0.19.13, colcon-core-0.20.1, cov-3.0.0
+collected 4 items
+
+test/test_fault_model.py ....                                            [100%]
+
+- generated xml file: /home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/python-package-tests/results/impact_fault_injection/pytest.xml -
+============================== 4 passed in 0.03s ===============================
+Finished <<< impact_fault_injection [4.39s]
+
+Summary: 2 packages finished [12.2s]

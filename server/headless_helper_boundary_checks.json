@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "checks": {
+    "AST": true,
+    "shell_arguments_preserved": true,
+    "owned_parent_reaped": true,
+    "owned_grandchild_stopped": true,
+    "no_owned_remaining": true,
+    "runtime_inside_bundle": true,
+    "invalid_duration": true
+  },
+  "cleanup_of_test_process_only": {
+    "returncode": -2,
+    "escalations": [
+      {
+        "signal": "SIGTERM",
+        "owned_pids": [
+          8786
+        ]
+      }
+    ],
+    "owned_remaining": [],
+    "scope": "Only tracked descendants with unchanged /proc start identities; no global pkill."
+  },
+  "script_sha256": "c54f4a0106583e3548524cccf773531c9d741cd8be666aa3f9e0d094b87f3d32",
+  "scope": "Validator and own subprocess cleanup only; no ROS/AP/Gazebo/SQL."
+}

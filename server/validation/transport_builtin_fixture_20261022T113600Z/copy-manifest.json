@@ -1,0 +1,44 @@
+{
+  "source_path": "/home/accelerate/impact_server_validation_20261022/transport_builtin_fixture_20261022T113600Z",
+  "packaged_path": "validation/transport_builtin_fixture_20261022T113600Z",
+  "file_set_bytes_sha256": {
+    "publisher.json": {
+      "bytes": 886,
+      "sha256": "2c831387a27a53c775795cc2451cb8e9bcb8f783c8732c5bced825fcb96ac48d"
+    },
+    "publisher.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "result.json": {
+      "bytes": 1841,
+      "sha256": "2e623b43c884716f72cab537906dea82de34731c13357d6b3a216111770a3eb6"
+    },
+    "ros-logs/python3_419_1792668526474.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "ros-logs/python3_439_1792668526894.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "subscriber-ready.json": {
+      "bytes": 42,
+      "sha256": "6ad546de71b60d1176d5c8501677845fac5978ac11297966460f793f21367a5b"
+    },
+    "subscriber.json": {
+      "bytes": 223,
+      "sha256": "343a9ab317f7002fa8a0b787b359562fe5d380d204c90a2cd01963a2ee7a14ab"
+    },
+    "subscriber.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "before_equals_after_equals_copy": true,
+  "excluded_directories": [
+    "cache",
+    "xdg-config",
+    "__pycache__"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "gate": "P13_LATENCY_AWARE_SAFETY",
+  "status": "PASS",
+  "comparison": {
+    "low_profile": "low_50ms",
+    "high_profile": "high_200ms",
+    "low_end_to_end_p99_ms": 150.507831,
+    "high_end_to_end_p99_ms": 301.29494300000005,
+    "p99_separation_ms": 150.78711200000004,
+    "low_unmitigated_alert_limit_m": 0.16772566810307016,
+    "high_unmitigated_alert_limit_m": 0.07714466686905067,
+    "unmitigated_alert_limit_reduction_m": 0.09058100123401949,
+    "low_applied_alert_limit_m": 0.16772566810307016,
+    "high_applied_alert_limit_m": 0.16,
+    "low_integrity_margin_m": 0.06772566810307015,
+    "high_integrity_margin_m": 0.06,
+    "low_speed_limit_mps": 0.42,
+    "high_speed_limit_mps": 0.14500257619342344,
+    "speed_limit_reduction_mps": 0.27499742380657655,
+    "low_mission_elapsed_s": 132.4,
+    "high_mission_elapsed_s": 221.4,
+    "world_sha256": "12c2cbbfdb76c1ccfacde2a0d7db590c37e25ff7553fc5edb69b294e144712fd"
+  },
+  "checks": {
+    "both_latency_trials_pass": true,
+    "p12_capability_retained_both_trials": true,
+    "same_world_geometry": true,
+    "frozen_50_vs_200_ms_profiles": true,
+    "high_p99_is_larger": true,
+    "high_unmitigated_alert_limit_is_tighter": true,
+    "high_speed_is_more_conservative": true,
+    "conservative_policy_observable": true,
+    "ground_truth_evaluator_only": true
+  },
+  "proof_boundary": "Same Gazebo world and LiDAR/FAST-LIO/P12 stack; only injected planner processing delay changes from 50 ms to 200 ms. Ground Truth is evaluator-only.",
+  "generated_at_utc": "2026-08-28T06:00:08.399571+00:00"
+}

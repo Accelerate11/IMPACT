@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "profile": "simulation",
+  "body_frame": "xq_base_link",
+  "reference_clock_domain": "simulation",
+  "hardware_calibration_validated": false,
+  "assume_independent_fusion": false,
+  "clock_mappings": {
+    "simulation": {
+      "target_domain": "simulation",
+      "scale": 1.0,
+      "offset_s": 0.0,
+      "validated": true,
+      "acquisition_not_receipt": true,
+      "validation_basis": "Shared Gazebo acquisition clock; not hardware synchronization"
+    }
+  },
+  "hardware_readiness": {
+    "clock_calibration_validated": false,
+    "extrinsic_calibration_validated": false,
+    "camera_exposure_validated": false,
+    "flow_scale_calibrated": false
+  },
+  "streams": {
+    "lidar": {
+      "topic": "/livox/lidar",
+      "frame_id": "livox_frame",
+      "nominal_rate_hz": 10.0,
+      "maximum_age_s": 0.15,
+      "clock_domain": "simulation",
+      "timestamp_source": "acquisition",
+      "timestamp_semantics": "snapshot_instant",
+      "acquisition_model": "gazebo_instantaneous_range_snapshot",
+      "per_point_timing_available": false,
+      "real_mid360_scan_pattern": false,
+      "body_from_sensor": {
+        "convention": "body_from_sensor",
+        "parent_frame": "xq_base_link",
+        "child_frame": "livox_frame",
+        "rotation": [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
+        "translation_m": [0.04, 0.0, 0.12]
+      },
+      "leaf_dependencies": ["lidar"]
+    },
+    "imu": {
+      "topic": "/livox/imu",
+      "frame_id": "livox_imu",
+      "nominal_rate_hz": 200.0,
+      "maximum_age_s": 0.15,
+      "maximum_gap_s": 0.02,
+      "clock_domain": "simulation",
+      "timestamp_source": "acquisition",
+      "timestamp_semantics": "sample_instant",
+      "body_from_sensor": {
+        "convention": "body_from_sensor",
+        "parent_frame": "xq_base_link",
+        "child_frame": "livox_imu",
+        "rotation": [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
+        "translation_m": [0.0, 0.0, 0.0]
+      },
+      "leaf_dependencies": ["livox_imu"]
+    },
+    "front_camera": {
+      "topic": "/impact/r2/front/image_raw",
+      "camera_info_topic": "/impact/r2/front/camera_info",
+      "frame_id": "impact_front_optical",
+      "nominal_rate_hz": 15.0,
+      "minimum_rate_hz": 10.0,
+      "maximum_age_s": 0.25,
+      "clock_domain": "simulation",
+      "timestamp_source": "acquisition",
+      "timestamp_semantics": "exposure_instant",
+      "exposure_model": "instantaneous_simulation",
+      "axis_convention": "ros_optical",
+      "intrinsics": {"width": 320, "height": 240, "fx": 277.128129211, "fy": 277.128129211, "cx": 159.5, "cy": 119.5},
+      "body_from_sensor": {
+        "convention": "body_from_sensor",
+        "parent_frame": "xq_base_link",
+        "child_frame": "impact_front_optical",
+        "rotation": [[0, 0, 1], [-1, 0, 0], [0, -1, 0]],
+        "translation_m": [0.12, 0.0, 0.03]
+      },
+      "leaf_dependencies": ["front_camera"]
+    },
+    "down_camera": {
+      "topic": "/impact/r2/down/image_raw",
+      "camera_info_topic": "/impact/r2/down/camera_info",
+      "frame_id": "impact_down_optical",
+      "nominal_rate_hz": 15.0,
+      "minimum_rate_hz": 10.0,
+      "maximum_age_s": 0.25,
+      "clock_domain": "simulation",
+      "timestamp_source": "acquisition",
+      "timestamp_semantics": "exposure_instant",
+      "exposure_model": "instantaneous_simulation",
+      "axis_convention": "ros_optical",
+      "intrinsics": {"width": 320, "height": 240, "fx": 277.128129211, "fy": 277.128129211, "cx": 159.5, "cy": 119.5},
+      "body_from_sensor": {
+        "convention": "body_from_sensor",
+        "parent_frame": "xq_base_link",
+        "child_frame": "impact_down_optical",
+        "rotation": [[0, -1, 0], [-1, 0, 0], [0, 0, -1]],
+        "translation_m": [0.0, 0.0, -0.03]
+      },
+      "leaf_dependencies": ["down_camera"]
+    },
+    "flow": {
+      "topic": "/impact/r2/flow/measurement",
+      "frame_id": "impact_down_optical",
+      "nominal_rate_hz": 15.0,
+      "maximum_age_s": 0.25,
+      "clock_domain": "simulation",
+      "timestamp_source": "acquisition",
+      "timestamp_semantics": "integration_end",
+      "input_kind": "optical_compensated_angle",
+      "gyro_source": "livox_imu",
+      "maximum_gyro_gap_s": 0.02,
+      "minimum_tracks": 12,
+      "minimum_valid_samples": 100,
+      "startup_invalid_allowed": true,
+      "metric_velocity_available": false,
+      "range_source": "unknown",
+      "ap_optical_flow_injection": false,
+      "body_from_sensor": {
+        "convention": "body_from_sensor",
+        "parent_frame": "xq_base_link",
+        "child_frame": "impact_down_optical",
+        "rotation": [[0, -1, 0], [-1, 0, 0], [0, 0, -1]],
+        "translation_m": [0.0, 0.0, -0.03]
+      },
+      "leaf_dependencies": ["down_camera", "livox_imu"]
+    }
+  },
+  "provenance": {
+    "lio": {"leaf_dependencies": ["lidar", "livox_imu"]},
+    "visual_frontend": {"leaf_dependencies": ["front_camera", "livox_imu"]},
+    "flow": {"leaf_dependencies": ["down_camera", "livox_imu"]}
+  },
+  "scope": "R2 simulation acquisition/frame/optical-flow contracts only; no FAST-LIVO2 fusion or AP flow injection. Add lidar to visual/flow dependencies if its map or range is used. Rates and budgets are targets, not measured hardware claims."
+}

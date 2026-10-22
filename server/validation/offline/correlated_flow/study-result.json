@@ -1,0 +1,624 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "input_origin": "declared_linear_gaussian_fixture_not_sensor_calibration",
+  "checks": {
+    "unknown_cross_covariance_rejected": true,
+    "case0.analytic_posterior": true,
+    "case0.same_point_estimates": true,
+    "case0.correct_coverage": true,
+    "case0.correct_covariance": true,
+    "case0.negative_correlation_undercoverage": true,
+    "case1.analytic_posterior": true,
+    "case1.same_point_estimates": true,
+    "case1.correct_coverage": true,
+    "case1.correct_covariance": true,
+    "case1.zero_correlation_control": true,
+    "case2.analytic_posterior": true,
+    "case2.same_point_estimates": true,
+    "case2.correct_coverage": true,
+    "case2.correct_covariance": true,
+    "case2.positive_correlation_overcoverage": true,
+    "all_raw_arrays_read_back_identically": true,
+    "sample_archive_unchanged_after_read": true
+  },
+  "cases": [
+    {
+      "case_index": 0,
+      "rho": -0.9,
+      "trials": 120000,
+      "maximum_point_estimate_difference_mps": 0.0,
+      "methods": {
+        "keep_C": {
+          "covered_trials": 114022,
+          "coverage": 0.9501833333333334,
+          "wilson_95": [
+            0.9489378848704055,
+            0.9513999600399619
+          ],
+          "predicted_covariance_xy_mps2": [
+            [
+              0.038000000000000006,
+              0.0
+            ],
+            [
+              0.0,
+              0.038000000000000006
+            ]
+          ],
+          "empirical_covariance_xy_mps2": [
+            [
+              0.03782085661730985,
+              0.00010722296835537463
+            ],
+            [
+              0.00010722296835537463,
+              0.03772956112060732
+            ]
+          ],
+          "predicted_directional_variance_mps2": 0.03800000000000002,
+          "empirical_directional_variance_mps2": 0.0378912986637904,
+          "relative_covariance_frobenius_error": 0.006663225163217451
+        },
+        "force_C_zero": {
+          "covered_trials": 101479,
+          "coverage": 0.8456583333333333,
+          "wilson_95": [
+            0.843603197596156,
+            0.8476913392413754
+          ],
+          "predicted_covariance_xy_mps2": [
+            [
+              0.020000000000000004,
+              0.0
+            ],
+            [
+              0.0,
+              0.020000000000000004
+            ]
+          ],
+          "empirical_covariance_xy_mps2": [
+            [
+              0.03782085661730985,
+              0.00010722296835537463
+            ],
+            [
+              0.00010722296835537463,
+              0.03772956112060732
+            ]
+          ],
+          "predicted_directional_variance_mps2": 0.02000000000000001,
+          "empirical_directional_variance_mps2": 0.0378912986637904,
+          "relative_covariance_frobenius_error": 0.888779543555341
+        }
+      }
+    },
+    {
+      "case_index": 1,
+      "rho": 0.0,
+      "trials": 120000,
+      "maximum_point_estimate_difference_mps": 0.0,
+      "methods": {
+        "keep_C": {
+          "covered_trials": 113996,
+          "coverage": 0.9499666666666666,
+          "wilson_95": [
+            0.9487186920751284,
+            0.9511858333733959
+          ],
+          "predicted_covariance_xy_mps2": [
+            [
+              0.020000000000000004,
+              0.0
+            ],
+            [
+              0.0,
+              0.020000000000000004
+            ]
+          ],
+          "empirical_covariance_xy_mps2": [
+            [
+              0.019918547137713172,
+              4.3152473572007465e-05
+            ],
+            [
+              4.3152473572007465e-05,
+              0.020159005626882633
+            ]
+          ],
+          "predicted_directional_variance_mps2": 0.02000000000000001,
+          "empirical_directional_variance_mps2": 0.020020273626233334,
+          "relative_covariance_frobenius_error": 0.006674731277907474
+        },
+        "force_C_zero": {
+          "covered_trials": 113996,
+          "coverage": 0.9499666666666666,
+          "wilson_95": [
+            0.9487186920751284,
+            0.9511858333733959
+          ],
+          "predicted_covariance_xy_mps2": [
+            [
+              0.020000000000000004,
+              0.0
+            ],
+            [
+              0.0,
+              0.020000000000000004
+            ]
+          ],
+          "empirical_covariance_xy_mps2": [
+            [
+              0.019918547137713172,
+              4.3152473572007465e-05
+            ],
+            [
+              4.3152473572007465e-05,
+              0.020159005626882633
+            ]
+          ],
+          "predicted_directional_variance_mps2": 0.02000000000000001,
+          "empirical_directional_variance_mps2": 0.020020273626233334,
+          "relative_covariance_frobenius_error": 0.006674731277907474
+        }
+      }
+    },
+    {
+      "case_index": 2,
+      "rho": 0.9,
+      "trials": 120000,
+      "maximum_point_estimate_difference_mps": 2.220446049250313e-16,
+      "methods": {
+        "keep_C": {
+          "covered_trials": 113979,
+          "coverage": 0.949825,
+          "wilson_95": [
+            0.9485753771753249,
+            0.9510458240096871
+          ],
+          "predicted_covariance_xy_mps2": [
+            [
+              0.001999999999999998,
+              0.0
+            ],
+            [
+              0.0,
+              0.001999999999999998
+            ]
+          ],
+          "empirical_covariance_xy_mps2": [
+            [
+              0.0019995380725016114,
+              -1.7868871398685461e-06
+            ],
+            [
+              -1.7868871398685461e-06,
+              0.0020171674851933064
+            ]
+          ],
+          "predicted_directional_variance_mps2": 0.0019999999999999983,
+          "empirical_directional_variance_mps2": 0.002002628016620118,
+          "relative_covariance_frobenius_error": 0.006137200666605744
+        },
+        "force_C_zero": {
+          "covered_trials": 120000,
+          "coverage": 1.0,
+          "wilson_95": [
+            0.9999679888679063,
+            1.0
+          ],
+          "predicted_covariance_xy_mps2": [
+            [
+              0.020000000000000004,
+              0.0
+            ],
+            [
+              0.0,
+              0.020000000000000004
+            ]
+          ],
+          "empirical_covariance_xy_mps2": [
+            [
+              0.00199953807250161,
+              -1.7868871398685883e-06
+            ],
+            [
+              -1.7868871398685883e-06,
+              0.0020171674851933064
+            ]
+          ],
+          "predicted_directional_variance_mps2": 0.02000000000000001,
+          "empirical_directional_variance_mps2": 0.002002628016620117,
+          "relative_covariance_frobenius_error": 0.8995824734597984
+        }
+      }
+    }
+  ],
+  "independent_trials": 360000,
+  "raw_arrays": {
+    "path": "/home/accelerate/impact_server_validation_20261022/offline_all/correlated_flow/samples.npz",
+    "bytes": 44165564,
+    "sha256": "5d03b5c98440cfd7240970b670bf8f9c36e39474daf14b18ff814d642667d722",
+    "arrays": {
+      "case0_seed17019_latent": {
+        "shape": [
+          40000,
+          6
+        ],
+        "dtype": "float64"
+      },
+      "case0_seed17019_prior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case0_seed17019_measurement_noise": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case0_seed17019_innovation": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case0_seed17019_keep_C_posterior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case0_seed17019_force_C_zero_posterior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case0_seed31183_latent": {
+        "shape": [
+          40000,
+          6
+        ],
+        "dtype": "float64"
+      },
+      "case0_seed31183_prior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case0_seed31183_measurement_noise": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case0_seed31183_innovation": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case0_seed31183_keep_C_posterior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case0_seed31183_force_C_zero_posterior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case0_seed92401_latent": {
+        "shape": [
+          40000,
+          6
+        ],
+        "dtype": "float64"
+      },
+      "case0_seed92401_prior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case0_seed92401_measurement_noise": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case0_seed92401_innovation": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case0_seed92401_keep_C_posterior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case0_seed92401_force_C_zero_posterior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case1_seed17019_latent": {
+        "shape": [
+          40000,
+          6
+        ],
+        "dtype": "float64"
+      },
+      "case1_seed17019_prior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case1_seed17019_measurement_noise": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case1_seed17019_innovation": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case1_seed17019_keep_C_posterior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case1_seed17019_force_C_zero_posterior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case1_seed31183_latent": {
+        "shape": [
+          40000,
+          6
+        ],
+        "dtype": "float64"
+      },
+      "case1_seed31183_prior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case1_seed31183_measurement_noise": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case1_seed31183_innovation": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case1_seed31183_keep_C_posterior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case1_seed31183_force_C_zero_posterior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case1_seed92401_latent": {
+        "shape": [
+          40000,
+          6
+        ],
+        "dtype": "float64"
+      },
+      "case1_seed92401_prior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case1_seed92401_measurement_noise": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case1_seed92401_innovation": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case1_seed92401_keep_C_posterior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case1_seed92401_force_C_zero_posterior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case2_seed17019_latent": {
+        "shape": [
+          40000,
+          6
+        ],
+        "dtype": "float64"
+      },
+      "case2_seed17019_prior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case2_seed17019_measurement_noise": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case2_seed17019_innovation": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case2_seed17019_keep_C_posterior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case2_seed17019_force_C_zero_posterior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case2_seed31183_latent": {
+        "shape": [
+          40000,
+          6
+        ],
+        "dtype": "float64"
+      },
+      "case2_seed31183_prior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case2_seed31183_measurement_noise": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case2_seed31183_innovation": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case2_seed31183_keep_C_posterior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case2_seed31183_force_C_zero_posterior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case2_seed92401_latent": {
+        "shape": [
+          40000,
+          6
+        ],
+        "dtype": "float64"
+      },
+      "case2_seed92401_prior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case2_seed92401_measurement_noise": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case2_seed92401_innovation": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case2_seed92401_keep_C_posterior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "case2_seed92401_force_C_zero_posterior_error_xy": {
+        "shape": [
+          40000,
+          2
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  "scope": "Known linear Gaussian signed-correlation mechanism only; not actual flow fusion, calibrated sensor error, statistical integrity or a new filter method"
+}

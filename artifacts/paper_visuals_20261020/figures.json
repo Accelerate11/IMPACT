@@ -1,0 +1,96 @@
+{
+  "generated_at_utc": "2026-10-20T10:03:06.278173+00:00",
+  "original_evidence_modified": false,
+  "new_experiment_performed": false,
+  "novelty_established": false,
+  "hardware_established": false,
+  "description": "Re-rendered existing measurements. Different validation stages must not be combined into one experiment.",
+  "figures": [
+    {
+      "stem": "01_p15_safety_tradeoff",
+      "title": "完整性约束规划的收益与代价",
+      "caption": "固定仓库一次配对：最低真值误差评价裕度2.19→28.13厘米，可用率80.71%→100%；路径+0.67%，ATE略增0.739毫米。",
+      "boundary": "裕度定义为AL−|真实方向定位误差|，不是障碍净空；不代表多场景统计或实机结论。",
+      "sources": [
+        "evidence/P15/comparison-result.json"
+      ],
+      "evidence_type": "single_scene_paired_Gazebo_SIL",
+      "png_dimensions": [
+        3200,
+        2000
+      ]
+    },
+    {
+      "stem": "02_p10_minimum_excitation",
+      "title": "小幅侧移恢复完整性预算",
+      "caption": "名义轨迹/仅偏航/最小机动三组对照；最小机动最低AL−PL为+0.105米，额外路径6.59厘米。",
+      "boundary": "固定单场景与种子；最小机动并非ATE最优。",
+      "sources": [
+        "evidence/P10/flight-gate-summary.json"
+      ],
+      "evidence_type": "single_scene_three_arm_Gazebo_SIL",
+      "png_dimensions": [
+        3400,
+        1850
+      ]
+    },
+    {
+      "stem": "03_p13_latency_response",
+      "title": "处理时延、速度与完整性预算联动",
+      "caption": "人工规划负载50→200毫秒；端到端p99为150.51→301.29毫秒；限速0.420→0.145米/秒，任务132.4→221.4秒。",
+      "boundary": "不降速预算是同轮反事实计算，不是未缓解算法的实际飞行试验；非Orin实测。",
+      "sources": [
+        "evidence/P13/p13-gate-result.json",
+        "evidence/P13/low-50ms-trial-result.json",
+        "evidence/P13/high-200ms-trial-result.json"
+      ],
+      "evidence_type": "single_scene_injected_delay_Gazebo_SIL",
+      "png_dimensions": [
+        3400,
+        1850
+      ]
+    },
+    {
+      "stem": "04_joint_state_consistency",
+      "title": "多窗口联合状态一致性",
+      "caption": "36,000条独立合成轨迹，每条4个相关窗口；完整模型各窗95%边际区间覆盖率94.875%—95.025%。",
+      "boundary": "线性高斯软件实验；消融方法故意删除依赖，不是SOTA基线。窗口相关，不可当成144,000次独立试验。",
+      "sources": [
+        "evidence/RESEARCH_R2B3B0/r2b3b0_suite_20261020T094534Z/summary.json"
+      ],
+      "evidence_type": "synthetic_linear_Gaussian",
+      "png_dimensions": [
+        3200,
+        1550
+      ]
+    },
+    {
+      "stem": "05_livo_replay",
+      "title": "激光—视觉—惯性融合回放",
+      "caption": "同段仿真数据424个配对状态，422次有效视觉更新；两臂ATE为4.964/4.882毫米。",
+      "boundary": "单bag回放与链路验证，微小差异不支持泛化精度优势；尚无独立下视光流状态更新、AP闭环或硬件验证。",
+      "sources": [
+        "evidence/RESEARCH_R2B2/r2b2_suite_20261019T141249Z/summary.json"
+      ],
+      "evidence_type": "recorded_single_simulation_replay",
+      "png_dimensions": [
+        3350,
+        1600
+      ]
+    }
+  ],
+  "source_sha256": {
+    "evidence/P10/flight-gate-summary.json": "f2f52d784d355b8b9a78916295a5ac7de79272210b898e8795f7b081236aae7d",
+    "evidence/P13/p13-gate-result.json": "8dccd18d009dfd8cdca3730e4e839a98b3b7aa5c4f1ba52e6f0178b9d661a587",
+    "evidence/P13/low-50ms-trial-result.json": "50aadd9182fa9d5024e61d84215cf4e08b39d499c2f1d551f02a4b4d5c986301",
+    "evidence/P13/high-200ms-trial-result.json": "544bbd6301be4a3ef241520a5a7f4b404b9cfb34e1c7774bf82a9913b2d69e11",
+    "docs/P10_MINIMUM_EXCITATION_ACCEPTANCE_REPORT.md": "d16c5082fa24936c3208f8409d2148e1430039302511ce3a56dcfaac2c3128cd",
+    "docs/P13_LATENCY_AWARE_SAFETY_ACCEPTANCE_REPORT.md": "c746af74895f4e3f7f62843641acb95266ba40379bc9b71b17f835cef9a08750",
+    "evidence/P15/comparison-result.json": "eeb3cfff5dafc4606fb662ade917d83118dd6854f52b1b40fc9192c7cd246cf5",
+    "evidence/RESEARCH_R2B3B0/r2b3b0_suite_20261020T094534Z/summary.json": "4cf64fd8ef4d289dbe0a9f8ac0e32533cdc3219e596cb9f67d029e4fe445ff14",
+    "evidence/RESEARCH_R2B2/r2b2_suite_20261019T141249Z/summary.json": "75cd8dbbf81bd2fdbd7ab77d18f5cadc4ddfc70a34b916b46128c42f18630397",
+    "evidence/RESEARCH_R2B2/r2b2_suite_20261019T141249Z/arm_livo-aligned-trajectory.json": "7f84edc0660bfe0349f8cea5e964088947f85a6eab12575d12eefcc7d53e88f1",
+    "evidence/RESEARCH_R2B2/r2b2_suite_20261019T141249Z/arm_no_visual-aligned-trajectory.json": "e55a8ba3b0f77d6e6728b17e10fea60d4e5eb0205b898135939e4fbdea3777f0",
+    "/home/accelerate/impact_research_ws/experiments/results/research_multisensor/r2b2_replay_20261019T140630Z_1564/truth.jsonl": "dec1f887accd1e461c97dc6a0d23f59769e6f36faf7f0b11b067b1fb993ca918"
+  }
+}

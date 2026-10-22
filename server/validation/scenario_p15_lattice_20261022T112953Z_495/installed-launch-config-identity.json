@@ -1,0 +1,14 @@
+{
+  "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/install/share/xq_sim_bringup/launch/xq_p13_flight.launch.py": {
+    "source": "525164501a7eff0b7da9f5b840a763f76f44583a26444cc24364e34d2c630ad4",
+    "installed": "525164501a7eff0b7da9f5b840a763f76f44583a26444cc24364e34d2c630ad4"
+  },
+  "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/install/share/xq_fast_lio/config/xq_p3.yaml": {
+    "source": "9c3466e5bbb55ea07a10c648da2e72e75c23e150c848e7fe213c27c8435e2478",
+    "installed": "9c3466e5bbb55ea07a10c648da2e72e75c23e150c848e7fe213c27c8435e2478"
+  },
+  "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/install/share/xq_gz_bridge/config/p3_fast_lio.yaml": {
+    "source": "99ebe0d5df9531ff1e0feaaea5a636b24e3bcfde7668e3333077046638a0bb3b",
+    "installed": "99ebe0d5df9531ff1e0feaaea5a636b24e3bcfde7668e3333077046638a0bb3b"
+  }
+}

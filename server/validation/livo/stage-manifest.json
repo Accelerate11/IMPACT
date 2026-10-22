@@ -1,0 +1,447 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "package_root": "/home/accelerate/impact_server_staging_20261022",
+  "workspace_root": "/home/accelerate/impact_server_validation_20261022/livo_final/workspace",
+  "sources": {
+    "src/xq_fast_livo2/CMakeLists.txt": {
+      "bytes": 2395,
+      "sha256": "53aadb5ac2cb6727b7577bc46a36bd21085e7650e49523a4077eab1ade37b092"
+    },
+    "src/xq_fast_livo2/LICENSE": {
+      "bytes": 18092,
+      "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643"
+    },
+    "src/xq_fast_livo2/PROVENANCE.md": {
+      "bytes": 1200,
+      "sha256": "d77ff6bab51bfbc27c115d327b1dc1c81cc786d1d97438670f1265d8818b7bc3"
+    },
+    "src/xq_fast_livo2/config/r2_snapshot.yaml": {
+      "bytes": 2136,
+      "sha256": "bc1619ccc01b996aa4d23ee9bda5b7b30841cd5378f5b1575880f30eba3f3b61"
+    },
+    "src/xq_fast_livo2/include/IMU_Processing.h": {
+      "bytes": 3331,
+      "sha256": "a8bc1c19e8f3c23d3399be4690563248bb2596e131c364a27a019cf6b72dd402"
+    },
+    "src/xq_fast_livo2/include/LIVMapper.h": {
+      "bytes": 11377,
+      "sha256": "357d96c574c4399cd5e2fda5a852739272e67c4684bec3847f350f696443dd54"
+    },
+    "src/xq_fast_livo2/include/common_lib.h": {
+      "bytes": 7820,
+      "sha256": "7cc649fecb7eae7d05dcc90ac9b7195ca62cd3c09fdb998c6c6e085b13a747fc"
+    },
+    "src/xq_fast_livo2/include/feature.h": {
+      "bytes": 2050,
+      "sha256": "27eaea6a52e4d0edc9aa04a770a5f436eb129b4c4fbfc7bf9812c5fd3f644799"
+    },
+    "src/xq_fast_livo2/include/frame.h": {
+      "bytes": 3160,
+      "sha256": "91a7ff427c0fb1e12220d4e60ac0ea9ed0785c1ae73c8da98c14ebe2f9782fa6"
+    },
+    "src/xq_fast_livo2/include/livox_ros_driver/CustomMsg.h": {
+      "bytes": 8375,
+      "sha256": "47ae77c64f4d05f7f471d0c2032f52f985926b2eb1c8c2a71f8e78b08c33157d"
+    },
+    "src/xq_fast_livo2/include/livox_ros_driver/CustomPoint.h": {
+      "bytes": 6575,
+      "sha256": "36b6f7f0a2545dd425779124429a17703b7f73a237f3f59777fcda68175aae78"
+    },
+    "src/xq_fast_livo2/include/preprocess.h": {
+      "bytes": 5994,
+      "sha256": "5be177ad29ecdf27a21b180ae1009c3651be020612ba74b6203d34b9cd6153d4"
+    },
+    "src/xq_fast_livo2/include/research_joint_flow.h": {
+      "bytes": 29286,
+      "sha256": "ef80e8471aea8f8cd35d4f8f93cb7cc71fe3d4a6fb6b02a64d65a0de99ef78ab"
+    },
+    "src/xq_fast_livo2/include/research_joint_integration.h": {
+      "bytes": 1188,
+      "sha256": "872ce7776afac5dd6c17ea1590cb4ce3a9c368f585f5575bf67f621f29e1450c"
+    },
+    "src/xq_fast_livo2/include/utils/color.h": {
+      "bytes": 1125,
+      "sha256": "a8dca85646b18e26432f453993cf2da8de8e6b6e3184228b9fb92651c4a8f2ef"
+    },
+    "src/xq_fast_livo2/include/utils/so3_math.h": {
+      "bytes": 2526,
+      "sha256": "fa815b3bc8dc157a2ab8d692b0dd604b369680a7e711fef666f4e12d4ab33c37"
+    },
+    "src/xq_fast_livo2/include/utils/types.h": {
+      "bytes": 1488,
+      "sha256": "ade63d344d8d4cdec2dd8ec0fd6ea7930cb007c9c41ba83500bc7ea79d874d45"
+    },
+    "src/xq_fast_livo2/include/utils/utils.h": {
+      "bytes": 2059,
+      "sha256": "53e212cc56c9f7627bc9a58cae906b9fe9bb334184b28a1b6f8a2821e2ebf3e8"
+    },
+    "src/xq_fast_livo2/include/vio.h": {
+      "bytes": 6351,
+      "sha256": "2e2edf66d7e845e43d9063a669546a6051f32554e4b918b43343a7bdfb26c5b8"
+    },
+    "src/xq_fast_livo2/include/visual_point.h": {
+      "bytes": 1739,
+      "sha256": "c528be4967454ff79f6aac0c5322d62b19ec34c7e8c248b49981d1b3a7f1888d"
+    },
+    "src/xq_fast_livo2/include/voxel_map.h": {
+      "bytes": 7284,
+      "sha256": "4efc48967c10a8a9ecdb46d2f2a4ce6bda193847a6f2f037705352512b56d130"
+    },
+    "src/xq_fast_livo2/package.xml": {
+      "bytes": 838,
+      "sha256": "4798c66be5452b4f6a676b00e196035e04b435c8bb6b34555e9dae2f0707f7ed"
+    },
+    "src/xq_fast_livo2/src/IMU_Processing.cpp": {
+      "bytes": 23935,
+      "sha256": "81e0113c82132a41334d0c59303f956e3bc5b883bdc4b64ff62bf33c3d1d6274"
+    },
+    "src/xq_fast_livo2/src/LIVMapper.cpp": {
+      "bytes": 90971,
+      "sha256": "7a5f4f160277928cd363ee99aae5f9a5432fff8a77b70e47ef334647c5cf8fb5"
+    },
+    "src/xq_fast_livo2/src/frame.cpp": {
+      "bytes": 1644,
+      "sha256": "d45bb8ab1edf065089515940d0c7d6ff2c08fe460143778f62f09547e63f489a"
+    },
+    "src/xq_fast_livo2/src/main.cpp": {
+      "bytes": 442,
+      "sha256": "1794429235ccbf3d78d16a859705a8fea04a08d6588eef89990c2e40733e2b9d"
+    },
+    "src/xq_fast_livo2/src/preprocess.cpp": {
+      "bytes": 36704,
+      "sha256": "87fcb96e41942b0cfe92440fc8f30b13ae000c54795171334f686f63003e69c4"
+    },
+    "src/xq_fast_livo2/src/research_joint_integration.cpp": {
+      "bytes": 17159,
+      "sha256": "13d33ce70a281239102e3a617bcde85abb4d93b968a376ead7956c050d626ada"
+    },
+    "src/xq_fast_livo2/src/utils.cpp": {
+      "bytes": 658,
+      "sha256": "3e0aeaccaf94d7a5e44af952027ddda88f8e3787580b942af5b2db66ff0705d3"
+    },
+    "src/xq_fast_livo2/src/vio.cpp": {
+      "bytes": 68586,
+      "sha256": "e8b387e947ea4ab67365eb1df80b3123fe9644b7e8a59cf5edd03b2bc4a006ed"
+    },
+    "src/xq_fast_livo2/src/visual_point.cpp": {
+      "bytes": 2858,
+      "sha256": "d067e2b05445835cbbb4c8a159519bf4a01a271b96d06cc3a32419092b3fcc6e"
+    },
+    "src/xq_fast_livo2/src/voxel_map.cpp": {
+      "bytes": 38294,
+      "sha256": "98e1b52fa3f4f1f25a4b4cae1430569689e821b1c7c867b51135daee7cb56146"
+    },
+    "src/xq_fast_livo2/test/test_research_empty_lio.cpp": {
+      "bytes": 5251,
+      "sha256": "7807d2acee2634dbc56117e87e52d01a2d3f96a8ff48c5feecc4c243bd7ddd8a"
+    },
+    "src/xq_fast_livo2/test/test_research_joint_flow.cpp": {
+      "bytes": 14436,
+      "sha256": "3cfab92b61874edb65d4b6a8ce1d3128094e0995deab30e21403837559d1a043"
+    },
+    "src/xq_livox_interfaces/CMakeLists.txt": {
+      "bytes": 380,
+      "sha256": "4d9e65af0b8f477dc2e53f463501339deb558d4ef78b756c90072c7246cad437"
+    },
+    "src/xq_livox_interfaces/msg/CustomMsg.msg": {
+      "bytes": 132,
+      "sha256": "1acb5a6f5739d164e58f1c570e2e626cd6c512765849df3daddc781939e1fcb9"
+    },
+    "src/xq_livox_interfaces/msg/CustomPoint.msg": {
+      "bytes": 96,
+      "sha256": "1ce6023309ab2b5fa12d65c75c621c39f79c6cdf5218bec8677c17b4124c1a38"
+    },
+    "src/xq_livox_interfaces/package.xml": {
+      "bytes": 787,
+      "sha256": "534083a6d9854703e8e40b5a18d270cd775ac7dc309ae7d22e0a4925b53890b2"
+    },
+    "config/livo_dependency_patches/0001-bounded-remote-camera-parameters.patch": {
+      "bytes": 2244,
+      "sha256": "5d4a44af5ba90764adb5e3bf9fe38f9a460520ff1f4c76dca8a17a48c24cfa25"
+    },
+    "config/livo_dependency_patches/CMakeLists.txt": {
+      "bytes": 3685,
+      "sha256": "5fbcd97cf6d87efa437ceb8783f221722e08bd6395e53e543d4933383fe37a2f"
+    },
+    "config/livo_dependency_patches/camera_loader_probe.cpp": {
+      "bytes": 3526,
+      "sha256": "f909ab056cb41b9d07b579f567f90f6c4480fdcb4bc4098505a55ac42266d477"
+    },
+    "config/livo_dependency_patches/vikit_commonConfig.cmake.in": {
+      "bytes": 552,
+      "sha256": "51e78f0186f6f7176791bd7582518ef5745c4fc2f20d405a4c37f6b44679d598"
+    },
+    "config/livo_dependency_patches/vikit_rosConfig.cmake.in": {
+      "bytes": 567,
+      "sha256": "d22bf539cba53bb9d3ec67d72ec579895aa2ecc2851634c0c21072143423c0f0"
+    },
+    "scripts/build_joint_livo_isolated.sh": {
+      "bytes": 2349,
+      "sha256": "abc29294eb4d47698b8d14e192903fdd568f6a30bb848c98fd9040f90d96aab1"
+    },
+    "scripts/run_joint_livo_replay.sh": {
+      "bytes": 980,
+      "sha256": "b60038c2ddb2fd331c794bf2616a2253f509bb94930ba91668f6b9e66c97cce5"
+    },
+    "scripts/run_joint_livo_replay.py": {
+      "bytes": 11251,
+      "sha256": "b7e6a8e4c56da977e4c183f2f4bec0085738fa4044193095ba847f159bcb3bfe"
+    },
+    "scripts/check_joint_livo_build_manifest.py": {
+      "bytes": 8904,
+      "sha256": "78c0204f84c439db2f8e17a21692409bcbf04dd0842760737177e8d2a739962e"
+    },
+    "scripts/replay_joint_livo_inputs.py": {
+      "bytes": 29477,
+      "sha256": "3b29b70e704f640cbf707317f6b0ee7c0c470d94ea9544adb6fefeb6290893d3"
+    },
+    "scripts/prepare_joint_livo_selection.py": {
+      "bytes": 12303,
+      "sha256": "1ba5d7e1e6b49a2f52643f8f9bedf56383e383bba7e7f0d1f09868aeaf353d4a"
+    },
+    "scripts/prepare_livo_transport.py": {
+      "bytes": 2816,
+      "sha256": "9d4d090518bbf38326bebcc50685cc91b5d2d2188bdae82230a260581c05caee"
+    },
+    "scripts/analyze_joint_livo_replay.py": {
+      "bytes": 13348,
+      "sha256": "5691bb9cee40f619c5d7bc02177493f06fed3987aea614e85ee3b5b6e1029c71"
+    },
+    "scripts/analyze_livo_replay.py": {
+      "bytes": 27019,
+      "sha256": "a176e11a7117138b6c22e760306eb1306673ba31423c8055c9303633461226c2"
+    },
+    "config/research_joint_livo_replay.json": {
+      "bytes": 1610,
+      "sha256": "4342010a397eaaf38cb9751985b81bc111ae9583e14747f79dbdb1ae01a2f625"
+    },
+    "server/livo_server.py": {
+      "bytes": 21140,
+      "sha256": "9db5de3024722c4f4a53e6eb1dcdfde9694cd6b3aacc6257d481a76e00f439a5"
+    },
+    "server/build_livo_server.sh": {
+      "bytes": 751,
+      "sha256": "52033175a3fe81ff36e65f18f2078730aaa35e8d38f4a0167e657ed53056b08c"
+    },
+    "server/run_livo_server.sh": {
+      "bytes": 831,
+      "sha256": "9be514140281c204756c7ce971543e6c2127286c428a97c0b03a4afb8c041c67"
+    }
+  },
+  "staged_source_files": {
+    "src/xq_fast_livo2/CMakeLists.txt": {
+      "bytes": 2395,
+      "sha256": "53aadb5ac2cb6727b7577bc46a36bd21085e7650e49523a4077eab1ade37b092"
+    },
+    "src/xq_fast_livo2/LICENSE": {
+      "bytes": 18092,
+      "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643"
+    },
+    "src/xq_fast_livo2/PROVENANCE.md": {
+      "bytes": 1200,
+      "sha256": "d77ff6bab51bfbc27c115d327b1dc1c81cc786d1d97438670f1265d8818b7bc3"
+    },
+    "src/xq_fast_livo2/config/r2_snapshot.yaml": {
+      "bytes": 2136,
+      "sha256": "bc1619ccc01b996aa4d23ee9bda5b7b30841cd5378f5b1575880f30eba3f3b61"
+    },
+    "src/xq_fast_livo2/include/IMU_Processing.h": {
+      "bytes": 3331,
+      "sha256": "a8bc1c19e8f3c23d3399be4690563248bb2596e131c364a27a019cf6b72dd402"
+    },
+    "src/xq_fast_livo2/include/LIVMapper.h": {
+      "bytes": 11377,
+      "sha256": "357d96c574c4399cd5e2fda5a852739272e67c4684bec3847f350f696443dd54"
+    },
+    "src/xq_fast_livo2/include/common_lib.h": {
+      "bytes": 7820,
+      "sha256": "7cc649fecb7eae7d05dcc90ac9b7195ca62cd3c09fdb998c6c6e085b13a747fc"
+    },
+    "src/xq_fast_livo2/include/feature.h": {
+      "bytes": 2050,
+      "sha256": "27eaea6a52e4d0edc9aa04a770a5f436eb129b4c4fbfc7bf9812c5fd3f644799"
+    },
+    "src/xq_fast_livo2/include/frame.h": {
+      "bytes": 3160,
+      "sha256": "91a7ff427c0fb1e12220d4e60ac0ea9ed0785c1ae73c8da98c14ebe2f9782fa6"
+    },
+    "src/xq_fast_livo2/include/livox_ros_driver/CustomMsg.h": {
+      "bytes": 8375,
+      "sha256": "47ae77c64f4d05f7f471d0c2032f52f985926b2eb1c8c2a71f8e78b08c33157d"
+    },
+    "src/xq_fast_livo2/include/livox_ros_driver/CustomPoint.h": {
+      "bytes": 6575,
+      "sha256": "36b6f7f0a2545dd425779124429a17703b7f73a237f3f59777fcda68175aae78"
+    },
+    "src/xq_fast_livo2/include/preprocess.h": {
+      "bytes": 5994,
+      "sha256": "5be177ad29ecdf27a21b180ae1009c3651be020612ba74b6203d34b9cd6153d4"
+    },
+    "src/xq_fast_livo2/include/research_joint_flow.h": {
+      "bytes": 29286,
+      "sha256": "ef80e8471aea8f8cd35d4f8f93cb7cc71fe3d4a6fb6b02a64d65a0de99ef78ab"
+    },
+    "src/xq_fast_livo2/include/research_joint_integration.h": {
+      "bytes": 1188,
+      "sha256": "872ce7776afac5dd6c17ea1590cb4ce3a9c368f585f5575bf67f621f29e1450c"
+    },
+    "src/xq_fast_livo2/include/utils/color.h": {
+      "bytes": 1125,
+      "sha256": "a8dca85646b18e26432f453993cf2da8de8e6b6e3184228b9fb92651c4a8f2ef"
+    },
+    "src/xq_fast_livo2/include/utils/so3_math.h": {
+      "bytes": 2526,
+      "sha256": "fa815b3bc8dc157a2ab8d692b0dd604b369680a7e711fef666f4e12d4ab33c37"
+    },
+    "src/xq_fast_livo2/include/utils/types.h": {
+      "bytes": 1488,
+      "sha256": "ade63d344d8d4cdec2dd8ec0fd6ea7930cb007c9c41ba83500bc7ea79d874d45"
+    },
+    "src/xq_fast_livo2/include/utils/utils.h": {
+      "bytes": 2059,
+      "sha256": "53e212cc56c9f7627bc9a58cae906b9fe9bb334184b28a1b6f8a2821e2ebf3e8"
+    },
+    "src/xq_fast_livo2/include/vio.h": {
+      "bytes": 6351,
+      "sha256": "2e2edf66d7e845e43d9063a669546a6051f32554e4b918b43343a7bdfb26c5b8"
+    },
+    "src/xq_fast_livo2/include/visual_point.h": {
+      "bytes": 1739,
+      "sha256": "c528be4967454ff79f6aac0c5322d62b19ec34c7e8c248b49981d1b3a7f1888d"
+    },
+    "src/xq_fast_livo2/include/voxel_map.h": {
+      "bytes": 7284,
+      "sha256": "4efc48967c10a8a9ecdb46d2f2a4ce6bda193847a6f2f037705352512b56d130"
+    },
+    "src/xq_fast_livo2/package.xml": {
+      "bytes": 838,
+      "sha256": "4798c66be5452b4f6a676b00e196035e04b435c8bb6b34555e9dae2f0707f7ed"
+    },
+    "src/xq_fast_livo2/src/IMU_Processing.cpp": {
+      "bytes": 23935,
+      "sha256": "81e0113c82132a41334d0c59303f956e3bc5b883bdc4b64ff62bf33c3d1d6274"
+    },
+    "src/xq_fast_livo2/src/LIVMapper.cpp": {
+      "bytes": 90971,
+      "sha256": "7a5f4f160277928cd363ee99aae5f9a5432fff8a77b70e47ef334647c5cf8fb5"
+    },
+    "src/xq_fast_livo2/src/frame.cpp": {
+      "bytes": 1644,
+      "sha256": "d45bb8ab1edf065089515940d0c7d6ff2c08fe460143778f62f09547e63f489a"
+    },
+    "src/xq_fast_livo2/src/main.cpp": {
+      "bytes": 442,
+      "sha256": "1794429235ccbf3d78d16a859705a8fea04a08d6588eef89990c2e40733e2b9d"
+    },
+    "src/xq_fast_livo2/src/preprocess.cpp": {
+      "bytes": 36704,
+      "sha256": "87fcb96e41942b0cfe92440fc8f30b13ae000c54795171334f686f63003e69c4"
+    },
+    "src/xq_fast_livo2/src/research_joint_integration.cpp": {
+      "bytes": 17159,
+      "sha256": "13d33ce70a281239102e3a617bcde85abb4d93b968a376ead7956c050d626ada"
+    },
+    "src/xq_fast_livo2/src/utils.cpp": {
+      "bytes": 658,
+      "sha256": "3e0aeaccaf94d7a5e44af952027ddda88f8e3787580b942af5b2db66ff0705d3"
+    },
+    "src/xq_fast_livo2/src/vio.cpp": {
+      "bytes": 68586,
+      "sha256": "e8b387e947ea4ab67365eb1df80b3123fe9644b7e8a59cf5edd03b2bc4a006ed"
+    },
+    "src/xq_fast_livo2/src/visual_point.cpp": {
+      "bytes": 2858,
+      "sha256": "d067e2b05445835cbbb4c8a159519bf4a01a271b96d06cc3a32419092b3fcc6e"
+    },
+    "src/xq_fast_livo2/src/voxel_map.cpp": {
+      "bytes": 38294,
+      "sha256": "98e1b52fa3f4f1f25a4b4cae1430569689e821b1c7c867b51135daee7cb56146"
+    },
+    "src/xq_fast_livo2/test/test_research_empty_lio.cpp": {
+      "bytes": 5251,
+      "sha256": "7807d2acee2634dbc56117e87e52d01a2d3f96a8ff48c5feecc4c243bd7ddd8a"
+    },
+    "src/xq_fast_livo2/test/test_research_joint_flow.cpp": {
+      "bytes": 14436,
+      "sha256": "3cfab92b61874edb65d4b6a8ce1d3128094e0995deab30e21403837559d1a043"
+    },
+    "src/xq_livox_interfaces/CMakeLists.txt": {
+      "bytes": 380,
+      "sha256": "4d9e65af0b8f477dc2e53f463501339deb558d4ef78b756c90072c7246cad437"
+    },
+    "src/xq_livox_interfaces/msg/CustomMsg.msg": {
+      "bytes": 132,
+      "sha256": "1acb5a6f5739d164e58f1c570e2e626cd6c512765849df3daddc781939e1fcb9"
+    },
+    "src/xq_livox_interfaces/msg/CustomPoint.msg": {
+      "bytes": 96,
+      "sha256": "1ce6023309ab2b5fa12d65c75c621c39f79c6cdf5218bec8677c17b4124c1a38"
+    },
+    "src/xq_livox_interfaces/package.xml": {
+      "bytes": 787,
+      "sha256": "534083a6d9854703e8e40b5a18d270cd775ac7dc309ae7d22e0a4925b53890b2"
+    },
+    "config/livo_dependency_patches/0001-bounded-remote-camera-parameters.patch": {
+      "bytes": 2244,
+      "sha256": "5d4a44af5ba90764adb5e3bf9fe38f9a460520ff1f4c76dca8a17a48c24cfa25"
+    },
+    "config/livo_dependency_patches/CMakeLists.txt": {
+      "bytes": 3685,
+      "sha256": "5fbcd97cf6d87efa437ceb8783f221722e08bd6395e53e543d4933383fe37a2f"
+    },
+    "config/livo_dependency_patches/camera_loader_probe.cpp": {
+      "bytes": 3526,
+      "sha256": "f909ab056cb41b9d07b579f567f90f6c4480fdcb4bc4098505a55ac42266d477"
+    },
+    "config/livo_dependency_patches/vikit_commonConfig.cmake.in": {
+      "bytes": 552,
+      "sha256": "51e78f0186f6f7176791bd7582518ef5745c4fc2f20d405a4c37f6b44679d598"
+    },
+    "config/livo_dependency_patches/vikit_rosConfig.cmake.in": {
+      "bytes": 567,
+      "sha256": "d22bf539cba53bb9d3ec67d72ec579895aa2ecc2851634c0c21072143423c0f0"
+    },
+    "scripts/build_joint_livo_isolated.sh": {
+      "bytes": 2349,
+      "sha256": "abc29294eb4d47698b8d14e192903fdd568f6a30bb848c98fd9040f90d96aab1"
+    },
+    "scripts/run_joint_livo_replay.sh": {
+      "bytes": 980,
+      "sha256": "b60038c2ddb2fd331c794bf2616a2253f509bb94930ba91668f6b9e66c97cce5"
+    },
+    "scripts/run_joint_livo_replay.py": {
+      "bytes": 11251,
+      "sha256": "b7e6a8e4c56da977e4c183f2f4bec0085738fa4044193095ba847f159bcb3bfe"
+    },
+    "scripts/check_joint_livo_build_manifest.py": {
+      "bytes": 8904,
+      "sha256": "78c0204f84c439db2f8e17a21692409bcbf04dd0842760737177e8d2a739962e"
+    },
+    "scripts/replay_joint_livo_inputs.py": {
+      "bytes": 29477,
+      "sha256": "3b29b70e704f640cbf707317f6b0ee7c0c470d94ea9544adb6fefeb6290893d3"
+    },
+    "scripts/prepare_joint_livo_selection.py": {
+      "bytes": 12303,
+      "sha256": "1ba5d7e1e6b49a2f52643f8f9bedf56383e383bba7e7f0d1f09868aeaf353d4a"
+    },
+    "scripts/prepare_livo_transport.py": {
+      "bytes": 2816,
+      "sha256": "9d4d090518bbf38326bebcc50685cc91b5d2d2188bdae82230a260581c05caee"
+    },
+    "scripts/analyze_joint_livo_replay.py": {
+      "bytes": 13348,
+      "sha256": "5691bb9cee40f619c5d7bc02177493f06fed3987aea614e85ee3b5b6e1029c71"
+    },
+    "scripts/analyze_livo_replay.py": {
+      "bytes": 27019,
+      "sha256": "a176e11a7117138b6c22e760306eb1306673ba31423c8055c9303633461226c2"
+    },
+    "config/research_joint_livo_replay.json": {
+      "bytes": 1610,
+      "sha256": "4342010a397eaaf38cb9751985b81bc111ae9583e14747f79dbdb1ae01a2f625"
+    }
+  },
+  "scope": "Unchanged native algorithms and original replay/build tools; new deployment-only wrapper."
+}

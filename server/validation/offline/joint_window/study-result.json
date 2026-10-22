@@ -1,0 +1,673 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "checks": {
+    "window0.full_joint_coverage": true,
+    "window0.full_joint_covariance": true,
+    "window1.full_joint_coverage": true,
+    "window1.full_joint_covariance": true,
+    "window2.full_joint_coverage": true,
+    "window2.full_joint_covariance": true,
+    "window3.full_joint_coverage": true,
+    "window3.full_joint_covariance": true,
+    "batch_all_operations_mean": true,
+    "batch_all_operations_covariance": true,
+    "sampled_update_matches_kernel_mean": true,
+    "first_window_scale_reset_control": true,
+    "all_arrays_read_back": true,
+    "sample_archive_unchanged": true
+  },
+  "independent_trajectories": 36000,
+  "correlated_windows": 144000,
+  "raw_arrays": {
+    "path": "/home/accelerate/impact_server_validation_20261022/offline_all/joint_window/samples.npz",
+    "bytes": 60726247,
+    "sha256": "188a8cf487e0a2b2967d08ebf6275a6409823cf357de5414961d705fdd4d46e9",
+    "arrays": {
+      "seed14027_primitive_standard_normal": {
+        "shape": [
+          12000,
+          116
+        ],
+        "dtype": "float64"
+      },
+      "seed14027_observations": {
+        "shape": [
+          12000,
+          4,
+          5
+        ],
+        "dtype": "float64"
+      },
+      "seed14027_full_joint_velocity_error_xy": {
+        "shape": [
+          12000,
+          4,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "seed14027_full_joint_final_joint_error": {
+        "shape": [
+          12000,
+          20
+        ],
+        "dtype": "float64"
+      },
+      "seed14027_reset_shared_nuisance_velocity_error_xy": {
+        "shape": [
+          12000,
+          4,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "seed14027_reset_shared_nuisance_final_joint_error": {
+        "shape": [
+          12000,
+          20
+        ],
+        "dtype": "float64"
+      },
+      "seed14027_zero_clone_cross_velocity_error_xy": {
+        "shape": [
+          12000,
+          4,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "seed14027_zero_clone_cross_final_joint_error": {
+        "shape": [
+          12000,
+          20
+        ],
+        "dtype": "float64"
+      },
+      "seed39041_primitive_standard_normal": {
+        "shape": [
+          12000,
+          116
+        ],
+        "dtype": "float64"
+      },
+      "seed39041_observations": {
+        "shape": [
+          12000,
+          4,
+          5
+        ],
+        "dtype": "float64"
+      },
+      "seed39041_full_joint_velocity_error_xy": {
+        "shape": [
+          12000,
+          4,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "seed39041_full_joint_final_joint_error": {
+        "shape": [
+          12000,
+          20
+        ],
+        "dtype": "float64"
+      },
+      "seed39041_reset_shared_nuisance_velocity_error_xy": {
+        "shape": [
+          12000,
+          4,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "seed39041_reset_shared_nuisance_final_joint_error": {
+        "shape": [
+          12000,
+          20
+        ],
+        "dtype": "float64"
+      },
+      "seed39041_zero_clone_cross_velocity_error_xy": {
+        "shape": [
+          12000,
+          4,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "seed39041_zero_clone_cross_final_joint_error": {
+        "shape": [
+          12000,
+          20
+        ],
+        "dtype": "float64"
+      },
+      "seed81013_primitive_standard_normal": {
+        "shape": [
+          12000,
+          116
+        ],
+        "dtype": "float64"
+      },
+      "seed81013_observations": {
+        "shape": [
+          12000,
+          4,
+          5
+        ],
+        "dtype": "float64"
+      },
+      "seed81013_full_joint_velocity_error_xy": {
+        "shape": [
+          12000,
+          4,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "seed81013_full_joint_final_joint_error": {
+        "shape": [
+          12000,
+          20
+        ],
+        "dtype": "float64"
+      },
+      "seed81013_reset_shared_nuisance_velocity_error_xy": {
+        "shape": [
+          12000,
+          4,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "seed81013_reset_shared_nuisance_final_joint_error": {
+        "shape": [
+          12000,
+          20
+        ],
+        "dtype": "float64"
+      },
+      "seed81013_zero_clone_cross_velocity_error_xy": {
+        "shape": [
+          12000,
+          4,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "seed81013_zero_clone_cross_final_joint_error": {
+        "shape": [
+          12000,
+          20
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  "cases": [
+    {
+      "window": 0,
+      "independent_trajectories": 36000,
+      "methods": {
+        "full_joint": {
+          "coverage": 0.94875,
+          "covered_trials": 34155,
+          "wilson_95": [
+            0.9464239171853774,
+            0.9509803233303042
+          ],
+          "predicted_covariance_xy": [
+            [
+              0.019097466801161478,
+              0.00029328773850757404
+            ],
+            [
+              0.00029328773850757404,
+              0.017802460396194535
+            ]
+          ],
+          "empirical_covariance_xy": [
+            [
+              0.019359923902121955,
+              0.00023297436447001715
+            ],
+            [
+              0.00023297436447001715,
+              0.017605835144954965
+            ]
+          ],
+          "relative_covariance_error": 0.012977091200586797,
+          "mean_error_xy": [
+            -0.0006601727309711143,
+            -0.00056783486522013
+          ]
+        },
+        "reset_shared_nuisance": {
+          "coverage": 0.94875,
+          "covered_trials": 34155,
+          "wilson_95": [
+            0.9464239171853774,
+            0.9509803233303042
+          ],
+          "predicted_covariance_xy": [
+            [
+              0.019097466801161478,
+              0.00029328773850757404
+            ],
+            [
+              0.00029328773850757404,
+              0.017802460396194535
+            ]
+          ],
+          "empirical_covariance_xy": [
+            [
+              0.019359923902121955,
+              0.00023297436447001715
+            ],
+            [
+              0.00023297436447001715,
+              0.017605835144954965
+            ]
+          ],
+          "relative_covariance_error": 0.012977091200586797,
+          "mean_error_xy": [
+            -0.0006601727309711143,
+            -0.00056783486522013
+          ]
+        },
+        "zero_clone_cross": {
+          "coverage": 0.9507222222222222,
+          "covered_trials": 34226,
+          "wilson_95": [
+            0.9484378504418954,
+            0.9529104136625585
+          ],
+          "predicted_covariance_xy": [
+            [
+              0.06215603168091387,
+              7.446844720060411e-07
+            ],
+            [
+              7.446844720060411e-07,
+              0.06116666334023238
+            ]
+          ],
+          "empirical_covariance_xy": [
+            [
+              0.0623226428625575,
+              6.830930435244669e-06
+            ],
+            [
+              6.830930435244669e-06,
+              0.06083437029728748
+            ]
+          ],
+          "relative_covariance_error": 0.004263770148758358,
+          "mean_error_xy": [
+            0.0010690866924016774,
+            -1.1533562748276302e-05
+          ]
+        }
+      }
+    },
+    {
+      "window": 1,
+      "independent_trajectories": 36000,
+      "methods": {
+        "full_joint": {
+          "coverage": 0.9501388888888889,
+          "covered_trials": 34205,
+          "wilson_95": [
+            0.947842079432373,
+            0.9523396424838524
+          ],
+          "predicted_covariance_xy": [
+            [
+              0.006699292694133909,
+              0.00019580231288446982
+            ],
+            [
+              0.00019580231288446982,
+              0.006009449407346549
+            ]
+          ],
+          "empirical_covariance_xy": [
+            [
+              0.00668625980840469,
+              0.00018773290590776417
+            ],
+            [
+              0.00018773290590776417,
+              0.0060192572453516965
+            ]
+          ],
+          "relative_covariance_error": 0.0022109015970382187,
+          "mean_error_xy": [
+            -0.00036714303760043563,
+            -7.901975865391471e-05
+          ]
+        },
+        "reset_shared_nuisance": {
+          "coverage": 0.9494444444444444,
+          "covered_trials": 34180,
+          "wilson_95": [
+            0.9471329391409595,
+            0.9516600420749939
+          ],
+          "predicted_covariance_xy": [
+            [
+              0.006760987954266745,
+              0.00022026178403955547
+            ],
+            [
+              0.00022026178403955547,
+              0.006018657748456044
+            ]
+          ],
+          "empirical_covariance_xy": [
+            [
+              0.006820171935905732,
+              0.00023053832774887553
+            ],
+            [
+              0.00023053832774887553,
+              0.006032738396802189
+            ]
+          ],
+          "relative_covariance_error": 0.00690588823062603,
+          "mean_error_xy": [
+            -0.0002911355594801295,
+            -5.392782982190997e-05
+          ]
+        },
+        "zero_clone_cross": {
+          "coverage": 0.9545833333333333,
+          "covered_trials": 34365,
+          "wilson_95": [
+            0.9523835428376197,
+            0.9566861195603455
+          ],
+          "predicted_covariance_xy": [
+            [
+              0.045557965720409946,
+              4.206194640234857e-06
+            ],
+            [
+              4.206194640234857e-06,
+              0.04524336968895183
+            ]
+          ],
+          "empirical_covariance_xy": [
+            [
+              0.043732295304461044,
+              -3.401501641204766e-05
+            ],
+            [
+              -3.401501641204766e-05,
+              0.04327088788148204
+            ]
+          ],
+          "relative_covariance_error": 0.0418687047652493,
+          "mean_error_xy": [
+            0.0005554019671890504,
+            0.0005917871249236277
+          ]
+        }
+      }
+    },
+    {
+      "window": 2,
+      "independent_trajectories": 36000,
+      "methods": {
+        "full_joint": {
+          "coverage": 0.95025,
+          "covered_trials": 34209,
+          "wilson_95": [
+            0.9479555530162602,
+            0.9524483674120088
+          ],
+          "predicted_covariance_xy": [
+            [
+              0.005230393588843198,
+              0.00012873387532283303
+            ],
+            [
+              0.00012873387532283303,
+              0.004787267880607867
+            ]
+          ],
+          "empirical_covariance_xy": [
+            [
+              0.0052047464983355765,
+              0.00010643203380294948
+            ],
+            [
+              0.00010643203380294948,
+              0.00481464182017951
+            ]
+          ],
+          "relative_covariance_error": 0.006909617550567955,
+          "mean_error_xy": [
+            -0.0003471953707540125,
+            -0.0003315296252948589
+          ]
+        },
+        "reset_shared_nuisance": {
+          "coverage": 0.9480555555555555,
+          "covered_trials": 34130,
+          "wilson_95": [
+            0.9457150112969719,
+            0.9503004885184378
+          ],
+          "predicted_covariance_xy": [
+            [
+              0.005240339310997636,
+              0.00013472835436844345
+            ],
+            [
+              0.00013472835436844345,
+              0.004790081445492327
+            ]
+          ],
+          "empirical_covariance_xy": [
+            [
+              0.0053322732608791865,
+              0.00014354371007105262
+            ],
+            [
+              0.00014354371007105262,
+              0.004825708945233938
+            ]
+          ],
+          "relative_covariance_error": 0.013992841673906449,
+          "mean_error_xy": [
+            -0.00027618882016345746,
+            -0.00031015528692031645
+          ]
+        },
+        "zero_clone_cross": {
+          "coverage": 0.9542777777777778,
+          "covered_trials": 34354,
+          "wilson_95": [
+            0.9520711449786337,
+            0.9563874715112122
+          ],
+          "predicted_covariance_xy": [
+            [
+              0.03026631595631589,
+              2.0774053603146903e-06
+            ],
+            [
+              2.0774053603146903e-06,
+              0.03014660303062867
+            ]
+          ],
+          "empirical_covariance_xy": [
+            [
+              0.029010842308310553,
+              -5.092460032053148e-05
+            ],
+            [
+              -5.092460032053148e-05,
+              0.029186946318031266
+            ]
+          ],
+          "relative_covariance_error": 0.03703352901434103,
+          "mean_error_xy": [
+            0.0002729635631468209,
+            0.0006741241840013712
+          ]
+        }
+      }
+    },
+    {
+      "window": 3,
+      "independent_trajectories": 36000,
+      "methods": {
+        "full_joint": {
+          "coverage": 0.94975,
+          "covered_trials": 34191,
+          "wilson_95": [
+            0.9474449461532563,
+            0.9519590809708168
+          ],
+          "predicted_covariance_xy": [
+            [
+              0.0032933017962904977,
+              9.101871388234914e-05
+            ],
+            [
+              9.101871388234914e-05,
+              0.00298918586710172
+            ]
+          ],
+          "empirical_covariance_xy": [
+            [
+              0.0033083760854857457,
+              5.841845997440798e-05
+            ],
+            [
+              5.841845997440798e-05,
+              0.0029936899465599024
+            ]
+          ],
+          "relative_covariance_error": 0.010948357192093142,
+          "mean_error_xy": [
+            0.0002080706580398328,
+            -0.0001807173386371658
+          ]
+        },
+        "reset_shared_nuisance": {
+          "coverage": 0.9450555555555555,
+          "covered_trials": 34022,
+          "wilson_95": [
+            0.9426538199105908,
+            0.9473623200796445
+          ],
+          "predicted_covariance_xy": [
+            [
+              0.0033704188815475706,
+              0.00011482372929703252
+            ],
+            [
+              0.00011482372929703252,
+              0.00299656176748822
+            ]
+          ],
+          "empirical_covariance_xy": [
+            [
+              0.0035100913673217103,
+              0.0001158403482440345
+            ],
+            [
+              0.0001158403482440345,
+              0.003010139255842136
+            ]
+          ],
+          "relative_covariance_error": 0.031097732334809586,
+          "mean_error_xy": [
+            0.0002985230071684396,
+            -0.0001535480967846906
+          ]
+        },
+        "zero_clone_cross": {
+          "coverage": 0.9577222222222223,
+          "covered_trials": 34478,
+          "wilson_95": [
+            0.9555943139085401,
+            0.9597524564546542
+          ],
+          "predicted_covariance_xy": [
+            [
+              0.013552612053542494,
+              4.052944586973995e-06
+            ],
+            [
+              4.052944586973995e-06,
+              0.013491281400246294
+            ]
+          ],
+          "empirical_covariance_xy": [
+            [
+              0.01264535640610974,
+              -7.945693263201603e-05
+            ],
+            [
+              -7.945693263201603e-05,
+              0.012503637695790142
+            ]
+          ],
+          "relative_covariance_error": 0.0704017956491852,
+          "mean_error_xy": [
+            0.0001149300884308388,
+            0.0007055794486095798
+          ]
+        }
+      }
+    }
+  ],
+  "operation_counts": {
+    "full_joint": {
+      "clone": 12,
+      "propagate": 12,
+      "update_pose_like_xy": 12,
+      "update_range_like_scalar": 12,
+      "update_two_pose_flow_like_xy": 12,
+      "drop_clone": 12
+    },
+    "reset_shared_nuisance": {
+      "clone": 12,
+      "propagate": 12,
+      "update_pose_like_xy": 12,
+      "update_range_like_scalar": 12,
+      "update_two_pose_flow_like_xy": 12,
+      "drop_clone": 12,
+      "reset_shared_nuisance": 9
+    },
+    "zero_clone_cross": {
+      "clone": 12,
+      "zero_clone_cross": 12,
+      "propagate": 12,
+      "update_pose_like_xy": 12,
+      "update_range_like_scalar": 12,
+      "update_two_pose_flow_like_xy": 12,
+      "drop_clone": 12
+    }
+  },
+  "batch_operation_checks": 72,
+  "maximum_batch_mean_error": 1.1102230246251565e-15,
+  "maximum_batch_covariance_error": 1.249000902703301e-16,
+  "maximum_sample_kernel_mean_error": 5.551115123125783e-16,
+  "scope": "A declared small-angle linear two-pose observation with one persistent scale nuisance. The 19-component active vector is a linear fixture, not an SO(3) state estimator, LIVO extension, calibrated optical-flow sensor or live fusion.",
+  "coverage_direction_velocity_xy": [
+    1.0,
+    0.0
+  ],
+  "coverage_scope": "Marginal velocity_x normal interval at each window, not a 2D joint interval, trajectory-wide guarantee, task-derived direction or protection level",
+  "actual_recorded_flow_state_updates": 0,
+  "full_common_state_flow_fusion_validated": false,
+  "joint_state_software_updates_performed": true,
+  "hardware_readiness": "NOT_READY"
+}

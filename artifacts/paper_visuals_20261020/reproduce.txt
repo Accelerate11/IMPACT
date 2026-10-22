@@ -1,0 +1,9 @@
+此包只重绘既有证据，不是新试验。数据副本在sources/；输入SHA在figures.json。
+环境：WSL Ubuntu22.04，系统Python3、NumPy1.21.5、Matplotlib3.5.1、Pillow。
+中文字体取本机Windows微软雅黑 /mnt/c/Windows/Fonts/msyh.ttc；包中不分发字体。
+在本目录执行：
+PYTHONNOUSERSITE=1 python3 render_results.py --root sources
+PYTHONNOUSERSITE=1 python3 render_mechanisms.py --repo-root sources --out .
+原始外置truth路径不存在时，render_results.py使用sources/r2b2-truth.jsonl副本。
+图04按轨迹内窗口显示边际覆盖率，窗口间相关，不提供整轨迹风险保证。
+PNG适合预览，PDF/SVG适合排版。期刊投稿前应统一为英文图注并补充必要的强基线和多场景统计。

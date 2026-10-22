@@ -1,0 +1,464 @@
+{
+  "status": "PASS",
+  "arms": {
+    "native": {
+      "status": "PASS",
+      "events": {
+        "protocol": 1,
+        "input_down": 1270,
+        "input_range": 4188,
+        "input_lio_snapshot": 428,
+        "epoch": 1253,
+        "epoch_range": 125,
+        "summary": 1
+      },
+      "flow_reasons": {},
+      "attempted_frame_pairs": 0,
+      "pending_right_censored_pair": false,
+      "accepted_flow_updates": 0,
+      "actual_nonzero_state_and_covariance_updates": 0,
+      "specified_cross_ablation_batches": 0,
+      "unique_native_state_addresses": 0,
+      "range_seed_augmentations": 0,
+      "trajectory_metrics": {
+        "pair_count": 1253,
+        "unmatched_count": 0,
+        "ate_rms_m": 0.0073687851071771735,
+        "ate_max_m": 0.12177901570896525,
+        "pair_time_offset_max_s": 0.009000000000000341,
+        "alignment": {
+          "method": "first_pair_SE3_no_scale",
+          "first_odometry_stamp_s": 8.91,
+          "first_truth_stamp_s": 8.911000000000001,
+          "rotation_truth_to_estimator": [
+            [
+              -0.0007328896337385018,
+              0.9999997129689326,
+              0.00019218438268041817
+            ],
+            [
+              -0.9999995693809072,
+              -0.000732780089407181,
+              -0.0005694482776185473
+            ],
+            [
+              -0.000569307285280077,
+              -0.00019260164266177046,
+              0.9999998193968948
+            ]
+          ],
+          "translation_truth_to_estimator_m": [
+            5.108295884131826e-05,
+            -0.00017730064154697524,
+            -0.19500748344835883
+          ]
+        }
+      },
+      "nis_per_dof": [],
+      "maximum_jacobian_frobenius_error": 0.0,
+      "covariance_scope": "conditional engineering model only, not globally calibrated covariance or integrity bound"
+    },
+    "joint_no_flow": {
+      "status": "PASS",
+      "events": {
+        "protocol": 1,
+        "input_down": 1270,
+        "input_range": 4188,
+        "input_lio_snapshot": 428,
+        "initial_gyro_component": 1,
+        "epoch": 1005,
+        "epoch_range": 125,
+        "range_seed": 125,
+        "native_LIO": 823,
+        "native_VIO": 1247,
+        "raw_tracks": 123,
+        "flow": 123,
+        "summary": 1
+      },
+      "flow_reasons": {
+        "joint_no_flow_control": 123
+      },
+      "attempted_frame_pairs": 123,
+      "pending_right_censored_pair": false,
+      "accepted_flow_updates": 0,
+      "actual_nonzero_state_and_covariance_updates": 0,
+      "specified_cross_ablation_batches": 0,
+      "unique_native_state_addresses": 1,
+      "range_seed_augmentations": 123,
+      "trajectory_metrics": {
+        "pair_count": 1253,
+        "unmatched_count": 0,
+        "ate_rms_m": 0.007203131484536852,
+        "ate_max_m": 0.11743118512405643,
+        "pair_time_offset_max_s": 0.009000000000000341,
+        "alignment": {
+          "method": "first_pair_SE3_no_scale",
+          "first_odometry_stamp_s": 8.91,
+          "first_truth_stamp_s": 8.911000000000001,
+          "rotation_truth_to_estimator": [
+            [
+              -0.0007328896337385018,
+              0.9999997129689326,
+              0.00019218438268041817
+            ],
+            [
+              -0.9999995693809072,
+              -0.000732780089407181,
+              -0.0005694482776185473
+            ],
+            [
+              -0.000569307285280077,
+              -0.00019260164266177046,
+              0.9999998193968948
+            ]
+          ],
+          "translation_truth_to_estimator_m": [
+            5.108295884131826e-05,
+            -0.00017730064154697524,
+            -0.19500748344835883
+          ]
+        }
+      },
+      "nis_per_dof": [],
+      "maximum_jacobian_frobenius_error": 0.0,
+      "covariance_scope": "conditional engineering model only, not globally calibrated covariance or integrity bound"
+    },
+    "full": {
+      "status": "PASS",
+      "events": {
+        "protocol": 1,
+        "input_down": 1270,
+        "input_range": 4188,
+        "input_lio_snapshot": 428,
+        "initial_gyro_component": 1,
+        "epoch": 1005,
+        "epoch_range": 125,
+        "range_seed": 125,
+        "native_LIO": 823,
+        "native_VIO": 1247,
+        "raw_tracks": 123,
+        "flow_prior": 123,
+        "flow": 123,
+        "summary": 1
+      },
+      "flow_reasons": {
+        "insufficient_or_excessive_tracks": 39,
+        "joint_nonlinear_update_applied": 37,
+        "pure_rotation_or_insufficient_translation": 47
+      },
+      "attempted_frame_pairs": 123,
+      "pending_right_censored_pair": false,
+      "accepted_flow_updates": 37,
+      "actual_nonzero_state_and_covariance_updates": 37,
+      "specified_cross_ablation_batches": 0,
+      "unique_native_state_addresses": 1,
+      "range_seed_augmentations": 123,
+      "trajectory_metrics": {
+        "pair_count": 1253,
+        "unmatched_count": 0,
+        "ate_rms_m": 0.006644720404153553,
+        "ate_max_m": 0.11614103276091195,
+        "pair_time_offset_max_s": 0.009000000000000341,
+        "alignment": {
+          "method": "first_pair_SE3_no_scale",
+          "first_odometry_stamp_s": 8.91,
+          "first_truth_stamp_s": 8.911000000000001,
+          "rotation_truth_to_estimator": [
+            [
+              -0.0007328896337385018,
+              0.9999997129689326,
+              0.00019218438268041817
+            ],
+            [
+              -0.9999995693809072,
+              -0.000732780089407181,
+              -0.0005694482776185473
+            ],
+            [
+              -0.000569307285280077,
+              -0.00019260164266177046,
+              0.9999998193968948
+            ]
+          ],
+          "translation_truth_to_estimator_m": [
+            5.108295884131826e-05,
+            -0.00017730064154697524,
+            -0.19500748344835883
+          ]
+        }
+      },
+      "nis_per_dof": [
+        0.05661331789179625,
+        0.03847191983650697,
+        0.031333066486630805,
+        0.03718432191941647,
+        0.023449304642387016,
+        0.018429173465218916,
+        0.025695898236646402,
+        0.04756249356175347,
+        0.03448480230209745,
+        0.04332691731269176,
+        0.023555421381000117,
+        0.010986350395895173,
+        0.03538712820054295,
+        0.005469253103620225,
+        0.03617470165078271,
+        0.0260341585925807,
+        0.023470199856342702,
+        0.02264439148433303,
+        0.009927051423824121,
+        0.014524880634070668,
+        0.01359398541041321,
+        0.009836762196849357,
+        0.01478831324142908,
+        0.009572178777703815,
+        0.015183530709558345,
+        0.028374727943143156,
+        0.005153322760601981,
+        0.06888469552472962,
+        0.01652476208157985,
+        0.08959970764419885,
+        0.05830276743214948,
+        0.008888568148223058,
+        0.27482519269868877,
+        0.14883842106949224,
+        0.06725895624836963,
+        0.015653398534589982,
+        0.005778264932738766
+      ],
+      "maximum_jacobian_frobenius_error": 4.449478599865924e-07,
+      "covariance_scope": "conditional engineering model only, not globally calibrated covariance or integrity bound"
+    },
+    "zero_gyro": {
+      "status": "PASS",
+      "events": {
+        "protocol": 1,
+        "input_down": 1270,
+        "input_range": 4188,
+        "input_lio_snapshot": 428,
+        "initial_gyro_component": 1,
+        "epoch": 1005,
+        "epoch_range": 125,
+        "range_seed": 125,
+        "native_LIO": 823,
+        "native_VIO": 1247,
+        "raw_tracks": 123,
+        "cross_ablation": 123,
+        "flow_prior": 123,
+        "flow": 123,
+        "summary": 1
+      },
+      "flow_reasons": {
+        "insufficient_or_excessive_tracks": 39,
+        "joint_nonlinear_update_applied": 37,
+        "pure_rotation_or_insufficient_translation": 47
+      },
+      "attempted_frame_pairs": 123,
+      "pending_right_censored_pair": false,
+      "accepted_flow_updates": 37,
+      "actual_nonzero_state_and_covariance_updates": 37,
+      "specified_cross_ablation_batches": 123,
+      "unique_native_state_addresses": 1,
+      "range_seed_augmentations": 123,
+      "trajectory_metrics": {
+        "pair_count": 1253,
+        "unmatched_count": 0,
+        "ate_rms_m": 0.0067684764947523015,
+        "ate_max_m": 0.11798123755036066,
+        "pair_time_offset_max_s": 0.009000000000000341,
+        "alignment": {
+          "method": "first_pair_SE3_no_scale",
+          "first_odometry_stamp_s": 8.91,
+          "first_truth_stamp_s": 8.911000000000001,
+          "rotation_truth_to_estimator": [
+            [
+              -0.0007328896337385018,
+              0.9999997129689326,
+              0.00019218438268041817
+            ],
+            [
+              -0.9999995693809072,
+              -0.000732780089407181,
+              -0.0005694482776185473
+            ],
+            [
+              -0.000569307285280077,
+              -0.00019260164266177046,
+              0.9999998193968948
+            ]
+          ],
+          "translation_truth_to_estimator_m": [
+            5.108295884131826e-05,
+            -0.00017730064154697524,
+            -0.19500748344835883
+          ]
+        }
+      },
+      "nis_per_dof": [
+        0.057384896688159125,
+        0.03816981914964068,
+        0.031314041473476696,
+        0.038548624727440244,
+        0.02325543701053342,
+        0.01835872385719242,
+        0.025264689536663415,
+        0.04777008515551997,
+        0.035637556390643685,
+        0.04302722871858724,
+        0.023489293989736138,
+        0.012205283114336309,
+        0.03525486877912774,
+        0.005517699913046997,
+        0.026117773724302865,
+        0.020469567961274162,
+        0.024229045262319483,
+        0.02141766354667125,
+        0.010654068600102913,
+        0.016631937418537513,
+        0.011856256024054497,
+        0.00551182873572979,
+        0.024873067861319906,
+        0.008911521730952825,
+        0.08614573645545907,
+        0.05260021037956206,
+        0.006146150942449038,
+        0.114047311672974,
+        0.012666507545325598,
+        0.09491323591489094,
+        0.10634278650148805,
+        0.007565543031427676,
+        0.40151387533370064,
+        0.23011741049830137,
+        0.06409095867036052,
+        0.014103715478378315,
+        0.006545123122714973
+      ],
+      "maximum_jacobian_frobenius_error": 4.3302942826290907e-07,
+      "covariance_scope": "conditional engineering model only, not globally calibrated covariance or integrity bound"
+    },
+    "zero_plane": {
+      "status": "PASS",
+      "events": {
+        "protocol": 1,
+        "input_down": 1270,
+        "input_range": 4188,
+        "input_lio_snapshot": 428,
+        "initial_gyro_component": 1,
+        "epoch": 1005,
+        "epoch_range": 125,
+        "range_seed": 125,
+        "native_LIO": 823,
+        "native_VIO": 1247,
+        "raw_tracks": 123,
+        "cross_ablation": 123,
+        "flow_prior": 123,
+        "flow": 123,
+        "summary": 1
+      },
+      "flow_reasons": {
+        "insufficient_or_excessive_tracks": 39,
+        "joint_nonlinear_update_applied": 37,
+        "pure_rotation_or_insufficient_translation": 47
+      },
+      "attempted_frame_pairs": 123,
+      "pending_right_censored_pair": false,
+      "accepted_flow_updates": 37,
+      "actual_nonzero_state_and_covariance_updates": 37,
+      "specified_cross_ablation_batches": 123,
+      "unique_native_state_addresses": 1,
+      "range_seed_augmentations": 123,
+      "trajectory_metrics": {
+        "pair_count": 1253,
+        "unmatched_count": 0,
+        "ate_rms_m": 0.0067420319084604,
+        "ate_max_m": 0.11739554919151252,
+        "pair_time_offset_max_s": 0.009000000000000341,
+        "alignment": {
+          "method": "first_pair_SE3_no_scale",
+          "first_odometry_stamp_s": 8.91,
+          "first_truth_stamp_s": 8.911000000000001,
+          "rotation_truth_to_estimator": [
+            [
+              -0.0007328896337385018,
+              0.9999997129689326,
+              0.00019218438268041817
+            ],
+            [
+              -0.9999995693809072,
+              -0.000732780089407181,
+              -0.0005694482776185473
+            ],
+            [
+              -0.000569307285280077,
+              -0.00019260164266177046,
+              0.9999998193968948
+            ]
+          ],
+          "translation_truth_to_estimator_m": [
+            5.108295884131826e-05,
+            -0.00017730064154697524,
+            -0.19500748344835883
+          ]
+        }
+      },
+      "nis_per_dof": [
+        0.05661247000644152,
+        0.03847209678375904,
+        0.031314252062011126,
+        0.0385697006477535,
+        0.023233212587587457,
+        0.0183377152065443,
+        0.02564548439997117,
+        0.04695281099627266,
+        0.03512228472209516,
+        0.04316811549604318,
+        0.023431591017004916,
+        0.010966022819525512,
+        0.03521788654426592,
+        0.005726501306937552,
+        0.025197064222591582,
+        0.019575243467294702,
+        0.0257450820658113,
+        0.02277414741422055,
+        0.010525063043383602,
+        0.01801699158180688,
+        0.012939736810569796,
+        0.00881506719174255,
+        0.02823270080605867,
+        0.008599939580128646,
+        0.08582330537333639,
+        0.05974170039120515,
+        0.007201715615276446,
+        0.10775313817827688,
+        0.010496553671831978,
+        0.0859769260714845,
+        0.08920237349355643,
+        0.011758927692708875,
+        0.4555258052622266,
+        0.18999549314843844,
+        0.06440150116861168,
+        0.013030231459546395,
+        0.01097976262567599
+      ],
+      "maximum_jacobian_frobenius_error": 4.826880111523661e-07,
+      "covariance_scope": "conditional engineering model only, not globally calibrated covariance or integrity bound"
+    }
+  },
+  "failures": {},
+  "scope": "single recorded-flight integration and numerical reconstruction, not multiseed superiority or AP4.7.1 flight",
+  "truth_scope": "offline evaluator only; first-pair SE3 gauge, no scale fitting, nearest original truth within 15ms",
+  "inputs": {
+    "truth": {
+      "bytes": 1942783,
+      "sha256": "2279a170e7a0836fec3b77fc675be13a63e0482d6eadf50f8e28902d99f075f4"
+    },
+    "sensor_index": {
+      "bytes": 11263199,
+      "sha256": "ce1d25f68d87673f250dfc4383735d54f45dec08d94ccbb1e29ab4f03617cb21"
+    },
+    "evaluator": {
+      "bytes": 13348,
+      "sha256": "5691bb9cee40f619c5d7bc02177493f06fed3987aea614e85ee3b5b6e1029c71"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "role": "publisher",
+  "count": 10,
+  "bad_payloads": 0,
+  "payload_bytes": 368640,
+  "payload_sha256": "4b6885eb057745011b18a64483b03a1d2723b29e9b461251b29c07e704b33559",
+  "peer_discovered": false,
+  "timeline": [
+    {
+      "count": 1,
+      "monotonic_ns": 458257918860
+    },
+    {
+      "count": 2,
+      "monotonic_ns": 458684803897
+    },
+    {
+      "count": 3,
+      "monotonic_ns": 459112673088
+    },
+    {
+      "count": 4,
+      "monotonic_ns": 459537988611
+    },
+    {
+      "count": 5,
+      "monotonic_ns": 459961863393
+    },
+    {
+      "count": 6,
+      "monotonic_ns": 460383289874
+    },
+    {
+      "count": 7,
+      "monotonic_ns": 460810401381
+    },
+    {
+      "count": 8,
+      "monotonic_ns": 461232907382
+    },
+    {
+      "count": 9,
+      "monotonic_ns": 461655727611
+    },
+    {
+      "count": 10,
+      "monotonic_ns": 462079162481
+    }
+  ]
+}

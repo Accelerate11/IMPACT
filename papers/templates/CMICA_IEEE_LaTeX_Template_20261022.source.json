@@ -1,0 +1,45 @@
+{
+  "retrieved_date": "2026-10-22",
+  "conference_submission_page": "https://www.cmica.net/submission/",
+  "official_download_url": "https://www.cmica.net/?attachment_id=10059&download=1",
+  "original_archive": "CMICA_official_Word_LaTeX_original_20261022.rar",
+  "original_sha256": "234446f6fa19404bc1c703109dce44ef9fb05c04b4bcf9cfbd820d920cd86904",
+  "member_extracted_from_original": "conference-latex-template.zip",
+  "delivered_archive": "CMICA_IEEE_LaTeX_Template_20261022.zip",
+  "delivered_sha256": "516252d9ac6e974af3a1d9aa72f97ecc462b9a47556225019fb0adef69bba78a",
+  "modification": "Original nested ZIP preserved byte-for-byte; filename changed only.",
+  "template_version_comment": "Template version as of 6/27/2024",
+  "main_tex": "IEEE-conference-template-062824/IEEE-conference-template-062824.tex",
+  "files": [
+    {
+      "path": "IEEE-conference-template-062824/fig1.png",
+      "size": 13815,
+      "sha256": "db99fd0a18672b98b085bf1f29e6192b2b29c4f12469bbd4b0c24a85b6ba630e"
+    },
+    {
+      "path": "IEEE-conference-template-062824/IEEE-conference-template-062824.pdf",
+      "size": 154495,
+      "sha256": "92b6cce1a15e9f910c1dc3d822e26b7395e1e11a1178c995346d9ea8319bce46"
+    },
+    {
+      "path": "IEEE-conference-template-062824/IEEE-conference-template-062824.synctex.gz",
+      "size": 48323,
+      "sha256": "aff5578fa483617142e183238799a78c7572884000972b8c0b7af7adb648efee"
+    },
+    {
+      "path": "IEEE-conference-template-062824/IEEE-conference-template-062824.tex",
+      "size": 16374,
+      "sha256": "48b482fe3200577267ccf0b6359cab61e62ac1fadaa87c935f644bb313fdafa9"
+    },
+    {
+      "path": "IEEE-conference-template-062824/IEEEtran.cls",
+      "size": 288304,
+      "sha256": "c972aca108fda004c3514d63658e02816da2e54d9a1451e870b9bd970e003f55"
+    },
+    {
+      "path": "IEEE-conference-template-062824/IEEEtran_HOWTO.pdf",
+      "size": 671626,
+      "sha256": "462b4d99a973a5433ffa42de4d96e25c90e87fc44c2ebe598270af8cfd932922"
+    }
+  ]
+}

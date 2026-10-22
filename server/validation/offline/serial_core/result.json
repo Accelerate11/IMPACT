@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "scope": "serial_engineering_baseline_standalone_not_native_replay",
+  "source_before": {
+    "research_serial_position.h": {
+      "bytes": 14822,
+      "sha256": "4784bc2e7639811fd471ae1f9f0b5a5bad950bfbdc54e0437ffb7da773f44b05"
+    },
+    "test_research_serial_position.cpp": {
+      "bytes": 8534,
+      "sha256": "f95cf3f392198b8ffd3e7cf54475c80f6a62a56b56f7329789d7db526e722290"
+    },
+    "research_joint_flow.h": {
+      "bytes": 29286,
+      "sha256": "ef80e8471aea8f8cd35d4f8f93cb7cc71fe3d4a6fb6b02a64d65a0de99ef78ab"
+    },
+    "protocol.json": {
+      "bytes": 2896,
+      "sha256": "e9f8e92b0bc7f6075bd81d10bc74f73765d9a190d20a8e1b6b2204bb1923fb74"
+    },
+    "validate_serial_prototype.py": {
+      "bytes": 3793,
+      "sha256": "66628194fecfcdd71644f186255b22a3f5ae28b490218f9d0beebec34e9fe797"
+    }
+  },
+  "source_after": {
+    "research_serial_position.h": {
+      "bytes": 14822,
+      "sha256": "4784bc2e7639811fd471ae1f9f0b5a5bad950bfbdc54e0437ffb7da773f44b05"
+    },
+    "test_research_serial_position.cpp": {
+      "bytes": 8534,
+      "sha256": "f95cf3f392198b8ffd3e7cf54475c80f6a62a56b56f7329789d7db526e722290"
+    },
+    "research_joint_flow.h": {
+      "bytes": 29286,
+      "sha256": "ef80e8471aea8f8cd35d4f8f93cb7cc71fe3d4a6fb6b02a64d65a0de99ef78ab"
+    },
+    "protocol.json": {
+      "bytes": 2896,
+      "sha256": "e9f8e92b0bc7f6075bd81d10bc74f73765d9a190d20a8e1b6b2204bb1923fb74"
+    },
+    "validate_serial_prototype.py": {
+      "bytes": 3793,
+      "sha256": "66628194fecfcdd71644f186255b22a3f5ae28b490218f9d0beebec34e9fe797"
+    }
+  },
+  "source_file_sets_and_sha256_unchanged": true,
+  "compiler_version": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+  "eigen_core": {
+    "bytes": 12799,
+    "sha256": "b8ae5f77a30d48bcaf622a56f7047baa8b2fb790f5db7361aa1d57f424fa3c1e"
+  },
+  "compile_command": [
+    "g++",
+    "-std=c++17",
+    "-O0",
+    "-g0",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-I/usr/include/eigen3",
+    "-I/home/accelerate/impact_server_validation_20261022/offline_all/serial_core/sources",
+    "/home/accelerate/impact_server_validation_20261022/offline_all/serial_core/sources/test_research_serial_position.cpp",
+    "-o",
+    "/home/accelerate/impact_server_validation_20261022/offline_all/serial_core/test_research_serial_position"
+  ],
+  "compile_exit_code": 0,
+  "test_exit_code": 0,
+  "checks": 166,
+  "binary": {
+    "bytes": 16936192,
+    "sha256": "80489ce8cc7f17ee44c3859840986f35e539d76039abd05c10877c8e628c01ca"
+  },
+  "meaningful_cases": [
+    "actual_2_4cm_position_perturbation_recovered_from_raw_pixels",
+    "isolated_corrupted_correspondence_robustly_trimmed",
+    "full_nuisance_covariance_including_mutual_cross_blocks_and_4x_uncertainty",
+    "nontruth_native_attitude_mean_perturbed_by_0_04rad",
+    "30000_seeded_linearized_measurement_covariance_samples",
+    "native_nominal_and_covariance_update_with_same_manifold_reset",
+    "identical_joint_prior_distinguishes_serial_update_from_full_raw_pixel_EKF",
+    "invalid_covariance_pure_rotation_duplicates_NIS_rejection_without_mutation"
+  ],
+  "native_replay_validated": false,
+  "AP_closed_loop_validated": false,
+  "hardware_validated": false,
+  "superiority_claim": false
+}

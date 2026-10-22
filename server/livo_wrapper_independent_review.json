@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "scope": "Independent static deployment-contract review only, not native build/replay acceptance. No edits/build/ROS/AP/Gazebo/SQLite were performed for this review.",
+  "sources": {
+    "packaging/server/livo_server.py": {
+      "bytes": 21140,
+      "sha256": "9db5de3024722c4f4a53e6eb1dcdfde9694cd6b3aacc6257d481a76e00f439a5"
+    },
+    "packaging/server/build_livo_server.sh": {
+      "bytes": 751,
+      "sha256": "52033175a3fe81ff36e65f18f2078730aaa35e8d38f4a0167e657ed53056b08c"
+    },
+    "packaging/server/run_livo_server.sh": {
+      "bytes": 831,
+      "sha256": "9be514140281c204756c7ce971543e6c2127286c428a97c0b03a4afb8c041c67"
+    },
+    "scripts/check_joint_livo_build_manifest.py": {
+      "bytes": 8904,
+      "sha256": "78c0204f84c439db2f8e17a21692409bcbf04dd0842760737177e8d2a739962e"
+    },
+    "scripts/run_joint_livo_replay.py": {
+      "bytes": 11251,
+      "sha256": "b7e6a8e4c56da977e4c183f2f4bec0085738fa4044193095ba847f159bcb3bfe"
+    },
+    "scripts/run_joint_livo_replay.sh": {
+      "bytes": 980,
+      "sha256": "b60038c2ddb2fd331c794bf2616a2253f509bb94930ba91668f6b9e66c97cce5"
+    },
+    "scripts/build_joint_livo_isolated.sh": {
+      "bytes": 2349,
+      "sha256": "abc29294eb4d47698b8d14e192903fdd568f6a30bb848c98fd9040f90d96aab1"
+    }
+  },
+  "reviewed_contracts": [
+    "server layout detection and explicit roots",
+    "fresh runtime/workspace and copied canonical source identity",
+    "minimal livox message build manifest accepted by original native checker",
+    "dependency installed_files schema and frozen vendor pins",
+    "unchanged original source/dependency/toolchain/ldd manifest checks",
+    "source index preparation and original five-mode replay invocation",
+    "evaluation uses separate original truth exports"
+  ],
+  "blocking_findings": [],
+  "limitations": [
+    "Dependency consumer probe uses domain210+pid%20 without occupied-domain scan; isolated test correctness can depend on concurrent users of that domain. No production source change requested during frozen live validation.",
+    "Static inspection does not establish numerical correctness or successful runtime execution."
+  ]
+}

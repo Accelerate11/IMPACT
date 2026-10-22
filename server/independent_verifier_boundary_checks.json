@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "checks": {
+    "AST": true,
+    "valid_manifest": true,
+    "absolute_path": true,
+    "traversal": true,
+    "backslash": true,
+    "duplicate_JSON_key": true,
+    "bad_SHA": true,
+    "duplicate_source": true,
+    "unindexed_algorithm": true,
+    "symlink_root": true,
+    "altered_SHA_detected": true
+  },
+  "script_sha256": "976b530173d8bcf8d4e4895db32d7b544fd642cc88cd8d24d5f6f594477f11da",
+  "scope": "Pure read-only validator boundary checks; no algorithms, ROS/AP/Gazebo or SQLite."
+}

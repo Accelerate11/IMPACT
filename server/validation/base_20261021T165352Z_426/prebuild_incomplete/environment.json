@@ -1,0 +1,18 @@
+{
+  "platform": "Linux-6.18.33.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+  "machine": "x86_64",
+  "environment": {
+    "ROS_VERSION": "2",
+    "PYTHONNOUSERSITE": "1",
+    "AMENT_PREFIX_PATH": "/opt/ros/humble",
+    "MAKEFLAGS": "-j1",
+    "PYTHONPATH": "/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages",
+    "CMAKE_BUILD_PARALLEL_LEVEL": "1",
+    "LD_LIBRARY_PATH": "/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib",
+    "ROS_DISTRO": "humble"
+  },
+  "root": "/home/accelerate/impact_server_staging_20261022",
+  "jobs": 1,
+  "livo_excluded": true,
+  "old_workspace_overlays_allowed": false
+}

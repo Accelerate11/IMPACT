@@ -1,0 +1,44 @@
+diff --git a/vikit_ros/include/vikit/params_helper.h b/vikit_ros/include/vikit/params_helper.h
+index 2cc135b..6d9fbbc 100644
+--- a/vikit_ros/include/vikit/params_helper.h
++++ b/vikit_ros/include/vikit/params_helper.h
+@@ -110,21 +110,27 @@ T getRemoteParam(const rclcpp::Node::SharedPtr &nh, const std::string& remote_node_
+     if (nh->get_parameter(param_name, v)) return v;
+ 
+-    // Use SyncParametersClient for high performance cross-node access
++    // remote_node_name is a ROS2 service node, not a parameter namespace.
++    // A local READY artifact does not mean DDS service discovery has finished.
++    // Do not silently replace a missing service/model with calibration defaults.
+     try {
+         auto parameters_client = std::make_shared<rclcpp::SyncParametersClient>(nh, remote_node_name);
+-        // Wait briefly for the service to be available
+-        if (parameters_client->wait_for_service(std::chrono::milliseconds(100))) {
+-            auto values = parameters_client->get_parameters({param_name});
+-            if (!values.empty() && values[0].get_type() != rclcpp::ParameterType::PARAMETER_NOT_SET) {
+-                return values[0].get_value<T>();
+-            }
++        if (!parameters_client->wait_for_service(std::chrono::seconds(5))) {
++            throw std::runtime_error("parameter service discovery timed out");
+         }
+-    } catch (...) {
+-        // Fallback to popen if client fails
+-        return getParam<T>(remote_node_name, param_name, defaultValue);
++        auto values = parameters_client->get_parameters({param_name}, std::chrono::seconds(5));
++        if (values.empty()) {
++            throw std::runtime_error("parameter response timed out or was empty");
++        }
++        if (values[0].get_type() == rclcpp::ParameterType::PARAMETER_NOT_SET) {
++            return defaultValue;
++        }
++        return values[0].get_value<T>();
++    } catch (const std::exception &error) {
++        const std::string message = "Remote camera parameter " + remote_node_name +
++            "/" + param_name + ": " + error.what();
++        RCLCPP_ERROR(nh->get_logger(), "%s", message.c_str());
++        throw std::runtime_error(message);
+     }
+-
+-    return defaultValue;
+ }
+ 
+ template<typename T>

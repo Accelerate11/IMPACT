@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "profile": "hardware_selection_plan",
+  "reviewed_on": "2026-10-19",
+  "runtime_configuration": false,
+  "hardware_readiness": "NOT_READY",
+  "scope": "Candidate selection and R2B bench plan; no purchase, firmware flash, physical wiring or calibration has been validated.",
+  "planning_assumptions": {
+    "environment": "Initially controlled indoor low-speed flight",
+    "initial_height_envelope_m": [0.5, 5.0],
+    "height_envelope_confirmed_by_user": false,
+    "camera_budget": null,
+    "payload_budget_g": null
+  },
+  "confirmed_by_user": {
+    "lidar": "Livox Mid-360",
+    "compute": "NVIDIA Jetson Orin NX",
+    "flight_controller": "CUAV X25 MEGA",
+    "autopilot_family": "ArduPilot",
+    "flow_vendor": "MicoAir Tech / 微空科技",
+    "flow_model": null,
+    "front_camera_model": null,
+    "front_camera_interface": null
+  },
+  "flight_controller": {
+    "board_target": "CUAV-X25-MEGA",
+    "physical_board_firmware": null,
+    "physical_board_firmware_validated": false,
+    "existing_research_sitl_version": "ArduCopter 4.5.7",
+    "existing_research_sitl_commit_prefix": "b7207551",
+    "official_stable_observation": {
+      "version": "ArduCopter 4.7.2 OFFICIAL",
+      "commit": "fb773567896014da007bca58358704d4a0d8516f",
+      "applies_to_physical_board": false,
+      "version_url": "https://firmware.ardupilot.org/Copter/stable/CUAV-X25-MEGA/firmware-version.txt",
+      "commit_url": "https://firmware.ardupilot.org/Copter/stable/CUAV-X25-MEGA/git-version.txt"
+    },
+    "required_before_integration": [
+      "Read AUTOPILOT_VERSION, board identity and startup log from the actual controller; archive firmware hash, build type and complete parameter snapshot.",
+      "Verify ExternalNav, optical-flow message handling, port mapping and forwarding options against that exact firmware.",
+      "Re-run AP command freshness, coordinate conversion, source handover and loss-of-input checks for the chosen firmware without replacing the frozen 4.5.7 evidence."
+    ],
+    "version_note": "CUAV guides contain different backport versions; the observed upstream stable version is not a measurement of the user's board.",
+    "sources": [
+      "https://doc.cuav.net/en/controller/x25-mega/",
+      "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/CUAV-X25-MEGA/README.md",
+      "https://ardupilot.org/copter/docs/common-mtf-01.html"
+    ]
+  },
+  "recommended_flow_candidate": {
+    "model": "MicoAir MTF-01P",
+    "selection_status": "recommended_not_selected",
+    "interface": "3.3 V LVTTL UART, 115200 baud; 5 V sensor supply",
+    "vendor_nominal_output_rate_hz": 100,
+    "vendor_module_mass_g": 8,
+    "range_source_candidate": "Integrated laser ToF",
+    "vendor_range_conditions": "Chinese manual: up to 12 m at 90% reflectance / 600 lux, 8 m at 90% reflectance / 70 klux; not an optical-flow usable-height guarantee.",
+    "protocol_candidate_for_orin_research": "Explicitly configured Micolink; raw serial capture retained",
+    "protocol_candidate_for_ap_baseline": "Explicitly configured Mavlink_apm; actual on-wire messages verified",
+    "native_measurement_contract": {
+      "sensor_time": "uint32 time_ms described as system milliseconds; exposure/integration reference is unverified",
+      "range": "distance in mm; zero means unavailable; status and strength retained",
+      "flow": "flow_vel_x/y in cm/s@1m; vendor formula speed_cm_s = flow_value * height_m",
+      "conversion_condition": "The vendor formula does not establish a general body-velocity model on tilted or nonplanar terrain. Validate axes, surface geometry, range footprint, lever arm and rotation handling first.",
+      "rotation_compensation": "Unknown for the actual module firmware; do not assume an onboard gyro or compensate rotation twice.",
+      "quality": "Vendor quality/status are retained diagnostics, not a calibrated covariance or integrity probability.",
+      "integration_window_available": false,
+      "clock_mapping_validated": false,
+      "metric_velocity_validated": false,
+      "independent_fusion_ready": false
+    },
+    "alternative": {
+      "model": "MTF-02P",
+      "selection_status": "weight_constrained_alternative_not_selected",
+      "vendor_nominal_output_rate_hz": 50,
+      "vendor_module_mass_g": 1.5,
+      "range_conditions": "Chinese and English vendor pages disagree on outdoor range conditions; confirm the delivered revision with the vendor before freezing the envelope."
+    },
+    "specification_conflicts": [
+      "MTF-01P near-range accuracy differs between Chinese and English pages (4 cm versus 2 cm); no accuracy advantage is claimed from those figures."
+    ],
+    "sources": [
+      "https://micoair.cn/zh/docs/sensors/sensors/mtf-01p-sensors",
+      "https://micoair.com/optical_range_sensor_mtf-01p/",
+      "https://micoair.com/docs/decoding-micolink-messages-from-mtf-01/",
+      "https://micoair.cn/zh/docs/sensors/sensors/mtf-02-02p-sensors",
+      "https://micoair.com/optical_range_sensor_mtf-02p/"
+    ]
+  },
+  "recommended_camera_candidate": {
+    "model": "DAHENG MER2-160-227U3M",
+    "selection_status": "recommended_not_selected",
+    "variant_requirement": "Non-L version with external trigger / I/O",
+    "sensor": "Sony IMX273, global shutter, monochrome",
+    "interface": "USB 3.0",
+    "native_resolution_px": [1440, 1080],
+    "planned_acquisition_rate_hz": 30,
+    "planned_experiment_rate_options_hz": [30, 60],
+    "rate_options_are_measured_on_orin": false,
+    "driver_support": "Vendor lists Linux ARMv8 / Galaxy Linux ARM SDK V2.4.2507, but its recommended platforms list older Ubuntu/Jetson releases. Actual Orin NX carrier, JetPack, Galaxy SDK and ROS 2 combination requires vendor confirmation and bench validation.",
+    "image_encoding": "Mono output requires an explicit, tested adapter for the chosen visual frontend; it is not assumed to be a drop-in replacement for the author's color camera.",
+    "lens": "C/CS mount fixed-focus lens; exact focal length and image circle to be selected after overlap, distortion and indoor exposure tests",
+    "exposure_policy": "Calibrate with locked exposure/gain; evaluate bounded auto exposure as a separate experiment and log per-frame settings.",
+    "synchronization": "External trigger is a capability, not an established camera/LiDAR common clock; trigger circuit, levels, timing and timestamp mapping remain to be designed and measured.",
+    "reproduction_alternative": {
+      "model": "Hikrobot MV-CA013-21UC",
+      "selection_status": "author_hardware_reference_not_selected",
+      "basis": "FAST-LIVO2-associated LIV_handhold BOM includes this model and provides synchronization/ROS 1 wrapper sources with ARM support. Current supply and a valid manufacturer datasheet have not been established here; the ROS 2 integration remains work."
+    },
+    "sources": [
+      "https://en.daheng-imaging.com/show-106-1968-1.html",
+      "https://www.daheng-imaging.com/uploadfile/2025/0407/20250407094640935.pdf",
+      "https://en.daheng-imaging.com/list-59-1.html",
+      "https://github.com/xuankuzcr/LIV_handhold"
+    ]
+  },
+  "integration_plan": {
+    "primary_research_path": [
+      "Mid-360 Ethernet and industrial camera USB3 to Orin NX",
+      "MTF-01P UART Micolink to Orin NX through an electrically compatible verified adapter",
+      "Orin common-state estimator to CUAV X25 MEGA via MAVLink ExternalNav; ArduPilot retains flight control"
+    ],
+    "ap_direct_flow_baseline": "Separate configuration: MTF-01P Mavlink_apm directly to the flight controller; archive the actual firmware and EKF source configuration.",
+    "double_counting_constraint": "If ExternalNav already incorporates this flow/range, AP must not treat the same measurements as an additional independent source without an explicit correlation treatment.",
+    "fallback_scope": "A sensor connected only through Orin cannot provide an Orin-independent fallback. AP-direct fallback needs a separately validated physical path and source-switching experiment.",
+    "dependency_policy": "Track shared IMU, map, time, calibration and ToF scale; separate physical modules are not proof of statistical independence. Shared range can correlate both flow velocity axes.",
+    "physical_wiring_validated": false
+  },
+  "r2b_validation_sequence": [
+    {
+      "stage": "H0 identity and acquisition",
+      "experiment": "Bench capture without propellers; archive device/firmware/SDK/JetPack identities, serial bytes, frame counters, acquisition and receipt timestamps, exposure/gain and range/flow status.",
+      "gate": "Every field has verified units, axes and time semantics; unknown fields stay unavailable rather than receiving simulated defaults."
+    },
+    {
+      "stage": "H1 timing, geometry and scale",
+      "experiment": "Measure clock drift/reset/wrap and pipeline latency; calibrate camera intrinsics, sensor extrinsics and trigger timing. Use controlled translation and pure rotation with external reference to identify flow scale and compensation.",
+      "gate": "Use separate calibration and held-out runs; freeze measured uncertainty and validity limits before fusion comparison."
+    },
+    {
+      "stage": "H2 sensor envelope",
+      "experiment": "Vary height, floor texture/reflectance, light, tilt and motion independently, then combine failures; retain invalid measurements and dropout durations.",
+      "gate": "Determine usable optical-flow/ToF envelope and quality-to-error relationship from held-out data; advertised range is not an acceptance threshold."
+    },
+    {
+      "stage": "H3 common-state and AP integration",
+      "experiment": "Compare LiDAR-IMU, LiDAR-camera-IMU and added flow/ToF; ablate shared-scale/time error handling. Evaluate AP-direct flow separately, then test source handover and Orin loss.",
+      "gate": "Report task-level accuracy, interval coverage, alert delay, availability and loss-of-input behavior with independent reference; no hardware PASS from R2A simulation."
+    }
+  ],
+  "frozen_evidence_boundary": "config/research_multisensor_contract.json remains the R2A simulation profile. This plan is not loaded by launch files and does not validate any hardware stream."
+}

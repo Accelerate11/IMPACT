@@ -1,0 +1,52 @@
+cmake_minimum_required(VERSION 3.16)
+project(xq_fast_livo2 LANGUAGES C CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
+# Modest parallelism for 8 GiB WSL. No fast-math: numerical checks need NaN/Inf.
+add_compile_definitions(MP_EN MP_PROC_NUM=2 ROOT_DIR="${CMAKE_CURRENT_SOURCE_DIR}/")
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(rclpy REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(visualization_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(pcl_conversions REQUIRED)
+find_package(cv_bridge REQUIRED)
+find_package(image_transport REQUIRED)
+find_package(xq_livox_interfaces REQUIRED)
+find_package(Eigen3 REQUIRED)
+find_package(PCL REQUIRED COMPONENTS common io filters kdtree)
+find_package(OpenCV REQUIRED)
+find_package(Sophus CONFIG REQUIRED)
+find_package(vikit_common CONFIG REQUIRED)
+find_package(vikit_ros CONFIG REQUIRED)
+find_package(OpenMP REQUIRED)
+find_package(fmt REQUIRED)
+find_package(Boost REQUIRED COMPONENTS thread)
+set(ros_dependencies rclcpp rclpy sensor_msgs geometry_msgs nav_msgs
+  visualization_msgs std_msgs tf2_ros pcl_conversions cv_bridge image_transport
+  xq_livox_interfaces)
+add_library(xq_livo_core
+  src/LIVMapper.cpp src/IMU_Processing.cpp src/preprocess.cpp src/research_joint_integration.cpp
+  src/vio.cpp src/frame.cpp src/visual_point.cpp src/voxel_map.cpp src/utils.cpp)
+target_include_directories(xq_livo_core PUBLIC include ${PCL_INCLUDE_DIRS} ${OpenCV_INCLUDE_DIRS})
+ament_target_dependencies(xq_livo_core ${ros_dependencies})
+target_link_libraries(xq_livo_core
+  Eigen3::Eigen Sophus::Sophus vikit_common::vikit_common vikit_ros::vikit_ros
+  OpenMP::OpenMP_CXX fmt::fmt ${PCL_LIBRARIES} ${OpenCV_LIBRARIES} ${Boost_LIBRARIES})
+add_executable(xq_livo_mapping src/main.cpp)
+target_link_libraries(xq_livo_mapping xq_livo_core)
+ament_target_dependencies(xq_livo_mapping ${ros_dependencies})
+install(TARGETS xq_livo_mapping xq_livo_core
+  RUNTIME DESTINATION lib/${PROJECT_NAME}
+  LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
+install(DIRECTORY config DESTINATION share/${PROJECT_NAME})
+install(FILES LICENSE PROVENANCE.md DESTINATION share/${PROJECT_NAME})
+ament_package()

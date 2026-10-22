@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "test_exit_code": 0,
+  "test_result_exit_code": 0,
+  "xml": [
+    {
+      "path": "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/python-package-tests/results/impact_fault_injection/pytest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/python-package-tests/results/xq_autonomy/pytest.xml",
+      "tests": 769,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "scope": "colcon pytest for two Python packages using fresh 14-package install. First build CMake BUILD_TESTING=OFF; C++ unit suites not claimed. Existing execution-wrapper tests remain disabled, no AP started."
+}

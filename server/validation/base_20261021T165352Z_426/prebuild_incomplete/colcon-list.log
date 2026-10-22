@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/usr/bin/colcon", line 33, in <module>
+    sys.exit(load_entry_point('colcon-core==0.20.1', 'console_scripts', 'colcon')())
+  File "/usr/lib/python3/dist-packages/colcon_core/command.py", line 130, in main
+    return _main(
+  File "/usr/lib/python3/dist-packages/colcon_core/command.py", line 219, in _main
+    create_log_path(args.verb_name)
+  File "/usr/lib/python3/dist-packages/colcon_core/location.py", line 181, in create_log_path
+    os.makedirs(str(path))
+  File "/usr/lib/python3.10/os.py", line 215, in makedirs
+    makedirs(head, exist_ok=exist_ok)
+  File "/usr/lib/python3.10/os.py", line 225, in makedirs
+    mkdir(name, mode)
+PermissionError: [Errno 13] Permission denied: 'log'

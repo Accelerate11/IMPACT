@@ -1,0 +1,5 @@
+[INFO] [1792603951.688891174] [xq_p13_base_to_livox_imu]: Spinning until stopped - publishing transform
+translation: ('0.000000', '0.000000', '0.015000')
+rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+from 'xq_base_link' to 'livox_imu'
+[INFO] [1792604234.163203785] [rclcpp]: signal_handler(SIGINT/SIGTERM)

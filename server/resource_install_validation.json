@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "scope": "Actual local authenticated v2 archive installation into fresh root; repeated descriptor-bound full verification and strictly read-only Git diagnostics. No algorithm runs and no original stage/resource mutation. Network download/multipart transport not exercised.",
+  "root": "/home/accelerate/impact_server_validation_20261022/resource_extract_v2",
+  "archive": {
+    "path": "/home/accelerate/impact_server_release_20261022/IMPACT_Server_Resources_20261022_v2.tar.gz",
+    "bytes": 1188223315,
+    "sha256": "e12ed7706e7bb8cdb70b449d21c038789937ef48fac0d16f7752403f4c8e9869"
+  },
+  "disk_before": {
+    "total": 1081101176832,
+    "used": 107444920320,
+    "free": 918663901184
+  },
+  "source_before": {
+    "fetch_resources.py": "acc4550e5bbdd640a543914cea4488735dc1dba0015ef32b8b317daf2352d43f",
+    "resources.json": "5c95160fb83a9a4d1a52852bf32c29ea4f116a745e965899143f92b0b430d26f"
+  },
+  "steps": [
+    {
+      "step": "install",
+      "command": [
+        "python3",
+        "/mnt/d/CODEX/impact/packaging/server/fetch_resources.py",
+        "--root",
+        "/home/accelerate/impact_server_validation_20261022/resource_extract_v2",
+        "--archive",
+        "/home/accelerate/impact_server_release_20261022/IMPACT_Server_Resources_20261022_v2.tar.gz"
+      ],
+      "exit_code": 0,
+      "wall_s": 26.929197361999996,
+      "started_utc": "2026-10-22T11:23:30.011490+00:00",
+      "log": "/home/accelerate/impact_server_validation_20261022/resource_install_v2_logs/install.log"
+    },
+    {
+      "step": "verify_before_git",
+      "command": [
+        "python3",
+        "/mnt/d/CODEX/impact/packaging/server/fetch_resources.py",
+        "--root",
+        "/home/accelerate/impact_server_validation_20261022/resource_extract_v2",
+        "--verify-only"
+      ],
+      "exit_code": 0,
+      "wall_s": 2.312905098000016,
+      "started_utc": "2026-10-22T11:23:56.942699+00:00",
+      "log": "/home/accelerate/impact_server_validation_20261022/resource_install_v2_logs/verify_before_git.log"
+    },
+    {
+      "step": "verify_after_git",
+      "command": [
+        "python3",
+        "/mnt/d/CODEX/impact/packaging/server/fetch_resources.py",
+        "--root",
+        "/home/accelerate/impact_server_validation_20261022/resource_extract_v2",
+        "--verify-only"
+      ],
+      "exit_code": 0,
+      "wall_s": 2.14640617500001,
+      "started_utc": "2026-10-22T11:24:02.643130+00:00",
+      "log": "/home/accelerate/impact_server_validation_20261022/resource_install_v2_logs/verify_after_git.log"
+    }
+  ],
+  "prior_v1_failure": "58 tracked executable-mode mismatches; diagnostic retained in resource_install_v1_diagnostic.json. Ordinary Git status refreshed extracted v1 indexes; this test uses GIT_OPTIONAL_LOCKS=0.",
+  "generated_at_utc": "2026-10-22T11:24:04.798702+00:00",
+  "source_after": {
+    "fetch_resources.py": "acc4550e5bbdd640a543914cea4488735dc1dba0015ef32b8b317daf2352d43f",
+    "resources.json": "5c95160fb83a9a4d1a52852bf32c29ea4f116a745e965899143f92b0b430d26f"
+  },
+  "fetch_source_unchanged": true,
+  "descriptor_core_identity_unchanged": true,
+  "regular_file_bytes": 2943013858,
+  "resource_inventory_entries": 25503,
+  "internal_relative_symlinks": [
+    {
+      "path": "third_party/ardupilot/modules/mavlink/pymavlink/generator/javascript/node_modules/jspack",
+      "target": "../local_modules/jspack",
+      "resolved_inside_install": true
+    },
+    {
+      "path": "third_party/ardupilot/modules/mavlink/pymavlink/generator/javascript/node_modules/long",
+      "target": "../local_modules/long",
+      "resolved_inside_install": true
+    }
+  ],
+  "git_repositories": [
+    {
+      "path": ".",
+      "head": "dbe792162d06cab66c3475fd5556bf7a120f119e",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/ChibiOS",
+      "head": "d103983f4362e5506bcf7062ccacf345fc0c0859",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/CrashDebug",
+      "head": "599965086437137ec0fe66e185611f43f335f889",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/CrashDebug/CrashCatcher",
+      "head": "4cf6e11df3a081b0f573a7834ed8e1e4000af73e",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/CrashDebug/CrashCatcher/CppUTest",
+      "head": "011f371fdb5d7e441fb023be67295783e053df4a",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/CrashDebug/mri",
+      "head": "b35c89451b41a45b7f5b580acaff555315ac88e2",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/CrashDebug/mri/CppUTest",
+      "head": "011f371fdb5d7e441fb023be67295783e053df4a",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/DroneCAN/DSDL",
+      "head": "04e0e818b06c180eb1720fcdf16484d0f12895ee",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/DroneCAN/dronecan_dsdlc",
+      "head": "de47a8972b7d8c59e50c3acfab5754db29798caa",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/DroneCAN/libcanard",
+      "head": "601ed35467e0ac38819df17cd7c918de19f62d58",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/DroneCAN/libcanard/drivers/avr/avr-can-lib",
+      "head": "9c6bc9118de66d6edaf1b8539e2b9717ba26d123",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/DroneCAN/pydronecan",
+      "head": "08cda37aaf2958657399606653b99ceb5a6beae0",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/Micro-CDR",
+      "head": "3d1b17703c7cf4f22def2910bc845bdb5152d7b5",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/Micro-XRCE-DDS-Client",
+      "head": "97175304425c5bee87c6fddd99de1ef8d0c394dc",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/gbenchmark",
+      "head": "d572f4777349d43653b21d6c2fc63020ab326db2",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/gsoap",
+      "head": "e1f690585d4803402584962bfaa8240ecaf1db30",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/gtest",
+      "head": "c5fed93f941865a0e912e9baf46ded713506590a",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/littlefs",
+      "head": "34be692aafaaf4319a18e415b08aa4332697408b",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/lwip",
+      "head": "a6bf350c679ed8ba042ad58bf81cc540d61bb605",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/mavlink",
+      "head": "288b907c384a892c8519bfe271682424b1e1a3a0",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/mavlink/pymavlink",
+      "head": "ec06837a50688b5974094876c3c9d1b8bf86629d",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    },
+    {
+      "path": "modules/waf",
+      "head": "35eadbb64e2052099a853b571e507c33032b392c",
+      "git_metadata_and_common_dir_inside_install": true,
+      "external_alternates": false,
+      "worktree_clean": true
+    }
+  ],
+  "recursive_submodule_count": 21,
+  "recursive_submodule_status": " d103983f4362e5506bcf7062ccacf345fc0c0859 modules/ChibiOS (d103983)\n 599965086437137ec0fe66e185611f43f335f889 modules/CrashDebug (heads/master)\n 4cf6e11df3a081b0f573a7834ed8e1e4000af73e modules/CrashDebug/CrashCatcher (4cf6e11)\n 011f371fdb5d7e441fb023be67295783e053df4a modules/CrashDebug/CrashCatcher/CppUTest (heads/master)\n b35c89451b41a45b7f5b580acaff555315ac88e2 modules/CrashDebug/mri (heads/master)\n 011f371fdb5d7e441fb023be67295783e053df4a modules/CrashDebug/mri/CppUTest (heads/master)\n 04e0e818b06c180eb1720fcdf16484d0f12895ee modules/DroneCAN/DSDL (04e0e81)\n de47a8972b7d8c59e50c3acfab5754db29798caa modules/DroneCAN/dronecan_dsdlc (de47a89)\n 601ed35467e0ac38819df17cd7c918de19f62d58 modules/DroneCAN/libcanard (heads/master)\n 9c6bc9118de66d6edaf1b8539e2b9717ba26d123 modules/DroneCAN/libcanard/drivers/avr/avr-can-lib (heads/master)\n 08cda37aaf2958657399606653b99ceb5a6beae0 modules/DroneCAN/pydronecan (08cda37)\n 3d1b17703c7cf4f22def2910bc845bdb5152d7b5 modules/Micro-CDR (heads/master)\n 97175304425c5bee87c6fddd99de1ef8d0c394dc modules/Micro-XRCE-DDS-Client (heads/master)\n d572f4777349d43653b21d6c2fc63020ab326db2 modules/gbenchmark (d572f47)\n e1f690585d4803402584962bfaa8240ecaf1db30 modules/gsoap (heads/master)\n c5fed93f941865a0e912e9baf46ded713506590a modules/gtest (c5fed93)\n 34be692aafaaf4319a18e415b08aa4332697408b modules/littlefs (34be692)\n a6bf350c679ed8ba042ad58bf81cc540d61bb605 modules/lwip (a6bf350)\n 288b907c384a892c8519bfe271682424b1e1a3a0 modules/mavlink (288b907)\n ec06837a50688b5974094876c3c9d1b8bf86629d modules/mavlink/pymavlink (ec06837)\n 35eadbb64e2052099a853b571e507c33032b392c modules/waf (heads/master)\n",
+  "tracked_executable_mode_difference_count": 0,
+  "git_index_cache_files_checked": 22,
+  "git_index_bytes_unchanged_by_diagnostics": true,
+  "GIT_OPTIONAL_LOCKS": "0",
+  "manifest": {
+    "path": "/home/accelerate/impact_server_validation_20261022/resource_extract_v2/provenance/resources_manifest.json",
+    "sha256": "2d7ec5ac77ac0b13b3fa527bdbff0d6397ed6214f12ad0e68467e8e2b5f5b9c6",
+    "bytes": 6104414
+  },
+  "network_download_tested": false
+}

@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "comparison": "full sensor index equality after replacing only bag and database parent directories",
+  "original_index_sha256": "5ef6eccb2d974793def075d2c5dcb2f86592a704317e25eb09ae94e173f1f518",
+  "relocated_index_sha256": "ce1d25f68d87673f250dfc4383735d54f45dec08d94ccbb1e29ab4f03617cb21",
+  "entry_count": 24144,
+  "same_payload_hashes_rowids_original_stamps_camera_models_pair_profile_and_source_file_hashes": true,
+  "truth_payloads_in_sensor_index": false
+}

@@ -1,0 +1,62 @@
+1792603951.0936556 [INFO] [launch]: All log files can be found below /home/accelerate/impact_server_validation_20261022/base/scenario_p15_lattice_20261021T173229Z_315/ros-logs/2026-10-22-01-32-31-092191-accelerate-439
+1792603951.0937676 [INFO] [launch]: Default logging verbosity is set to INFO
+1792603951.1885202 [INFO] [xq_p13_gazebo-1]: process started with pid [468]
+1792603951.1886685 [INFO] [static_transform_publisher-2]: process started with pid [470]
+1792603951.1887190 [INFO] [static_transform_publisher-3]: process started with pid [472]
+1792603951.1887562 [INFO] [xq_gz_bridge_node-4]: process started with pid [474]
+1792603951.1887953 [INFO] [fastlio_mapping-5]: process started with pid [476]
+1792603951.1888316 [INFO] [xq_p6_directional_integrity-6]: process started with pid [478]
+1792603951.1888671 [INFO] [xq_p10_information_map-7]: process started with pid [480]
+1792603951.1889012 [INFO] [xq_p11_integrity_exploration-8]: process started with pid [482]
+1792603951.1889305 [INFO] [xq_p12_dynamic_map-9]: process started with pid [484]
+1792603951.1889617 [INFO] [xq_p12_obstacle_driver-10]: process started with pid [486]
+1792603951.1889899 [INFO] [xq_p13_flight_controller-11]: process started with pid [488]
+1792603951.1890192 [INFO] [xq_p11_flight_evaluator-12]: process started with pid [490]
+1792603951.1890516 [INFO] [xq_p12_flight_evaluator-13]: process started with pid [492]
+1792603951.1890850 [INFO] [xq_p13_flight_evaluator-14]: process started with pid [494]
+1792603951.6892540 [static_transform_publisher-3] [INFO] [1792603951.688891174] [xq_p13_base_to_livox_imu]: Spinning until stopped - publishing transform
+1792603951.6893506 [static_transform_publisher-3] translation: ('0.000000', '0.000000', '0.015000')
+1792603951.6893742 [static_transform_publisher-3] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+1792603951.6893926 [static_transform_publisher-3] from 'xq_base_link' to 'livox_imu'
+1792603951.9355030 [static_transform_publisher-2] [INFO] [1792603951.935254381] [xq_p13_base_to_livox]: Spinning until stopped - publishing transform
+1792603951.9355958 [static_transform_publisher-2] translation: ('0.040000', '0.000000', '0.135000')
+1792603951.9356196 [static_transform_publisher-2] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+1792603951.9356382 [static_transform_publisher-2] from 'xq_base_link' to 'livox_frame'
+1792603953.5347958 [xq_p12_obstacle_driver-10] [INFO] [1792603953.533994676] [xq_p12_obstacle_driver]: P12 obstacle driver is evaluation/scenario-only
+1792603953.9694331 [xq_p13_flight_evaluator-14] [INFO] [1792603953.969012298] [xq_p13_flight_evaluator]: P13 evaluator is the only P13 consumer of Ground Truth
+1792603954.2905588 [xq_p12_dynamic_map-9] [INFO] [1792603954.290342005] [xq_p12_dynamic_map]: P12 dynamic map: LiDAR geometry only; Ground Truth forbidden
+1792603954.4365318 [xq_p12_flight_evaluator-13] [INFO] [1792603954.436343744] [xq_p12_flight_evaluator]: P12 evaluator is the only consumer of obstacle scenario truth
+1792603954.5241592 [xq_gz_bridge_node-4] [INFO] [1792603954.523836842] [xq_gz_bridge_node]: XQ bridge ready: lidar /xq/lidar/points -> /livox/lidar, IMU /xq/imu -> /livox/imu, cmd_vel /xq/p3/cmd_vel -> /model/xq_agent_01/cmd_vel
+1792603954.5244675 [xq_gz_bridge_node-4] [INFO] [1792603954.524005808] [xq_gz_bridge_node]: P2 conditioning: range_noise_std=0.0150 m, lidar_dropout=0.000, imu_dropout=0.000, lidar_jitter=0.000 ms, imu_jitter=0.000 ms, motion_distortion=false
+1792603954.5246594 [xq_gz_bridge_node-4] [WARN] [1792603954.524033530] [xq_gz_bridge_node]: Ground truth is enabled on evaluation-only topic /xq/eval/agent_01/ground_truth; autonomy nodes must not subscribe
+1792603954.5904567 [xq_p6_directional_integrity-6] [INFO] [1792603954.590245430] [xq_p6_directional_integrity]: P6 predictor ready: no Ground Truth subscription; planner feedback disabled
+1792603954.7843082 [xq_p11_integrity_exploration-8] [INFO] [1792603954.783657359] [xq_p11_integrity_exploration]: P11 ready: Margin/collision/return-energy hard filter precedes task utility; no GT
+1792603954.8446145 [xq_p10_information_map-7] [INFO] [1792603954.844415000] [xq_p10_information_map]: P10 temporal surfel map ready: FAST-LIO registered cloud only; no Ground Truth
+1792603954.9257214 [xq_p13_flight_controller-11] [INFO] [1792603954.925507392] [xq_p13_flight_controller]: P11 flight variant=integrity_constrained; candidates=lattice; metrics=online_map; no Ground Truth
+1792603954.9330382 [xq_p13_flight_controller-11] [INFO] [1792603954.932858891] [xq_p13_flight_controller]: P12 controller extends P11; only dynamic voxel map may trigger replanning
+1792603954.9429488 [xq_p13_flight_controller-11] [INFO] [1792603954.942392666] [xq_p13_flight_controller]: P13 latency-aware safety: measured nearest-rank p99 drives AL and speed; Ground Truth forbidden
+1792603955.0262966 [fastlio_mapping-5] [INFO] [1792603955.026030049] [xq_fast_lio]: p_pre->lidar_type 5
+1792603955.0492167 [xq_p11_flight_evaluator-12] [INFO] [1792603955.049011713] [xq_complex_p11_flight_evaluator]: P11 evaluator variant=integrity_constrained; Ground Truth is evaluation-only
+1792603955.0757749 [fastlio_mapping-5] [INFO] [1792603955.075519571] [xq_fast_lio]: Node init finished.
+1792603956.5108392 [fastlio_mapping-5] Multi thread started 
+1792603961.7771072 [xq_p13_flight_controller-11] [INFO] [1792603961.774775661] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=0 cloud_age=infs points=0
+1792603961.7775021 [xq_p13_flight_controller-11] [INFO] [1792603961.776962936] [xq_p13_flight_controller]: P12 flight phase=WAIT_INITIALIZATION t=0.00s
+1792603962.2642529 [xq_p12_obstacle_driver-10] [INFO] [1792603962.264025728] [xq_p12_obstacle_driver]: P12 obstacle state=PARKED y=6.60
+1792603963.8742385 [xq_p13_flight_controller-11] [INFO] [1792603963.873814480] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=10 cloud_age=0.055s points=0
+1792603965.9666705 [xq_p13_flight_controller-11] [INFO] [1792603965.966189435] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=20 cloud_age=0.055s points=0
+1792603968.1241300 [xq_p13_flight_controller-11] [INFO] [1792603968.123489707] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=30 cloud_age=0.100s points=0
+1792603970.0668147 [xq_p13_flight_controller-11] [INFO] [1792603970.066378020] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=40 cloud_age=0.103s points=0
+1792603972.3192644 [xq_p13_flight_controller-11] [INFO] [1792603972.318804798] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=51 cloud_age=0.000s points=0
+1792603974.4148281 [xq_p13_flight_controller-11] [INFO] [1792603974.414177520] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=61 cloud_age=0.058s points=0
+1792603977.0341980 [xq_p13_flight_controller-11] [INFO] [1792603977.033497936] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=71 cloud_age=0.090s points=0
+1792603978.6176319 [xq_p13_flight_controller-11] [INFO] [1792603978.617232496] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=81 cloud_age=0.103s points=0
+1792603980.5604327 [xq_p13_flight_controller-11] [INFO] [1792603980.559893883] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=91 cloud_age=0.113s points=0
+1792603983.5057752 [xq_p13_flight_controller-11] [INFO] [1792603983.505101304] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=101 cloud_age=0.175s points=0
+1792603985.7721009 [xq_p13_flight_controller-11] [INFO] [1792603985.757867310] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=111 cloud_age=0.205s points=0
+1792603990.0951657 [xq_p13_flight_controller-11] [INFO] [1792603989.868330573] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=122 cloud_age=0.060s points=0
+1792604008.9742141 [xq_p13_flight_controller-11] [INFO] [1792604008.216602298] [xq_p13_flight_controller]: P12 guard fresh=false callbacks=131 cloud_age=0.225s points=0
+1792604188.1534815 [WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+1792604209.5605891 [INFO] [xq_p13_flight_evaluator-14]: sending signal 'SIGINT' to process[xq_p13_flight_evaluator-14]
+1792604213.2189424 [INFO] [xq_p12_flight_evaluator-13]: sending signal 'SIGINT' to process[xq_p12_flight_evaluator-13]
+1792604218.8008230 [INFO] [xq_p11_flight_evaluator-12]: sending signal 'SIGINT' to process[xq_p11_flight_evaluator-12]
+1792604227.7077529 [INFO] [xq_p13_flight_controller-11]: sending signal 'SIGINT' to process[xq_p13_flight_controller-11]

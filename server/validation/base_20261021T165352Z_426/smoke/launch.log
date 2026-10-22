@@ -1,0 +1,35 @@
+[INFO] [launch]: All log files can be found below /home/accelerate/impact_server_validation_20261022/base/sim_20261021T171655Z_758/ros-logs/2026-10-22-01-16-56-901092-accelerate-793
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [launch.user]: XQ isolated SIL: ROS_DOMAIN_ID=37, GZ_PARTITION=impact_server_758_1792603015963848655
+[INFO] [xq_gazebo_headless-1]: process started with pid [816]
+[INFO] [static_transform_publisher-2]: process started with pid [818]
+[INFO] [static_transform_publisher-3]: process started with pid [820]
+[INFO] [xq_gz_bridge_node-4]: process started with pid [822]
+[INFO] [xq_stack_node-5]: process started with pid [824]
+[static_transform_publisher-3] [INFO] [1792603017.550227070] [xq_base_to_imu_tf]: Spinning until stopped - publishing transform
+[static_transform_publisher-3] translation: ('0.000000', '0.000000', '0.015000')
+[static_transform_publisher-3] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-3] from 'xq_base_link' to 'xq_imu_link'
+[static_transform_publisher-2] [INFO] [1792603017.631530468] [xq_base_to_mid360_tf]: Spinning until stopped - publishing transform
+[static_transform_publisher-2] translation: ('0.040000', '0.000000', '0.135000')
+[static_transform_publisher-2] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-2] from 'xq_base_link' to 'xq_mid360_link'
+[xq_gz_bridge_node-4] [INFO] [1792603018.175676959] [xq_gz_bridge_node]: XQ bridge ready: lidar /xq/lidar/points -> /xq/agent_01/sensors/lidar/points, IMU /xq/imu -> /xq/agent_01/sensors/imu, cmd_vel /xq/agent_01/cmd_vel -> /model/xq_agent_01/cmd_vel
+[xq_gz_bridge_node-4] [INFO] [1792603018.175782950] [xq_gz_bridge_node]: P2 conditioning: range_noise_std=0.0150 m, lidar_dropout=0.000, imu_dropout=0.000, lidar_jitter=0.000 ms, imu_jitter=0.000 ms, motion_distortion=false
+[xq_gz_bridge_node-4] [WARN] [1792603018.175792141] [xq_gz_bridge_node]: Ground truth is enabled on evaluation-only topic /xq/eval/agent_01/ground_truth; autonomy nodes must not subscribe
+[xq_stack_node-5] [INFO] [1792603018.483059886] [xq_stack_node]: XQ SIL stack ready: agent=agent_01, resolution=0.100 m, truth subscriptions=0
+[xq_stack_node-5] [INFO] [1792603021.226223264] [xq_stack_node]: Sentinel transition -> NORMAL (all_critical_modules_healthy)
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [xq_stack_node-5]: sending signal 'SIGINT' to process[xq_stack_node-5]
+[INFO] [xq_gz_bridge_node-4]: sending signal 'SIGINT' to process[xq_gz_bridge_node-4]
+[INFO] [static_transform_publisher-3]: sending signal 'SIGINT' to process[static_transform_publisher-3]
+[INFO] [static_transform_publisher-2]: sending signal 'SIGINT' to process[static_transform_publisher-2]
+[INFO] [xq_gazebo_headless-1]: sending signal 'SIGINT' to process[xq_gazebo_headless-1]
+[xq_gz_bridge_node-4] [INFO] [1792603050.596591564] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[static_transform_publisher-3] [INFO] [1792603050.596882170] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[static_transform_publisher-2] [INFO] [1792603050.597505604] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [static_transform_publisher-2]: process has finished cleanly [pid 818]
+[INFO] [xq_gz_bridge_node-4]: process has finished cleanly [pid 822]
+[INFO] [static_transform_publisher-3]: process has finished cleanly [pid 820]
+[INFO] [xq_gazebo_headless-1]: process has finished cleanly [pid 816]
+[INFO] [xq_stack_node-5]: process has finished cleanly [pid 824]

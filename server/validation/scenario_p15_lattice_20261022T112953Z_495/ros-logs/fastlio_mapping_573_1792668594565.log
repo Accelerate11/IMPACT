@@ -1,0 +1,5 @@
+[INFO] [1792668598.730683817] [xq_fast_lio]: p_pre->lidar_type 5
+[INFO] [1792668598.741256038] [xq_fast_lio]: Node init finished.
+[WARN] [1792668599.588637838] [xq_fast_lio]: No point, skip this scan!
+
+[INFO] [1792668599.690691911] [xq_fast_lio]: Initialize the map kdtree

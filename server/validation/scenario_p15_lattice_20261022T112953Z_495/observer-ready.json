@@ -1,0 +1,10 @@
+{
+  "pid": 496,
+  "prefixes": {
+    "xq_fast_lio": "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/install",
+    "xq_autonomy": "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/install",
+    "xq_gz_bridge": "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/install",
+    "xq_gz_assets": "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/install",
+    "xq_sim_bringup": "/home/accelerate/impact_server_validation_20261022/base/build_20261021T165352Z_426/install"
+  }
+}

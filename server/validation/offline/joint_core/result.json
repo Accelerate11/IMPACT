@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "scope": "Eigen_only_core_mathematical_contracts_not_native_replay",
+  "started_utc": "20261021T165405Z",
+  "source_inputs_before": {
+    "include/research_joint_flow.h": {
+      "bytes": 29286,
+      "sha256": "ef80e8471aea8f8cd35d4f8f93cb7cc71fe3d4a6fb6b02a64d65a0de99ef78ab"
+    },
+    "test/test_research_joint_flow.cpp": {
+      "bytes": 14436,
+      "sha256": "3cfab92b61874edb65d4b6a8ce1d3128094e0995deab30e21403837559d1a043"
+    },
+    "runner/run_joint_flow_core_validation.py": {
+      "bytes": 6259,
+      "sha256": "422369d31b7c217c4f24b4f01df3845484fbdd4144688416ba1f76d23d1ddc2e"
+    }
+  },
+  "source_inputs_after": {
+    "include/research_joint_flow.h": {
+      "bytes": 29286,
+      "sha256": "ef80e8471aea8f8cd35d4f8f93cb7cc71fe3d4a6fb6b02a64d65a0de99ef78ab"
+    },
+    "test/test_research_joint_flow.cpp": {
+      "bytes": 14436,
+      "sha256": "3cfab92b61874edb65d4b6a8ce1d3128094e0995deab30e21403837559d1a043"
+    },
+    "runner/run_joint_flow_core_validation.py": {
+      "bytes": 6259,
+      "sha256": "422369d31b7c217c4f24b4f01df3845484fbdd4144688416ba1f76d23d1ddc2e"
+    }
+  },
+  "all_source_and_eigen_file_sets_and_sha256_unchanged": true,
+  "toolchain": {
+    "compiler_path": "/usr/bin/g++",
+    "compiler_launcher": {
+      "bytes": 932680,
+      "sha256": "2360901d864cf10bfd6296e261cb2c14053552a80377761ab07146ec9ec9a2c0"
+    },
+    "compiler_version": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+    "frontend": {
+      "path": "/usr/lib/gcc/x86_64-linux-gnu/11/cc1plus",
+      "bytes": 28004992,
+      "sha256": "283421000e15a9152de4affe89ac2e528f3e0bcf2038b245171a17d8a912ace9"
+    },
+    "eigen_version": "3.4.0-2ubuntu2"
+  },
+  "compile_command": [
+    "/usr/bin/g++",
+    "-std=c++17",
+    "-O0",
+    "-g0",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-I/usr/include/eigen3",
+    "-I/home/accelerate/impact_server_validation_20261022/offline_all/joint_core/sources/include",
+    "/home/accelerate/impact_server_validation_20261022/offline_all/joint_core/sources/test/test_research_joint_flow.cpp",
+    "-o",
+    "/home/accelerate/impact_server_validation_20261022/offline_all/joint_core/test_research_joint_flow"
+  ],
+  "compile_exit_code": 0,
+  "test_exit_code": 0,
+  "assertion_checks": 313,
+  "binary": {
+    "bytes": 15630720,
+    "sha256": "e5ee2d7cd06028a8ef41234896aec813a136be457091bd02c4f254bdc6cb26a1"
+  },
+  "independent_math_scope": [
+    "analytic_28D_two_view_and_initial_pixel_Jacobians_vs_central_difference",
+    "analytic_28D_ray_plane_range_Jacobian_vs_independent_central_difference",
+    "right_SO3_reset_Jacobian_vs_independent_rotation_composition",
+    "45000_seeded_range_plane_joint_augmentation_Monte_Carlo_covariance_samples",
+    "native_conditional_extension_delta_P_and_Pgyro_vs_direct_28D_Joseph_EKF",
+    "actual_native_nominal_and_covariance_changes_with_K_residual_reconstruction",
+    "preupdate_NIS_degeneracy_unknown_covariance_and_stale_diagnostics_rejection",
+    "PSD_gyro_component_decomposition_and_tag_inheritance_across_pairs"
+  ],
+  "native_ROS_replay_validated": false,
+  "closed_loop_AP_validated": false,
+  "hardware_validated": false,
+  "algorithm_superiority_demonstrated": false,
+  "limitations": [
+    "native_fixed_map_and_independent_native_observation_approximation",
+    "single_local_plane_with_declared_slope_prior_and_bounded_footprint",
+    "pixel_covariance_is_explicit_input_not_empirical_sensor_calibration",
+    "unit_assertion_count_is_not_estimation_or_paper_acceptance"
+  ]
+}

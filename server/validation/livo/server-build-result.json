@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "utc": "2026-10-21T17:11:04.037849+00:00",
+  "stage_manifest": {
+    "bytes": 17859,
+    "sha256": "84a6aaf57a76ebbfc8a74426b956aad99736145897fd5a59742734449daa764e"
+  },
+  "vendor_root": "/home/accelerate/impact_server_staging_20261022/third_party/livo",
+  "vendor_manifest": {
+    "bytes": 28233,
+    "sha256": "718daa9cf2f9d87f00273e3b1a5491dce5c3539945a3685c74144b94efb84b70"
+  },
+  "native_manifest": {
+    "bytes": 102162,
+    "sha256": "77ec366bea74f07babde7dd0f95f73a50795f0e725b1b24dce3c6f8b3b87f1f0"
+  },
+  "binary": {
+    "bytes": 3634992,
+    "sha256": "ce60286b493851bad327491fb6d14a71211d481ab4c80b372eaa30ef175a5a52"
+  },
+  "original_build_and_manifest_checker_executed_unchanged": true,
+  "hardware_or_accuracy_acceptance": false
+}

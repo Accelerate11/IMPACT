@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "render_library": "matplotlib 3.5.1",
+  "font": "/mnt/c/Windows/Fonts/msyh.ttc",
+  "source_sha256": {
+    "evidence/P10/flight-gate-summary.json": "f2f52d784d355b8b9a78916295a5ac7de79272210b898e8795f7b081236aae7d",
+    "evidence/P13/p13-gate-result.json": "8dccd18d009dfd8cdca3730e4e839a98b3b7aa5c4f1ba52e6f0178b9d661a587",
+    "evidence/P13/low-50ms-trial-result.json": "50aadd9182fa9d5024e61d84215cf4e08b39d499c2f1d551f02a4b4d5c986301",
+    "evidence/P13/high-200ms-trial-result.json": "544bbd6301be4a3ef241520a5a7f4b404b9cfb34e1c7774bf82a9913b2d69e11",
+    "docs/P10_MINIMUM_EXCITATION_ACCEPTANCE_REPORT.md": "d16c5082fa24936c3208f8409d2148e1430039302511ce3a56dcfaac2c3128cd",
+    "docs/P13_LATENCY_AWARE_SAFETY_ACCEPTANCE_REPORT.md": "c746af74895f4e3f7f62843641acb95266ba40379bc9b71b17f835cef9a08750"
+  },
+  "P10": {
+    "arms": [
+      "baseline",
+      "yaw_only",
+      "minimum_excitation"
+    ],
+    "minimum_integrity_margin_m": [
+      -0.3206299559867214,
+      -0.44815823645953046,
+      0.10463322217697402
+    ],
+    "ate_rms_m": [
+      0.12117580461839307,
+      0.08515400685977102,
+      0.11757802854610615
+    ],
+    "extra_path_vs_baseline_m": [
+      0.0,
+      0.19810493013698505,
+      0.06591494513764307
+    ],
+    "reserve_m": 0.1,
+    "margin_gain_vs_baseline_m": 0.4252631781636954,
+    "scope": "One fixed-scene/seed Gazebo SIL case. M=AL-PL, not GT collision distance. No statistical error bars."
+  },
+  "P13": {
+    "planner_injected_load_ms": [
+      50,
+      200
+    ],
+    "end_to_end_p99_ms": [
+      150.507831,
+      301.29494300000005
+    ],
+    "final_speed_limit_mps": [
+      0.42,
+      0.14500257619342344
+    ],
+    "final_unmitigated_integrity_margin_m": [
+      0.06772566810307015,
+      -0.02285533313094934
+    ],
+    "final_applied_integrity_margin_m": [
+      0.06772566810307015,
+      0.06
+    ],
+    "mission_elapsed_s": [
+      132.4,
+      221.4
+    ],
+    "scope": "Single Gazebo scene, injected planner delay. Raw values are budget counterfactuals from the same trials, not unmitigated flight arms. Not Orin measurements."
+  },
+  "render_script_sha256": "4625cbbaa8c4b00926764c9c95f46530575bf67ab530bdb963c3a989bc21d1e1"
+}

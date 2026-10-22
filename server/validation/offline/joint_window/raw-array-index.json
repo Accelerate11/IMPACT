@@ -1,0 +1,187 @@
+{
+  "path": "/home/accelerate/impact_server_validation_20261022/offline_all/joint_window/samples.npz",
+  "bytes": 60726247,
+  "sha256": "188a8cf487e0a2b2967d08ebf6275a6409823cf357de5414961d705fdd4d46e9",
+  "arrays": {
+    "seed14027_primitive_standard_normal": {
+      "shape": [
+        12000,
+        116
+      ],
+      "dtype": "float64"
+    },
+    "seed14027_observations": {
+      "shape": [
+        12000,
+        4,
+        5
+      ],
+      "dtype": "float64"
+    },
+    "seed14027_full_joint_velocity_error_xy": {
+      "shape": [
+        12000,
+        4,
+        2
+      ],
+      "dtype": "float64"
+    },
+    "seed14027_full_joint_final_joint_error": {
+      "shape": [
+        12000,
+        20
+      ],
+      "dtype": "float64"
+    },
+    "seed14027_reset_shared_nuisance_velocity_error_xy": {
+      "shape": [
+        12000,
+        4,
+        2
+      ],
+      "dtype": "float64"
+    },
+    "seed14027_reset_shared_nuisance_final_joint_error": {
+      "shape": [
+        12000,
+        20
+      ],
+      "dtype": "float64"
+    },
+    "seed14027_zero_clone_cross_velocity_error_xy": {
+      "shape": [
+        12000,
+        4,
+        2
+      ],
+      "dtype": "float64"
+    },
+    "seed14027_zero_clone_cross_final_joint_error": {
+      "shape": [
+        12000,
+        20
+      ],
+      "dtype": "float64"
+    },
+    "seed39041_primitive_standard_normal": {
+      "shape": [
+        12000,
+        116
+      ],
+      "dtype": "float64"
+    },
+    "seed39041_observations": {
+      "shape": [
+        12000,
+        4,
+        5
+      ],
+      "dtype": "float64"
+    },
+    "seed39041_full_joint_velocity_error_xy": {
+      "shape": [
+        12000,
+        4,
+        2
+      ],
+      "dtype": "float64"
+    },
+    "seed39041_full_joint_final_joint_error": {
+      "shape": [
+        12000,
+        20
+      ],
+      "dtype": "float64"
+    },
+    "seed39041_reset_shared_nuisance_velocity_error_xy": {
+      "shape": [
+        12000,
+        4,
+        2
+      ],
+      "dtype": "float64"
+    },
+    "seed39041_reset_shared_nuisance_final_joint_error": {
+      "shape": [
+        12000,
+        20
+      ],
+      "dtype": "float64"
+    },
+    "seed39041_zero_clone_cross_velocity_error_xy": {
+      "shape": [
+        12000,
+        4,
+        2
+      ],
+      "dtype": "float64"
+    },
+    "seed39041_zero_clone_cross_final_joint_error": {
+      "shape": [
+        12000,
+        20
+      ],
+      "dtype": "float64"
+    },
+    "seed81013_primitive_standard_normal": {
+      "shape": [
+        12000,
+        116
+      ],
+      "dtype": "float64"
+    },
+    "seed81013_observations": {
+      "shape": [
+        12000,
+        4,
+        5
+      ],
+      "dtype": "float64"
+    },
+    "seed81013_full_joint_velocity_error_xy": {
+      "shape": [
+        12000,
+        4,
+        2
+      ],
+      "dtype": "float64"
+    },
+    "seed81013_full_joint_final_joint_error": {
+      "shape": [
+        12000,
+        20
+      ],
+      "dtype": "float64"
+    },
+    "seed81013_reset_shared_nuisance_velocity_error_xy": {
+      "shape": [
+        12000,
+        4,
+        2
+      ],
+      "dtype": "float64"
+    },
+    "seed81013_reset_shared_nuisance_final_joint_error": {
+      "shape": [
+        12000,
+        20
+      ],
+      "dtype": "float64"
+    },
+    "seed81013_zero_clone_cross_velocity_error_xy": {
+      "shape": [
+        12000,
+        4,
+        2
+      ],
+      "dtype": "float64"
+    },
+    "seed81013_zero_clone_cross_final_joint_error": {
+      "shape": [
+        12000,
+        20
+      ],
+      "dtype": "float64"
+    }
+  }
+}

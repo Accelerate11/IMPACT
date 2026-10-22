@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "scope": "Exact set of 29 copied lightweight base evidence/source artifacts; manifest itself excluded.",
+  "files": [
+    {
+      "path": "build/build-result.json",
+      "bytes": 1321,
+      "sha256": "67e82f93fb1494f0c96c84379c5cfa5cbbf451520ca762255bec8bc631497720"
+    },
+    {
+      "path": "build/build.log",
+      "bytes": 617855,
+      "sha256": "ba58a223f7ebf568a27d344b2116a23a1a968b9d8bd2376aa8b0bafa027ef601"
+    },
+    {
+      "path": "build/colcon-list.log",
+      "bytes": 214,
+      "sha256": "f89ce1765a015d6c2425db270ca6bed015ebf1a0b7dded653b93bed0161182d9"
+    },
+    {
+      "path": "build/command.json",
+      "bytes": 657,
+      "sha256": "be8be1303a2fe3a12f7ddaf4b1b703c93af44f34ee96620a954abafdc2e4d73d"
+    },
+    {
+      "path": "build/environment.json",
+      "bytes": 699,
+      "sha256": "62a563d9e3e322214e7fd5859c7b74a2e928819d0aa3bf5b2ebf08644cbe57bb"
+    },
+    {
+      "path": "build/sources.after.json",
+      "bytes": 61221,
+      "sha256": "f304549e115ff0e53a1d4f7ef4e7f97c81216801c7f208dd453b00e60a3a66a1"
+    },
+    {
+      "path": "build/sources.before.json",
+      "bytes": 61221,
+      "sha256": "f304549e115ff0e53a1d4f7ef4e7f97c81216801c7f208dd453b00e60a3a66a1"
+    },
+    {
+      "path": "prebuild_incomplete/colcon-list.log",
+      "bytes": 736,
+      "sha256": "ebf8ff014346700c207ccf80d462db9fe75ed0d2f51b725684e90051a6c1fcf5"
+    },
+    {
+      "path": "prebuild_incomplete/environment.json",
+      "bytes": 699,
+      "sha256": "62a563d9e3e322214e7fd5859c7b74a2e928819d0aa3bf5b2ebf08644cbe57bb"
+    },
+    {
+      "path": "prebuild_incomplete/sources.before.json",
+      "bytes": 61221,
+      "sha256": "f304549e115ff0e53a1d4f7ef4e7f97c81216801c7f208dd453b00e60a3a66a1"
+    },
+    {
+      "path": "python-tests/command.json",
+      "bytes": 1077,
+      "sha256": "6c51662926f65793d9541f028e63776bf8d7a8005819c18c81aefb3f8373dbc5"
+    },
+    {
+      "path": "python-tests/impact_fault_injection.pytest.xml",
+      "bytes": 759,
+      "sha256": "69a5d0fd9018f0d2dc5e6f04e31eb8dcb59c9cdef2e99382d96c9927f8b02d47"
+    },
+    {
+      "path": "python-tests/result.json",
+      "bytes": 826,
+      "sha256": "907c4b77cb97dd1d50426cae0bb9cdcf00c7d494180b46fd980fa684d51ef53b"
+    },
+    {
+      "path": "python-tests/test-result.log",
+      "bytes": 52,
+      "sha256": "89dc15165026ebfc4aebece807c6526bd9bbdc5d64b6457d7cf2c25e92aa8772"
+    },
+    {
+      "path": "python-tests/test.log",
+      "bytes": 5279,
+      "sha256": "784f551900da69cffedea458435375829d6444c80043e4f42a71f19a56b6cf6b"
+    },
+    {
+      "path": "python-tests/xq_autonomy.pytest.xml",
+      "bytes": 115450,
+      "sha256": "0077c7a27b6a10b41583a69015e33df5a2e522b848f325d250972836915c1c20"
+    },
+    {
+      "path": "smoke/inputs.after.json",
+      "bytes": 71733,
+      "sha256": "6e4b9a21e4aaead8c055ff1aaeb90439d86bf719933469e3861bacdb9c01be71"
+    },
+    {
+      "path": "smoke/inputs.before.json",
+      "bytes": 71733,
+      "sha256": "6e4b9a21e4aaead8c055ff1aaeb90439d86bf719933469e3861bacdb9c01be71"
+    },
+    {
+      "path": "smoke/installed-resource-identity.json",
+      "bytes": 7178,
+      "sha256": "6e22ad7eec7c716df929882f0eb677c9219586bde5813cb836464b0c8754983c"
+    },
+    {
+      "path": "smoke/launch-started.json",
+      "bytes": 57,
+      "sha256": "ff6801b5e64e3ee0f9550a4cd54392175661ed3bf2a9ab0f6c7cea58d6deb0d2"
+    },
+    {
+      "path": "smoke/launch.log",
+      "bytes": 3515,
+      "sha256": "60e8ac8e6e19d5b48bd90bf9a48cd0aafab28169debe8a54eca9c6bf0e742b6c"
+    },
+    {
+      "path": "smoke/observer-ready.json",
+      "bytes": 613,
+      "sha256": "84abbc4913443bdc39e86dcd282da34602a0540a4ff8d73eb7bde80abd0cd24f"
+    },
+    {
+      "path": "smoke/observer-result.json",
+      "bytes": 5468,
+      "sha256": "de313f8ef6c731b9b2710d01906a0406d82d9ce9526bc157e948d296cdb3a296"
+    },
+    {
+      "path": "smoke/observer.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "smoke/result.json",
+      "bytes": 7124,
+      "sha256": "2d39608a87f60bfd504e56a2a0b0012dde4c0d97556dd936098ddb70317dacdc"
+    },
+    {
+      "path": "smoke/run-configuration.json",
+      "bytes": 2776,
+      "sha256": "b7b411bb5fdff6c2a96619388a5adaeb7b7c32f780c73173885d8f01aa6f2a40"
+    },
+    {
+      "path": "smoke/sensor-observations.jsonl",
+      "bytes": 2633089,
+      "sha256": "0756c3d1928080f1422db2362dc81fbef5eebc8f9e892efcfc9d74f9d55b2a66"
+    },
+    {
+      "path": "source_snapshot/build_workspace.sh",
+      "bytes": 5344,
+      "sha256": "db20ef619aafad04f20ecc92331246d329c5fae904442afd3e5b7aec0a02d2cc"
+    },
+    {
+      "path": "source_snapshot/run_headless_sim.py",
+      "bytes": 20914,
+      "sha256": "32638f8ff13ef6ccb1dfd0342523868d482804023477ce33ecc1f1e841108273"
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "kind": "BOUNDED_ADVANCED_DEPLOYMENT_SMOKE",
+  "attempts": [
+    {
+      "path": "/home/accelerate/impact_server_validation_20261022/base/scenario_p15_lattice_20261021T173229Z_315",
+      "packaged_path": "validation/scenario_p15_lattice_20261021T173229Z_315",
+      "status": "FAIL",
+      "result_sha256": "2d9aeb6c21f6b6a16849fb1cc576ac6694755277275be1598edb43d7b1e284f7",
+      "acceptance_mode": "SMOKE",
+      "mission_status": "INCOMPLETE_OR_FAILED",
+      "error": "TimeoutError: Advanced observation deadline",
+      "checks": {
+        "observer_PASS": false,
+        "no_runner_exception": false,
+        "inputs_unchanged": true,
+        "calibration_input_unchanged": true,
+        "actual_gazebo_seed_forwarded": true,
+        "all_owned_processes_stopped": true
+      },
+      "startup_wall_s": 94.27525193999963,
+      "wall_observation_s": 0.0,
+      "observation_counts": {
+        "clock": 0,
+        "lidar": 0,
+        "imu": 0,
+        "native_odom": 0,
+        "integrity": 0,
+        "static_map": 0,
+        "decision": 0,
+        "status": 0,
+        "fault": 0
+      },
+      "total_received": {
+        "clock": 10500,
+        "lidar": 0,
+        "imu": 5306,
+        "status": 46,
+        "static_map": 135
+      },
+      "last_controller_status": {
+        "phase": "WAIT_INITIALIZATION",
+        "finished": false,
+        "current_position_x_m": null,
+        "decisions_applied": 0,
+        "latency_sample_count": 0,
+        "latency_p99_ms": null
+      },
+      "estimated_maximum_displacement_m": 0.0,
+      "decision_repeated_or_nonincreasing_stamps": 0,
+      "shutdown": {
+        "observer": {
+          "returncode": -2,
+          "escalations": [],
+          "owned_remaining": [],
+          "scope": "Only tracked descendants with unchanged /proc start identities; no global pkill."
+        },
+        "launch": {
+          "returncode": -15,
+          "escalations": [
+            {
+              "signal": "SIGTERM",
+              "owned_pids": [
+                480,
+                482,
+                484,
+                486,
+                488,
+                490,
+                492,
+                494,
+                468,
+                470,
+                439,
+                472,
+                474,
+                476,
+                478
+              ]
+            },
+            {
+              "signal": "SIGKILL",
+              "owned_pids": [
+                480,
+                482,
+                484,
+                486,
+                488,
+                490,
+                492,
+                494,
+                468,
+                474,
+                476,
+                478
+              ]
+            }
+          ],
+          "owned_remaining": [],
+          "scope": "Only tracked descendants with unchanged /proc start identities; no global pkill."
+        }
+      },
+      "script_sha256": "e6b020891cd65f4c05eb455e79e47a20a2ae543c1bbb755d87771c3942fc3c3e",
+      "shared_helper_sha256": "32638f8ff13ef6ccb1dfd0342523868d482804023477ce33ecc1f1e841108273"
+    },
+    {
+      "path": "/home/accelerate/impact_server_validation_20261022/base/scenario_p15_lattice_20261022T112953Z_495",
+      "packaged_path": "validation/scenario_p15_lattice_20261022T112953Z_495",
+      "status": "PASS",
+      "result_sha256": "fbf8e161070194431634855ebee615510ae8fe723bf4de64acf7e2baf702b20b",
+      "acceptance_mode": "SMOKE",
+      "mission_status": "INCOMPLETE_OR_FAILED",
+      "error": null,
+      "checks": {
+        "observer_PASS": true,
+        "no_runner_exception": true,
+        "inputs_unchanged": true,
+        "calibration_input_unchanged": true,
+        "actual_gazebo_seed_forwarded": true,
+        "all_owned_processes_stopped": true
+      },
+      "startup_wall_s": 18.027137487999994,
+      "wall_observation_s": 30.000806644000022,
+      "observation_counts": {
+        "clock": 11855,
+        "lidar": 231,
+        "imu": 5928,
+        "native_odom": 296,
+        "integrity": 296,
+        "static_map": 148,
+        "decision": 54,
+        "status": 30,
+        "fault": 0
+      },
+      "total_received": {
+        "clock": 16723,
+        "lidar": 324,
+        "imu": 8362,
+        "status": 42,
+        "static_map": 208,
+        "native_odom": 415,
+        "integrity": 415,
+        "decision": 55
+      },
+      "last_controller_status": {
+        "phase": "BRAKE_DYNAMIC",
+        "finished": false,
+        "current_position_x_m": 4.1103040669400235,
+        "decisions_applied": 1,
+        "latency_sample_count": 308,
+        "latency_p99_ms": 167.04997500000002
+      },
+      "estimated_maximum_displacement_m": 4.13968953948685,
+      "decision_repeated_or_nonincreasing_stamps": 53,
+      "shutdown": {
+        "observer": {
+          "returncode": 0,
+          "escalations": [],
+          "owned_remaining": [],
+          "scope": "Only tracked descendants with unchanged /proc start identities; no global pkill."
+        },
+        "launch": {
+          "returncode": 0,
+          "escalations": [],
+          "owned_remaining": [],
+          "scope": "Only tracked descendants with unchanged /proc start identities; no global pkill."
+        }
+      },
+      "script_sha256": "fadce9d0791f9f408f7b9a2567f6945c0dc99631c3dee8901797b88eeba583bd",
+      "shared_helper_sha256": "32638f8ff13ef6ccb1dfd0342523868d482804023477ce33ecc1f1e841108273"
+    }
+  ],
+  "selected_final_attempt": "/home/accelerate/impact_server_validation_20261022/base/scenario_p15_lattice_20261022T112953Z_495",
+  "latest_smoke_pass": true,
+  "historical_failure_preserved": true,
+  "deployment_correction": "Removed the newly introduced loopback UDP-only FastDDS profile. Final entrypoint uses the same clean builtin SHM/UDP and ROS_LOCALHOST_ONLY=1 environment as the separately passed base smoke. Algorithm launch parameters and thresholds were unchanged.",
+  "transport_fixture_caveat": "Synthetic transport fixtures retained all failures, including a non-vacuous ready/40s builtin fixture that received zero of ten 368640-byte messages in domain86. No claim that synthetic transport isolation is resolved. Actual advanced domain41 run separately received324 LiDAR messages total and231 within the declared window. The fixture/domain-specific discrepancy is not localized.",
+  "host_interruption_cause": "UNKNOWN; no evidence establishing OOM or a specific host cause",
+  "mission_complete": false,
+  "multi_seed_statistics_completed": false,
+  "new_joint_estimator_integrated": false,
+  "AP_started": false,
+  "AP_flight_validated": false,
+  "hardware_validated": false,
+  "scope": "One historical 3D Gazebo/native FAST-LIO/integrity/candidate/dynamic-map/latency smoke, p15_lattice/integrity_constrained/seed501,30s. Velocity-controlled carrier. Repeated decision publication is not new planning measurements. Mission evaluators remain INCOMPLETE_OR_FAILED. No EGO executable, new joint raw-flow pipeline or AP task.",
+  "files": {
+    "base/scenario_p15_lattice_20261021T173229Z_315": {
+      "file_count": 31,
+      "bytes": 1753501,
+      "copy_manifest_sha256": "919bd135b1ae509553bb5281628f58ab398b3bfd2004016e52d08105b6402b7e",
+      "source_path": "/home/accelerate/impact_server_validation_20261022/base/scenario_p15_lattice_20261021T173229Z_315",
+      "packaged_path": "validation/scenario_p15_lattice_20261021T173229Z_315",
+      "before_equals_after_equals_copy": true
+    },
+    "base/scenario_p15_lattice_20261022T112953Z_495": {
+      "file_count": 30,
+      "bytes": 2852416,
+      "copy_manifest_sha256": "73670ec02ed95e6a759dfe596c79ec8bcfc537a34f0568f653fbda3df40d236e",
+      "source_path": "/home/accelerate/impact_server_validation_20261022/base/scenario_p15_lattice_20261022T112953Z_495",
+      "packaged_path": "validation/scenario_p15_lattice_20261022T112953Z_495",
+      "before_equals_after_equals_copy": true
+    },
+    "advanced_transport_probe_20261022T111619Z": {
+      "file_count": 23,
+      "bytes": 7356,
+      "copy_manifest_sha256": "6990b080ac62d65f95e210c67b405da12d365d561d254e3b33daa1eb9a829bfd",
+      "source_path": "/home/accelerate/impact_server_validation_20261022/advanced_transport_probe_20261022T111619Z",
+      "packaged_path": "validation/advanced_transport_probe_20261022T111619Z",
+      "before_equals_after_equals_copy": true
+    },
+    "transport_builtin_fixture_20261022T113600Z": {
+      "file_count": 8,
+      "bytes": 2992,
+      "copy_manifest_sha256": "2dcdf119f974553c74cf72245c744533762fe83cd7137a9948af86e5488be4ab",
+      "source_path": "/home/accelerate/impact_server_validation_20261022/transport_builtin_fixture_20261022T113600Z",
+      "packaged_path": "validation/transport_builtin_fixture_20261022T113600Z",
+      "before_equals_after_equals_copy": true
+    }
+  }
+}

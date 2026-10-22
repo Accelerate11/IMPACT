@@ -1,0 +1,83 @@
+/**:
+  ros__parameters:
+    use_sim_time: true
+    common:
+      img_topic: /impact/r2b2/input/front
+      lid_topic: /impact/r2b2/input/lidar
+      imu_topic: /impact/r2b2/input/imu
+      img_en: 1
+      lidar_en: 1
+      ros_driver_bug_fix: false
+    extrin_calib:
+      extrinsic_T: [0.04, 0.0, 0.12]
+      extrinsic_R: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+      # Camera_from_LiDAR = inverse(Body_from_Camera) * Body_from_LiDAR.
+      Rcl: [0.0, -1.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, 0.0]
+      Pcl: [0.0, -0.09, -0.08]
+    time_offset:
+      img_time_offset: 0.0
+      imu_time_offset: 0.0
+      lidar_time_offset: 0.0
+      exposure_time_init: 0.0
+    preprocess:
+      lidar_type: 100
+      point_filter_num: 2
+      filter_size_surf: 0.25
+      scan_line: 32
+      blind: 0.35
+      feature_extract_enabled: false
+    vio:
+      max_iterations: 5
+      outlier_threshold: 1000
+      img_point_cov: 100
+      patch_size: 8
+      patch_pyrimid_level: 3
+      grid_n_height: 12
+      normal_en: true
+      raycast_en: false
+      inverse_composition_en: false
+      exposure_estimate_en: false
+      inv_expo_cov: 0.1
+    imu:
+      imu_en: true
+      imu_int_frame: 20
+      acc_cov: 0.1
+      gyr_cov: 0.1
+      gravity_est_en: true
+      ba_bg_est_en: true
+    lio:
+      max_iterations: 5
+      dept_err: 0.02
+      beam_err: 0.05
+      min_eigen_value: 0.0025
+      voxel_size: 0.5
+      max_layer: 2
+      max_points_num: 50
+      layer_init_num: [5, 5, 5, 5, 5]
+    local_map:
+      map_sliding_en: false
+      half_map_size: 100
+      sliding_thresh: 8.0
+    uav:
+      imu_rate_odom: false
+      gravity_align_en: false
+    publish:
+      dense_map_en: false
+      pub_effect_point_en: false
+      pub_plane_en: false
+      pub_scan_num: 1
+      blind_rgb_points: 0.0
+    evo:
+      seq_name: r2b2_snapshot
+      pose_output_en: false
+    pcd_save:
+      pcd_save_en: false
+      colmap_output_en: false
+    image_save:
+      img_save_en: false
+    research:
+      shadow_only: true
+      visual_update_enabled: true
+      odom_topic: /impact/r2b2/odom
+      map_frame: impact_livo_map
+      body_frame: livox_imu

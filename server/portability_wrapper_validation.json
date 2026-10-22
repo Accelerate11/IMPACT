@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "scope": "deployment wrapper staging/vendor/tamper rejection only; no native replay or server timing result",
+  "checks": [
+    "Python syntax accepted",
+    "Bash wrapper syntax accepted",
+    "fresh stage with spaces preserves exact canonical source bytes and sets",
+    "changed staged algorithm is rejected for the correct identity reason",
+    "extra staged source file is rejected for the correct set reason",
+    "clean pinned Git archive export verifies despite patched upstream worktree",
+    "camera parameter service patch applies to clean non-Git vendor export",
+    "post-build stage check binds the actual vendored source tree to the recorded manifest",
+    "changed vendor source is rejected both directly and by post-build stage check",
+    "existing runtime attempt cannot be overwritten"
+  ],
+  "helper_sha256_before": "9db5de3024722c4f4a53e6eb1dcdfde9694cd6b3aacc6257d481a76e00f439a5",
+  "helper_sha256_after": "9db5de3024722c4f4a53e6eb1dcdfde9694cd6b3aacc6257d481a76e00f439a5",
+  "helper_unchanged": true,
+  "test_platform": "Ubuntu22.04/x86_64 under WSL2",
+  "long_experiments_started": false
+}

@@ -1,0 +1,132 @@
+{
+  "source_path": "/home/accelerate/impact_server_validation_20261022/base/scenario_p15_lattice_20261022T112953Z_495",
+  "packaged_path": "validation/scenario_p15_lattice_20261022T112953Z_495",
+  "file_set_bytes_sha256": {
+    "bin/gz": {
+      "bytes": 313,
+      "sha256": "9d955783871b2f2dcd6e34f7dc3304b9edeb6ed49e0e0a905835227668655053"
+    },
+    "configuration/p7-calibration.json": {
+      "bytes": 3776,
+      "sha256": "68828bf98a0b171350e5afb2f4f4f42b4b73369199f61314a0f174da8b0b740f"
+    },
+    "configuration/scenario-profile.json": {
+      "bytes": 5189,
+      "sha256": "77f9957aff62a3e965a07406c2b61e7427e2452115074341ff91bf44c3b09a08"
+    },
+    "configuration.json": {
+      "bytes": 5262,
+      "sha256": "4ac1fcddf46ad2c74c3ce6a7c8fc4c3384153e7b331de0644bc4acf974b5f00a"
+    },
+    "gz-command.jsonl": {
+      "bytes": 231,
+      "sha256": "cfee2bf9d8fdb2e97504b2c8a4e8c53be4c0f76139926a4ed26f29dcba2aef36"
+    },
+    "inputs.after.json": {
+      "bytes": 71733,
+      "sha256": "6e4b9a21e4aaead8c055ff1aaeb90439d86bf719933469e3861bacdb9c01be71"
+    },
+    "inputs.before.json": {
+      "bytes": 71733,
+      "sha256": "6e4b9a21e4aaead8c055ff1aaeb90439d86bf719933469e3861bacdb9c01be71"
+    },
+    "installed-launch-config-identity.json": {
+      "bytes": 941,
+      "sha256": "edec250e8fa45633d8405393ae980cbd38067bd4b9aa847a74a1019d3dd44aaf"
+    },
+    "launch-started.json": {
+      "bytes": 49,
+      "sha256": "e0469f4c5814c07ae42ec9124e0099f8a1913002dfa0e12a0f82f55ba8c49f10"
+    },
+    "launch.log": {
+      "bytes": 14527,
+      "sha256": "72ed1fbd2582fb0343b7ddb284e2e5ab5710d6190bd01d1e6b795af2811aa4ab"
+    },
+    "observations.jsonl": {
+      "bytes": 2622875,
+      "sha256": "5e01c6f82d5314fa2fb3695dc8dee00bce082301ec830b9edf62342c0b29e15e"
+    },
+    "observer-ready.json": {
+      "bytes": 607,
+      "sha256": "6c766d8f1eb97046de1f2cf7e60c873e40a23fbbffaa4e131398ef41421dc529"
+    },
+    "observer-result.json": {
+      "bytes": 13316,
+      "sha256": "3754d6618c94d360975536b676c159366f9716bbdf5b6ea05f9df10f1f92eb34"
+    },
+    "observer.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "result.json": {
+      "bytes": 15925,
+      "sha256": "fbf8e161070194431634855ebee615510ae8fe723bf4de64acf7e2baf702b20b"
+    },
+    "ros-logs/2026-10-22-19-29-54-219736-accelerate-536/launch.log": {
+      "bytes": 16785,
+      "sha256": "dc19d9f315d69bc7d6a114487a678b7fb306e9d099bb4f1364fc350b7bf2720b"
+    },
+    "ros-logs/fastlio_mapping_573_1792668594565.log": {
+      "bytes": 273,
+      "sha256": "2cdc8fe436bed7a005355d02de8f5c1ffb4531413e71d4de5f788c748f0a9f19"
+    },
+    "ros-logs/python3_496_1792668593417.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "ros-logs/python3_575_1792668594501.log": {
+      "bytes": 137,
+      "sha256": "4f42bad85b3b615ad32d615e85ad7ff55718b620e3cf580f1b9fba34e0eabcde"
+    },
+    "ros-logs/python3_577_1792668594556.log": {
+      "bytes": 135,
+      "sha256": "d12b163727a8635b5df9faa6fa5de6692613e5904e4aa4129fd111b15a6dca9d"
+    },
+    "ros-logs/python3_579_1792668594536.log": {
+      "bytes": 962,
+      "sha256": "0cf3445b52dc24a9b14959190b77475b686da64be4a02a338c5e67caa929a2f7"
+    },
+    "ros-logs/python3_581_1792668594517.log": {
+      "bytes": 214,
+      "sha256": "28d8561bcef76338d2356ae81f3bb5c54c2d046c52f8d17053beb57cc40b6cda"
+    },
+    "ros-logs/python3_583_1792668594437.log": {
+      "bytes": 375,
+      "sha256": "792bfaaa8497db71c638519d5dfc6ab3a5cfb4382b025305e932f7225e30583b"
+    },
+    "ros-logs/python3_585_1792668594577.log": {
+      "bytes": 5422,
+      "sha256": "e94ffbb6b053075cefaaaa41e8a05ac8fe31c63ebce1690ece9a8602256a3903"
+    },
+    "ros-logs/python3_587_1792668594570.log": {
+      "bytes": 142,
+      "sha256": "52fe8975529c3f82177157e0469ee73ff3eccc10a86bad2d37e520884eb1d04a"
+    },
+    "ros-logs/python3_589_1792668594510.log": {
+      "bytes": 119,
+      "sha256": "6f80268ee4d24e3b4276d2c5d200bb316d0899ca8a0607b92b4139acdeaefa8a"
+    },
+    "ros-logs/python3_591_1792668594489.log": {
+      "bytes": 112,
+      "sha256": "24f7c5cffb66f2e49a7f77da262bb9374b13d38c9f848fd2f6f00c19be87d74f"
+    },
+    "ros-logs/static_transform_publisher_567_1792668594312.log": {
+      "bytes": 317,
+      "sha256": "295dd4a2e3112c52d87b239ae1e4b66242483bc01618f6e7267a2191b41d686b"
+    },
+    "ros-logs/static_transform_publisher_569_1792668594313.log": {
+      "bytes": 319,
+      "sha256": "1e0bfcedd69eb36b0c6f0f2af646046dc029bb8db9f5af78a04800f6cfa1be52"
+    },
+    "ros-logs/xq_gz_bridge_node_571_1792668594371.log": {
+      "bytes": 627,
+      "sha256": "345cdee429e1d8aead8bde57205b8f541953508840fcaada933e86b9f11b1c57"
+    }
+  },
+  "before_equals_after_equals_copy": true,
+  "excluded_directories": [
+    "cache",
+    "xdg-config",
+    "__pycache__"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "phase": "R2B3A_FLOW_GEOMETRY_AND_CORRELATED_UPDATE_PRECONDITIONS",
+  "source_bag": "/home/accelerate/impact_research_ws/experiments/results/research_multisensor/r2_contract_20261018T165306Z_447/rosbag",
+  "source_evidence": "evidence/RESEARCH_R2/r2_suite_20261018T165613Z_320/r2_contract_20261018T165306Z_447/camera-bag-audit.json",
+  "livo_reference_attempt": "r2b2_replay_20261019T140630Z_1564",
+  "front_camera_keep_every_n": 3,
+  "raw_tracker": {
+    "minimum_tracks": 12,
+    "maximum_tracks": 150,
+    "forward_backward_threshold_px": 1.0,
+    "maximum_interval_s": 0.2,
+    "selection_uses_imu": false,
+    "camera_profile": "R2A_zero_distortion_320x240"
+  },
+  "bag_checks": {
+    "minimum_original_down_images": 1000,
+    "minimum_native_valid_track_windows": 100,
+    "minimum_aligned_valid_track_windows": 100,
+    "require_all_original_images_accounted": true,
+    "require_original_payload_and_header_identity": true,
+    "require_complete_gyro_coverage_for_compensated_window": true,
+    "unknown_covariance_must_block_fusion": true,
+    "unknown_metric_depth_must_block_fusion": true,
+    "maximum_gyro_integral_reproduction_error_rad": 1e-12,
+    "maximum_analytic_numeric_rotation_jacobian_error": 1e-7,
+    "actual_flow_state_updates_must_equal": 0
+  },
+  "synthetic_study": {
+    "input_origin": "declared_linear_gaussian_fixture_not_sensor_calibration",
+    "seeds": [17019, 31183, 92401],
+    "draws_per_seed_and_case": 40000,
+    "rng": "numpy PCG64 with SeedSequence([seed, case_index]); independent case/seed trials",
+    "state_dimension": 19,
+    "observed_state_indices": [7, 8],
+    "prior_velocity_xy_mps": [1.0, 0.6],
+    "observed_prior_sigma_mps": 0.2,
+    "measurement_noise_sigma_mps": 0.2,
+    "state_noise_correlations": [-0.9, 0.0, 0.9],
+    "generative_model": "e=sigma*(sqrt(abs(rho))*g+sqrt(1-abs(rho))*a), v=sigma*(sign(rho)*sqrt(abs(rho))*g+sqrt(1-abs(rho))*b); independent unit Gaussian 2-vectors g,a,b, residual=e+v",
+    "meaning": "Signed shared-nuisance covariance mechanism; not a physically calibrated Livox/Micolink/flow noise model",
+    "independence_ablation": "Identical P,H,R and data, but C=Cov(x-prior_mean,v) is incorrectly supplied as zero; same point estimates in this symmetric fixture",
+    "coverage": {
+      "kind": "directional_normal_interval_not_protection_level",
+      "nominal": 0.95,
+      "normal_quantile": 1.959963984540054,
+      "direction": "unit vector along prior_velocity_xy_mps",
+      "confidence_interval": "Wilson 95% over independent synthetic trials only"
+    },
+    "checks": {
+      "correct_coverage_interval": [0.93, 0.97],
+      "maximum_relative_posterior_covariance_error": 0.04,
+      "minimum_negative_correlation_coverage_gap": 0.07,
+      "minimum_positive_correlation_independence_coverage": 0.99,
+      "maximum_zero_correlation_method_difference": 1e-12,
+      "maximum_posterior_mean_method_difference": 1e-12,
+      "maximum_analytic_posterior_covariance_error": 1e-12
+    }
+  },
+  "hardware_readiness": "NOT_READY",
+  "full_common_state_flow_fusion_validated": false,
+  "scope": "Read-only recorded simulation pixel/gyro provenance and flow-window reconstruction, exact geometry derivatives, and a single-window correlated Gaussian software kernel. No actual flow state update, new AP flight, hardware covariance calibration or integrity guarantee."
+}
