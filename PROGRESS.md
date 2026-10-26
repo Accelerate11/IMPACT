@@ -1063,3 +1063,12 @@ Orin实时性和实际标定仍单独验收；本次可移植封包不提升这�
 配置失败已保留。新 p15_lattice/seed501 的30秒 SMOKE 实际 PASS：LiDAR231、IMU5928、
 原生FAST-LIO里程计296、完好性296、静态地图148、决策54、状态30。完整任务仍未通过，
 未连接AP或新joint；结果和启动、退出、重复stamp边界见 server/advanced_simulation_validation.json。
+
+## 2026-10-26：公开复现入口检查
+
+已发布中英文入口、免ROS/免bag的offline依赖profile、五方法定义/参考误差/验收字段、
+排错与许可/软件引用索引，修正五路输入总数和AP underlay等说明；实际修复Ctrl+C遗留worker。
+独立GitHub clone候选2ab6c63验证六项研究、7项生命周期测试、资源安装和597源码/完整数据校验PASS。
+数值算法未改；仅FAST-LIO两份许可/来源元数据身份更新，旧tag、论文/图集/evidence保持。
+本轮未重复ROS/Gazebo/AP/五组原生回放，不提升硬件/完整任务或统计边界。
+详细范围与证据见 docs/OPEN_SOURCE_AUDIT_20261026.md。

@@ -1,0 +1,108 @@
+{
+  "status": "PASS",
+  "error": null,
+  "candidate_commit": "2ab6c63c7f3a6143d0ee6aae6a9f6173db6ea04f",
+  "public_clone_baseline": "5750e6e204b697349e7b08bc1aca5e0bee1d51a9",
+  "clone_path": "/home/accelerate/impact_public_audit_20261026/clean clone",
+  "platform": "Linux-6.18.33.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+  "python": "3.10.12",
+  "steps": [
+    {
+      "step": "fetch_candidate",
+      "exit_code": 0,
+      "elapsed_s": 0.71673235,
+      "command": [
+        "git",
+        "fetch",
+        "/mnt/d/CODEX/impact",
+        "main"
+      ],
+      "log": "/home/accelerate/impact_public_audit_20261026/candidate_validation/fetch_candidate.log"
+    },
+    {
+      "step": "checkout_candidate",
+      "exit_code": 0,
+      "elapsed_s": 0.3150950229999996,
+      "command": [
+        "git",
+        "checkout",
+        "--detach",
+        "2ab6c63c7f3a6143d0ee6aae6a9f6173db6ea04f"
+      ],
+      "log": "/home/accelerate/impact_public_audit_20261026/candidate_validation/checkout_candidate.log"
+    },
+    {
+      "step": "minimal_profile_check",
+      "exit_code": 0,
+      "elapsed_s": 0.03222348300000011,
+      "command": [
+        "bash",
+        "/home/accelerate/impact_public_audit_20261026/clean clone/server/install_dependencies.sh",
+        "--check",
+        "--profile",
+        "offline"
+      ],
+      "log": "/home/accelerate/impact_public_audit_20261026/candidate_validation/minimal_profile_check.log"
+    },
+    {
+      "step": "runner_lifecycle_tests",
+      "exit_code": 0,
+      "elapsed_s": 3.1250220640000004,
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "server/test",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "log": "/home/accelerate/impact_public_audit_20261026/candidate_validation/runner_lifecycle_tests.log"
+    },
+    {
+      "step": "all_six_studies",
+      "exit_code": 0,
+      "elapsed_s": 116.355497276,
+      "command": [
+        "/usr/bin/python3",
+        "/home/accelerate/impact_public_audit_20261026/clean clone/server/offline_studies.py",
+        "--root",
+        "/home/accelerate/impact_public_audit_20261026/clean clone",
+        "--output",
+        "/home/accelerate/impact_public_audit_20261026/six_studies"
+      ],
+      "log": "/home/accelerate/impact_public_audit_20261026/candidate_validation/all_six_studies.log"
+    },
+    {
+      "step": "resource_archive_install",
+      "exit_code": 0,
+      "elapsed_s": 25.359695699,
+      "command": [
+        "/usr/bin/python3",
+        "/home/accelerate/impact_public_audit_20261026/clean clone/server/fetch_resources.py",
+        "--root",
+        "/home/accelerate/impact_public_audit_20261026/clean clone",
+        "--archive",
+        "/home/accelerate/impact_server_release_20261022/IMPACT_Server_Resources_20261022_v2.tar.gz"
+      ],
+      "log": "/home/accelerate/impact_public_audit_20261026/candidate_validation/resource_archive_install.log"
+    },
+    {
+      "step": "full_source_and_data_verify",
+      "exit_code": 0,
+      "elapsed_s": 1.069896261999986,
+      "command": [
+        "/usr/bin/python3",
+        "/home/accelerate/impact_public_audit_20261026/clean clone/server/independent_verify_bundle.py",
+        "--workspace",
+        "/home/accelerate/impact_public_audit_20261026/clean clone",
+        "--output",
+        "/home/accelerate/impact_public_audit_20261026/candidate_validation/source-data-coverage.json"
+      ],
+      "log": "/home/accelerate/impact_public_audit_20261026/candidate_validation/full_source_and_data_verify.log"
+    }
+  ],
+  "scope": "Fresh public GitHub clone, then exact candidate commit fetched from local Git; all CPU studies and lifecycle tests, immutable local resource installation and full source/data audit. Existing system packages used; no apt installs, ROS/AP/Gazebo process or native five-mode rebuild/replay executed in this audit."
+}

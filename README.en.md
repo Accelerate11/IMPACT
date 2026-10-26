@@ -1,6 +1,6 @@
 # IMPACT
 
-[中文](README.md) · [Reference results](docs/REFERENCE_RESULTS.md) · [Troubleshooting](docs/TROUBLESHOOTING.md) · [Component licenses](THIRD_PARTY_NOTICES.md)
+[中文](README.md) · [Reference results](docs/REFERENCE_RESULTS.md) · [Troubleshooting](docs/TROUBLESHOOTING.md) · [Reproduction audit](docs/OPEN_SOURCE_AUDIT_20261026.md) · [Component licenses](THIRD_PARTY_NOTICES.md)
 
 Research software for navigation without GNSS. The current fusion method extends the native 19-dimensional FAST-LIVO2 state with a six-dimensional pose clone and a three-dimensional uncertain local plane. It updates the same native state and covariance using raw two-view downward-image pixels, while retaining the declared shared inertial and plane correlations.
 
@@ -120,7 +120,9 @@ These wrappers have no ARM/flight subcommand. Version/parameter smoke is not evi
 
 ## Versions, papers and limitations
 
-The fixed paper reference is tag `server-sim-2026.10.22`, commit `5750e6e204b697349e7b08bc1aca5e0bee1d51a9`. That tag retains the original instructions and metadata. Current `main` adds the offline installation profile, clearer documentation and license/provenance corrections. Select the old tag only when reproducing the original snapshot exactly; commands added later are not available there. Record `git rev-parse HEAD` with your own results.
+The fixed paper reference is tag `server-sim-2026.10.22`, commit `5750e6e204b697349e7b08bc1aca5e0bee1d51a9`. That tag retains the original instructions and metadata. Current `main` adds the offline installation profile, runner interruption handling, clearer documentation and license/provenance corrections. Select the old tag only when reproducing the original snapshot exactly; commands added later are not available there. Record `git rev-parse HEAD` with your own results.
+
+The current entry points were checked in an independent checkout of the tested public commit on 2026-10-26: all six CPU studies, seven lifecycle tests, resource installation and complete source/data coverage passed. The [audit and evidence](docs/OPEN_SOURCE_AUDIT_20261026.md) state the exact environment and scope; full ROS/AP/Gazebo validation was not repeated in that audit. Live CI: [Actions](https://github.com/Accelerate11/IMPACT/actions/workflows/server-offline.yml).
 
 - [English/Chinese PDFs and editable LaTeX](papers/README.md); author information remains pending. These are drafts, without a publication-acceptance claim.
 - [Formula-to-implementation map](server/ALGORITHM_COVERAGE.md) and [machine-readable source identities](server/coverage_manifest.json).

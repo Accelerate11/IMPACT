@@ -1,0 +1,6 @@
+{
+  "parent_exit": 130,
+  "owned_worker_survives_SIGINT": false,
+  "summary_present": true,
+  "public_runner_unchanged": true
+}

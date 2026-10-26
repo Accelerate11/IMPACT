@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "tested_HEAD": "2ab6c63c7f3a6143d0ee6aae6a9f6173db6ea04f",
+  "public_origin_main": "2ab6c63c7f3a6143d0ee6aae6a9f6173db6ea04f",
+  "fresh_clone_worktree_clean": true,
+  "formula_labels_checked": 45,
+  "missing_formula_labels": [],
+  "public_release_checksum_download": {
+    "url": "https://github.com/Accelerate11/IMPACT/releases/download/server-sim-2026.10.22/SHA256SUMS.resources-v2",
+    "bytes": 2142,
+    "sha256": "f265f981750d598b5f7c5c87b7d90d9142885af4e1dc0522eb0b9df084fb7708",
+    "all_18_part_entries_match_committed_descriptor": true
+  },
+  "canonical_changes_are_two_license_metadata_files_only": [
+    "src/xq_fast_lio/PROVENANCE.md",
+    "src/xq_fast_lio/package.xml"
+  ],
+  "prior_papers_figures_evidence_and_validation_unchanged": true,
+  "scope": "Public Git identity, immutable release checksum, formula links and protected-artifact audit; no full network resource re-download or ROS/AP/Gazebo run."
+}

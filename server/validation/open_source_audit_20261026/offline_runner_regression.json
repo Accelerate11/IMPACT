@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "tests": 7,
+  "result": "Ran 7 tests in 3.643s; OK",
+  "command": "PYTHONDONTWRITEBYTECODE=1 /usr/bin/python3 -m unittest discover -s server/test -p test_offline_studies.py -v",
+  "scope": "Actual Linux lifecycle tests using tiny independent workers; no actual algorithms compiled, no ROS/AP/Gazebo processes started.",
+  "source_sha256_at_report": {
+    "server/offline_studies.py": "f9efd2ff7e0855ea98c9e18837ee65686ab1fda51f23cca0e8d7dbd71c5c662b",
+    "server/run_livo_server.sh": "a016d83bd65d050b62e4544605f8176ced9919d7092b1346991aa43aaf80913d",
+    "server/test/test_offline_studies.py": "9838583884fc82b879415fa8374abd8790b410fe7eba74b3e17b2bfd00c0954c"
+  },
+  "original_failure_fixture": "tmp/audit_20261026/offline_interrupt_fixture/result.json",
+  "fixed_fixture": "tmp/audit_20261026/offline_interrupt_fixed/result.json"
+}

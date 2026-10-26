@@ -8,6 +8,7 @@ Use system `/usr/bin/python3` on Ubuntu 22.04 (Python 3.10). Keep failed directo
 |---|---|---|
 | Want to understand the algorithm without ROS | `install_dependencies.sh --check --profile offline` | Run the six CPU studies. They need neither ROS/Gazebo nor released recording data. |
 | Missing CMake package or Python module | Installer checks and the first failing compiler/import line | Use the appropriate dependency profile with system Python. Presence checks do not replace build/runtime validation. |
+| System check passes but plain python3 imports fail | Compare `command -v python3` with `/usr/bin/python3` | Leave Conda/venv before ROS builds. The check uses system Python; a different Python selected by PATH is a different environment. |
 | Output or LIVO runtime already exists | The path in the error | Use a new output/runtime; keep the previous attempt. Prepare/replay/evaluate must refer to the same new LIVO build. |
 | Source/dependency identity mismatch | Commit, package versions and retained build log | Rebuild into a new prefix. Do not edit checksums or copy old manifests. |
 | Old `/home/accelerate/...` in a JSON | Is it reference evidence or a new index? | Historical evidence keeps original paths. Use prepare to generate a new local index from the B1 bag. |
@@ -31,6 +32,8 @@ cat IMPACT_Server_Resources_20261022_v2.tar.gz.part-{001..018} \
 sha256sum IMPACT_Server_Resources_20261022_v2.tar.gz
 # Expected whole-archive SHA-256:
 # e12ed7706e7bb8cdb70b449d21c038789937ef48fac0d16f7752403f4c8e9869
+# Now run the installer from your source checkout, with the absolute archive path.
+cd /absolute/path/to/IMPACT
 /usr/bin/python3 server/fetch_resources.py --root "$PWD" \
   --archive /absolute/path/to/IMPACT_Server_Resources_20261022_v2.tar.gz
 ```

@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "checks": {
+    "all_local_document_links_resolve": true,
+    "all_document_bash_blocks_parse": true,
+    "server_python_AST_and_shell_syntax": true,
+    "reference_tables_match_actual_evaluation": true,
+    "all_597_current_source_identities": true,
+    "manifest_source_bytes_sum": true
+  },
+  "documents": [
+    "README.md",
+    "README.en.md",
+    "papers/README.md",
+    "CITATION.md",
+    "THIRD_PARTY_NOTICES.md",
+    "docs/REFERENCE_RESULTS.md",
+    "docs/TROUBLESHOOTING.md",
+    "server/AP471_RUNBOOK.md",
+    "server/LIVO_RUNBOOK.md",
+    "docs/OPEN_SOURCE_AUDIT_20261026.md"
+  ],
+  "bash_code_blocks_checked": 25,
+  "missing_links": [],
+  "scope": "Static source/doc/command-syntax/reference-table audit; does not execute Bash examples or certify full installation."
+}

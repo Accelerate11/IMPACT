@@ -1,0 +1,12 @@
+test_ctrl_c_between_results_still_writes_summary (test_offline_studies.OfflineRunnerTests) ... ok
+test_ctrl_c_stops_owned_group_and_marks_unstarted_studies (test_offline_studies.OfflineRunnerTests) ... ok
+test_invalid_timeouts_are_rejected_before_creating_outputs (test_offline_studies.OfflineRunnerTests) ... ok
+test_launch_failure_retains_log_and_marks_remaining_not_run (test_offline_studies.OfflineRunnerTests) ... ok
+test_nonzero_study_cannot_pass (test_offline_studies.OfflineRunnerTests) ... ok
+test_success_retains_existing_summary_contract (test_offline_studies.OfflineRunnerTests) ... ok
+test_timeout_stops_descendants_even_if_they_ignore_term (test_offline_studies.OfflineRunnerTests) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 3.047s
+
+OK

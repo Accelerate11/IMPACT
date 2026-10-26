@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "profile": "offline",
+  "checks": {
+    "python310": true,
+    "Eigen3": true,
+    "g++": true,
+    "numpy": true,
+    "matplotlib": true
+  },
+  "note": "Presence check only. offline needs no ROS/Gazebo/resources; full requires separate build and runtime checks."
+}

@@ -1,6 +1,6 @@
 # IMPACT
 
-[English](README.en.md) · [参考结果与验收](docs/REFERENCE_RESULTS.md) · [复现排错](docs/TROUBLESHOOTING.md) · [组件许可与来源](THIRD_PARTY_NOTICES.md)
+[English](README.en.md) · [参考结果与验收](docs/REFERENCE_RESULTS.md) · [复现排错](docs/TROUBLESHOOTING.md) · [公开复现检查](docs/OPEN_SOURCE_AUDIT_20261026.md) · [组件许可与来源](THIRD_PARTY_NOTICES.md)
 
 面向 GNSS 拒止无人机导航的多源融合、完好性裕度规划与主动控制研究代码。
 
@@ -200,7 +200,7 @@ data/ third_party/       Release 下载资源，Git 忽略
 
 ## 更新与复现实验
 
-论文参考版本固定为 tag `server-sim-2026.10.22`、提交 `5750e6e204b697349e7b08bc1aca5e0bee1d51a9`。该tag保留原始说明和元数据；当前main增加轻量安装路径、文档和许可/来源勘误。严格重现旧快照时可单独签出该tag，但本文新增的安装选项在旧tag中不存在。每次新实验记录 `git rev-parse HEAD`。
+论文参考版本固定为 tag `server-sim-2026.10.22`、提交 `5750e6e204b697349e7b08bc1aca5e0bee1d51a9`。该tag保留原始说明和元数据；当前main增加轻量安装路径、中断清理、文档和许可/来源勘误。严格重现旧快照时可单独签出该tag，但本文新增的安装选项在旧tag中不存在。每次新实验记录 `git rev-parse HEAD`。
 
 先结束当前运行，再 `git pull --ff-only`。源码改变后为新版本创建新的构建目录；原入口会检查源码、依赖、安装和二进制身份，不应修改清单绕过不匹配。保留所有 FAIL 目录，避免将旧输出复制为新服务器的 PASS。
 

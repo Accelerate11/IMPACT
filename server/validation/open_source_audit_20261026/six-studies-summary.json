@@ -1,0 +1,157 @@
+{
+  "status": "PASS",
+  "root": "/home/accelerate/impact_public_audit_20261026/clean clone",
+  "studies": [
+    {
+      "study": "shared_scale",
+      "status": "PASS",
+      "returncode": 0,
+      "timed_out": false,
+      "interrupted": false,
+      "launch_failed": false,
+      "error": null,
+      "cleanup": {
+        "signals": [],
+        "owned_remaining": []
+      },
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_shared_scale_study.py",
+        "--config",
+        "config/research_shared_scale_study.json",
+        "--output",
+        "/home/accelerate/impact_public_audit_20261026/six_studies/shared_scale"
+      ],
+      "started_at_utc": "2026-10-26T15:03:46.849679+00:00",
+      "finished_at_utc": "2026-10-26T15:03:47.517047+00:00",
+      "log": "/home/accelerate/impact_public_audit_20261026/six_studies/shared_scale.log",
+      "artifacts": "/home/accelerate/impact_public_audit_20261026/six_studies/shared_scale"
+    },
+    {
+      "study": "correlated_flow",
+      "status": "PASS",
+      "returncode": 0,
+      "timed_out": false,
+      "interrupted": false,
+      "launch_failed": false,
+      "error": null,
+      "cleanup": {
+        "signals": [],
+        "owned_remaining": []
+      },
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_correlated_flow_study.py",
+        "--protocol",
+        "config/research_flow_precondition_gate.json",
+        "--output",
+        "/home/accelerate/impact_public_audit_20261026/six_studies/correlated_flow"
+      ],
+      "started_at_utc": "2026-10-26T15:03:47.517130+00:00",
+      "finished_at_utc": "2026-10-26T15:03:49.137675+00:00",
+      "log": "/home/accelerate/impact_public_audit_20261026/six_studies/correlated_flow.log",
+      "artifacts": "/home/accelerate/impact_public_audit_20261026/six_studies/correlated_flow"
+    },
+    {
+      "study": "two_view",
+      "status": "PASS",
+      "returncode": 0,
+      "timed_out": false,
+      "interrupted": false,
+      "launch_failed": false,
+      "error": null,
+      "cleanup": {
+        "signals": [],
+        "owned_remaining": []
+      },
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_two_view_geometry_study.py",
+        "--protocol",
+        "config/research_joint_window_gate.json",
+        "--output",
+        "/home/accelerate/impact_public_audit_20261026/six_studies/two_view"
+      ],
+      "started_at_utc": "2026-10-26T15:03:49.137732+00:00",
+      "finished_at_utc": "2026-10-26T15:03:50.158018+00:00",
+      "log": "/home/accelerate/impact_public_audit_20261026/six_studies/two_view.log",
+      "artifacts": "/home/accelerate/impact_public_audit_20261026/six_studies/two_view"
+    },
+    {
+      "study": "joint_window",
+      "status": "PASS",
+      "returncode": 0,
+      "timed_out": false,
+      "interrupted": false,
+      "launch_failed": false,
+      "error": null,
+      "cleanup": {
+        "signals": [],
+        "owned_remaining": []
+      },
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_joint_window_study.py",
+        "--protocol",
+        "config/research_joint_window_gate.json",
+        "--output",
+        "/home/accelerate/impact_public_audit_20261026/six_studies/joint_window"
+      ],
+      "started_at_utc": "2026-10-26T15:03:50.158100+00:00",
+      "finished_at_utc": "2026-10-26T15:03:52.937040+00:00",
+      "log": "/home/accelerate/impact_public_audit_20261026/six_studies/joint_window.log",
+      "artifacts": "/home/accelerate/impact_public_audit_20261026/six_studies/joint_window"
+    },
+    {
+      "study": "joint_core",
+      "status": "PASS",
+      "returncode": 0,
+      "timed_out": false,
+      "interrupted": false,
+      "launch_failed": false,
+      "error": null,
+      "cleanup": {
+        "signals": [],
+        "owned_remaining": []
+      },
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_joint_flow_core_validation.py",
+        "--workspace-root",
+        "/home/accelerate/impact_public_audit_20261026/clean clone",
+        "--output-dir",
+        "/home/accelerate/impact_public_audit_20261026/six_studies/joint_core"
+      ],
+      "started_at_utc": "2026-10-26T15:03:52.937099+00:00",
+      "finished_at_utc": "2026-10-26T15:04:43.522319+00:00",
+      "log": "/home/accelerate/impact_public_audit_20261026/six_studies/joint_core.log",
+      "artifacts": "/home/accelerate/impact_public_audit_20261026/six_studies/joint_core"
+    },
+    {
+      "study": "serial_core",
+      "status": "PASS",
+      "returncode": 0,
+      "timed_out": false,
+      "interrupted": false,
+      "launch_failed": false,
+      "error": null,
+      "cleanup": {
+        "signals": [],
+        "owned_remaining": []
+      },
+      "command": [
+        "/usr/bin/python3",
+        "prototypes/serial_position/validate_serial_prototype.py",
+        "--joint-header",
+        "/home/accelerate/impact_public_audit_20261026/clean clone/src/xq_fast_livo2/include/research_joint_flow.h",
+        "--output-dir",
+        "/home/accelerate/impact_public_audit_20261026/six_studies/serial_core"
+      ],
+      "started_at_utc": "2026-10-26T15:04:43.523313+00:00",
+      "finished_at_utc": "2026-10-26T15:05:43.124037+00:00",
+      "log": "/home/accelerate/impact_public_audit_20261026/six_studies/serial_core.log",
+      "artifacts": "/home/accelerate/impact_public_audit_20261026/six_studies/serial_core"
+    }
+  ],
+  "scope": "Standalone synthetic mechanisms, two-view geometry and C++ core checks. Not the recorded five-mode LIVO experiment, AP flight, calibrated integrity or hardware validation."
+}

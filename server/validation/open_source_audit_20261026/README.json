@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "tested_commit": "2ab6c63c7f3a6143d0ee6aae6a9f6173db6ea04f",
+  "scope": "Actual candidate source test plus independent public-identity/doc checks. Current system dependencies were already installed; this is not a full clean-OS/ROS/Gazebo/AP rebuild. Candidate commit is public on GitHub. Later audit-note/evidence additions contain no estimator or runner changes.",
+  "checks": {
+    "documentation_check.json": true,
+    "offline_runner_regression.json": true,
+    "public_snapshot_check.json": true,
+    "six-studies-summary.json": true,
+    "documentation_check_final.json": true
+  },
+  "files": [
+    "all_six_studies.log",
+    "checkout_candidate.log",
+    "documentation_check.json",
+    "documentation_check_final.json",
+    "fetch_candidate.log",
+    "full_source_and_data_verify.log",
+    "minimal_profile_check.log",
+    "offline_interrupt_fixed.json",
+    "offline_interrupt_fixture.json",
+    "offline_runner_regression.json",
+    "public_snapshot_check.json",
+    "repository_description_update.json",
+    "resource_archive_install.log",
+    "runner_lifecycle_tests.log",
+    "six-studies-summary.json",
+    "source-data-coverage.json",
+    "summary.json"
+  ]
+}
