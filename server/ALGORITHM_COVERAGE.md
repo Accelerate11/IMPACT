@@ -1,6 +1,6 @@
 # IMPACT 服务器包：算法与仿真覆盖审计
 
-本说明配套 Ubuntu 22.04 / x86_64 服务器包。清单以当前 Windows 主仓库的 `src/`、`scripts/`、`config/` 为算法来源，记录 597 个普通文件、5,188,195 字节、10 个顶层组件和 15 个实际 ROS 包。所有逐文件 SHA256、依赖、SDF 资产和 WSL 差异见 `coverage_manifest.json`。
+本说明配套 Ubuntu 22.04 / x86_64 服务器包。清单以当前 Windows 主仓库的 `src/`、`scripts/`、`config/` 为算法来源，记录 597 个普通文件、5,188,758 字节、10 个顶层组件和 15 个实际 ROS 包。所有逐文件 SHA256、依赖、SDF 资产和 WSL 差异见 `coverage_manifest.json`。
 
 这是静态覆盖与依赖审计，不是“所有历史入口均已在新服务器运行通过”的证明。新环境构建、数值验证、Gazebo 性能及 AP 执行结果须由各自新日志支持。本文未启动仿真、AP 或 ROS 节点，未构建、安装或打开 SQLite，未修改算法和旧证据。
 
@@ -11,7 +11,7 @@
 | 内容 | 包内位置 | 原始来源 / 要点 |
 |---|---|---|
 | 全部主仓库算法 | `src/`, `scripts/`, `config/`, `docs/` | `D:/CODEX/impact`；不要以较旧的 WSL 主副本替代 |
-| 新便携入口和本审计 | `server/` | `packaging/server/` 的副本 |
+| 新便携入口和本审计 | `server/` | 仓库统一公开入口；不要求制包端目录 |
 | FAST-LIVO2 外部库 | `third_party/livo/{Sophus,rpg_vikit}` | 库来源、补丁与构建另有清单 |
 | AP 4.7.1 | `third_party/ardupilot/` | 精确源码与构建身份由 AP 打包清单约束 |
 | Gazebo AP 插件与机体 | `third_party/ardupilot_gazebo/` | 必须包括 models/worlds/许可证及插件源 |
@@ -88,7 +88,7 @@ r2b3b1_20261020T104238Z_8607/rosbag
 
 7 个文件合计 **1,503,077,896 字节**：metadata 26,120 字节；6 个 DB3 分别为 270,364,672 / 270,528,512 / 269,950,976 / 269,053,952 / 269,193,216 / 153,960,448 字节。全部 SHA 在机器清单中。不要只打 12.47 MB sensor-index 而遗漏 DB；publisher 要从原 DB 行读取与核对 CDR。
 
-五流输入计数为 IMU 16,586、LiDAR 830、前视 1,270、下视 1,270、range 4,188，共 28,144。原 index 指向旧绝对路径；新包必须对 `data/b1/rosbag` 重新 prepare 到新目录，而不是改原 source hash 或改 acquisition header。真值和无噪声 range 只导出给独立 evaluator。
+五流输入计数为 IMU 16,586、LiDAR 830、前视 1,270、下视 1,270、range 4,188，共 24,144。原 index 指向旧绝对路径；新包必须对 `data/b1/rosbag` 重新 prepare 到新目录，而不是改原 source hash 或改 acquisition header。真值和无噪声 range 只导出给独立 evaluator。
 
 前/下视 15 Hz 与 range 50 Hz 并非每帧同戳：127 个 exact seed，每次取下一原始图像，seed 间隔约 0.66 s。正式记录完成 123 对；其余 range 收到并审计，当前 profile 不融合。不能把它写成全 50 Hz range 利用率。
 
@@ -179,3 +179,5 @@ python3 server/independent_verify_bundle.py \
 
 工具还输出源中的 host-specific 绝对路径、建议迁移位置及其存在性；它不会重写程序。静态 PASS 不掩盖 historical entrypoint 适配工作，`portable_entrypoints_verified` 明确为 false。主 README 的新运行记录才是便携入口可执行性的证据。
 
+
+2026-10-26 元数据勘误：FAST-LIO 包级许可改为与随附 GPL v2 文本一致的 `GPL-2.0-only`，保留文件级 BSD notices；来源精确提交为 UNKNOWN。仅两份许可/来源文件身份更新，数学代码未改，原始身份保存在清单 metadata_revisions，历史验证及参考 tag 未重写。五路总输入计数勘误为24,144。

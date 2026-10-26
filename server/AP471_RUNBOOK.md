@@ -105,7 +105,9 @@ smoke 结果的 `PASS` 仅表示此次固件身份、完整回读、未解锁观
 先按主 README 在新服务器构建全包 underlay，包含本地 `xq_sim_interfaces`、`quadrotor_msgs`、`traj_utils` 等接口。AP autonomy 包装器不会凭空生成这些上游接口。
 
 ```bash
-UNDERLAY=/srv/impact/server_runtime/install/主构建前缀
+# Replace BASE_BUILD with the successful build_<UTC>_<PID> directory printed by build_workspace.sh.
+BASE_BUILD=/absolute/path/impact-runs/base/build_本次标识
+UNDERLAY="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["install"])' "$BASE_BUILD/build-result.json")"
 python3 "$ROOT/server/ap471_server.py" --root "$ROOT" build-autonomy --underlay "$UNDERLAY"
 python3 "$ROOT/server/ap471_server.py" --root "$ROOT" build-plugin \
   --plugin-source "$ROOT/third_party/ardupilot_gazebo" --jobs 2

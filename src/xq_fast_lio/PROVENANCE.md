@@ -1,6 +1,6 @@
 # Source provenance
 
-This package is an isolated, project-local adaptation of the BSD-licensed
+This package is an isolated, project-local adaptation of the mixed-license
 `FAST_LIO_ROS2` source snapshot found at:
 
 `/home/accelerate/cuadc_ws/src/FAST_LIO_ROS2`
@@ -13,3 +13,12 @@ Project-local changes are limited to package/namespace isolation, standard
 PointCloud2 operation, P2 QoS compatibility, configurable output topic/frames,
 and removal of runtime file logging. The FAST-LIO2 ESIKF, IMU propagation,
 point-to-plane update, and ikd-Tree map algorithms remain the upstream code.
+
+Licensing correction (2026-10-26): the bundled package LICENSE contains GNU
+GPL version 2. Package metadata now records GPL-2.0-only instead of the inherited
+BSD label; this corrects the description of the supplied snapshot, without
+relicensing its contents. BSD-3-Clause copyright/conditions in individual source
+files (including laserMapping.cpp and IKFoM headers) remain intact.
+
+The original local snapshot has no .git metadata; its exact upstream commit is
+UNKNOWN_SOURCE_SNAPSHOT. Do not infer its commit from a current upstream branch.

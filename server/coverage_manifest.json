@@ -277,7 +277,7 @@
       "path": "src/xq_fast_lio/package.xml",
       "name": "xq_fast_lio",
       "license": [
-        "BSD"
+        "GPL-2.0-only"
       ],
       "build_type": "ament_cmake",
       "dependencies": [
@@ -2162,10 +2162,10 @@
     },
     {
       "path": "src/xq_fast_lio/PROVENANCE.md",
-      "bytes": 718,
-      "sha256": "e053999f880d3546c85339b22283994d0c2fa6a56e7715c3c7b9174d3da5d34a",
-      "linux_lf_bytes": 703,
-      "linux_lf_sha256": "06fa932d9b9a75c552a1fa17005ebd8576d4913c5a69ad7a7f4eb41863eb57b1",
+      "bytes": 1272,
+      "sha256": "62ed38b1956c951ac8628ac07fb91b37b8397a60ac76af3f68200c448a689940",
+      "linux_lf_bytes": 1248,
+      "linux_lf_sha256": "e092f86ef90ad2bdb27063a51d4dd5f48a02d22d12978e48e8bf250bc4aa880a",
       "linux_lf_conversion": "EXACT_UTF8_CRLF_TO_LF"
     },
     {
@@ -2346,10 +2346,10 @@
     },
     {
       "path": "src/xq_fast_lio/package.xml",
-      "bytes": 1304,
-      "sha256": "abbcd56f6f778caf04832d73be773f8cabe122e39d00e9e5aa08ca2b5dcebac4",
-      "linux_lf_bytes": 1263,
-      "linux_lf_sha256": "8d1c98984d502015336875a5b748c3189d3bbda7b67ea65396fa81eb9a8a2c94",
+      "bytes": 1313,
+      "sha256": "d99cf63a4388980ac8123bc9fa934d46ed3f44c71116478c673d482a470dd5eb",
+      "linux_lf_bytes": 1272,
+      "linux_lf_sha256": "add56a18ee5393200c232272e5f376dd961ff1b5c9dc85c2866ce6ac8a6164e8",
       "linux_lf_conversion": "EXACT_UTF8_CRLF_TO_LF"
     },
     {
@@ -5186,7 +5186,7 @@
     }
   ],
   "source_file_count": 597,
-  "source_bytes": 5188195,
+  "source_bytes": 5188758,
   "source_exclusions": [
     "__pycache__",
     ".pytest_cache",
@@ -5258,7 +5258,7 @@
         "scripts/test/test_joint_livo_inputs.py",
         "scripts/test/test_joint_livo_evaluator.py"
       ],
-      "experimental_scope": "Original 83.753s flight; common 28144 sensor inputs, 127 source seed opportunities, 123 completed pairs. No nearest-range restamping or truth input. Single flight does not prove statistical superiority.",
+      "experimental_scope": "Original 83.753s flight; common 24144 sensor inputs, 127 source seed opportunities, 123 completed pairs. No nearest-range restamping or truth input. Single flight does not prove statistical superiority.",
       "paper_labels": []
     },
     {
@@ -6892,5 +6892,54 @@
     "external_assets_modified": false,
     "history_evidence_modified": false
   },
-  "linux_lf_identity_policy": "Original bytes/SHA are retained. The sole alternate is the explicitly indexed UTF8 CRLF-to-LF export; candidate files are hashed raw, never normalized by the verifier."
+  "linux_lf_identity_policy": "Original bytes/SHA are retained. The sole alternate is the explicitly indexed UTF8 CRLF-to-LF export; candidate files are hashed raw, never normalized by the verifier.",
+  "metadata_revisions": [
+    {
+      "date": "2026-10-26",
+      "source_files": [
+        {
+          "path": "src/xq_fast_lio/package.xml",
+          "reason": "License/provenance metadata correction only; numerical algorithm unchanged.",
+          "previous_identity": {
+            "path": "src/xq_fast_lio/package.xml",
+            "bytes": 1304,
+            "sha256": "abbcd56f6f778caf04832d73be773f8cabe122e39d00e9e5aa08ca2b5dcebac4",
+            "linux_lf_bytes": 1263,
+            "linux_lf_sha256": "8d1c98984d502015336875a5b748c3189d3bbda7b67ea65396fa81eb9a8a2c94",
+            "linux_lf_conversion": "EXACT_UTF8_CRLF_TO_LF"
+          },
+          "current_identity": {
+            "path": "src/xq_fast_lio/package.xml",
+            "bytes": 1313,
+            "sha256": "d99cf63a4388980ac8123bc9fa934d46ed3f44c71116478c673d482a470dd5eb",
+            "linux_lf_bytes": 1272,
+            "linux_lf_sha256": "add56a18ee5393200c232272e5f376dd961ff1b5c9dc85c2866ce6ac8a6164e8",
+            "linux_lf_conversion": "EXACT_UTF8_CRLF_TO_LF"
+          }
+        },
+        {
+          "path": "src/xq_fast_lio/PROVENANCE.md",
+          "reason": "License/provenance metadata correction only; numerical algorithm unchanged.",
+          "previous_identity": {
+            "path": "src/xq_fast_lio/PROVENANCE.md",
+            "bytes": 718,
+            "sha256": "e053999f880d3546c85339b22283994d0c2fa6a56e7715c3c7b9174d3da5d34a",
+            "linux_lf_bytes": 703,
+            "linux_lf_sha256": "06fa932d9b9a75c552a1fa17005ebd8576d4913c5a69ad7a7f4eb41863eb57b1",
+            "linux_lf_conversion": "EXACT_UTF8_CRLF_TO_LF"
+          },
+          "current_identity": {
+            "path": "src/xq_fast_lio/PROVENANCE.md",
+            "bytes": 1272,
+            "sha256": "62ed38b1956c951ac8628ac07fb91b37b8397a60ac76af3f68200c448a689940",
+            "linux_lf_bytes": 1248,
+            "linux_lf_sha256": "e092f86ef90ad2bdb27063a51d4dd5f48a02d22d12978e48e8bf250bc4aa880a",
+            "linux_lf_conversion": "EXACT_UTF8_CRLF_TO_LF"
+          }
+        }
+      ],
+      "previous_frozen_reference": "server-sim-2026.10.22 / 5750e6e204b697349e7b08bc1aca5e0bee1d51a9",
+      "numerical_algorithm_changed": false
+    }
+  ]
 }

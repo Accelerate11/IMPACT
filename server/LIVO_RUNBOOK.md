@@ -20,7 +20,7 @@
 | `server/{livo_server.py,build_livo_server.sh,run_livo_server.sh}` | 部署包装器；不改变残差、协方差、门限、输入采样或五组定义 |
 | `third_party/livo/{Sophus,rpg_vikit}/`、`vendor-manifest.json` | 从固定 Git 对象导出的干净依赖源码及逐文件哈希；不携带旧编译产物 |
 | `data/b1/rosbag/metadata.yaml`、`rosbag_0.db3` 至 `rosbag_5.db3` | 同一段 B1 原始记录；必须完整保留全部分卷和元数据，不裁剪/重写数据库 |
-| 原 `sensor-index.json` 及 `source-files.*.json`、`source-stamps.json`、`pair-profile.json`、`prepare-result.json`、`evaluator/` | 原结果的参考证据。可统一放在 `data/b1/reference/`；里面的旧绝对路径应保留为历史记录，新服务器重新生成自己的索引 |
+| 可选历史参考：原 `sensor-index.json` 及 `source-files.*.json`、`source-stamps.json`、`pair-profile.json`、`prepare-result.json`、`evaluator/` | 非运行必需。原结果的参考证据可统一放在 `data/b1/reference/`；里面的旧绝对路径应保留为历史记录，新服务器重新生成自己的索引 |
 | `prototypes/serial_position/` 全目录 | 串联工程基线的独立原型、协议与验证入口；尚未接入五组 native replay |
 
 原始 B1 索引在开发仓库的 `runs/software_completion_joint_input_index_20261021T074341Z_324/`。原始 bag 在 WSL 的 `experiments/results/research_multisensor/r2b3b1_20261020T104238Z_8607/rosbag/`。两者不是算法运行时必须保持的目录名。
@@ -98,6 +98,7 @@ Fast DDS 配置从本机 `ip -j -4 route get 1.1.1.1` 读取默认 IPv4 接口�
 联合核心只依赖 C++17 和 Eigen。下面创建新的检查目录：
 
 ```bash
+set -o pipefail
 livo_core_out="server_runtime/joint_core_$(date -u +%Y%m%dT%H%M%SZ)"
 mkdir -p "$livo_core_out"
 g++ -std=c++17 -O0 -g0 -Wall -Wextra -Werror \

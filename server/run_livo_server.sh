@@ -2,7 +2,7 @@
 set -euo pipefail
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
 if (($# == 0)); then
-  echo 'Usage: bash packaging/server/run_livo_server.sh {check|prepare|replay|evaluate} [options]' >&2
+  echo 'Usage: bash server/run_livo_server.sh {check|prepare|replay|evaluate} [options]' >&2
   exit 2
 fi
 unset AMENT_PREFIX_PATH CMAKE_PREFIX_PATH COLCON_PREFIX_PATH PYTHONPATH LD_LIBRARY_PATH

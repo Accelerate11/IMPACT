@@ -1,5 +1,7 @@
 # IMPACT
 
+[English](README.en.md) · [参考结果与验收](docs/REFERENCE_RESULTS.md) · [复现排错](docs/TROUBLESHOOTING.md) · [组件许可与来源](THIRD_PARTY_NOTICES.md)
+
 面向 GNSS 拒止无人机导航的多源融合、完好性裕度规划与主动控制研究代码。
 
 当前服务器目标为 **Ubuntu 22.04 / x86_64 / ROS 2 Humble / Gazebo Harmonic**，飞控固件固定为官方 **ArduCopter 4.7.1**。计划中的实机为 Livox Mid-360、相机、微空下视光流、NVIDIA Orin NX 与 CUAV X25 MEGA；相机及微空模块的具体型号仍待确定。
@@ -11,7 +13,31 @@
 
 当前硬件与验证范围以本页和 `server/` 运行手册为准。旧平台、P0–P15 和复杂场景记录完整保留于 [历史 README](docs/README_LEGACY_P0_P15.md)、`docs/` 与 `evidence/`；旧结果的条件和固件版本保持原样。
 
-## 从服务器开始
+## 核心方法在解决什么
+
+下视图像的旋转补偿、测距尺度与已有状态会共享不确定量。如果把由它们得到的观测直接当成独立信息，可能重复计算信息。本方法把原生19维状态、6维位姿克隆和3维局部平面放入同一28维协方差，以原始两视图像素残差更新原生状态，并保留声明模型下的相关项。五组回放用于检验实际更新及两项相关性消融，不预设所有条件下完整模型都更优。
+
+```mermaid
+flowchart LR
+  A[雷达 IMU 前视图像] --> B[原生19维LIVO状态]
+  B --> C[28维联合状态和协方差]
+  D[下视图像对] --> E[原始像素残差]
+  F[测距与不确定局部平面] --> C
+  C --> E
+  E --> G[联合更新与SO3协方差重置]
+  G --> B
+```
+
+## 选择复现路径
+
+| 目的 | 所需环境与数据 | 入口 | 成功依据 |
+|---|---|---|---|
+| 理解数学机制，运行六项独立研究 | CPU、Python3.10、g++、Eigen、NumPy、Matplotlib；不需要ROS、Gazebo或原始bag | `offline_studies.py` | `summary.json`及六组状态均PASS |
+| 复现论文五方法 | ROS2 Humble、C++依赖、发布的记录和固定源码；不启动Gazebo，不需要GPU | LIVO build/prepare/replay/evaluate | 完整输入尾部、套件和独立评估通过 |
+| 历史Gazebo/复杂场景 | 基础14包、Harmonic、EGL渲染 | headless/scenario入口 | 每次run的result，区分SMOKE与MISSION |
+| AP4.7.1接口 | 固定AP源码、编译依赖、私有venv | `ap471_server.py` | 准备/未解锁smoke；不等于飞行通过 |
+
+## 最短体验：不用先装ROS或下载大数据
 
 ```bash
 git clone https://github.com/Accelerate11/IMPACT.git
@@ -20,9 +46,28 @@ export IMPACT_ROOT="$PWD"
 export IMPACT_RUN_ROOT="$(dirname "$PWD")/impact-runs"
 mkdir -p "$IMPACT_RUN_ROOT"
 
+bash server/install_dependencies.sh --install --profile offline
+bash server/install_dependencies.sh --check --profile offline
+OFFLINE_OUT="$IMPACT_RUN_ROOT/offline_$(date -u +%Y%m%dT%H%M%SZ)"
+/usr/bin/python3 server/offline_studies.py --root "$IMPACT_ROOT" --output "$OFFLINE_OUT"
+```
+
+首次安装需要sudo和网络。打开 `$OFFLINE_OUT/summary.json`：总状态及 `shared_scale`、`correlated_flow`、`two_view`、`joint_window`、`joint_core`、`serial_core` 六项都应为PASS。含两个C++编译步骤，耗时取决于CPU；这条路径不回放论文记录，也不把串联原型变成第六个真实回放方法。
+
+失败、中断及各组日志会保留；重试使用新输出目录。完整依赖安装仍兼容原来的 `--install`，也可显式用 `--profile full`。
+
+## 完整服务器环境与资源
+
+以下从已有项目根目录执行。若直接选择完整复现，先执行上方的clone和变量设置，无需先运行离线研究。
+
+```bash
+export IMPACT_ROOT="$PWD"
+export IMPACT_RUN_ROOT="$(dirname "$PWD")/impact-runs"
+mkdir -p "$IMPACT_RUN_ROOT"
+
 # 首次安装系统依赖；需要 sudo 和网络。
-bash server/install_dependencies.sh --install
-bash server/install_dependencies.sh --check
+bash server/install_dependencies.sh --install --profile full
+bash server/install_dependencies.sh --check --profile full
 
 # 下载固定资源，逐文件核对；约 1.19 GB 压缩包，解压约 2.94 GB。
 python3 server/fetch_resources.py --root "$IMPACT_ROOT"
@@ -49,12 +94,7 @@ python3 server/fetch_resources.py --root "$IMPACT_ROOT" \
 
 ## 1. 先运行独立算法研究
 
-```bash
-python3 server/offline_studies.py --root "$IMPACT_ROOT" \
-  --output "$IMPACT_RUN_ROOT/offline_$(date -u +%Y%m%dT%H%M%SZ)"
-```
-
-依次运行共享尺度、共享误差相关性、两视图几何、跨窗联合状态、28 维 C++ 核心和串联基线原型检查。每项有独立日志与结果，总入口返回非零即存在失败。它们是数学与实现检查，不能替代真实状态回放或完整飞行实验。
+使用上方“最短体验”命令即可；已运行过的不必重复。六项依次检查共享尺度、共享误差相关性、两视图几何、跨窗联合状态、28维C++核心和串联原型。每项有独立日志与结果；它们不代替真实状态回放或完整飞行实验。
 
 ## 2. 复现论文中的五组联合融合实验
 
@@ -75,6 +115,16 @@ bash server/run_livo_server.sh evaluate --root "$IMPACT_ROOT" \
 ```
 
 五组分别为 `native`、`joint_no_flow`、`full`、`zero_gyro`、`zero_plane`。完整记录包含 6 个 SQLite 分卷及元数据，必须全部保留。新服务器会重新生成本机索引，原始采集戳与载荷不变；真值只用于估计进程结束后的独立评估。
+
+| 方法 | 含义 | 参考ATE RMS / mm | 实际光流状态/协方差更新 |
+|---|---|---:|---:|
+| `native` | 原生LIVO，无附加联合状态 | 7.368785 | 0 |
+| `joint_no_flow` | 保留联合/克隆/平面机制，禁用像素更新 | 7.203131 | 0 |
+| `full` | 完整声明相关模型 | 6.644720 | 37 |
+| `zero_gyro` | 去陀螺标记交叉块，仍使用IMU传播 | 6.768476 | 37 |
+| `zero_plane` | 去平面与其余状态交叉协方差，保留边际 | 6.742032 | 37 |
+
+误差为首对SE(3)对齐、无尺度拟合后的位置误差；按采集戳与15ms内最近真值匹配。本次1253个匹配、0未匹配，最大时间差9ms。完整字段、结果文件位置及验收说明见[参考结果](docs/REFERENCE_RESULTS.md)。
 
 检查 `suite-result.json`、各组的 `run-result.json` 和评估 `report.json`，同时核对所有输入尾部、状态实际更新与独立数值重建。终端出现里程计消息并不等于处理完成。详见 [LIVO 运行手册](server/LIVO_RUNBOOK.md)。
 
@@ -146,12 +196,14 @@ data/ third_party/       Release 下载资源，Git 忽略
 
 完整公式到代码映射见 [算法覆盖表](server/ALGORITHM_COVERAGE.md)。软件范围、已完成与待完成的验收见 [软件验收矩阵](docs/SOFTWARE_COMPLETION_ACCEPTANCE.md) 和 [阶段记录](docs/SOFTWARE_COMPLETION_LOG.md)。
 
-装机演示建议与采集要求见 [实机 Demo 计划](docs/HARDWARE_DEMO_PLAN.md)。当前原始光流方法需要下视图像/像素轨迹；仅提供光流或速度的模块不能直接替代该输入。
+装机演示建议与采集要求见 [实机 Demo 计划](docs/HARDWARE_DEMO_PLAN.md)。当前ROS接入需要原始下视图像，尚无外部像素轨迹适配器；模块光流/速度不能直接替代。真实标定参数化与异步关联仍需实现，不能把仿真常量或修改后的采集戳直接当成实机接入。
 
 ## 更新与复现实验
+
+论文参考版本固定为 tag `server-sim-2026.10.22`、提交 `5750e6e204b697349e7b08bc1aca5e0bee1d51a9`。该tag保留原始说明和元数据；当前main增加轻量安装路径、文档和许可/来源勘误。严格重现旧快照时可单独签出该tag，但本文新增的安装选项在旧tag中不存在。每次新实验记录 `git rev-parse HEAD`。
 
 先结束当前运行，再 `git pull --ff-only`。源码改变后为新版本创建新的构建目录；原入口会检查源码、依赖、安装和二进制身份，不应修改清单绕过不匹配。保留所有 FAIL 目录，避免将旧输出复制为新服务器的 PASS。
 
 此版本的便携性验证在 WSL Ubuntu 22.04/x86_64 的全新路径与前缀上执行。它验证了重建和重定位，不代表已登录你的外部服务器运行；Orin 实时性、物理标定、新融合任务闭环和多场景统计仍分别需要验证。依赖首次安装参考 [ROS Humble 官方说明](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html) 与 [Gazebo Harmonic 官方说明](https://gazebosim.org/docs/harmonic/install_ubuntu/)。
 
-各 ROS 包与第三方组件保留各自许可证，包含 GPL、BSD、Apache 等；整个工作区不能统一视为同一种许可证。
+各ROS包、文件与第三方组件保留各自许可证，见[许可与来源索引](THIRD_PARTY_NOTICES.md)。论文是初稿，作者信息待填写；软件引用方式见[CITATION.md](CITATION.md)。遇到复现问题先查[排错表](docs/TROUBLESHOOTING.md)，再带版本、命令、结果JSON和相关日志提交[Issue](https://github.com/Accelerate11/IMPACT/issues)。
