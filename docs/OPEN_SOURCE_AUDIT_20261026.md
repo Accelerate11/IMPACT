@@ -32,6 +32,12 @@
 
 GitHub CI运行依赖安装、7项运行器测试和六项研究：[候选提交的Actions记录](https://github.com/Accelerate11/IMPACT/actions/runs/40345826978)。实时状态以页面为准，不能把本机已有依赖检查当成GitHub全新环境安装成功。
 
+### CI下载后记
+
+上述旧候选job已由维护过程取消以读取日志；不能把取消状态称为全套CI通过。实际日志显示Azure Ubuntu镜像下载依赖耗时20分14秒，随后安装成功、7项测试和前五项研究通过，第六项编译在取消时中断。未观察到数值断言失败。
+
+后续仅调整安装网络策略：APT设置30秒网络闲置超时、两次重试和120秒锁等待；GitHub临时runner使用官方Ubuntu archive镜像，安装步骤上限10分钟。没有在本机运行apt、改本机镜像或改变数值算法。当前CI以[工作流页面](https://github.com/Accelerate11/IMPACT/actions/workflows/server-offline.yml)的最新提交状态为准，原候选本地六项PASS仍保留。
+
 ## 本轮没有重新验收的范围
 
 没有在本轮重建完整ROS/Gazebo/AP或重新运行五组原生LIVO回放。它们的已有证据固定在原参考tag，本文没有把它们改标为当前环境新PASS。source/依赖身份变化后，需要按公开入口在新runtime构建。

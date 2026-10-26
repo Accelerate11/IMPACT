@@ -7,6 +7,7 @@ Use system `/usr/bin/python3` on Ubuntu 22.04 (Python 3.10). Keep failed directo
 | Symptom / 现象 | Inspect / 查看 | Next action / 处理 |
 |---|---|---|
 | Want to understand the algorithm without ROS | `install_dependencies.sh --check --profile offline` | Run the six CPU studies. They need neither ROS/Gazebo nor released recording data. |
+| APT appears idle before studies start | APT download URL, `Get`/`Ign`/retry messages | Dependency installation is a network step, not algorithm execution. The installer sets 30-second HTTP(S) inactivity timeouts, two retries and a 120-second dpkg-lock wait. These do not bound total installation time. CI uses archive.ubuntu.com instead of the observed slow Azure mirror and limits its installation step to ten minutes; the server script does not rewrite your mirror. |
 | Missing CMake package or Python module | Installer checks and the first failing compiler/import line | Use the appropriate dependency profile with system Python. Presence checks do not replace build/runtime validation. |
 | System check passes but plain python3 imports fail | Compare `command -v python3` with `/usr/bin/python3` | Leave Conda/venv before ROS builds. The check uses system Python; a different Python selected by PATH is a different environment. |
 | Output or LIVO runtime already exists | The path in the error | Use a new output/runtime; keep the previous attempt. Prepare/replay/evaluate must refer to the same new LIVO build. |

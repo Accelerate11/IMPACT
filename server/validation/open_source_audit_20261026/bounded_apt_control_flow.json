@@ -1,0 +1,125 @@
+{
+  "status": "PASS",
+  "source_sha256": "03f4a152c93bbf6765cb1a563eb67bc403029dbfacf652141c4e7519e6e1e577",
+  "source_unchanged": true,
+  "actual_euid": 1000,
+  "actual_apt_sudo_or_privilege_changes": false,
+  "etc_writes": false,
+  "fixture_changes": "Only copied root-view EUID block bypassed. sudo/apt and all full-profile external commands are stubs. Unexpected apt argv aborts before any full-profile branch can perform system writes.",
+  "offline_control_flow": "One apt update; one install of five packages; exit. No loop, no full-profile fallthrough; sudo preserves --profile offline.",
+  "branches": [
+    {
+      "branch": "ordinary_user_mock_sudo",
+      "status": "PASS",
+      "returncode": 0,
+      "calls": [
+        {
+          "command": "sudo_stub",
+          "args": [
+            "--",
+            "bash",
+            "/mnt/d/CODEX/impact/server/install_dependencies.sh",
+            "--install",
+            "--profile",
+            "offline"
+          ],
+          "actual_euid": 1000
+        },
+        {
+          "command": "apt-get",
+          "args": [
+            "-o",
+            "Acquire::Retries=2",
+            "-o",
+            "Acquire::http::Timeout=30",
+            "-o",
+            "Acquire::https::Timeout=30",
+            "-o",
+            "Dpkg::Lock::Timeout=120",
+            "update"
+          ],
+          "actual_euid": 1000
+        },
+        {
+          "command": "apt-get",
+          "args": [
+            "-o",
+            "Acquire::Retries=2",
+            "-o",
+            "Acquire::http::Timeout=30",
+            "-o",
+            "Acquire::https::Timeout=30",
+            "-o",
+            "Dpkg::Lock::Timeout=120",
+            "install",
+            "-y",
+            "--no-install-recommends",
+            "g++",
+            "libeigen3-dev",
+            "python3",
+            "python3-numpy",
+            "python3-matplotlib"
+          ],
+          "actual_euid": 1000
+        }
+      ],
+      "stdout": "Installing dependency profile offline (APT network timeout 30s; retries 2).\nOffline study dependencies installed. Run --check --profile offline.\n"
+    },
+    {
+      "branch": "mock_root_control_flow",
+      "status": "PASS",
+      "returncode": 0,
+      "calls": [
+        {
+          "command": "apt-get",
+          "args": [
+            "-o",
+            "Acquire::Retries=2",
+            "-o",
+            "Acquire::http::Timeout=30",
+            "-o",
+            "Acquire::https::Timeout=30",
+            "-o",
+            "Dpkg::Lock::Timeout=120",
+            "update"
+          ],
+          "actual_euid": 1000
+        },
+        {
+          "command": "apt-get",
+          "args": [
+            "-o",
+            "Acquire::Retries=2",
+            "-o",
+            "Acquire::http::Timeout=30",
+            "-o",
+            "Acquire::https::Timeout=30",
+            "-o",
+            "Dpkg::Lock::Timeout=120",
+            "install",
+            "-y",
+            "--no-install-recommends",
+            "g++",
+            "libeigen3-dev",
+            "python3",
+            "python3-numpy",
+            "python3-matplotlib"
+          ],
+          "actual_euid": 1000
+        }
+      ],
+      "stdout": "Installing dependency profile offline (APT network timeout 30s; retries 2).\nOffline study dependencies installed. Run --check --profile offline.\n"
+    }
+  ],
+  "all_five_apt_call_sites_use_same_options": true,
+  "verified_options": [
+    "-o",
+    "Acquire::Retries=2",
+    "-o",
+    "Acquire::http::Timeout=30",
+    "-o",
+    "Acquire::https::Timeout=30",
+    "-o",
+    "Dpkg::Lock::Timeout=120"
+  ]
+}

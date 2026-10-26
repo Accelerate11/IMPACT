@@ -45,13 +45,17 @@ if [[ "$EUID" -ne 0 ]]; then
   exec sudo -- bash "$0" --install --profile "$profile"
 fi
 export DEBIAN_FRONTEND=noninteractive
-apt-get update
+# Bound stalled network/lock waits; these are inactivity/retry settings, not
+# a promise about the total package installation duration.
+task_apt_options=(-o Acquire::Retries=2 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 -o Dpkg::Lock::Timeout=120)
+printf 'Installing dependency profile %s (APT network timeout 30s; retries 2).\n' "$profile"
+apt-get "${task_apt_options[@]}" update
 if [[ "$profile" == offline ]]; then
-  apt-get install -y --no-install-recommends g++ libeigen3-dev python3 python3-numpy python3-matplotlib
+  apt-get "${task_apt_options[@]}" install -y --no-install-recommends g++ libeigen3-dev python3 python3-numpy python3-matplotlib
   printf '%s\n' 'Offline study dependencies installed. Run --check --profile offline.'
   exit
 fi
-apt-get install -y --no-install-recommends python3 ca-certificates curl gnupg lsb-release software-properties-common locales
+apt-get "${task_apt_options[@]}" install -y --no-install-recommends python3 ca-certificates curl gnupg lsb-release software-properties-common locales
 add-apt-repository -y universe
 locale-gen en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -70,8 +74,8 @@ if [[ ! -f /etc/apt/sources.list.d/gazebo-stable.list ]]; then
   curl --fail --location --retry 3 https://packages.osrfoundation.org/gazebo.gpg -o /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
   printf '%s\n' 'deb [arch=amd64 signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] https://packages.osrfoundation.org/gazebo/ubuntu-stable jammy main' > /etc/apt/sources.list.d/gazebo-stable.list
 fi
-apt-get update
-apt-get install -y --no-install-recommends \
+apt-get "${task_apt_options[@]}" update
+apt-get "${task_apt_options[@]}" install -y --no-install-recommends \
   build-essential cmake git pkg-config gawk ccache ninja-build iproute2 \
   python3-dev python3-venv python3-pip python3-colcon-common-extensions python3-rosdep \
   python3-numpy python3-scipy python3-matplotlib python3-opencv python3-yaml python3-pytest \

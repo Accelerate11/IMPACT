@@ -12,7 +12,23 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+      - name: Use the Ubuntu archive mirror on the hosted runner
+        run: |
+          sudo /usr/bin/python3 - <<'PY'
+          from pathlib import Path
+          paths = [Path('/etc/apt/sources.list')]
+          paths += list(Path('/etc/apt/sources.list.d').glob('*.list'))
+          paths += list(Path('/etc/apt/sources.list.d').glob('*.sources'))
+          for path in paths:
+              if path.is_file():
+                  original = path.read_text()
+                  updated = original.replace('azure.archive.ubuntu.com', 'archive.ubuntu.com')
+                  if updated != original:
+                      path.write_text(updated)
+                      print('Updated Ubuntu mirror in', path)
+          PY
       - name: Install CPU study dependencies
+        timeout-minutes: 10
         run: |
           bash server/install_dependencies.sh --install --profile offline
           bash server/install_dependencies.sh --check --profile offline
